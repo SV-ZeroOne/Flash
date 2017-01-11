@@ -1,10 +1,10 @@
 package za.co.entelect.bootcamp;
 
-
+//import org.junit.*;
 import org.testng.annotations.Test;
 
-
-import static org.testng.Assert.assertEquals;
+//import static org.junit.Assert.*;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * Unit test for simple App.
