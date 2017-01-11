@@ -15,5 +15,6 @@ public class App
         System.out.println("Byron Dinkelmann");
 
         System.out.println("I am the captain now");
+        System.out.println("Hello Kitty");
     }
 }
