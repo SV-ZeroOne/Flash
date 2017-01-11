@@ -10,6 +10,7 @@ public class App
 
     public static void main(String[] args) {
         System.out.println("Team Flash FTW");
+        System.out.println("Kevin Gouws");
         System.out.println("Byron Dinkelmann");
     }
 }
