@@ -8,10 +8,6 @@ import static org.junit.Assert.*;
  */
 public class AppTest {
 
-    public static void main(String[] args) {
-        System.out.println("Team Flash FTW");
-    }
-
     @Test
     public void givenRandValueWhenConvertedToDollarExpectCorrectConversion() {
         double convertedToDollar = App.convertRandToDollar(7.22);

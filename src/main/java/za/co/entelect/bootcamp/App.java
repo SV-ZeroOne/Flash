@@ -8,4 +8,7 @@ public class App
         return value * CURRENT_RATE / 100 ;
     }
 
+    public static void main(String[] args) {
+        System.out.println("Team Flash FTW");
+    }
 }
