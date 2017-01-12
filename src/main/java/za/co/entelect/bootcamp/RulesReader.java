@@ -46,11 +46,13 @@ public class RulesReader {
             weapons.add(weapon);
             allWeaponInformation.add(new Weapon(weapon,description));
         }
-        else
+
+        for (int i = 0; i < allWeaponInformation.size() ; i++)
         {
-            for (int i = 0; i < allWeaponInformation.size() ; i++)
+            if(allWeaponInformation.get(i).getName().equals(weapon))
             {
-                if(allWeaponInformation.get(i).getName().equals(weapon))
+
+                if(!allWeaponInformation.get(i).getWinConditions().contains(winCondition))
                 {
                     allWeaponInformation.get(i).addWinConditions(winCondition);
                 }
