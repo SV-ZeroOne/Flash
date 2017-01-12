@@ -1,9 +1,11 @@
 package za.co.entelect.bootcamp;
 
+import java.util.ArrayList;
+
 public class Weapon {
 
     private String name;
-    private String [] winConditions;
+    private ArrayList winConditions;
     private String description;
 
     public Weapon(String newName){
@@ -13,6 +15,7 @@ public class Weapon {
     public Weapon(String newName, String newDescription){
         this.name = newName;
         this.description = newDescription;
+        this.winConditions = new ArrayList<String>();
     }
 
     public String getName() {
@@ -23,19 +26,15 @@ public class Weapon {
         this.name = name;
     }
 
-    public String[] getWinConditions() {
+    public ArrayList getWinConditions() {
         return winConditions;
-    }
-
-    public void setWinConditions(String[] winConditions) {
-        this.winConditions = winConditions;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void addWinConditions(String winConditions) {
+        this.winConditions.add(winConditions);
     }
 }
