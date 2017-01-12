@@ -3,7 +3,7 @@ package za.co.entelect.bootcamp;
 public class Player {
 
     private String playerName;
-    private String weaponChoice;
+    private Weapon weaponChoice;
 
     public String getPlayerName() {
         return playerName;
@@ -13,11 +13,11 @@ public class Player {
         this.playerName = playerName;
     }
 
-    public String getWeaponChoice() {
+    public Weapon getWeaponChoice() {
         return weaponChoice;
     }
 
-    public void setWeaponChoice(String weaponChoice) {
+    public void setWeaponChoice(Weapon weaponChoice) {
         this.weaponChoice = weaponChoice;
     }
 }

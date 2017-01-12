@@ -19,7 +19,7 @@ public class RulesReader {
         this.weapons = new ArrayList<String>();
     }
 
-    private void readDatabase() throws IOException {
+    public void readDatabase() throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("rulesDataset.txt"));
         try {
             String line;
@@ -58,11 +58,23 @@ public class RulesReader {
         }
     }
 
-    public ArrayList getAllWeaponInformation()
+    private ArrayList<Weapon> getAllWeaponInformation()
     {
         return allWeaponInformation;
     }
 
+    public Weapon getWeapon(String weaponName) {
+        for (Weapon weapon : getAllWeaponInformation()) {
+            if (weaponName.equals(weapon.getName())) {
+                return weapon;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<String> getWeapons() {
+        return weapons;
+    }
     /*private class WeaponInformation
     {
         private String weapon;
