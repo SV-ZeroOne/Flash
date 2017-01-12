@@ -5,6 +5,15 @@ public class Player {
     private String playerName;
     private Weapon weaponChoice;
 
+    public Player() {
+        this.playerName = null;
+        this.weaponChoice = null;
+    }
+
+    public Player(String playerName) {
+        this.playerName = playerName;
+    }
+
     public String getPlayerName() {
         return playerName;
     }

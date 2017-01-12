@@ -16,14 +16,20 @@ public class MainGame {
     private static RulesReader rules;
     private static Scanner inputScanner;
     private final static Logger LOGGER = Logger.getLogger(MainGame.class.getName());
-    private static boolean done = false;
 
     public static void main(String[] args) {
         LOGGER.setLevel(Level.INFO);
+        playerOne = new Player("Computer");
+        playerTwo = new Player();
+        inputScanner = new Scanner(System.in);
+        System.out.println("Welcome to the Roshambo Game");
+        System.out.println("Please enter your name:");
+        playerTwo.setPlayerName(inputScanner.nextLine());
         playGame();
     }
 
     public static void playGame() {
+        String playAgain;
         rules = new RulesReader();
         try {
             rules.readDatabase();
@@ -31,13 +37,6 @@ public class MainGame {
             e.printStackTrace();
         }
 
-        inputScanner = new Scanner(System.in);
-        playerOne = new Player();
-        playerOne.setPlayerName("Computer");
-        playerTwo = new Player();
-        System.out.println("Welcome to the Roshambo Game");
-        System.out.println("Please enter your name:");
-        playerTwo.setPlayerName(inputScanner.nextLine());
         System.out.println("Please select your weapon:");
         for (int i = 0; i < rules.getWeapons().size(); i++) {
             System.out.println((i + 1) + ". " + rules.getWeapons().get(i));
@@ -48,6 +47,7 @@ public class MainGame {
         playerOne.setWeaponChoice(rules.getWeapon(rules.getWeapons().get(index)));
         String playerOneWeapon = playerOne.getWeaponChoice().getName();
         String playerTwoWeapon = playerTwo.getWeaponChoice().getName();
+        System.out.println("=========================================================================================");
         if (playerOneWeapon.equals(playerTwoWeapon)) {
             System.out.println("It's a draw! You both selected " + playerOneWeapon);
         } else {
@@ -64,7 +64,15 @@ public class MainGame {
                 }
             }
         }
+        System.out.println("=========================================================================================");
+        System.out.println("Play Again? (y/n)");
+        inputScanner.nextLine();
+        playAgain = inputScanner.nextLine();
 
-
+        if (playAgain.equals("y")) {
+            playGame();
+        } else {
+            System.exit(0);
+        }
     }
 }
