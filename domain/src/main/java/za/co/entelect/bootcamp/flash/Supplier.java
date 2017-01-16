@@ -10,13 +10,13 @@ public class Supplier {
     private String city;
     private String referenceNumber;
 
-    public Supplier(){}
-    public Supplier(int supplierID,String name,String city,String referenceNumber)
-    {
-        this.supplierID=supplierID;
-        this.name=name;
-        this.city=city;
-        this.referenceNumber=referenceNumber;
+    public Supplier() {}
+
+    public Supplier(int supplierID, String name, String city, String referenceNumber) {
+        this.supplierID = supplierID;
+        this.name = name;
+        this.city = city;
+        this.referenceNumber = referenceNumber;
     }
 
     public int getSupplierID() {
@@ -49,5 +49,15 @@ public class Supplier {
 
     public void setReferenceNumber(String referenceNumber) {
         this.referenceNumber = referenceNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "supplierID=" + supplierID +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", referenceNumber='" + referenceNumber + '\'' +
+                '}';
     }
 }

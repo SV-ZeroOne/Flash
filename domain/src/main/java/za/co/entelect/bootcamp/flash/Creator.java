@@ -1,5 +1,7 @@
 package za.co.entelect.bootcamp.flash;
 
+import java.util.Arrays;
+
 /**
  * Created by steve.velcev on 2017/01/13.
  */
@@ -7,16 +9,17 @@ public class Creator {
 
     private int creatorID;
     private String name;
-    private String counteryOfResidence;
+    private String countryOfResidence;
     private Byte[] taxReferenceNumber;
     private String emailAddress;
 
-    public Creator(){}
+    public Creator() {}
 
-    public Creator(int creatorID, String name, String counteryOfResidence, Byte[] taxReferenceNumber, String emailAddress) {
+    public Creator(int creatorID, String name, String countryOfResidence,
+                   Byte[] taxReferenceNumber, String emailAddress) {
         this.creatorID = creatorID;
         this.name = name;
-        this.counteryOfResidence = counteryOfResidence;
+        this.countryOfResidence = countryOfResidence;
         this.taxReferenceNumber = taxReferenceNumber;
         this.emailAddress = emailAddress;
     }
@@ -38,11 +41,11 @@ public class Creator {
     }
 
     public String getCounteryOfResidence() {
-        return counteryOfResidence;
+        return countryOfResidence;
     }
 
-    public void setCounteryOfResidence(String counteryOfResidence) {
-        this.counteryOfResidence = counteryOfResidence;
+    public void setCounteryOfResidence(String countryOfResidence) {
+        this.countryOfResidence = countryOfResidence;
     }
 
     public Byte[] getTaxReferenceNumber() {
@@ -59,5 +62,16 @@ public class Creator {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Creator{" +
+                "creatorID=" + creatorID +
+                ", name='" + name + '\'' +
+                ", countryOfResidence='" + countryOfResidence + '\'' +
+                ", taxReferenceNumber=" + Arrays.toString(taxReferenceNumber) +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}';
     }
 }

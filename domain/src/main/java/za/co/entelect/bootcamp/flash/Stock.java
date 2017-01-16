@@ -11,15 +11,14 @@ public class Stock {
     private short availableQty;
     private float price;
 
-    public Stock(){}
+    public Stock() {}
 
-    public Stock(int stockReferenceID,int issueID,String condition,short availableQty, float price)
-    {
-        this.stockReferenceID=stockReferenceID;
-        this.issueID=issueID;
-        this.condition=condition;
-        this.availableQty=availableQty;
-        this.price=price;
+    public Stock(int stockReferenceID, int issueID, String condition, short availableQty, float price) {
+        this.stockReferenceID = stockReferenceID;
+        this.issueID = issueID;
+        this.condition = condition;
+        this.availableQty = availableQty;
+        this.price = price;
     }
 
     public int getStockReferenceID() {
@@ -60,5 +59,16 @@ public class Stock {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "stockReferenceID=" + stockReferenceID +
+                ", issueID=" + issueID +
+                ", condition='" + condition + '\'' +
+                ", availableQty=" + availableQty +
+                ", price=" + price +
+                '}';
     }
 }

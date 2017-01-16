@@ -9,6 +9,8 @@ public class ComicCreators {
     private int creatorID;
     private String creatorRole;
 
+    public ComicCreators() {}
+
     public ComicCreators(int issueID, int creatorID, String creatorRole){
         this.issueID = issueID;
         this.creatorID = creatorID;
@@ -37,5 +39,14 @@ public class ComicCreators {
 
     public void setCreatorRole(String creatorRole) {
         this.creatorRole = creatorRole;
+    }
+
+    @Override
+    public String toString() {
+        return "ComicCreators{" +
+                "issueID=" + issueID +
+                ", creatorID=" + creatorID +
+                ", creatorRole='" + creatorRole + '\'' +
+                '}';
     }
 }
