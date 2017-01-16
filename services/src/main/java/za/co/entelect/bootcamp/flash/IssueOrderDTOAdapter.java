@@ -1,25 +1,46 @@
 package za.co.entelect.bootcamp.flash;
 
-public class IssueOrderDTOAdapter {
+public class IssueOrderDTOAdapter extends IssueOrderDTO implements Adapter{
 
-    private Order order;
+    private int quantity;
     private Issue issue;
-    private Supplier supplier;
 
-
-    public IssueOrderDTOAdapter(Order order, Issue issue, Supplier supplier){
-        this.order=order;
+    public IssueOrderDTOAdapter(int quantity, Issue issue){
+        this.quantity=quantity;
         this.issue=issue;
-        this.supplier=supplier;
-        createIssueOrderDTO();
     }
 
-    public SupplierService.IssueOrderDTO createIssueOrderDTO(){
-        SupplierService.IssueOrderDTO dto = new SupplierService.IssueOrderDTO();
-        dto.setIssueID(issue.getID());
-        dto.setSeriesNumber(String.valueOf(issue.getSeriesNumber()));
-        dto.setQuantity(order.getQuantityOrdered());
-        return dto;
+    @Override
+    public int getIssueID() {
+        return issue.getID();
     }
 
+    @Override
+    public void setIssueID(int issueID) {
+        super.setIssueID(issueID);
+    }
+
+    @Override
+    public String getSeriesNumber() {
+        return String.valueOf(issue.getSeriesNumber());
+    }
+
+    @Override
+    public void setSeriesNumber(String seriesNumber) {
+        super.setSeriesNumber(seriesNumber);
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        super.setQuantity(quantity);
+    }
+
+    public void createAdapter() {
+
+    }
 }
