@@ -5,7 +5,7 @@ import java.sql.Date;
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
-public class Order {
+public class Order implements Entity<Integer>{
     private int orderID;
     private Date orderDate;
     private int issueID;
@@ -31,7 +31,7 @@ public class Order {
         this.supplierID = supplierID;
     }
 
-    public int getOrderID() {
+    public Integer getID() {
         return orderID;
     }
 

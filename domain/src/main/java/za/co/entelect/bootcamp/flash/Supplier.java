@@ -3,7 +3,7 @@ package za.co.entelect.bootcamp.flash;
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
-public class Supplier {
+public class Supplier implements Entity<Integer> {
 
     private int supplierID;
     private String name;
@@ -19,7 +19,7 @@ public class Supplier {
         this.referenceNumber = referenceNumber;
     }
 
-    public int getSupplierID() {
+    public Integer getID() {
         return supplierID;
     }
 

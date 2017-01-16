@@ -5,7 +5,8 @@ import java.sql.Date;
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
-public class Issue {
+public class Issue implements Entity<Integer>{
+
     private int issueID;
     private String issueTitle;
     private Date publicationDate;
@@ -25,7 +26,7 @@ public class Issue {
         this.description = description;
     }
 
-    public int getIssueID() {
+    public Integer getID() {
         return issueID;
     }
 
