@@ -6,6 +6,18 @@ package za.co.entelect.bootcamp.flash;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(new Stock());
+
     }
+    /*public SupplierPaymentDTOAdapter createSupplierPaymentDTOAdapter()
+    {
+        return new SupplierPaymentDTOAdapter(Supplier supplier, SupplierPayment suppPayment);
+    }
+
+    public createIssueOrderDTOAdapter()
+    {
+        return new IssueOrderDTOAdapter(int quantity, Issue issue);
+    }
+
+    public AdapterFactory()
+*/
 }

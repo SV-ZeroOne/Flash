@@ -3,9 +3,17 @@ package za.co.entelect.bootcamp.flash;
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
-public class SupplierPaymentDTOAdapterFactory {
+public class SupplierPaymentDTOAdapterFactory implements AbstractFactory{
+    private Supplier supplier;
+    private SupplierPayment supplierPayment;
 
-    Adapter createSupplierPaymentDTOAdapterFactory(Supplier supplier, SupplierPayment suppPayment){
-        return new SupplierPaymentDTOAdapter(supplier,suppPayment);
+    public SupplierPaymentDTOAdapterFactory(Supplier supplier, SupplierPayment supplierPayment) {
+        this.supplier = supplier;
+        this.supplierPayment = supplierPayment;
+    }
+
+    public SupplierPaymentDTOAdapter createAdapter()
+    {
+        return new SupplierPaymentDTOAdapter(supplier,supplierPayment);
     }
 }
