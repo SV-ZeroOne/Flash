@@ -1,11 +1,14 @@
 package za.co.entelect.bootcamp.flash;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
 public class Issue implements Entity<Integer>{
+
+    private ArrayList<Stock> stock = new ArrayList<Stock>();
 
     private int issueID;
     private String issueTitle;
@@ -85,4 +88,19 @@ public class Issue implements Entity<Integer>{
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    public ArrayList<Stock> getStock() {
+        return stock;
+    }
+
+    public void addToStock(String condition, short quantity, float price)
+    {
+        Stock stockItem = new Stock(this.getID(), this.getID(), condition, quantity,price);
+        stock.add(stockItem);
+    }
+
+    public void setStock(ArrayList<Stock> stock) {
+        this.stock = stock;
+    }
+
 }

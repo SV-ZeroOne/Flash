@@ -10,7 +10,7 @@ public class Order implements Entity<Integer>{
     private Date orderDate;
     private int issueID;
     private short quantityOrdered;
-    private float orderTotal;
+    private double orderTotal;
     private String shipmentReference;
     private Date shipmentDate;
     private String deliveryStatus;
@@ -63,7 +63,7 @@ public class Order implements Entity<Integer>{
         this.quantityOrdered = quantityOrdered;
     }
 
-    public float getOrderTotal() {
+    public double getOrderTotal() {
         return orderTotal;
     }
 
