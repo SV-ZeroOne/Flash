@@ -2,6 +2,7 @@ package za.co.entelect.bootcamp.flash;
 
 import java.sql.Date;
 import java.util.*;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by byron.dinkelmann on 2017/01/16.
@@ -9,11 +10,14 @@ import java.util.*;
 public class FacadeInterface {
     private static int supplierQuoteCounter = 1;
     private static int orderCounter = 1;
-    public static void main(String[] args) {
+    private static OrderRepository orderRepo = new OrderRepository();
+    private static IssueRepository issueRepo = new IssueRepository();
+    private static SupplierRepository supplyRepo = new SupplierRepository();
+    private static Scanner input = new Scanner(System.in);
+    private static int choice = 0;
+    private static String conditionChoice = "";
 
-        OrderRepository orderRepo = new OrderRepository();
-        IssueRepository issueRepo = new IssueRepository();
-        SupplierRepository supplyRepo = new SupplierRepository();
+    public static void main(String[] args) {
 
         Issue issue1 = new Issue(1, "Spiderman", new Date(20170102), "Marvel", Short.valueOf("2"), "Incredible Spiderman");
         Issue issue2 = new Issue(2, "Batman", new Date(20170102), "DC", Short.valueOf("11"), "Bat Cave");
@@ -33,16 +37,10 @@ public class FacadeInterface {
             System.out.println(issueNo + ": " + entry.getIssueTitle());
             issueNo++;
         }
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please select issue to order: ");
-        int choice = input.nextInt();
 
-        System.out.println("Please select the condition New/Old: ");
-        String conditionChoice = input.nextLine();
-        input.nextLine();
+        issueChoice();
 
         SupplierQuote newQuote = createQuote(choice);
-
 
         System.out.println("Please enter in quantity");
         int quantity = input.nextInt();
@@ -54,7 +52,12 @@ public class FacadeInterface {
         issue2.addToStock("Old",(short)4, 20);
 
         //Validate related supplier, issue and quote exist
-        validateSupplierIssueQuote();
+        if(!validateSupplier()){
+            System.out.println("No suppliers available");
+            System.exit(1);
+        }
+
+        validateQuote(newQuote);
 
         //Validate related stock is below a certain threshold
         if(validateStock(issueRepo.getById(choice),quantity, conditionChoice)) {
@@ -69,10 +72,9 @@ public class FacadeInterface {
                 }
             };
 
+            suppService.placeOrder(issueDTO, supplyRepo.getById(newQuote.getSupplierID()).getReferenceNumber(), quantity);
 
             //Save order
-            //int orderID, Date orderDate, int issueID, short quantityOrdered, float orderTotal,
-            //String shipmentReference, Date shipmentDate, String deliveryStatus, int supplierID
             Order newOrder = new Order(orderCounter, new Date(20171230),issueRepo.getById(choice).getID(),(short)quantity,totalPrice,
             "Ref"+orderCounter,new Date(20171230),"Ordered",supplyRepo.getById(issueRepo.getById(choice).getID()).getID());
 
@@ -99,21 +101,62 @@ public class FacadeInterface {
                 }
             };
 
-            ;
             if (!payService.makePayment(paymentDTO).equals("Payment Unsuccessful")) {
                 orderRepo.add(newOrder);
             }
         }
 
-
     }
 
-    private static void validateSupplierIssueQuote() {
+    private static void validateQuote(SupplierQuote someQuote) {
+        if(someQuote != null){
+
+        }else{
+            System.exit(1);
+        }
     }
 
-    private static boolean validateStock(Issue issue,int quantity, String condition) {
+    private static void issueChoice() {
+        System.out.println("Please select issue to order: ");
+        choice = input.nextInt();
+        validateIssue(choice);
+    }
+
+    private static boolean validateIssue(int i) {
+        try{
+            if(issueRepo.getById(i) != null){
+                conditionInput();
+                return true;
+            }else{
+                System.out.println("Issue doenst exist");
+                choice = 0;
+                issueChoice();
+                return false;
+            }
+        }catch (Exception e){
+            System.out.println("Issue validation error");
+            return false;
+        }
+    }
+
+    private static void conditionInput() {
+        System.out.println("Please select the condition New/Old: ");
+        input.nextLine();
+        conditionChoice = input.nextLine();
+    }
+
+    private static boolean validateSupplier() {
+        for(HashMap.Entry<Integer, Supplier> entry: supplyRepo.getAll().entrySet()){
+            if(entry == null){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean validateStock(Issue issue,int quantity, String condition) {;
         for (int i = 0; i < issue.getStock().size(); i++) {
-            if(issue.getStock().get(i).getCondition().equals(condition))
+            if(issue.getStock().get(i).getCondition().toUpperCase().equals(condition.toUpperCase()))
             {
                 if(issue.getStock().get(i).getAvailableQty()>=quantity)
                 {
