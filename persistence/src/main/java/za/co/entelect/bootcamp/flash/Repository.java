@@ -1,16 +1,16 @@
 package za.co.entelect.bootcamp.flash;
 
-import java.util.Map;
+import java.util.HashMap;
 
-public interface Repository<TEntity extends Entity<TKey>, TKey> {
+public interface Repository<TKey, TEntity extends Entity<TKey>> {
 
-    void add(TEntity entity, TKey entityId);
+    void add(TEntity entity);
 
-    void update(TEntity entity, TKey entityId);
+    void update(TEntity entity);
 
-    void remove(TKey entityId);
+    void remove(TEntity entity);
 
-    TEntity getById(TKey id);
+    TEntity getById(TKey entityKey);
 
-    Map<TKey, TEntity> getAll();
+    HashMap<TKey, TEntity> getAll();
 }
