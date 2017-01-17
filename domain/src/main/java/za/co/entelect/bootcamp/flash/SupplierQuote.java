@@ -7,6 +7,7 @@ import java.sql.Date;
  */
 public class SupplierQuote {
     private int quoteID;
+    private int supplierID;
     private int issueID;
     private double price;
     private Date effectiveDate;
@@ -19,6 +20,14 @@ public class SupplierQuote {
 
     public void setQuoteID(int quoteID) {
         this.quoteID = quoteID;
+    }
+
+    public int getSupplierID() {
+        return supplierID;
+    }
+
+    public void setSupplierID(int supplierID) {
+        this.supplierID = supplierID;
     }
 
     public int getIssueID() {

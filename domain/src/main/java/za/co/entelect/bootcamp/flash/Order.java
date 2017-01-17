@@ -18,7 +18,7 @@ public class Order implements Entity<Integer>{
 
     public Order () {}
 
-    public Order(int orderID, Date orderDate, int issueID, short quantityOrdered, float orderTotal,
+    public Order(int orderID, Date orderDate, int issueID, short quantityOrdered, double orderTotal,
                  String shipmentReference, Date shipmentDate, String deliveryStatus, int supplierID) {
         this.orderID = orderID;
         this.orderDate = orderDate;

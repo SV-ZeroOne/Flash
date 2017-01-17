@@ -8,9 +8,10 @@ import java.util.*;
  */
 public class FacadeInterface {
     private static int supplierQuoteCounter = 1;
+    private static int orderCounter = 1;
     public static void main(String[] args) {
 
-        OrderRepository orderRepo;
+        OrderRepository orderRepo = new OrderRepository();
         IssueRepository issueRepo = new IssueRepository();
         SupplierRepository supplyRepo = new SupplierRepository();
 
@@ -56,26 +57,53 @@ public class FacadeInterface {
         validateSupplierIssueQuote();
 
         //Validate related stock is below a certain threshold
-        validateStock(issueRepo.getById(choice),quantity, conditionChoice);
+        if(validateStock(issueRepo.getById(choice),quantity, conditionChoice)) {
 
-        //Call a mock supplier web service to place order (using adapter & create new SupplierQuotes domain entity)
-        IssueOrderDTOAdapterFactory issueDTOFactory = new IssueOrderDTOAdapterFactory(quantity, issueRepo.getById(choice));
-        IssueOrderDTO issueDTO = issueDTOFactory.createAdapter();
+            //Call a mock supplier web service to place order (using adapter & create new SupplierQuotes domain entity)
+            IssueOrderDTOAdapterFactory issueDTOFactory = new IssueOrderDTOAdapterFactory(quantity, issueRepo.getById(choice));
+            IssueOrderDTO issueDTO = issueDTOFactory.createAdapter();
 
-        SupplierService suppServrice = new SupplierService() {
-            public String placeOrder(IssueOrderDTO issueOrder, String supplierRefNumber, int quantity) {
-                return null;
+            SupplierService suppService = new SupplierService() {
+                public String placeOrder(IssueOrderDTO issueOrder, String supplierRefNumber, int quantity) {
+                    return null;
+                }
+            };
+
+
+            //Save order
+            //int orderID, Date orderDate, int issueID, short quantityOrdered, float orderTotal,
+            //String shipmentReference, Date shipmentDate, String deliveryStatus, int supplierID
+            Order newOrder = new Order(orderCounter, new Date(20171230),issueRepo.getById(choice).getID(),(short)quantity,totalPrice,
+            "Ref"+orderCounter,new Date(20171230),"Ordered",supplyRepo.getById(issueRepo.getById(choice).getID()).getID());
+
+            //Save payment (create new SupplierPayment domain entity)
+            SupplierPayment supplierPayment = new SupplierPayment();
+            supplierPayment.setPaymentID(orderCounter);
+            supplierPayment.setOrderID(newOrder.getID());
+            supplierPayment.setProcessedDate(new Date(20171230));
+            supplierPayment.setTotal(newOrder.getOrderTotal());
+
+
+            //Call a mock payment web service (just validate the amount is positive and returns a ref number)
+            SupplierPaymentDTOAdapterFactory paymentDTOFactory = new SupplierPaymentDTOAdapterFactory(supplyRepo.getById(issueRepo.getById(choice).getID()), supplierPayment);
+            SupplierPaymentDTO paymentDTO = paymentDTOFactory.createAdapter();
+
+            PaymentService payService = new PaymentService() {
+
+                public String makePayment(SupplierPaymentDTO supplierPayment) {
+                    if (supplierPayment.getAmount() >= 0) {
+                        return "Ref: " + supplierPayment.getPaymentRefNumber();
+                    } else {
+                        return "Payment Unsuccessful";
+                    }
+                }
+            };
+
+            ;
+            if (!payService.makePayment(paymentDTO).equals("Payment Unsuccessful")) {
+                orderRepo.add(newOrder);
             }
-        };
-
-
-        //Save order
-        Order someOrder = new Order();
-
-        //Call a mock payment web service (just validate the amount is positive and returns a ref number)
-
-
-        //Save payment (create new SupplierPayment domain entity)
+        }
 
 
     }
