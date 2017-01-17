@@ -1,16 +1,32 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Arrays;
 
 /**
  * Created by steve.velcev on 2017/01/13.
  */
+
+@Entity
+@Table(name = "Creators")
 public class Creator {
 
+    @Id @GeneratedValue
+    @Column(name = "CreatorID", nullable = false)
+    @OneToOne(mappedBy="ComicCreators")
     private int creatorID;
+
+    @Column(name = "Name")
     private String name;
+
+    @Column(name = "CountryOfResidence")
     private String countryOfResidence;
+
+    @Column(name = "TaxReferenceNumber")
     private Byte[] taxReferenceNumber;
+
+    @Column(name = "EmailAddress")
     private String emailAddress;
 
     public Creator() {}

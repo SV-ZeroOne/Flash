@@ -1,12 +1,21 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.*;
+
 /**
  * Created by steve.velcev on 2017/01/13.
  */
+
+@Entity
+@Table
 public class ComicCreators {
 
+    @Column(name = "IssueID")
     private int issueID;
+    @Column(name = "CreatorID")
     private int creatorID;
+    @Column(name = "CreatorRole")
     private String creatorRole;
 
     public ComicCreators() {}

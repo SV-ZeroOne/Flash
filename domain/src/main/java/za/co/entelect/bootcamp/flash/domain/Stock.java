@@ -1,14 +1,26 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.*;
+
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
+
+@Entity
+@Table
 public class Stock {
 
+    @Id @GeneratedValue
+    @Column(name = "StockReferenceID", nullable = false)
     private int stockReferenceID;
+    @Column(name = "IssueID")
     private int issueID;
+    @Column(name = "Condition")
     private String condition;
+    @Column(name = "AvailableQty")
     private short availableQty;
+    @Column(name = "Price")
     private float price;
 
     public Stock() {}
