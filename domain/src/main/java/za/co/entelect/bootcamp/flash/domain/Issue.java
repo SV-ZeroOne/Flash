@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
-public class Issue implements Entity<Integer>{
+public class Issue implements Entity<Integer> {
 
     private ArrayList<Stock> stock = new ArrayList<Stock>();
 
@@ -31,6 +31,10 @@ public class Issue implements Entity<Integer>{
 
     public Integer getID() {
         return issueID;
+    }
+
+    public void setID(Integer entityKey) {
+        this.issueID = entityKey;
     }
 
     public void setIssueID(int issueID) {

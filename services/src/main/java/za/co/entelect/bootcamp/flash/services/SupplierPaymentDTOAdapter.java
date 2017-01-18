@@ -6,7 +6,7 @@ import za.co.entelect.bootcamp.flash.domain.SupplierPayment;
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
-public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO implements Adapter{
+public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO {
 
     private Supplier supplier;
     private SupplierPayment supplierPayment;
@@ -19,7 +19,7 @@ public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO implements Ada
 
     @Override
     public String getSupplierRefNumber() {
-        return supplier.getReferenceNumber();
+        return this.supplier.getReferenceNumber();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO implements Ada
 
     @Override
     public String getPaymentRefNumber() {
-        return String.valueOf(supplierPayment.getPaymentID());
+        return String.valueOf(this.supplierPayment.getPaymentID());
     }
 
     @Override
@@ -39,12 +39,13 @@ public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO implements Ada
 
     @Override
     public double getAmount() {
-        return supplierPayment.getTotal();
+        return this.supplierPayment.getTotal();
     }
 
     @Override
     public void setAmount(double amount) {
         super.setAmount(amount);
     }
+
 }
 

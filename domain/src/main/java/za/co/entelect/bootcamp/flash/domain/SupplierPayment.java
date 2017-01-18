@@ -14,6 +14,13 @@ public class SupplierPayment {
 
     public SupplierPayment(){}
 
+    public SupplierPayment(int paymentID, int orderID, double total, Date processedDate) {
+        this.paymentID = paymentID;
+        this.orderID = orderID;
+        this.total = total;
+        this.processedDate = processedDate;
+    }
+
     public int getPaymentID() {
         return paymentID;
     }

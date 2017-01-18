@@ -35,6 +35,10 @@ public class Order implements Entity<Integer>{
         return orderID;
     }
 
+    public void setID(Integer entityKey) {
+        this.orderID = entityKey;
+    }
+
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
