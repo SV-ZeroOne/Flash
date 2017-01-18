@@ -14,18 +14,13 @@ public class Creator {
 
     @Id @GeneratedValue
     @Column(name = "CreatorID", nullable = false)
-    @OneToOne(mappedBy="ComicCreators")
     private int creatorID;
-
     @Column(name = "Name")
     private String name;
-
     @Column(name = "CountryOfResidence")
     private String countryOfResidence;
-
     @Column(name = "TaxReferenceNumber")
     private Byte[] taxReferenceNumber;
-
     @Column(name = "EmailAddress")
     private String emailAddress;
 

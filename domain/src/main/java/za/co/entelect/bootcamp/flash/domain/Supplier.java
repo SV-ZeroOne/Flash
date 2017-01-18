@@ -1,13 +1,23 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.Table;
+import javax.persistence.*;
+
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
+@javax.persistence.Entity
+@Table(name = "Suppliers")
 public class Supplier implements Entity<Integer> {
 
+    @Id @GeneratedValue
+    @Column(name = "SupplierID", nullable = false)
     private int supplierID;
+    @Column(name = "Name")
     private String name;
+    @Column(name = "City")
     private String city;
+    @Column(name = "ReferenceNumber")
     private String referenceNumber;
 
     public Supplier() {}

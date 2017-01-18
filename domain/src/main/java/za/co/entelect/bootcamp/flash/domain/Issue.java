@@ -1,20 +1,31 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
+@javax.persistence.Entity
+@Table(name = "Issues")
 public class Issue implements Entity<Integer> {
 
     private ArrayList<Stock> stock = new ArrayList<Stock>();
 
+    @Id @GeneratedValue
+    @Column(name = "IssueID", nullable = false)
     private int issueID;
-    private String issueTitle;
+    @Column(name = "Title")
+    private String title;
+    @Column(name = "PublicationDate")
     private Date publicationDate;
+    @Column(name = "Publisher")
     private String publisher;
+    @Column(name = "SeriesNumber")
     private short seriesNumber;
+    @Column(name = "Description")
     private String description;
 
     public Issue () {}
@@ -22,7 +33,7 @@ public class Issue implements Entity<Integer> {
     public Issue(int issueID, String issueTitle, Date publicationDate, String publisher, short seriesNumber,
                  String description) {
         this.issueID = issueID;
-        this.issueTitle = issueTitle;
+        this.title = issueTitle;
         this.publicationDate = publicationDate;
         this.publisher = publisher;
         this.seriesNumber = seriesNumber;
@@ -41,12 +52,12 @@ public class Issue implements Entity<Integer> {
         this.issueID = issueID;
     }
 
-    public String getIssueTitle() {
-        return issueTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setIssueTitle(String issueTitle) {
-        this.issueTitle = issueTitle;
+    public void setTitle(String issueTitle) {
+        this.title = issueTitle;
     }
 
     public Date getPublicationDate() {
@@ -85,7 +96,7 @@ public class Issue implements Entity<Integer> {
     public String toString() {
         return "Issue{" +
                 "issueID=" + issueID +
-                ", issueTitle='" + issueTitle + '\'' +
+                ", issueTitle='" + title + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", publisher='" + publisher + '\'' +
                 ", seriesNumber=" + seriesNumber +

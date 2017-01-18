@@ -1,31 +1,46 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
+@javax.persistence.Entity
+@Table(name = "Orders")
 public class Order implements Entity<Integer>{
+
+    @Id @GeneratedValue
+    @Column(name = "OrderID", nullable = false)
     private int orderID;
+    @Column(name = "OrderDate")
     private Date orderDate;
+    @Column(name = "IssueID")
     private int issueID;
-    private short quantityOrdered;
-    private double orderTotal;
-    private String shipmentReference;
+    @Column(name = "QtyOrdered")
+    private short qtyOrdered;
+    @Column(name = "Total")
+    private double total;
+    @Column(name = "ShipmentRef")
+    private String shipmentRef;
+    @Column(name = "ShipmentDate")
     private Date shipmentDate;
+    @Column(name = "DeliveryStatus")
     private String deliveryStatus;
+    @Column(name = "SupplierID")
     private int supplierID;
 
     public Order () {}
 
-    public Order(int orderID, Date orderDate, int issueID, short quantityOrdered, double orderTotal,
-                 String shipmentReference, Date shipmentDate, String deliveryStatus, int supplierID) {
+    public Order(int orderID, Date orderDate, int issueID, short qtyOrdered, double total,
+                 String shipmentRef, Date shipmentDate, String deliveryStatus, int supplierID) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.issueID = issueID;
-        this.quantityOrdered = quantityOrdered;
-        this.orderTotal = orderTotal;
-        this.shipmentReference = shipmentReference;
+        this.qtyOrdered = qtyOrdered;
+        this.total = total;
+        this.shipmentRef = shipmentRef;
         this.shipmentDate = shipmentDate;
         this.deliveryStatus = deliveryStatus;
         this.supplierID = supplierID;
@@ -59,28 +74,28 @@ public class Order implements Entity<Integer>{
         this.issueID = issueID;
     }
 
-    public short getQuantityOrdered() {
-        return quantityOrdered;
+    public short getQtyOrdered() {
+        return qtyOrdered;
     }
 
-    public void setQuantityOrdered(short quantityOrdered) {
-        this.quantityOrdered = quantityOrdered;
+    public void setQtyOrdered(short quantityOrdered) {
+        this.qtyOrdered = quantityOrdered;
     }
 
-    public double getOrderTotal() {
-        return orderTotal;
+    public double getTotal() {
+        return total;
     }
 
-    public void setOrderTotal(float orderTotal) {
-        this.orderTotal = orderTotal;
+    public void setTotal(float orderTotal) {
+        this.total = orderTotal;
     }
 
-    public String getShipmentReference() {
-        return shipmentReference;
+    public String getShipmentRef() {
+        return shipmentRef;
     }
 
-    public void setShipmentReference(String shipmentReference) {
-        this.shipmentReference = shipmentReference;
+    public void setShipmentRef(String shipmentReference) {
+        this.shipmentRef = shipmentReference;
     }
 
     public Date getShipmentDate() {
@@ -113,9 +128,9 @@ public class Order implements Entity<Integer>{
                 "orderID=" + orderID +
                 ", orderDate=" + orderDate +
                 ", issueID=" + issueID +
-                ", quantityOrdered=" + quantityOrdered +
-                ", orderTotal=" + orderTotal +
-                ", shipmentReference='" + shipmentReference + '\'' +
+                ", quantityOrdered=" + qtyOrdered +
+                ", orderTotal=" + total +
+                ", shipmentReference='" + shipmentRef + '\'' +
                 ", shipmentDate=" + shipmentDate +
                 ", deliveryStatus='" + deliveryStatus + '\'' +
                 ", supplierID=" + supplierID +

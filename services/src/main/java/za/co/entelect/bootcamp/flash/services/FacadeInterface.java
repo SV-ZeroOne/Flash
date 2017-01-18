@@ -39,7 +39,7 @@ public class FacadeInterface {
         //for(issues.Entry<Integer, Issue> entry : issues.entrySet()){}
         int issueNo = 1;
         for (Issue entry: issueRepo.getAll()) {
-            System.out.println(issueNo + ": " + entry.getIssueTitle());
+            System.out.println(issueNo + ": " + entry.getTitle());
             issueNo++;
         }
 
@@ -88,7 +88,7 @@ public class FacadeInterface {
             supplierPayment.setPaymentID(orderCounter);
             supplierPayment.setOrderID(newOrder.getID());
             supplierPayment.setProcessedDate(new Date(20171230));
-            supplierPayment.setTotal(newOrder.getOrderTotal());
+            supplierPayment.setTotal(newOrder.getTotal());
 
 
             //Call a mock payment web service (just validate the amount is positive and returns a ref number)
@@ -165,13 +165,13 @@ public class FacadeInterface {
             {
                 if(issue.getStock().get(i).getAvailableQty()>=quantity)
                 {
-                    System.out.println("Stock available for "+issue.getIssueTitle()+ " in condition "+issue.getStock().get(i).getCondition());
+                    System.out.println("Stock available for "+issue.getTitle()+ " in condition "+issue.getStock().get(i).getCondition());
                     return true;
                 }
             }
 
         }
-        System.out.println("Not enough stock available for "+issue.getIssueTitle()+" in condition "+condition);
+        System.out.println("Not enough stock available for "+issue.getTitle()+" in condition "+condition);
         return false;
     }
 
