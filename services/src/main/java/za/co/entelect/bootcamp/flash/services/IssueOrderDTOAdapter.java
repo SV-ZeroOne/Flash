@@ -2,19 +2,19 @@ package za.co.entelect.bootcamp.flash.services;
 
 import za.co.entelect.bootcamp.flash.domain.Issue;
 
-public class IssueOrderDTOAdapter extends IssueOrderDTO implements Adapter{
+public class IssueOrderDTOAdapter extends IssueOrderDTO {
 
-    private int quantity;
     private Issue issue;
+    private int quantity;
 
-    public IssueOrderDTOAdapter(int quantity, Issue issue){
-        this.quantity=quantity;
-        this.issue=issue;
+    public IssueOrderDTOAdapter(Issue issue, int quantity){
+        this.issue = issue;
+        this.quantity = quantity;
     }
 
     @Override
     public int getIssueID() {
-        return issue.getID();
+        return this.issue.getID();
     }
 
     @Override
@@ -24,7 +24,7 @@ public class IssueOrderDTOAdapter extends IssueOrderDTO implements Adapter{
 
     @Override
     public String getSeriesNumber() {
-        return String.valueOf(issue.getSeriesNumber());
+        return String.valueOf(this.issue.getSeriesNumber());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class IssueOrderDTOAdapter extends IssueOrderDTO implements Adapter{
 
     @Override
     public int getQuantity() {
-        return quantity;
+        return this.quantity;
     }
 
     @Override
@@ -42,7 +42,4 @@ public class IssueOrderDTOAdapter extends IssueOrderDTO implements Adapter{
         super.setQuantity(quantity);
     }
 
-    public void createAdapter() {
-
-    }
 }

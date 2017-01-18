@@ -23,6 +23,10 @@ public class Supplier implements Entity<Integer> {
         return supplierID;
     }
 
+    public void setID(Integer entityKey) {
+        this.supplierID = entityKey;
+    }
+
     public void setSupplierID(int supplierID) {
         this.supplierID = supplierID;
     }

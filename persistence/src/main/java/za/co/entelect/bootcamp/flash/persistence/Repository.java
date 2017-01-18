@@ -2,17 +2,17 @@ package za.co.entelect.bootcamp.flash.persistence;
 
 import za.co.entelect.bootcamp.flash.domain.Entity;
 
-import java.util.HashMap;
+import java.util.List;
 
 public interface Repository<TKey, TEntity extends Entity<TKey>> {
 
-    void add(TEntity entity);
+    void create(TEntity entity);
 
-    void update(TEntity entity);
+    TEntity getByID(TKey entityKey);
 
-    void remove(TEntity entity);
+    List<TEntity> getAll();
 
-    TEntity getById(TKey entityKey);
+    void update(TEntity entity) throws Exception;
 
-    HashMap<TKey, TEntity> getAll();
+    void delete(TEntity entity) throws Exception;
 }

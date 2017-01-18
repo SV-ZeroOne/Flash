@@ -3,31 +3,40 @@ package za.co.entelect.bootcamp.flash.persistence;
 import za.co.entelect.bootcamp.flash.domain.Entity;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class RepositoryBase<TKey, TEntity extends Entity<TKey>> implements Repository<TKey, TEntity> {
 
-    private HashMap<TKey, TEntity> entityHashMap = new HashMap<TKey, TEntity>();
+    private Map<TKey, TEntity> entityMap = new HashMap<TKey, TEntity>();
 
-    public void add(TEntity entity) {
-        entityHashMap.put(entity.getID(), entity);
+    public void create(TEntity entity) {
+        entityMap.put(entity.getID(), entity);
     }
 
-    public void update(TEntity entity) {
-        entityHashMap.remove(entity.getID());
-        entityHashMap.put(entity.getID(), entity);
+    public TEntity getByID(TKey entityKey) {
+        return entityMap.get(entityKey);
     }
 
-    public void remove(TEntity entity) {
-        entityHashMap.remove(entity.getID());
-    }
-
-    public TEntity getById(TKey entityKey) {
-        return entityHashMap.get(entityKey);
-    }
-
-    public HashMap<TKey, TEntity> getAll()
+    public List<TEntity> getAll()
     {
-        return entityHashMap;
+        return (List<TEntity>) entityMap.values();
+    }
+
+    public void update(TEntity entity) throws Exception {
+        TEntity existingEntity = this.getByID(entity.getID());
+        if (existingEntity == null) {
+            throw new Exception("Entity does not exist");
+        }
+        entityMap.put(entity.getID(), entity);
+    }
+
+    public void delete(TEntity entity) throws Exception {
+        TEntity existingEntity = this.getByID(entity.getID());
+        if (existingEntity == null) {
+            throw new Exception("Entity does not exist");
+        }
+        entityMap.remove(entity.getID());
     }
 
 }
