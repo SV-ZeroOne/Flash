@@ -63,7 +63,7 @@ public class StockOrderPlacement {
         SupplierPaymentDTOAdapter supplierPaymentDTOAdapter =
                 supplierPaymentDTOAdapterFactory.createSupplierPaymentDTOAdapter(supplier,
                         new SupplierPayment(orderID+100, orderID,
-                                orderRepository.getByID(orderID).getOrderTotal(), new Date(20171230)));
+                                orderRepository.getByID(orderID).getTotal(), new Date(20171230)));
         this.paymentService.makePayment(supplierPaymentDTOAdapter);
     }
 }

@@ -1,31 +1,42 @@
 package za.co.entelect.bootcamp.flash.domain;
 
-import javax.persistence.Table;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import java.lang.annotation.Annotation;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "Issues")
-public class Issue implements Entity<Integer> {
+public class Issue implements Entities<Integer> {
 
-    private ArrayList<Stock> stock = new ArrayList<Stock>();
+    //private ArrayList<Stock> stock = new ArrayList<Stock>();
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "IssueID", nullable = false)
     private int issueID;
-    @Column(name = "Title")
-    private String title;
-    @Column(name = "PublicationDate")
+
+    @OneToMany(targetEntity=ComicCreators.class )
+    private List ComicCreators;
+
+    @Column (name ="Title")
+    private String issueTitle;
+
+    @Column (name ="PublicationDate")
     private Date publicationDate;
-    @Column(name = "Publisher")
+
+    @Column (name ="Publisher")
     private String publisher;
-    @Column(name = "SeriesNumber")
+
+    @Column (name ="SeriesNumber")
     private short seriesNumber;
-    @Column(name = "Description")
+
+    @Column (name ="Description")
     private String description;
 
     public Issue () {}
@@ -33,7 +44,7 @@ public class Issue implements Entity<Integer> {
     public Issue(int issueID, String issueTitle, Date publicationDate, String publisher, short seriesNumber,
                  String description) {
         this.issueID = issueID;
-        this.title = issueTitle;
+        this.issueTitle = issueTitle;
         this.publicationDate = publicationDate;
         this.publisher = publisher;
         this.seriesNumber = seriesNumber;
@@ -52,12 +63,12 @@ public class Issue implements Entity<Integer> {
         this.issueID = issueID;
     }
 
-    public String getTitle() {
-        return title;
+    public String getIssueTitle() {
+        return issueTitle;
     }
 
-    public void setTitle(String issueTitle) {
-        this.title = issueTitle;
+    public void setIssueTitle(String issueTitle) {
+        this.issueTitle = issueTitle;
     }
 
     public Date getPublicationDate() {
@@ -96,7 +107,7 @@ public class Issue implements Entity<Integer> {
     public String toString() {
         return "Issue{" +
                 "issueID=" + issueID +
-                ", issueTitle='" + title + '\'' +
+                ", issueTitle='" + issueTitle + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", publisher='" + publisher + '\'' +
                 ", seriesNumber=" + seriesNumber +
@@ -104,18 +115,29 @@ public class Issue implements Entity<Integer> {
                 '}';
     }
 
-    public ArrayList<Stock> getStock() {
-        return stock;
+    public Class<? extends Annotation> annotationType() {
+        return null;
     }
 
-    public void addToStock(String condition, short quantity, float price)
-    {
-        Stock stockItem = new Stock(this.getID(), this.getID(), condition, quantity,price);
-        stock.add(stockItem);
+//    public ArrayList<Stock> getStock() {
+//        return stock;
+//    }
+//
+//    public void addToStock(String condition, short quantity, float price)
+//    {
+//        Stock stockItem = new Stock(this.getID(), this.getID(), condition, quantity,price);
+//        stock.add(stockItem);
+//    }
+//
+//    public void setStock(ArrayList<Stock> stock) {
+//        this.stock = stock;
+//    }
+
+    public List getComicCreators() {
+        return ComicCreators;
     }
 
-    public void setStock(ArrayList<Stock> stock) {
-        this.stock = stock;
+    public void setComicCreators(List comicCreators) {
+        ComicCreators = comicCreators;
     }
-
 }

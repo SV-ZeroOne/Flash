@@ -2,13 +2,14 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
 @javax.persistence.Entity
 @Table(name = "Suppliers")
-public class Supplier implements Entity<Integer> {
+public class Supplier implements Entities<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "SupplierID", nullable = false)
@@ -19,6 +20,12 @@ public class Supplier implements Entity<Integer> {
     private String city;
     @Column(name = "ReferenceNumber")
     private String referenceNumber;
+
+    @OneToMany(targetEntity=Order.class)
+    private List Orders;
+
+    @OneToMany(targetEntity=SupplierQuote.class )
+    private List SupplierQuotes;
 
     public Supplier() {}
 
@@ -73,5 +80,21 @@ public class Supplier implements Entity<Integer> {
                 ", city='" + city + '\'' +
                 ", referenceNumber='" + referenceNumber + '\'' +
                 '}';
+    }
+
+    public List getOrders() {
+        return Orders;
+    }
+
+    public void setOrders(List orders) {
+        Orders = orders;
+    }
+
+    public List getSupplierQuotes() {
+        return SupplierQuotes;
+    }
+
+    public void setSupplierQuotes(List supplierQuotes) {
+        SupplierQuotes = supplierQuotes;
     }
 }

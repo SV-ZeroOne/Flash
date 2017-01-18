@@ -24,6 +24,10 @@ public class SupplierQuote {
     @Column(name = "EffectiveDate")
     private Date effectiveDate;
 
+    @OneToOne
+    @JoinColumn(name = "IssueID")
+    private Issue issue;
+
     public SupplierQuote(){}
 
     public int getQuoteID() {

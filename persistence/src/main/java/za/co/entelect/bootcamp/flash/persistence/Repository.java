@@ -1,10 +1,10 @@
 package za.co.entelect.bootcamp.flash.persistence;
 
-import za.co.entelect.bootcamp.flash.domain.Entity;
+import za.co.entelect.bootcamp.flash.domain.Entities;
 
 import java.util.List;
 
-public interface Repository<TKey, TEntity extends Entity<TKey>> {
+public interface Repository<TKey, TEntity extends Entities<TKey>> {
 
     void create(TEntity entity);
 

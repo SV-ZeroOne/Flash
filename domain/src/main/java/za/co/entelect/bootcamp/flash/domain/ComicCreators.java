@@ -8,38 +8,28 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "ComicCreators")
+@Table
 public class ComicCreators {
 
-    @Column(name = "IssueID")
-    private int issueID;
-    @Column(name = "CreatorID")
-    private int creatorID;
+    @EmbeddedId
+    private ComicCreatorsPK id;
+
     @Column(name = "CreatorRole")
     private String creatorRole;
 
     public ComicCreators() {}
 
-    public ComicCreators(int issueID, int creatorID, String creatorRole){
-        this.issueID = issueID;
-        this.creatorID = creatorID;
+    public ComicCreators(ComicCreatorsPK id, String creatorRole){
+        this.id = id;
         this.creatorRole = creatorRole;
     }
 
-    public int getIssueID() {
-        return issueID;
+    public ComicCreatorsPK getId() {
+        return id;
     }
 
-    public void setIssueID(int issueID) {
-        this.issueID = issueID;
-    }
-
-    public int getCreatorID() {
-        return creatorID;
-    }
-
-    public void setCreatorID(int creatorID) {
-        this.creatorID = creatorID;
+    public void setId(ComicCreatorsPK id) {
+        this.id = id;
     }
 
     public String getCreatorRole() {
@@ -53,8 +43,8 @@ public class ComicCreators {
     @Override
     public String toString() {
         return "ComicCreators{" +
-                "issueID=" + issueID +
-                ", creatorID=" + creatorID +
+                "issueID=" + id.getIssueID() +
+                ", creatorID=" + id.getCreatorID() +
                 ", creatorRole='" + creatorRole + '\'' +
                 '}';
     }
