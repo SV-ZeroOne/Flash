@@ -10,7 +10,7 @@ import java.sql.Date;
 
 @javax.persistence.Entity
 @Table(name = "SupplierQuotes")
-public class SupplierQuote implements Entity<Integer> {
+public class SupplierQuote implements Entities<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "QuoteID", nullable = false)

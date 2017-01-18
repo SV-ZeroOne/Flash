@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Stock implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
+public class Stock implements Entities<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "StockReferenceID", nullable = false)

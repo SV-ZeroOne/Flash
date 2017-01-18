@@ -29,7 +29,7 @@ public class SupplierPaymentDTOAdapter extends SupplierPaymentDTO {
 
     @Override
     public String getPaymentRefNumber() {
-        return String.valueOf(this.supplierPayment.getPaymentID());
+        return String.valueOf(this.supplierPayment.getID());
     }
 
     @Override

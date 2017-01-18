@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Creators")
-public class Creator implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
+public class Creator implements Entities<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "CreatorID", nullable = false)

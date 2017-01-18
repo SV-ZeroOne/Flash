@@ -16,19 +16,19 @@ public class Main {
         System.out.println("Application Executed.");
         StockOrderPlacement stockOrderPlacement;
 
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
-        EntityManager entitymanager = emfactory.createEntityManager( );
-        entitymanager.getTransaction( ).begin( );
-        Supplier newSupplier = new Supplier();
-        newSupplier.setName("Steve Jobs");
-        newSupplier.setCity("Johannesburg");
-        newSupplier.setReferenceNumber("420DoesthisWork");
-
-        entitymanager.persist(newSupplier);
-
-        entitymanager.getTransaction( ).commit( );
-        entitymanager.close( );
-        emfactory.close( );
+//        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "Eclipselink_JPA" );
+//        EntityManager entitymanager = emfactory.createEntityManager( );
+//        entitymanager.getTransaction( ).begin( );
+//        Supplier newSupplier = new Supplier();
+//        newSupplier.setName("Steve Jobs");
+//        newSupplier.setCity("Johannesburg");
+//        newSupplier.setReferenceNumber("420DoesthisWork");
+//
+//        entitymanager.persist(newSupplier);
+//
+//        entitymanager.getTransaction( ).commit( );
+//        entitymanager.close( );
+//        emfactory.close( );
     }
 
 }

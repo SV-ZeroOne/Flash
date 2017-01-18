@@ -8,8 +8,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table
-public class ComicCreators {
+@Table (name = "ComicCreators")
+public class ComicCreators implements Entities<Integer>{
 
     @EmbeddedId
     private ComicCreatorsPK id;
@@ -47,5 +47,13 @@ public class ComicCreators {
                 ", creatorID=" + id.getCreatorID() +
                 ", creatorRole='" + creatorRole + '\'' +
                 '}';
+    }
+
+    public Integer getID() {
+        return null;
+    }
+
+    public void setID(Integer entityKey) {
+
     }
 }
