@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Creators")
-public class Creator {
+public class Creator implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "CreatorID", nullable = false)
@@ -43,12 +43,12 @@ public class Creator {
         this.emailAddress = emailAddress;
     }
 
-    public int getCreatorID() {
-        return creatorID;
+    public Integer getID() {
+        return this.creatorID;
     }
 
-    public void setCreatorID(int creatorID) {
-        this.creatorID = creatorID;
+    public void setID(Integer entityKey) {
+        this.creatorID = entityKey;
     }
 
     public String getName() {
