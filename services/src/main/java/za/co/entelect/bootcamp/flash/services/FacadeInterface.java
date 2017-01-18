@@ -85,7 +85,7 @@ public class FacadeInterface {
 
             //Save payment (create new SupplierPayment app entity)
             SupplierPayment supplierPayment = new SupplierPayment();
-            supplierPayment.setPaymentID(orderCounter);
+            supplierPayment.setID(orderCounter);
             supplierPayment.setOrderID(newOrder.getID());
             supplierPayment.setProcessedDate(new Date(20171230));
             supplierPayment.setTotal(newOrder.getTotal());
@@ -181,7 +181,7 @@ public class FacadeInterface {
         supplierQuote.setIssueID(issueID);
         supplierQuote.setPrice(50.00);
         supplierQuote.setEffectiveDate(new Date(20171230));
-        supplierQuote.setQuoteID(supplierQuoteCounter);
+        supplierQuote.setID(supplierQuoteCounter);
         supplierQuoteCounter++;
         return supplierQuote;
     }

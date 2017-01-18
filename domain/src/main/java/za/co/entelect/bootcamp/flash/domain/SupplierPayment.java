@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 @javax.persistence.Entity
 @Table(name = "SupplierPayments")
-public class SupplierPayment {
+public class SupplierPayment implements Entity<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "PaymentID", nullable = false)
@@ -30,12 +30,12 @@ public class SupplierPayment {
         this.processedDate = processedDate;
     }
 
-    public int getPaymentID() {
-        return paymentID;
+    public Integer getID() {
+        return this.paymentID;
     }
 
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
+    public void setID(Integer entityKey) {
+        this.paymentID = entityKey;
     }
 
     public int getOrderID() {

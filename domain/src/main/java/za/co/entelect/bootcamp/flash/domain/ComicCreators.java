@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ComicCreators")
-public class ComicCreators {
+public class ComicCreators implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     @Column(name = "IssueID")
     private int issueID;
@@ -24,6 +24,15 @@ public class ComicCreators {
         this.issueID = issueID;
         this.creatorID = creatorID;
         this.creatorRole = creatorRole;
+    }
+
+    //TODO
+    public Integer getID() {
+        return null;
+    }
+
+    public void setID(Integer entityKey) {
+
     }
 
     public int getIssueID() {

@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 @javax.persistence.Entity
 @Table(name = "Suppliers")
-public class Supplier implements Entity<Integer> {
+public class Supplier implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "SupplierID", nullable = false)

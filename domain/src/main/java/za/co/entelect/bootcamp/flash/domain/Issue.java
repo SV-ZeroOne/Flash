@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 @javax.persistence.Entity
 @Table(name = "Issues")
-public class Issue implements Entity<Integer> {
+public class Issue implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     private ArrayList<Stock> stock = new ArrayList<Stock>();
 
@@ -46,10 +46,6 @@ public class Issue implements Entity<Integer> {
 
     public void setID(Integer entityKey) {
         this.issueID = entityKey;
-    }
-
-    public void setIssueID(int issueID) {
-        this.issueID = issueID;
     }
 
     public String getTitle() {

@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 @javax.persistence.Entity
 @Table(name = "Orders")
-public class Order implements Entity<Integer>{
+public class Order implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "OrderID", nullable = false)
@@ -52,10 +52,6 @@ public class Order implements Entity<Integer>{
 
     public void setID(Integer entityKey) {
         this.orderID = entityKey;
-    }
-
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
     }
 
     public Date getOrderDate() {

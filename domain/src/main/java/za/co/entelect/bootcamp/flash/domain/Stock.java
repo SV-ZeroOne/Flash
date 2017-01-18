@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Stock {
+public class Stock implements za.co.entelect.bootcamp.flash.domain.Entity<Integer> {
 
     @Id @GeneratedValue
     @Column(name = "StockReferenceID", nullable = false)
@@ -33,12 +33,12 @@ public class Stock {
         this.price = price;
     }
 
-    public int getStockReferenceID() {
-        return stockReferenceID;
+    public Integer getID() {
+        return this.stockReferenceID;
     }
 
-    public void setStockReferenceID(int stockReferenceID) {
-        this.stockReferenceID = stockReferenceID;
+    public void setID(Integer entityKey) {
+        this.stockReferenceID = entityKey;
     }
 
     public int getIssueID() {
