@@ -9,16 +9,21 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created by kevin.gouws on 2017/01/13.
  */
 public class Main {
 
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         System.out.println("Application Executed.");
-        StockOrderPlacement stockOrderPlacement;
+        logger.info("Running Logging on main class");
 
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PersistenceUnit");
+        /*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("PersistenceUnit");
         EntityManager entitymanager = emfactory.createEntityManager( );
         entitymanager.getTransaction( ).begin( );
         Supplier newSupplier = new Supplier();
@@ -36,7 +41,7 @@ public class Main {
         entitymanager.getTransaction( ).commit( );
         //entitymanager.getTransaction().rollback();
         entitymanager.close( );
-        emfactory.close( );
+        emfactory.close( );*/
     }
 
 }
