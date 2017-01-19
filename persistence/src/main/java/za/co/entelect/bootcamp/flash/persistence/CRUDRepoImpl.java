@@ -23,7 +23,9 @@ public class CRUDRepoImpl<T, PK extends Serializable> implements CRUDRepo<T, PK>
 
     public boolean create(T object) {
         try{
+            entityManager.getTransaction().begin();
             this.entityManager.persist(object);
+            entityManager.getTransaction().commit();
             return true;
         }catch(Exception e){
             System.out.println("Something went wrong while persisting to DB");
@@ -41,13 +43,17 @@ public class CRUDRepoImpl<T, PK extends Serializable> implements CRUDRepo<T, PK>
     }
 
     public boolean update(T object) {
+        entityManager.getTransaction().begin();
         this.entityManager.merge(object);
+        entityManager.getTransaction().commit();
         return true;
     }
 
     public boolean delete(T object) {
+        entityManager.getTransaction().begin();
         object = this.entityManager.merge(object);
         this.entityManager.remove(object);
+        entityManager.getTransaction().commit();
         return true;
     }
 }
