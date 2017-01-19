@@ -2,6 +2,7 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by byron.dinkelmann on 2017/01/13.
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table
 public class Stock implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "StockReferenceID", nullable = false)
     private int stockReferenceID;
     @Column(name = "IssueID")
@@ -21,11 +22,11 @@ public class Stock implements Entities<Integer> {
     @Column(name = "AvailableQty")
     private short availableQty;
     @Column(name = "Price")
-    private float price;
+    private BigDecimal price;
 
     public Stock() {}
 
-    public Stock(int stockReferenceID, int issueID, String condition, short availableQty, float price) {
+    public Stock(int stockReferenceID, int issueID, String condition, short availableQty, BigDecimal price) {
         this.stockReferenceID = stockReferenceID;
         this.issueID = issueID;
         this.condition = condition;
@@ -65,11 +66,11 @@ public class Stock implements Entities<Integer> {
         this.availableQty = availableQty;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

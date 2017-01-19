@@ -14,15 +14,13 @@ import java.util.List;
 @Table(name = "Issues")
 public class Issue implements Entities<Integer> {
 
-    private ArrayList<Stock> stock = new ArrayList<Stock>();
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IssueID", nullable = false)
     private int issueID;
 
-    @OneToMany(targetEntity=ComicCreators.class )
-    private List ComicCreators;
+    @OneToMany(mappedBy = "id.issue")
+    private List<ComicCreators> ComicCreators;
 
     @Column (name ="Title")
     private String issueTitle;
@@ -117,20 +115,6 @@ public class Issue implements Entities<Integer> {
 
     public Class<? extends Annotation> annotationType() {
         return null;
-    }
-
-    public ArrayList<Stock> getStock() {
-        return stock;
-    }
-
-    public void addToStock(String condition, short quantity, float price)
-    {
-        Stock stockItem = new Stock(this.getID(), this.getID(), condition, quantity,price);
-        stock.add(stockItem);
-    }
-
-    public void setStock(ArrayList<Stock> stock) {
-        this.stock = stock;
     }
 
     public List getComicCreators() {

@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "ComicCreators")
-public class ComicCreators implements Entities<Integer>{
+public class ComicCreators{
 
     @EmbeddedId
     private ComicCreatorsPK id;

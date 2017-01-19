@@ -5,6 +5,7 @@ import za.co.entelect.bootcamp.flash.persistence.IssueRepository;
 import za.co.entelect.bootcamp.flash.persistence.OrderRepository;
 import za.co.entelect.bootcamp.flash.persistence.SupplierRepository;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -46,7 +47,7 @@ public class StockOrderPlacement {
         IssueOrderDTOAdapter issueOrderDTOAdapter =
                 issueOrderDTOAdapterFactory.createIssueOrderDTOAdapter(issue, quantity);
         this.supplierService.placeOrder(issueOrderDTOAdapter, supplier.getReferenceNumber(), quantity);
-        double orderTotal = supplierQuote.getPrice() * quantity;
+        BigDecimal orderTotal = supplierQuote.getPrice().multiply(new BigDecimal(quantity));
         Order newOrder = new Order(orderID, new Date(20171230), issueID, (short) quantity, orderTotal,
                 "Ref#1337", new Date(20171230), "Pending",
                 supplierQuote.getSupplierID());

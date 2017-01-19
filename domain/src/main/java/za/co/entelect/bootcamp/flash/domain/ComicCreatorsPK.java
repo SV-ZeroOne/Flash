@@ -2,6 +2,8 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
@@ -11,34 +13,36 @@ import java.io.Serializable;
 @Embeddable
 public class ComicCreatorsPK implements Serializable{
 
-    @Column(name = "IssueID")
-    private int issueID;
-    @Column(name = "CreatorID")
-    private int creatorID;
+    @ManyToOne
+    @JoinColumn(name = "IssueID")
+    private Issue issue;
+    @ManyToOne
+    @JoinColumn(name = "CreatorID")
+    private Creator creator;
 
     public ComicCreatorsPK(){
 
     }
 
-    public ComicCreatorsPK(int issueID, int creatorID){
-        this.issueID = issueID;
-        this.creatorID = creatorID;
+    public ComicCreatorsPK(Issue issue, Creator creator){
+        this.issue = issue;
+        this.creator = creator;
     }
 
-    public int getIssueID() {
-        return issueID;
+    public Issue getIssueID() {
+        return issue;
     }
 
     public void setIssueID(int issueID) {
-        this.issueID = issueID;
+        this.issue = issue;
     }
 
-    public int getCreatorID() {
-        return creatorID;
+    public Creator getCreatorID() {
+        return creator;
     }
 
     public void setCreatorID(int creatorID) {
-        this.creatorID = creatorID;
+        this.creator = creator;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class ComicCreatorsPK implements Serializable{
         if (!(o instanceof ComicCreatorsPK)) return false;
         if(o == null) return false;
         ComicCreatorsPK pk = (ComicCreatorsPK) o;
-        return pk.issueID == issueID && pk.creatorID == creatorID;
+        return pk.issue == issue && pk.creator == creator;
     }
 
     @Override

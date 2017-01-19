@@ -1,5 +1,7 @@
 package za.co.entelect.bootcamp.flash.services;
 
+import java.math.BigDecimal;
+
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
@@ -7,7 +9,7 @@ public class SupplierPaymentDTO {
 
         private String supplierRefNumber;
         private String paymentRefNumber;
-        private double amount;
+        private BigDecimal amount;
 
         public String getSupplierRefNumber() {
             return supplierRefNumber;
@@ -25,11 +27,11 @@ public class SupplierPaymentDTO {
             this.paymentRefNumber = paymentRefNumber;
         }
 
-        public double getAmount() {
+        public BigDecimal getAmount() {
             return amount;
         }
 
-        public void setAmount(double amount) {
+        public void setAmount(BigDecimal amount) {
             this.amount = amount;
         }
 }

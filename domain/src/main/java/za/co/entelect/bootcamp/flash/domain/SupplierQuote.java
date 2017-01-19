@@ -2,6 +2,7 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -12,15 +13,17 @@ import java.sql.Date;
 @Table(name = "SupplierQuotes")
 public class SupplierQuote implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "QuoteID", nullable = false)
     private int quoteID;
+
     @Column(name = "SupplierID")
     private int supplierID;
-    @Column(name = "IssueID")
-    private int issueID;
-    @Column(name = "Price")
-    private double price;
+
+//    @OneToOne (targetEntity = Issue.class)
+//    private int issueID;
+    @Column(name = "Price" )
+    private BigDecimal price;
     @Column(name = "EffectiveDate")
     private Date effectiveDate;
 
@@ -46,19 +49,19 @@ public class SupplierQuote implements Entities<Integer> {
         this.supplierID = supplierID;
     }
 
-    public int getIssueID() {
-        return issueID;
-    }
+//    public int getIssueID() {
+//        return issueID;
+//    }
+//
+//    public void setIssueID(int issueID) {
+//        this.issueID = issueID;
+//    }
 
-    public void setIssueID(int issueID) {
-        this.issueID = issueID;
-    }
-
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

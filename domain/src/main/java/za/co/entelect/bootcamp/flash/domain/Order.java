@@ -2,7 +2,9 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Table;
 import javax.persistence.*;
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.util.Date;
+
 
 /**
  * Created by kevin.gouws on 2017/01/13.
@@ -11,7 +13,7 @@ import java.sql.Date;
 @Table(name = "Orders")
 public class Order implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderID", nullable = false)
     private int orderID;
     @Column(name = "OrderDate")
@@ -20,20 +22,25 @@ public class Order implements Entities<Integer> {
     private int issueID;
     @Column(name = "QtyOrdered")
     private short qtyOrdered;
+
     @Column(name = "Total")
-    private double total;
-    @Column(name = "ShipmentRef")
+    private BigDecimal total;
+    @Column(name = "ShipmentRef", columnDefinition="char(10)")
     private String shipmentRef;
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "ShipmentDate")
     private Date shipmentDate;
     @Column(name = "DeliveryStatus")
     private String deliveryStatus;
-    @Column(name = "SupplierID")
+
+    @OneToOne(targetEntity = Supplier.class)
+    @JoinColumn(name = "SupplierID")
     private int supplierID;
 
     public Order () {}
 
-    public Order(int orderID, Date orderDate, int issueID, short qtyOrdered, double total,
+    public Order(int orderID, Date orderDate, int issueID, short qtyOrdered, BigDecimal total,
                  String shipmentRef, Date shipmentDate, String deliveryStatus, int supplierID) {
         this.orderID = orderID;
         this.orderDate = orderDate;
@@ -82,11 +89,11 @@ public class Order implements Entities<Integer> {
         this.qtyOrdered = quantityOrdered;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(float orderTotal) {
+    public void setTotal(BigDecimal orderTotal) {
         this.total = orderTotal;
     }
 

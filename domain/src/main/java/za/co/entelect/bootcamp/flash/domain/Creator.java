@@ -13,12 +13,12 @@ import java.util.List;
 @Table(name = "Creators")
 public class Creator implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CreatorID", nullable = false)
     private int creatorID;
 
-    @OneToMany(targetEntity=ComicCreators.class )
-    private List ComicCreators;
+    @OneToMany(mappedBy = "id.creator")
+    private List<ComicCreators> ComicCreators;
 
     @Column(name = "Name")
     private String name;

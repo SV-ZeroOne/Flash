@@ -7,11 +7,14 @@ import java.util.List;
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "Suppliers")
+@NamedQueries({
+        @NamedQuery(name = "Supplier.findAll", query = "SELECT e FROM Supplier e")
+})
 public class Supplier implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SupplierID", nullable = false)
     private int supplierID;
     @Column(name = "Name")
@@ -21,10 +24,11 @@ public class Supplier implements Entities<Integer> {
     @Column(name = "ReferenceNumber")
     private String referenceNumber;
 
-    @OneToMany(targetEntity=Order.class)
-    private List Orders;
+//   @OneToOne(targetEntity=Order.class)
+//   private Order order;
 
     @OneToMany(targetEntity=SupplierQuote.class )
+    @JoinColumn(name = "SupplierID")
     private List SupplierQuotes;
 
     public Supplier() {}
@@ -82,13 +86,13 @@ public class Supplier implements Entities<Integer> {
                 '}';
     }
 
-    public List getOrders() {
-        return Orders;
-    }
-
-    public void setOrders(List orders) {
-        Orders = orders;
-    }
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
 
     public List getSupplierQuotes() {
         return SupplierQuotes;
