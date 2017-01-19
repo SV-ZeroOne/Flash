@@ -48,10 +48,6 @@ public class Supplier implements Entities<Integer> {
         this.supplierID = entityKey;
     }
 
-    public void setSupplierID(int supplierID) {
-        this.supplierID = supplierID;
-    }
-
     public String getName() {
         return name;
     }

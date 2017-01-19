@@ -11,6 +11,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "Creators")
+@NamedQueries({
+        @NamedQuery(name = "Creator.findAll", query = "SELECT c FROM Creator c")
+})
 public class Creator implements Entities<Integer> {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
