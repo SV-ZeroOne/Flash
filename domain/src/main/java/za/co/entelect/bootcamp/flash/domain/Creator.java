@@ -3,6 +3,7 @@ package za.co.entelect.bootcamp.flash.domain;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by steve.velcev on 2017/01/13.
@@ -10,17 +11,24 @@ import java.util.Arrays;
 
 @Entity
 @Table(name = "Creators")
-public class Creator {
+public class Creator implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CreatorID", nullable = false)
     private int creatorID;
+
+    @OneToMany(mappedBy = "id.creator")
+    private List<ComicCreators> ComicCreators;
+
     @Column(name = "Name")
     private String name;
+
     @Column(name = "CountryOfResidence")
     private String countryOfResidence;
+
     @Column(name = "TaxReferenceNumber")
     private Byte[] taxReferenceNumber;
+
     @Column(name = "EmailAddress")
     private String emailAddress;
 
@@ -35,12 +43,12 @@ public class Creator {
         this.emailAddress = emailAddress;
     }
 
-    public int getCreatorID() {
-        return creatorID;
+    public Integer getID() {
+        return this.creatorID;
     }
 
-    public void setCreatorID(int creatorID) {
-        this.creatorID = creatorID;
+    public void setID(Integer entityKey) {
+        this.creatorID = entityKey;
     }
 
     public String getName() {
@@ -84,5 +92,13 @@ public class Creator {
                 ", taxReferenceNumber=" + Arrays.toString(taxReferenceNumber) +
                 ", emailAddress='" + emailAddress + '\'' +
                 '}';
+    }
+
+    public List getComicCreators() {
+        return ComicCreators;
+    }
+
+    public void setComicCreators(List comicCreators) {
+        ComicCreators = comicCreators;
     }
 }

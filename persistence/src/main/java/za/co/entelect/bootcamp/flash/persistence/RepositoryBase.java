@@ -1,12 +1,12 @@
 package za.co.entelect.bootcamp.flash.persistence;
 
-import za.co.entelect.bootcamp.flash.domain.Entity;
+import za.co.entelect.bootcamp.flash.domain.Entities;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class RepositoryBase<TKey, TEntity extends Entity<TKey>> implements Repository<TKey, TEntity> {
+public abstract class RepositoryBase<TKey, TEntity extends Entities<TKey>> implements Repository<TKey, TEntity> {
 
     private Map<TKey, TEntity> entityMap = new HashMap<TKey, TEntity>();
 
@@ -26,7 +26,7 @@ public abstract class RepositoryBase<TKey, TEntity extends Entity<TKey>> impleme
     public void update(TEntity entity) throws Exception {
         TEntity existingEntity = this.getByID(entity.getID());
         if (existingEntity == null) {
-            throw new Exception("Entity does not exist");
+            throw new Exception("Entities does not exist");
         }
         entityMap.put(entity.getID(), entity);
     }
@@ -34,7 +34,7 @@ public abstract class RepositoryBase<TKey, TEntity extends Entity<TKey>> impleme
     public void delete(TEntity entity) throws Exception {
         TEntity existingEntity = this.getByID(entity.getID());
         if (existingEntity == null) {
-            throw new Exception("Entity does not exist");
+            throw new Exception("Entities does not exist");
         }
         entityMap.remove(entity.getID());
     }

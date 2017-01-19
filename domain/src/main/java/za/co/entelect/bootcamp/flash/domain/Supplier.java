@@ -2,15 +2,19 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Table;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by byron.dinkelmann on 2017/01/13.
  */
-@javax.persistence.Entity
+@Entity
 @Table(name = "Suppliers")
-public class Supplier implements Entity<Integer> {
+@NamedQueries({
+        @NamedQuery(name = "Supplier.findAll", query = "SELECT e FROM Supplier e")
+})
+public class Supplier implements Entities<Integer> {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SupplierID", nullable = false)
     private int supplierID;
     @Column(name = "Name")
@@ -19,6 +23,13 @@ public class Supplier implements Entity<Integer> {
     private String city;
     @Column(name = "ReferenceNumber")
     private String referenceNumber;
+
+//   @OneToOne(targetEntity=Order.class)
+//   private Order order;
+
+    @OneToMany(targetEntity=SupplierQuote.class )
+    @JoinColumn(name = "SupplierID")
+    private List SupplierQuotes;
 
     public Supplier() {}
 
@@ -73,5 +84,21 @@ public class Supplier implements Entity<Integer> {
                 ", city='" + city + '\'' +
                 ", referenceNumber='" + referenceNumber + '\'' +
                 '}';
+    }
+
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
+
+    public List getSupplierQuotes() {
+        return SupplierQuotes;
+    }
+
+    public void setSupplierQuotes(List supplierQuotes) {
+        SupplierQuotes = supplierQuotes;
     }
 }
