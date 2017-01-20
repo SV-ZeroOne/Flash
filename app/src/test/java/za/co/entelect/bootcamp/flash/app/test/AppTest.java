@@ -17,6 +17,10 @@ public class AppTest {
 
     private Supplier supplier;
     private Issue issue;
+    private Issue newIssue = new Issue();
+    private Creator newCreator = new Creator();
+    private ComicCreators newComicCreators = new ComicCreators();
+    private ComicCreatorsPK comicCreatorsPK = new ComicCreatorsPK();
     private List<Creator> creators;
     private List<ComicCreators> comicCreators;
     private EntityManager entityManager;
@@ -92,6 +96,7 @@ public class AppTest {
 
     @Test
     public void testDeleteDBEntry() {
+        //TODO
         Query query = entityManager.createQuery("SELECT s FROM Supplier s WHERE s.name = 'Team Flash'");
         Supplier testSupplier = (Supplier) query.getSingleResult();
         int testSuppID = testSupplier.getID();
@@ -109,14 +114,12 @@ public class AppTest {
 
     @Test
     public void testNewInsertionRelationship() {
-        Issue newIssue = new Issue();
         newIssue.setSeriesNumber((short) 21);
         newIssue.setIssueTitle("The Incredible Team Flash's Adventure");
         newIssue.setPublisher("Entelect");
         newIssue.setDescription("Most Awesome Comic EVARRR!!!!");
         newIssue.setPublicationDate(new Date(20171230));
 
-        Creator newCreator = new Creator();
         newCreator.setName("Team Flash");
         newCreator.setCounteryOfResidence("South Africa");
         newCreator.setEmailAddress("team.flash@entelect.co.za");
@@ -134,23 +137,24 @@ public class AppTest {
         Creator theCreator = (Creator) creatorQ.getSingleResult();
 
         System.out.println("CREATOR ID: " + theCreator.getID());
-        //TODO
-//
-//        ComicCreatorsPK comicCreatorsPK = new ComicCreatorsPK();
-//        comicCreatorsPK.setCreatorID(theCreator.getID());
-//        comicCreatorsPK.setIssueID(theIssue.getID());
-//
-//        ComicCreators newComicCreators = new ComicCreators();
-//        newComicCreators.setCreatorRole("Asshole");
-//        newComicCreators.setId(comicCreatorsPK);
-//
-//        entityManager.getTransaction().begin();
-//        entityManager.persist(newComicCreators);
-//        entityManager.getTransaction().commit();
+        System.out.println("Issue ID: " + theIssue.getID());
+
+        comicCreatorsPK.setCreator(theCreator);
+        comicCreatorsPK.setIssue(theIssue);
+
+        newComicCreators.setCreatorRole("Asshole");
+        newComicCreators.setId(comicCreatorsPK);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(newComicCreators);
+        entityManager.getTransaction().commit();
 
     }
 
     @After
     public void tearDown() {
+        entityManager.remove(newComicCreators);
+        entityManager.remove(newIssue);
+        entityManager.remove(newCreator);
     }
 }
