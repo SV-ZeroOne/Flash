@@ -29,7 +29,7 @@ public abstract class RepositoryImplementation<TKey, TEntity extends Entities<TK
             entityManager.getTransaction().commit();
             return true;
         }catch(Exception e){
-            System.out.println("Something went wrong while persisting to DB");
+            e.printStackTrace();
             return false;
         }
 
