@@ -1,27 +1,28 @@
 package za.co.entelect.bootcamp.flash.persistence;
 
+import za.co.entelect.bootcamp.flash.domain.Entities;
+
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.io.Serializable;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
  * Created by steve.velcev on 2017/01/19.
  */
-public class CRUDRepoImpl<T, PK extends Serializable> implements CRUDRepo<T, PK> {
+public abstract class RepositoryImplementation<TKey, TEntity extends Entities<TKey>> implements RepositoryInterface<TKey, TEntity> {
 
-    protected Class<T> entityClass;
+    protected EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnit");
+    protected EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private Class<TEntity> entityClass;
 
-    @PersistenceContext
-    protected EntityManager entityManager;
-
-    public CRUDRepoImpl(){
+    public RepositoryImplementation(){
         ParameterizedType genericSuperClass = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entityClass = (Class<T>) genericSuperClass.getActualTypeArguments()[0];
+        this.entityClass = (Class<TEntity>) genericSuperClass.getActualTypeArguments()[1];
     }
 
-    public boolean create(T object) {
+    public boolean create(TEntity object) {
         try{
             entityManager.getTransaction().begin();
             this.entityManager.persist(object);
@@ -34,22 +35,22 @@ public class CRUDRepoImpl<T, PK extends Serializable> implements CRUDRepo<T, PK>
 
     }
 
-    public T read(PK id) {
+    public TEntity read(TKey id) {
         return this.entityManager.find(entityClass, id);
     }
 
-    public List<T> readAll() {
+    public List<TEntity> readAll() {
         return this.entityManager.createQuery("Select t from " + entityClass.getSimpleName() + " t").getResultList();
     }
 
-    public boolean update(T object) {
+    public boolean update(TEntity object) {
         entityManager.getTransaction().begin();
         this.entityManager.merge(object);
         entityManager.getTransaction().commit();
         return true;
     }
 
-    public boolean delete(T object) {
+    public boolean delete(TEntity object) {
         entityManager.getTransaction().begin();
         object = this.entityManager.merge(object);
         this.entityManager.remove(object);

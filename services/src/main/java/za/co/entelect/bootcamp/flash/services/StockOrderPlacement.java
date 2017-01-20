@@ -1,9 +1,9 @@
 package za.co.entelect.bootcamp.flash.services;
 
 import za.co.entelect.bootcamp.flash.domain.*;
-import za.co.entelect.bootcamp.flash.persistence.IssueRepository;
-import za.co.entelect.bootcamp.flash.persistence.OrderRepository;
-import za.co.entelect.bootcamp.flash.persistence.SupplierRepository;
+import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
+import za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository;
+import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -35,8 +35,8 @@ public class StockOrderPlacement {
 
     public String placeOrder(int issueID, int quantity) throws Exception {
         IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory = new IssueOrderDTOAdapterFactory();
-        Issue issue = issueRepository.getByID(issueID);
-        Supplier supplier = supplierRepository.getByID(supplierQuote.getSupplierID());
+        Issue issue = issueRepository.read(issueID);
+        Supplier supplier = supplierRepository.read(supplierQuote.getSupplierID());
         if (issue == null) {
             throw new Exception("Issue does not exist");
         } else if (supplier == null) {
@@ -57,14 +57,14 @@ public class StockOrderPlacement {
 
     public void makePayment(int orderID) throws Exception {
         SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory = new SupplierPaymentDTOAdapterFactory();
-        Supplier supplier = supplierRepository.getByID(supplierQuote.getSupplierID());
+        Supplier supplier = supplierRepository.read(supplierQuote.getSupplierID());
         if (supplier == null) {
             throw new Exception("Supplier does not exist");
         }
         SupplierPaymentDTOAdapter supplierPaymentDTOAdapter =
                 supplierPaymentDTOAdapterFactory.createSupplierPaymentDTOAdapter(supplier,
                         new SupplierPayment(orderID+100, orderID,
-                                orderRepository.getByID(orderID).getTotal(), new Date(20171230)));
+                                orderRepository.read(orderID).getTotal(), new Date(20171230)));
         this.paymentService.makePayment(supplierPaymentDTOAdapter);
     }
 }

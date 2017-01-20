@@ -58,4 +58,20 @@ public class ComicCreatorsPK implements Serializable{
     public int hashCode() {
         return super.hashCode();
     }
+
+    public void setCreator(Creator creator) {
+        this.creator = creator;
+    }
+
+    public Creator getCreator() {
+        return this.creator;
+    }
+
+    public void setIssue(Issue issue) {
+        this.issue = issue;
+    }
+
+    public Issue getIssue() {
+        return this.issue;
+    }
 }

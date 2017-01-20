@@ -57,10 +57,6 @@ public class Issue implements Entities<Integer> {
         this.issueID = entityKey;
     }
 
-    public void setIssueID(int issueID) {
-        this.issueID = issueID;
-    }
-
     public String getIssueTitle() {
         return issueTitle;
     }
