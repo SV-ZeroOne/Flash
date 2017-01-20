@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import za.co.entelect.bootcamp.flash.domain.*;
+import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -26,10 +27,13 @@ public class AppTest {
     private EntityManager entityManager;
     private EntityManagerFactory entityManagerFactory;
 
+    private SupplierRepository supplierRepository;
+
     @Before
     public void setUp() {
         entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnit");
         entityManager = entityManagerFactory.createEntityManager();
+        supplierRepository = new SupplierRepository();
     }
 
     @Test
@@ -68,14 +72,13 @@ public class AppTest {
         supplier.setName("Team Flash");
         supplier.setReferenceNumber("1337420666");
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(supplier);
-        entityManager.getTransaction().commit();
+        supplierRepository.create(supplier);
 
         Query query = entityManager.createQuery("SELECT s FROM Supplier s WHERE s.name = 'Team Flash'");
         Supplier testSupplier = (Supplier) query.getSingleResult();
+        System.out.println(testSupplier.toString());
 
-        Assert.assertEquals(testSupplier, supplier);
+        Assert.assertTrue(testSupplier.getName().equals(supplier.getName()));
     }
 
     @Test
@@ -153,6 +156,7 @@ public class AppTest {
 
     @After
     public void tearDown() {
+        supplierRepository.delete(supplier);
         entityManager.remove(newComicCreators);
         entityManager.remove(newIssue);
         entityManager.remove(newCreator);
