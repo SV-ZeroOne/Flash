@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Product Page</title>
 </head>
-<body onload="loadJson()">
+<body onload="loadId(), loadJson()">
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -133,16 +133,28 @@
     var comics = [];
     function createComics(arg){
         comics = arg;
-        console.log(comics[1].Title);
-        $(".product-title").text(comics[1].Title);
-        $(".product-description").text(comics[1].Description);
-        $(".seriesNumber").text(comics[1].SeriesNumber);
-        $(".pubdate").text(comics[1].PublicationDate);
+        console.log(comics[comidId].Title);
+        $(".product-title").text(comics[comidId].Title);
+        $(".product-description").text(comics[comidId].Description);
+        $(".seriesNumber").text(comics[comidId].SeriesNumber);
+        $(".pubdate").text(comics[comidId].PublicationDate);
     }
 
     function changePrice(condition){
-        $(".price").text("Current Price: R" + comics[1].Stock[condition].Price);
+        $(".price").text("Current Price: R" + comics[comidId].Stock[condition].Price);
     }
 
+    var comidId;
+    function loadId() {
+        var url = document.location.href,
+                params = url.split('?')[1].split('&'),
+                data = {}, tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+            tmp = params[i].split('=');
+            data[tmp[0]] = tmp[1];
+        }
+        comidId = data.id - 2;
+        console.log(comidId);
+    }
 </script>
 </html>
