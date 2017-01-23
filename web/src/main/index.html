@@ -11,7 +11,7 @@
         <title>Square Eyes Comic Emporium</title>
     </head>
 
-    <body>
+    <body onload="loadJson()">
         <!-- Fixed navbar -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -55,7 +55,6 @@
         </nav>
 
         <!-- Begin page content -->
-        <!-- .carousel -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -83,7 +82,6 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <!-- /.carousel -->
 
         <div class="container">
             <h1 class="page-header">Featured Comics</h1>
@@ -95,16 +93,18 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1 class="product-title">Book 1</h1>
-                                    <span class="price-new">R100.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title"></h4>
                                 </div>
                             </div>
-                            <div class="separator">
-                                <i class="glyphicon glyphicon-eye-open"></i><a href="#"> View Comic</a>
+                            <div class="separator clear-left">
+                                <p class="btn-add">
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/1"> View Comic</a>
+                                </p>
+                                <p class="btn-details">
+                                    <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
+                                    <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Compare"><i class="glyphicon glyphicon-retweet"></i></a>
+                                </p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -117,17 +117,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 2</h1>
-                                    <span class="price-new">R200.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title2"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/20"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -145,17 +141,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 3</h1>
-                                    <span class="price-new">R300.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title3"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/40"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -173,17 +165,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 4</h1>
-                                    <span class="price-new">R400.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title4"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/60"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -205,17 +193,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 1</h1>
-                                    <span class="price-new">R100.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title13"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/240"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -233,17 +217,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 2</h1>
-                                    <span class="price-new">R200.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title14"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/260"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -261,17 +241,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 3</h1>
-                                    <span class="price-new">R300.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title15"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/280"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -289,17 +265,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 4</h1>
-                                    <span class="price-new">R400.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title16"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/300"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -321,17 +293,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 1</h1>
-                                    <span class="price-new">R100.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title5"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/80"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -349,17 +317,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 2</h1>
-                                    <span class="price-new">R200.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title6"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/100"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -377,17 +341,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 3</h1>
-                                    <span class="price-new">R300.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title7"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/120"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -405,17 +365,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 4</h1>
-                                    <span class="price-new">R400.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title8"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/140"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -437,17 +393,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 1</h1>
-                                    <span class="price-new">R100.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title9"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/160"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -465,17 +417,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 2</h1>
-                                    <span class="price-new">R200.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title10"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/180"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -493,17 +441,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 3</h1>
-                                    <span class="price-new">R300.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title11"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/200"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
@@ -521,17 +465,13 @@
                         </div>
                         <div class="info">
                             <div class="row">
-                                <div class="price-details col-md-6">
-                                    <p class="details">
-                                        Lorem ipsum dolor sit amet, consectetur..
-                                    </p>
-                                    <h1>Book 4</h1>
-                                    <span class="price-new">R400.00</span>
+                                <div class="product-title-display col-md-12">
+                                    <h4 class="product-title12"></h4>
                                 </div>
                             </div>
                             <div class="separator clear-left">
                                 <p class="btn-add">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i><a href="#" class="hidden-sm">Add to cart</a>
+                                    <i class="glyphicon glyphicon-eye-open"></i><a href="#/comic/220"> View Comic</a>
                                 </p>
                                 <p class="btn-details">
                                     <a href="#" class="hidden-sm" data-toggle="tooltip" data-placement="top" title="Add to wish list"><i class="glyphicon glyphicon-heart"></i></a>
