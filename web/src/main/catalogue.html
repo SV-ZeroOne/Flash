@@ -39,7 +39,11 @@
                 html += "</div>";
                 html += "<div class='separator clear-left'>";
                 html += "<p class='btn-add'>";
-                html += "<a href=" + "#/comic/" + jsonArray[i].Id + " class='hidden-sm'>View Product</a>";
+                html += "<i class='glyphicon glyphicon-eye-open'></i><a href=" + "#/comic/" + jsonArray[i].Id + " class='hidden-sm'> View Product</a>";
+                html += "</p>";
+                html += "<p class='btn-details'>";
+                html += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Add to wish list'><i class='glyphicon glyphicon-heart'></i></a>";
+                html += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Compare'><i class='glyphicon glyphicon-retweet'></i></a>";
                 html += "</p>";
                 html += "</div>";
                 html += "<div class='clearfix'></div>";
