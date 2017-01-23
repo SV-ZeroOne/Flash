@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+
+    <persistence-unit name="PersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>za.co.entelect.bootcamp.flash.domain.Supplier</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierQuote</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Issue</class>
+        <class>za.co.entelect.bootcamp.flash.domain.ComicCreators</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Creator</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Order</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Stock</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierPayment</class>
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=SquareEyes;instanceName=KEVINGOUW-PC\SQLEXPRESS;"/>
+            <property name="hibernate.connection.username" value="comic"/>
+            <property name="hibernate.connection.password" value="test123"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+        </properties>
+    </persistence-unit>
+
+
+</persistence>
+
+
