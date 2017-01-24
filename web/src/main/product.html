@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="product.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Product Page</title>
+</head>
+<body onload="loadId(), loadJson()">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Square Eyes</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comics <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#new">New Stock</a></li>
+                        <li><a href="index.html#specials">Specials</a></li>
+                        <li><a href="index.html#top">Top Sellers</a></li>
+                        <li><a href="catalogue.html">Catalogue</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Publishers</li>
+                        <li><a href="#">Marvel</a></li>
+                        <li><a href="#">DC Comics</a></li>
+                    </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#shoppingcart">Shopping Cart</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Begin page content -->
+
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="preview col-md-4">
+
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src="resources/Comic1.jpg" /></div>
+                        <div class="tab-pane" id="pic-2"><img src="resources/Comic2.jpg" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="resources/Comic3.jpg" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="resources/Comic3.jpg" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="resources/Comic3.jpg" /></div>
+                    </div>
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="resources/Comic1.jpg" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="resources/Comic2.jpg" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
+                    </ul>
+
+                </div>
+                <div class="details col-md-8">
+                    <h3 class="product-title"></h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <span class="seriesNo">SERIES NUMBER: </span><span class="seriesNumber"></span>
+                    </div>
+                    <p class="product-description"></p>
+                    <span class="price">Select a Condition for Price</span>
+                    <span class="date"><strong>PUBLICATION DATE: </strong></span><span class="pubdate"></span>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Condition
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a onclick="changePrice(0);" id="condition4" href="#">4</a></li>
+                            <li><a onclick="changePrice(1);" id="condition6" href="#">6</a></li>
+                            <li><a onclick="changePrice(2);" id="condition10" href="#">10</a></li>
+                            <li><a onclick="changePrice(3);" id="condition13" href="#">13</a></li>
+                        </ul>
+                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Copyright © 2017 Square Eyes</p>
+    </div>
+</footer>
+</body>
+
+
+<script>
+    var jsonArray = [];
+    function loadJson() {
+        $(document).ready(function()
+        {
+            $.getJSON('Issues.json', function(jsonArray) {
+                console.log(jsonArray);
+                for(var i =0; i < jsonArray.length; i++){
+                    createComics(jsonArray);
+                }
+            });
+        });
+
+    }
+    var comics = [];
+    function createComics(arg){
+        comics = arg;
+        console.log(comics[comidId].Title);
+        $(".product-title").text(comics[comidId].Title);
+        $(".product-description").text(comics[comidId].Description);
+        $(".seriesNumber").text(comics[comidId].SeriesNumber);
+        $(".pubdate").text(comics[comidId].PublicationDate);
+    }
+
+    function changePrice(condition){
+        $(".price").text("Current Price: R" + comics[comidId].Stock[condition].Price);
+    }
+
+    var comidId;
+    function loadId() {
+        var url = document.location.href,
+                params = url.split('?')[1].split('&'),
+                data = {}, tmp;
+        for (var i = 0, l = params.length; i < l; i++) {
+            tmp = params[i].split('=');
+            data[tmp[0]] = tmp[1];
+        }
+        comidId = data.id - 2;
+        console.log(comidId);
+    }
+</script>
+</html>
