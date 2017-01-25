@@ -7,7 +7,6 @@ var specialsElement = "";
 var newComicsElement = "";
 var topSellerElement = "";
 
-
 $(document).ready(function () {
     $.getJSON('Issues.json', function (json) {
         jsonArray = json;
@@ -38,7 +37,7 @@ function loadInComics(element) {
     }
 
     for (var i = 0; i < 4; i++) {
-        var randomImg = getRandomInt(1,3);
+        var randomImg = getRandomInt(1,12);
         var innerHTML = "";
         innerHTML += "<div class='col-sm-3'>";
         innerHTML += "<article class='col-item'>";

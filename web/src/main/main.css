@@ -4,24 +4,15 @@ html {
 }
 
 body {
-    /* Margin bottom by footer height */
     margin-bottom: 100px;
+    font-family: 'Roboto Slab', serif;
 }
 
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
 .carousel {
     height: 500px;
     margin-bottom: 10px;
 }
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-    z-index: 10;
-}
 
-/* Declare heights because of positioning of img element */
 .carousel .item {
     height: 500px;
     background-color: #777;
@@ -97,7 +88,7 @@ body {
     float:left;
 }
 .col-item .price-details .details {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-size:12px;
 }
 .col-item .price-details span {
