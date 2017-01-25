@@ -2,10 +2,10 @@
  * Created by kevin.gouws on 2017/01/23.
  */
 var jsonArray = [];
-var featuredElement = "";
-var specialsElement = "";
+var featuredComicsElement = "";
+var specialComicsElement = "";
 var newComicsElement = "";
-var topSellerElement = "";
+var topSellingComicsElement = "";
 
 $(document).ready(function () {
     $.getJSON('Issues.json', function (json) {
@@ -15,53 +15,70 @@ $(document).ready(function () {
 });
 
 function prepareHomePageFeatures() {
-    featuredElement = document.getElementById("featured-content");
-    specialsElement = document.getElementById("specials-content");
-    newComicsElement = document.getElementById("new-content");
-    topSellerElement = document.getElementById("top-sellers-content");
-    loadInComics(featuredElement);
-    loadInComics(specialsElement);
+    featuredComicsElement = document.getElementById("featured-content");
+    specialComicsElement = document.getElementById("special-content");
+    newComicsElement = document.getElementById("new-stock-content");
+    topSellingComicsElement = document.getElementById("top-sellers-content");
+    loadInComics(featuredComicsElement);
+    loadInComics(specialComicsElement);
     loadInComics(newComicsElement);
-    loadInComics(topSellerElement);
+    loadInComics(topSellingComicsElement);
 }
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+Array.min = function(array){
+    return Math.min.apply(Math, array);
+};
+
 function loadInComics(element) {
     var randomComicSelection = [];
     for (var x = 0; x < 4; x++) {
-        var randomNumber = getRandomInt(0, 633);
-        randomComicSelection[x] = jsonArray[randomNumber];
+        var randomComicIndex = getRandomInt(0, 633);
+        randomComicSelection[x] = jsonArray[randomComicIndex];
     }
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < randomComicSelection.length; i++) {
+        //purely cosmetic
         var randomImg = getRandomInt(1,12);
+        var randomStarCount = getRandomInt(2, 5);
+        var randomReviewCount = getRandomInt(5, 21);
+
+        //lowest price procurement
+        var comicBookSellingPrices = [];
+        for (var a = 0; a < randomComicSelection[i].Stock.length; a++) {
+            comicBookSellingPrices[a] = randomComicSelection[i].Stock[a].Price;
+        }
+        var lowestSellingPrice = Array.min(comicBookSellingPrices);
+
+
+        //HTML generation
         var innerHTML = "";
-        innerHTML += "<div class='col-sm-3'>";
-        innerHTML += "<article class='col-item'>";
-        innerHTML += "<div class='photo'>";
-        innerHTML += "<a href=" + "product.html?id=" + randomComicSelection[i].Id + "> <img src='resources/Comic" + randomImg + ".jpg' class='img-thumbnail' alt='Product Image'/></a>";
+        innerHTML += "<div class='col-sm-4 col-lg-4 col-md-4'>";
+        innerHTML += "<div class='thumbnail'>";
+        innerHTML += "<a href=" + "product.html?id=" + randomComicSelection[i].Id + "><img class='comic-thumb' src='resources/comic" + randomImg + ".jpg' alt='" + randomComicSelection[i].Title + "'></a>";
+        innerHTML += "<div class='caption'>";
+        innerHTML += "<h4 class='pull-right'><small>Starting at: R" + lowestSellingPrice + "</small></h4>";
+        innerHTML += "<h4><a href=" + "product.html?id=" + randomComicSelection[i].Id + ">" + randomComicSelection[i].Title + "</a>";
+        innerHTML += "</h4>";
+        innerHTML += "<p>[" + randomComicSelection[i].Description + "] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur purus id est euismod, sed tempus tortor vehicula.</p>";
         innerHTML += "</div>";
-        innerHTML += "<div class='info'>";
-        innerHTML += "<div class='row'>";
-        innerHTML += "<div class='product-title-display col-md-12'>";
-        innerHTML += "<h4 class='product-title'>" + randomComicSelection[i].Title + "</h4>";
-        innerHTML += "</div>";
-        innerHTML += "</div>";
-        innerHTML += "<div class='separator clear-left'>";
-        innerHTML += "<p class='btn-add'>";
-        innerHTML += "<i class='glyphicon glyphicon-eye-open'></i><a  href=" + "product.html?id=" + randomComicSelection[i].Id  + "> View Comic</a>";
+        innerHTML += "<div class='ratings'>";
+        innerHTML += "<p class='pull-right'>" + randomReviewCount + " reviews</p>";
+        innerHTML += "<p>";
+        for (var y = 0; y < randomStarCount; y++) {
+            innerHTML += "<span class='glyphicon glyphicon-star'></span>";
+        }
+        if (randomStarCount != 5) {
+            for (var z = 0; z < (5-randomStarCount); z++) {
+                innerHTML += "<span class='glyphicon glyphicon-star-empty'></span>";
+            }
+        }
         innerHTML += "</p>";
-        innerHTML += "<p class='btn-details'>";
-        innerHTML += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Add to wish list'><i class='glyphicon glyphicon-heart'></i></a>";
-        innerHTML += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Compare'><i class='glyphicon glyphicon-retweet'></i></a>";
-        innerHTML += "</p>";
         innerHTML += "</div>";
-        innerHTML += "<div class='clearfix'></div>";
         innerHTML += "</div>";
-        innerHTML += "</article>";
         innerHTML += "</div>";
         $(element).append(innerHTML);
     }
