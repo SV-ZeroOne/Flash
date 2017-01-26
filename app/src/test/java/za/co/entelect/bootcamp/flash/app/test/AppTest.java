@@ -1,21 +1,21 @@
-package za.co.entelect.bootcamp.flash.app.test;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import za.co.entelect.bootcamp.flash.domain.*;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
-
-import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
-
-/**
- * Created by kevin.gouws on 2017/01/13.
- */
-public class AppTest {
-
+//package za.co.entelect.bootcamp.flash.app.test;
+//
+//import org.junit.After;
+//import org.junit.Assert;
+//import org.junit.Before;
+//import org.junit.Test;
+//import za.co.entelect.bootcamp.flash.domain.*;
+//import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
+//
+//import javax.persistence.*;
+//import java.sql.Date;
+//import java.util.List;
+//
+///**
+// * Created by kevin.gouws on 2017/01/13.
+// */
+//public class AppTest {
+//
 //    private Supplier supplier;
 //    private Issue issue;
 //    private Issue newIssue = new Issue();
@@ -161,4 +161,4 @@ public class AppTest {
 //        entityManager.remove(newIssue);
 //        entityManager.remove(newCreator);
 //    }
-}
+//}
