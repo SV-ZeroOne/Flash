@@ -9,11 +9,9 @@ var comicConditionPrice = 0;
 var numberOfCartItems = 0;
 
 function loadJson() {
-    $(document).ready(function()
-    {
+    $(document).ready(function() {
         $.getJSON('Issues.json', function(jsonArray) {
-            console.log(jsonArray);
-            for(var i =0; i < jsonArray.length; i++){
+            for(var i =0; i < jsonArray.length; i++) {
                 createComics(jsonArray);
             }
         });
@@ -38,7 +36,7 @@ function createComics(arg){
 }
 
 function changePrice(condition){
-    $(".price").text("Current Price: R" + comics[comicId].Stock[condition].Price);
+    $(".price").text("R" + comics[comicId].Stock[condition].Price);
     comicConditionPrice = comics[comicId].Stock[condition].Price;
 }
 
@@ -63,19 +61,24 @@ function addToCart(){
         html += "<li>";
         html += "<span class='item'>";
         html += "<span class='item-left'>";
-        html += "<img src='resources/comic1.jpg' alt=''/>";
+        html += "<img src='resources/comic1.jpg' class='cart-img' alt='' />";
         html += "<span class='item-info'>";
         html += "<span>" + comics[comicId].Title + "</span>";
         html += "<span>R " + comicConditionPrice + "</span>";
-        html += "<div class='price-details col-md-6'>";
         html += "</span>";
         html += "</span>";
         html += "<span class='item-right'>";
-        html += "<button class='btn btn-xs btn-danger pull-right'>x</button>";
+        html += "<button class='btn btn-xs btn-danger'>X</button>";
         html += "</span>";
         html += "</span>";
         html += "</li>";
         $(".shoppingCartDropDown").append(html);
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar")
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
 }
 
