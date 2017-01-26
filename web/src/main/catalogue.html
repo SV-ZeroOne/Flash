@@ -8,56 +8,13 @@
     <link type="text/css" rel="stylesheet" href="catalogue.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="jquery-3.1.1.min.js"></script>
+
+    <script src="js/catalogue.js"></script>
     <title>Square Eyes Comic Emporium</title>
 
-    <script type="text/javascript" charset="utf-8">
-
-        var jsonArray = [];
-        function loadJson() {
-
-            $(document).ready(function () {
-                $.getJSON('Issues.json', function (json) {
-                    jsonArray = json;
-                });
-            });
-        }
-
-        function loadProducts() {
-            for (var i = 0; i < 20; i++) {
-                var html = "";
-                html += "<div class='col-sm-3'>";
-                html += "<article class='col-item'>";
-                html += "<div class='photo'>";
-                html += "<a href=" + "product.html?id=" + jsonArray[i].Id + "><img src='resources/Comic2.jpg' class='img-responsive' alt='Product Image'/></a>";
-                html += "</div>";
-                html += "<div class='info'>";
-                html += "<div class='row'>";
-                html += "<div class='price-details col-md-6'>";
-                html += "<h2 id='title'>" + jsonArray[i].Title + "</h2>";
-                html += "</div>";
-                html += "</div>";
-                html += "<div class='separator clear-left'>";
-                html += "<p class='btn-add'>";
-                html += "<i class='glyphicon glyphicon-eye-open'></i><a href=" + "product.html?id=" + jsonArray[i].Id  + " class='hidden-sm'> View Product</a>";
-                html += "</p>";
-                html += "<p class='btn-details'>";
-                html += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Add to wish list'><i class='glyphicon glyphicon-heart'></i></a>";
-                html += "<a href='#' class='hidden-sm' data-toggle='tooltip' data-placement='top' title='Compare'><i class='glyphicon glyphicon-retweet'></i></a>";
-                html += "</p>";
-                html += "</div>";
-                html += "<div class='clearfix'></div>";
-                html += "</div>";
-                html += "</article>";
-                html += "</div>";
-                $("#products").append(html);
-            }
-        }
-    </script>
 </head>
 
 <body onload="loadJson()">
-<!-- Fixed navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -92,7 +49,7 @@
                 <li><a href="#shoppingcart">Shopping Cart</a></li>
             </ul>
             <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+                <input id="searchTxt" type="text" class="form-control" placeholder="Search...">
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#login">Login</a></li>
@@ -102,11 +59,17 @@
 </nav>
 
 <div class="container">
+    <ul class="pagination"></ul>
     <div class="row">
         <h2>Products Catalogue </h2>
-        <div id="products">
+        <div id="products" class="container">
         </div>
     </div>
+    <ul class="pager">
+        <li class="previous"><a href="catalogue.html?direction=previous">Previous</a></li>
+        <li class="next"><a href="catalogue.html?direction=next">Next</a></li>
+
+    </ul>
 </div>
 
 <footer class="footer">
@@ -115,10 +78,8 @@
     </div>
 </footer>
 </body>
-
-</body>
 <script>
-    setTimeout(loadProducts,1000);
+    setTimeout(loadProducts, 200);
 </script>
 </html>
 
