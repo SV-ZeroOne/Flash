@@ -62,7 +62,7 @@ function loadInComics(element) {
         innerHTML += "<div class='caption'>";
         innerHTML += "<h4><a href=" + "product.html?id=" + randomComicSelection[i].Id + ">" + randomComicSelection[i].Title + "</a>";
         innerHTML += "</h4>";
-        innerHTML += "<h5 class='synopsis'>Series #" + randomComicSelection[i].SeriesNumber + "</h5>";
+        innerHTML += "<h5 class='series-no'>Series #" + randomComicSelection[i].SeriesNumber + "</h5>";
         innerHTML += "</div>";
         innerHTML += "<div class='price'>";
         innerHTML += "<h4 class='pull-right'><small>Starting at: R" + lowestSellingPrice + "</small></h4>";
