@@ -21,6 +21,11 @@ function loadJson() {
 
 }
 
+$(function(){
+    $("#nav-content").load("navbar.html");
+    $("#footer-content").load("footer.html");
+});
+
 function createComics(arg){
     comics = arg;
     console.log(comics[comicId].Title);

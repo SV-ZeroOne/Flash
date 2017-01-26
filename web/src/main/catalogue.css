@@ -5,6 +5,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
     padding-top: 50px;
+    font-family: 'Roboto Slab', serif;
 }
 
 
@@ -238,4 +239,34 @@ For the product listing
 }
 .col-item .btn-details a:first-child {
     margin-right:12px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.footer-link,
+.footer-link:visited,
+.footer-link:active {
+    color: #5e5e5e;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.container .text-muted {
+    margin: 20px 0;
 }

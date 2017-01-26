@@ -1,6 +1,11 @@
 /**
  * Created by steve.velcev on 2017/01/26.
  */
+$(function(){
+    $("#nav-content").load("navbar.html");
+    $("#footer-content").load("footer.html");
+});
+
 $(document).ready(function () {
     var navListItems = $('div.setup-panel div a'),
         allWells = $('.setup-content'),

@@ -5,6 +5,11 @@
 var jsonArray = [];
 var displaySize = 16;
 
+$(function(){
+    $("#nav-content").load("navbar.html");
+    $("#footer-content").load("footer.html");
+});
+
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');

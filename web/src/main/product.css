@@ -5,24 +5,8 @@ html {
 body {
     padding-top: 70px;
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
-}
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #f5f5f5;
-}
-.container .text-muted {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
+    margin-bottom: 75px;
+    font-family: 'Roboto Slab', serif;
 }
 
 img {
@@ -271,6 +255,37 @@ ul.dropdown-cart li .item-left span.item-info span{
 }
 ul.dropdown-cart li .item-right{
     float:right;
+}
+
+/*Footer Styling*/
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.footer-link,
+.footer-link:visited,
+.footer-link:active {
+    color: #5e5e5e;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.container .text-muted {
+    margin: 20px 0;
 }
 
 /*.item-right {*/
