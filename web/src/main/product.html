@@ -7,6 +7,7 @@
     <link type="text/css" rel="stylesheet" href="product.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/product.js"></script>
     <title>Product Page</title>
 </head>
 <body onload="loadId(), loadJson()">
@@ -40,7 +41,16 @@
                 </li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#shoppingcart">Shopping Cart</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span><span class="shoppingCartAmount"> Shopping Cart </span><span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-cart" role="menu">
+
+                        <div class="shoppingCartDropDown"></div>
+
+                        <li class="divider"></li>
+                        <li><a class="text-center" href="">Checkout</a></li>
+                    </ul>
+                </li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
@@ -61,18 +71,16 @@
                 <div class="preview col-md-4">
 
                     <div class="preview-pic tab-content">
-                        <div class="tab-pane active" id="pic-1"><img src="resources/Comic1.jpg" /></div>
-                        <div class="tab-pane" id="pic-2"><img src="resources/Comic2.jpg" /></div>
-                        <div class="tab-pane" id="pic-3"><img src="resources/Comic3.jpg" /></div>
-                        <div class="tab-pane" id="pic-4"><img src="resources/Comic3.jpg" /></div>
-                        <div class="tab-pane" id="pic-5"><img src="resources/Comic3.jpg" /></div>
+                        <div class="tab-pane active" id="pic-1"><img id="previewPic" src="resources/comic1.jpg" /></div>
+                        <div class="tab-pane" id="pic-2"><img src="resources/comic2.jpg" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="resources/comic3.jpg" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="resources/comic3.jpg" /></div>
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="resources/Comic1.jpg" /></a></li>
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="resources/Comic2.jpg" /></a></li>
-                        <li><a data-target="#pic-3" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
-                        <li><a data-target="#pic-4" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
-                        <li><a data-target="#pic-5" data-toggle="tab"><img src="resources/Comic3.jpg" /></a></li>
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="resources/comic1.jpg" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="resources/comic2.jpg" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img src="resources/comic3.jpg" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img src="resources/comic3.jpg" /></a></li>
                     </ul>
 
                 </div>
@@ -95,12 +103,13 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Condition
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a onclick="changePrice(0);" id="condition4" href="#">4</a></li>
-                            <li><a onclick="changePrice(1);" id="condition6" href="#">6</a></li>
-                            <li><a onclick="changePrice(2);" id="condition10" href="#">10</a></li>
-                            <li><a onclick="changePrice(3);" id="condition13" href="#">13</a></li>
+                            <li><a onclick="changePrice(0);" id="condition4" href="#">New</a></li>
+                            <li><a onclick="changePrice(1);" id="condition6" href="#">Old</a></li>
+                            <li><a onclick="changePrice(2);" id="condition10" href="#">Fine</a></li>
+                            <li><a onclick="changePrice(3);" id="condition13" href="#">Mint</a></li>
                         </ul>
-                        <button class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button onclick="addToCart()" class="add-to-cart btn btn-default" type="button">add to cart</button>
+                        <button onclick="goBack()" class="back btn btn-default" type="button">Back</button>
                     </div>
                 </div>
             </div>
@@ -115,46 +124,4 @@
 </footer>
 </body>
 
-
-<script>
-    var jsonArray = [];
-    function loadJson() {
-        $(document).ready(function()
-        {
-            $.getJSON('Issues.json', function(jsonArray) {
-                console.log(jsonArray);
-                for(var i =0; i < jsonArray.length; i++){
-                    createComics(jsonArray);
-                }
-            });
-        });
-
-    }
-    var comics = [];
-    function createComics(arg){
-        comics = arg;
-        console.log(comics[comidId].Title);
-        $(".product-title").text(comics[comidId].Title);
-        $(".product-description").text(comics[comidId].Description);
-        $(".seriesNumber").text(comics[comidId].SeriesNumber);
-        $(".pubdate").text(comics[comidId].PublicationDate);
-    }
-
-    function changePrice(condition){
-        $(".price").text("Current Price: R" + comics[comidId].Stock[condition].Price);
-    }
-
-    var comidId;
-    function loadId() {
-        var url = document.location.href,
-                params = url.split('?')[1].split('&'),
-                data = {}, tmp;
-        for (var i = 0, l = params.length; i < l; i++) {
-            tmp = params[i].split('=');
-            data[tmp[0]] = tmp[1];
-        }
-        comidId = data.id - 2;
-        console.log(comidId);
-    }
-</script>
 </html>
