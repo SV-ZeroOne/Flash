@@ -27,7 +27,9 @@ function createComics(arg){
     $(".product-title").text(comics[comicId].Title);
     $(".product-description").text(comics[comicId].Description);
     $(".seriesNumber").text(comics[comicId].SeriesNumber);
-    $(".pubdate").text(comics[comicId].PublicationDate);
+    var publicationDate = comics[comicId].PublicationDate;
+        publicationDate = publicationDate.split("T")[0];
+    $(".pubdate").text(publicationDate);
 }
 
 function changePrice(condition){
@@ -72,3 +74,6 @@ function addToCart(){
     }
 }
 
+function goBack() {
+    window.history.back();
+}
