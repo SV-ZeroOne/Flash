@@ -14,6 +14,12 @@ $(document).ready(function () {
     });
 });
 
+
+$(function(){
+    $("#nav-content").load("navbar.html");
+    $("#footer-content").load("footer.html");
+});
+
 function prepareHomePageFeatures() {
     featuredComicsElement = document.getElementById("featured");
     specialComicsElement = document.getElementById("specials");
@@ -84,4 +90,8 @@ function loadInComics(element) {
         innerHTML += "</div>";
         $(element).append(innerHTML);
     }
+}
+
+function viewMoreComics() {
+    window.location.href = "catalogue.html";
 }

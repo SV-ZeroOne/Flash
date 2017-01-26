@@ -13,47 +13,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="pull-left" href="index.html"><img src="resources/squareeyes-logo.jpg"></a>
-                    <a class="navbar-brand" href="index.html">Square Eyes</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comics <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#specials">Specials</a></li>
-                                <li><a href="#top-sellers">Top Sellers</a></li>
-                                <li><a href="#new-stock">New Stock</a></li>
-                                <li><a href="catalogue.html">Catalogue</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Publishers</li>
-                                <li><a href="#">Marvel</a></li>
-                                <li><a href="#">DC Comics</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#shoppingcart">Shopping Cart</a></li>
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#login">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div id="nav-content"></div>
 
         <div class="container">
             <div class="row">
@@ -68,13 +28,19 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="item active">
-                                        <img class="slide-image" src="resources/marvel-logo.jpg" alt="Marvel Logo">
+                                        <a href="catalogue.html">
+                                            <img class="slide-image" src="resources/marvel-logo.jpg" alt="Marvel Logo">
+                                        </a>
                                     </div>
                                     <div class="item">
+                                        <a href="catalogue.html">
                                         <img class="slide-image" src="resources/dc-logo.jpg" alt="DC Logo">
+                                        </a>
                                     </div>
                                     <div class="item">
+                                        <a href="catalogue.html">
                                         <img class="slide-image" src="resources/marvel-dc-united.jpg" alt="Marvel vs DC">
+                                        </a>
                                     </div>
                                 </div>
                                 <a class="left carousel-control" href="#home-carousel" data-slide="prev">
@@ -88,25 +54,25 @@
                     </div>
 
                     <hr>
-                    <button class="pull-right btn btn-default" type="button">View More</button>
+                    <button class="pull-right btn btn-default" onclick="viewMoreComics()" type="button">View More</button>
                     <h1>Featured Comics</h1>
                     <hr>
                     <div id="featured" class="row"></div>
 
                     <hr>
-                    <button class="pull-right btn btn-default" type="button">View More</button>
+                    <button class="pull-right btn btn-default" onclick="viewMoreComics()" type="button">View More</button>
                     <h1>Specials</h1>
                     <hr>
                     <div id="specials" class="row"></div>
 
                     <hr>
-                    <button class="pull-right btn btn-default" type="button">View More</button>
+                    <button class="pull-right btn btn-default" onclick="viewMoreComics()" type="button">View More</button>
                     <h1>Top Sellers</h1>
                     <hr>
                     <div id="top-sellers" class="row"></div>
 
                     <hr>
-                    <button class="pull-right btn btn-default" type="button">View More</button>
+                    <button class="pull-right btn btn-default" onclick="viewMoreComics()" type="button">View More</button>
                     <h1>New Stock</h1>
                     <hr>
                     <div id="new-stock" class="row"></div>
@@ -115,10 +81,6 @@
             <hr>
         </div>
 
-        <footer class="footer">
-            <div class="container">
-                <p class="text-muted">Copyright &copy; 2017 Square Eyes</p>
-            </div>
-        </footer>
+        <div id="footer-content"></div>
     </body>
 </html>
