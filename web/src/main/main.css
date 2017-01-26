@@ -23,12 +23,22 @@ body {
 }
 
 .caption {
-    height: 130px;
+    height: auto;
     overflow: hidden;
 }
 
 .caption h4 {
     white-space: nowrap;
+}
+
+.synopsis {
+    text-align: justify;
+    font-size: small;
+}
+
+.price {
+    padding-right: 10px;
+    overflow: hidden;
 }
 
 .ratings {
@@ -213,3 +223,8 @@ body {
     text-align: left;
     padding-bottom: 5px;
 }
+
+.btn-default {
+    color: #dddde2;
+    background: black;
+ }

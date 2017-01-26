@@ -15,10 +15,10 @@ $(document).ready(function () {
 });
 
 function prepareHomePageFeatures() {
-    featuredComicsElement = document.getElementById("featured-content");
-    specialComicsElement = document.getElementById("special-content");
-    newComicsElement = document.getElementById("new-stock-content");
-    topSellingComicsElement = document.getElementById("top-sellers-content");
+    featuredComicsElement = document.getElementById("featured");
+    specialComicsElement = document.getElementById("specials");
+    newComicsElement = document.getElementById("new-stock");
+    topSellingComicsElement = document.getElementById("top-sellers");
     loadInComics(featuredComicsElement);
     loadInComics(specialComicsElement);
     loadInComics(newComicsElement);
@@ -56,14 +56,16 @@ function loadInComics(element) {
 
         //HTML generation
         var innerHTML = "";
-        innerHTML += "<div class='col-sm-4 col-lg-4 col-md-4'>";
+        innerHTML += "<div class='col-sm-3 col-lg-3 col-md-3'>";
         innerHTML += "<div class='thumbnail'>";
         innerHTML += "<a href=" + "product.html?id=" + randomComicSelection[i].Id + "><img class='comic-thumb' src='resources/comic" + randomImg + ".jpg' alt='" + randomComicSelection[i].Title + "'></a>";
         innerHTML += "<div class='caption'>";
-        innerHTML += "<h4 class='pull-right'><small>Starting at: R" + lowestSellingPrice + "</small></h4>";
         innerHTML += "<h4><a href=" + "product.html?id=" + randomComicSelection[i].Id + ">" + randomComicSelection[i].Title + "</a>";
         innerHTML += "</h4>";
-        innerHTML += "<p>[" + randomComicSelection[i].Description + "] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur purus id est euismod, sed tempus tortor vehicula.</p>";
+        innerHTML += "<h5 class='synopsis'>Series #" + randomComicSelection[i].SeriesNumber + "</h5>";
+        innerHTML += "</div>";
+        innerHTML += "<div class='price'>";
+        innerHTML += "<h4 class='pull-right'><small>Starting at: R" + lowestSellingPrice + "</small></h4>";
         innerHTML += "</div>";
         innerHTML += "<div class='ratings'>";
         innerHTML += "<p class='pull-right'>" + randomReviewCount + " reviews</p>";
