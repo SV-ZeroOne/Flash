@@ -293,3 +293,8 @@ ul.dropdown-cart li .item-right{
     /*width: 100%;*/
     /*background-color: #0076ad;*/
 /*}*/
+
+.shoppIngCartImage {
+    width: 50px;
+    height: 75px;
+}

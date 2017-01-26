@@ -63,7 +63,7 @@ function addToCart(){
         html += "<li>";
         html += "<span class='item'>";
         html += "<span class='item-left'>";
-        html += "<img src='http://lorempixel.com/50/50' alt='' />";
+        html += "<img src='resources/comic1.jpg' alt=''/>";
         html += "<span class='item-info'>";
         html += "<span>" + comics[comicId].Title + "</span>";
         html += "<span>R " + comicConditionPrice + "</span>";

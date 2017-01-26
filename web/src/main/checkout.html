@@ -54,15 +54,15 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Cellphone Number</label>
-                        <input maxlength="100" type="number" required="required" class="form-control" placeholder="Enter Cellphone Number" />
+                        <input maxlength="12" type="text" required="required" class="form-control" placeholder="Enter Cellphone Number" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Home Number</label>
-                        <input maxlength="100" type="number" class="form-control" placeholder="Enter Home Number" />
+                        <input maxlength="12" type="text" class="form-control" placeholder="Enter Home Number" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Email Address</label>
-                        <input maxlength="100" type="email" required="required" class="form-control" placeholder="Enter Email Address" />
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Email Address" />
                     </div>
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
                 </div>
@@ -86,11 +86,11 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Postal Code</label>
-                        <input maxlength="4" type="number" required="required" class="form-control" placeholder="Enter Postal Code"  />
+                        <input maxlength="4" type="text" required="required" class="form-control" placeholder="Enter Postal Code"  />
                     </div>
                     <h4> Delivery Options </h4>
                     <div class="radio">
-                        <label><input type="radio" name="optradio1">Collection - R0.00</label>
+                        <label><input type="radio" name="optradio1" checked="checked">Collection - R0.00</label>
                     </div>
                     <div class="radio">
                         <label><input type="radio" name="optradio2">Express Delivery - R50.00</label>
@@ -106,24 +106,24 @@
             <div class="col-xs-12">
                 <div class="col-md-12">
                     <h3> Step 3: Payment Details</h3>
-                    <label class="radio-inline"><input type="radio" name="optradio">Visa</label>
+                    <label class="radio-inline"><input type="radio" name="optradio" checked="checked">Visa</label>
                     <label class="radio-inline"><input type="radio" name="optradio">Mastercard</label>
                     <label class="radio-inline"><input type="radio" name="optradio">Paypall</label>
                     <br>
                     <br>
                     <div class="form-group">
                         <label class="control-label">Card Number</label>
-                        <input maxlength="20" type="number" required="required" class="form-control" placeholder="Enter Card Number"  />
+                        <input maxlength="20" type="text" required="required" class="form-control" placeholder="Enter Card Number"  />
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Card Holder Name</label>
-                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Card Holder Name"  />
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Card Holder Name"  />
                     </div>
 
                     <div class="form-group">
                         <label for="month">Expiry Date</label>
-                        <select class="form-control" id="month">
+                        <select required="required" class="form-control" id="month">
                             <option>MM</option>
                             <option>01</option>
                             <option>02</option>
@@ -139,7 +139,7 @@
                             <option>12</option>
                         </select>
                         <br>
-                        <select class="form-control" id="year">
+                        <select required="required" class="form-control" id="year">
                             <option>YY</option>
                             <option>17</option>
                             <option>18</option>
@@ -154,7 +154,7 @@
                         <input maxlength="20" type="text" class="form-control" placeholder="Enter Voucher Codes"  />
                     </div>
 
-                    <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                    <a href="confirmation.html" class="btn btn-success btn-lg pull-right" type="submit">Submit</a>
                 </div>
             </div>
         </div>

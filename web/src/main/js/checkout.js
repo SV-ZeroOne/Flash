@@ -47,4 +47,15 @@ $(document).ready(function () {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
+
+    orderNumberGenerator();
 });
+
+function orderNumberGenerator(){
+    var randomNum = getRandomInt(10000, 90000);
+    $("#orderNumber").text("Your order number is: " + randomNum);
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
