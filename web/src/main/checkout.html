@@ -4,63 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="checkout.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/checkout.js"></script>
     <title>Product Page</title>
 </head>
-<body onload="loadId(), loadJson()">
+<body>
 <!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">Square Eyes</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Comics <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html#new">New Stock</a></li>
-                        <li><a href="index.html#specials">Specials</a></li>
-                        <li><a href="index.html#top">Top Sellers</a></li>
-                        <li><a href="catalogue.html">Catalogue</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Publishers</li>
-                        <li><a href="#">Marvel</a></li>
-                        <li><a href="#">DC Comics</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span><span class="shoppingCartAmount"> Shopping Cart </span><span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-cart" role="menu">
-
-                        <div class="shoppingCartDropDown"></div>
-
-                        <li class="divider"></li>
-                        <li><a class="text-center" href="">Checkout</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#login">Login</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<div id="nav-content"></div>
 
 <!-- Begin page content -->
 <div class="container">
@@ -84,28 +37,32 @@
 
     <form role="form" action="" method="post">
         <div class="row setup-content" id="step-1">
-            <div class="col-xs-12 ">
+            <div class="col-xs-12">
                 <div class="col-md-12">
-                    <h3> Step 1: Personal Details </h3>
+                    <h3> Step 1: Personal Details</h3>
                     <div class="form-group">
-                        <label class="control-label">First Name*</label>
+                        <label class="control-label">First Name</label>
                         <input  maxlength="100" type="text" required="required" class="form-control" placeholder="Enter First Name"  />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Last Name*</label>
+                        <label class="control-label">Last Name</label>
                         <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Last Name" />
                     </div>
                     <div class="form-group">
+                        <label class="control-label">Birthday</label>
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Birthday" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cellphone Number</label>
+                        <input maxlength="12" type="text" required="required" class="form-control" placeholder="Enter Cellphone Number" />
+                    </div>
+                    <div class="form-group">
                         <label class="control-label">Home Number</label>
-                        <input maxlength="100" type="text" class="form-control" placeholder="Enter Home Phone Number" />
+                        <input maxlength="12" type="text" class="form-control" placeholder="Enter Home Number" />
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Cellphone Number*</label>
-                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Cellphone Number" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Email Address*</label>
-                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Cellphone Number" />
+                        <label class="control-label">Email Address</label>
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Email Address" />
                     </div>
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
                 </div>
@@ -114,31 +71,32 @@
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12">
-                    <h3> Step 2: Delivery Details </h3>
+                    <h3> Step 2: Delivery Details</h3>
                     <div class="form-group">
-                        <label class="control-label">Street</label>
-                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Street Name and Number" />
+                        <label class="control-label">Street Address</label>
+                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Street Address" />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Suburb</label>
-                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Suburb"  />
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Suburb"  />
                     </div>
                     <div class="form-group">
                         <label class="control-label">City</label>
-                        <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter City"  />
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter City"  />
                     </div>
                     <div class="form-group">
                         <label class="control-label">Postal Code</label>
                         <input maxlength="4" type="text" required="required" class="form-control" placeholder="Enter Postal Code"  />
                     </div>
+                    <h4> Delivery Options </h4>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Option 1 - Collect Order - R0.00</label>
+                        <label><input type="radio" name="optradioD" checked="checked">Collection - R0.00</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Option 2 - Business Shipping - R100</label>
+                        <label><input type="radio" name="optradioD">Express Delivery - R50.00</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Option 3 - Express Shipping - R150</label>
+                        <label><input type="radio" name="optradioD">Business Express - R100.00</label>
                     </div>
                     <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
                 </div>
@@ -148,18 +106,64 @@
             <div class="col-xs-12">
                 <div class="col-md-12">
                     <h3> Step 3: Payment Details</h3>
-                    <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button>
+                    <label class="radio-inline"><input type="radio" name="optradio" checked="checked">Visa</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Mastercard</label>
+                    <label class="radio-inline"><input type="radio" name="optradio">Paypall</label>
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <label class="control-label">Card Number</label>
+                        <input maxlength="20" type="text" required="required" class="form-control" placeholder="Enter Card Number"  />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Card Holder Name</label>
+                        <input maxlength="100" type="text" required="required" class="form-control" placeholder="Enter Card Holder Name"  />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="month">Expiry Date</label>
+                        <select required="required" class="form-control" id="month">
+                            <option>MM</option>
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </select>
+                        <br>
+                        <select required="required" class="form-control" id="year">
+                            <option>YY</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Voucher Code</label>
+                        <input maxlength="20" type="text" class="form-control" placeholder="Enter Voucher Codes"  />
+                    </div>
+
+                    <a href="confirmation.html" class="btn btn-success btn-lg pull-right" type="submit">Submit</a>
                 </div>
             </div>
         </div>
     </form>
-
+    <hr>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Copyright © 2017 Square Eyes</p>
-    </div>
-</footer>
+<div id="footer-content"></div>
 </body>
+
 </html>
+
