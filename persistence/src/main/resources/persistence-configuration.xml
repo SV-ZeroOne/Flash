@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="creatorRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CreatorRepository" />
+    <bean id="issueRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository" />
+    <bean id="orderRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository" />
+    <bean id="stockRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository" />
+    <bean id="supplierRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository" />
+    <bean id="supplierQuoteRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository" />
+    <bean id="supplierPaymentRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierPaymentRepository" />
+
+</beans>

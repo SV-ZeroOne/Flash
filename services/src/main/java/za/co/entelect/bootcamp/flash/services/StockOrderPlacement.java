@@ -1,39 +1,42 @@
 package za.co.entelect.bootcamp.flash.services;
 
-import za.co.entelect.bootcamp.flash.domain.*;
+import za.co.entelect.bootcamp.flash.domain.Order;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository;
+import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
-
-import java.math.BigDecimal;
-import java.sql.Date;
 
 /**
  * Created by kevin.gouws on 2017/01/17.
  */
 public class StockOrderPlacement {
 
+    private PaymentService paymentService;
+    private SupplierService supplierService;
     private IssueRepository issueRepository;
     private OrderRepository orderRepository;
-    private PaymentService paymentService;
-    private SupplierQuote supplierQuote;
+    private SupplierQuoteRepository supplierQuoteRepository;
     private SupplierRepository supplierRepository;
-    private SupplierService supplierService;
-    private int orderID;
+    private IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory;
+    private SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory;
 
     public StockOrderPlacement(IssueRepository issueRepository, OrderRepository orderRepository,
-                               PaymentService paymentService, SupplierQuote supplierQuote,
-                               SupplierRepository supplierRepository, SupplierService supplierService) {
+                               SupplierRepository supplierRepository, SupplierQuoteRepository supplierQuoteRepository,
+                               IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory,
+                               SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory) {
         this.issueRepository = issueRepository;
         this.orderRepository = orderRepository;
-        this.paymentService = paymentService;
-        this.supplierQuote = supplierQuote;
+        this.supplierQuoteRepository = supplierQuoteRepository;
         this.supplierRepository = supplierRepository;
-        this.supplierService = supplierService;
-        this.orderID = 0;
+        this.issueOrderDTOAdapterFactory = issueOrderDTOAdapterFactory;
+        this.supplierPaymentDTOAdapterFactory = supplierPaymentDTOAdapterFactory;
     }
 
-    public String placeOrder(int issueID, int quantity) throws Exception {
+    public Order getOrderByID(int id) {
+        return orderRepository.read(id);
+    }
+
+    /*public String placeOrder(int issueID, int quantity) throws Exception {
         IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory = new IssueOrderDTOAdapterFactory();
         Issue issue = issueRepository.read(issueID);
         Supplier supplier = supplierRepository.read(supplierQuote.getSupplierID());
@@ -66,5 +69,5 @@ public class StockOrderPlacement {
                         new SupplierPayment(orderID+100, orderID,
                                 orderRepository.read(orderID).getTotal(), new Date(20171230)));
         this.paymentService.makePayment(supplierPaymentDTOAdapter);
-    }
+    }*/
 }
