@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import za.co.entelect.bootcamp.flash.domain.Issue;
 import za.co.entelect.bootcamp.flash.domain.Order;
 import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
 
@@ -25,8 +26,9 @@ public class ServicesApplicationContextTest {
 
     @Test
     public void testGetOrderFromDB() {
-        Order firstOrder = stockOrderPlacement.getOrderByID(1);
-        Assert.assertTrue(firstOrder != null);
+        Issue firstIssue = stockOrderPlacement.getIssue(2);
+        Assert.assertTrue(firstIssue != null);
+        System.out.println(firstIssue.toString());
     }
 
     @After

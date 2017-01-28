@@ -1,6 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
-import za.co.entelect.bootcamp.flash.domain.Order;
+import za.co.entelect.bootcamp.flash.domain.Issue;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository;
@@ -32,8 +32,8 @@ public class StockOrderPlacement {
         this.supplierPaymentDTOAdapterFactory = supplierPaymentDTOAdapterFactory;
     }
 
-    public Order getOrderByID(int id) {
-        return orderRepository.read(id);
+    public Issue getIssue(int issueID) {
+        return issueRepository.read(issueID);
     }
 
     /*public String placeOrder(int issueID, int quantity) throws Exception {
