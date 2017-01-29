@@ -13,7 +13,7 @@ import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
 /**
  * Created by kevin.gouws on 2017/01/28.
  */
-public class ServicesApplicationContextTest {
+/*public class ServicesApplicationContextTest {
 
     private ApplicationContext applicationContext;
     private StockOrderPlacement stockOrderPlacement;
@@ -36,4 +36,4 @@ public class ServicesApplicationContextTest {
 
     }
 
-}
+}*/
