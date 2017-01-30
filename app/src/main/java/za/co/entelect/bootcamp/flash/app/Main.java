@@ -2,17 +2,6 @@ package za.co.entelect.bootcamp.flash.app;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import za.co.entelect.bootcamp.flash.domain.Order;
-import za.co.entelect.bootcamp.flash.domain.Stock;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * Created by kevin.gouws on 2017/01/13.

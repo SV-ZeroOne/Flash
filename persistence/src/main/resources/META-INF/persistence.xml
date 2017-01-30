@@ -14,6 +14,20 @@
         <class>za.co.entelect.bootcamp.flash.domain.Order</class>
         <class>za.co.entelect.bootcamp.flash.domain.Stock</class>
         <class>za.co.entelect.bootcamp.flash.domain.SupplierPayment</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Creators</class>
+        <class>za.co.entelect.bootcamp.flash.domain.CustomerAccounts</class>
+        <class>za.co.entelect.bootcamp.flash.domain.CustomerAddress</class>
+        <class>za.co.entelect.bootcamp.flash.domain.CustomerOrders</class>
+        <class>za.co.entelect.bootcamp.flash.domain.EmailAddress</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Invoice</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Issues</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Orders</class>
+        <class>za.co.entelect.bootcamp.flash.domain.PhoneNumbers</class>
+        <class>za.co.entelect.bootcamp.flash.domain.ShoppingCart</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierPayments</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierQuotes</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Suppliers</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Vouchers</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

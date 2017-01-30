@@ -1,77 +1,53 @@
 package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by steve.velcev on 2017/01/18.
+ * @author kevin.gouws - Created on 2017/01/30.
  */
+public class ComicCreatorsPK implements Serializable {
+    private int issueId;
+    private int creatorId;
 
-@Embeddable
-public class ComicCreatorsPK implements Serializable{
-
-    @ManyToOne
-    @JoinColumn(name = "IssueID")
-    private Issue issue;
-    @ManyToOne
-    @JoinColumn(name = "CreatorID")
-    private Creator creator;
-
-    public ComicCreatorsPK(){
-
+    @Column(name = "IssueID", nullable = false)
+    @Id
+    public int getIssueId() {
+        return issueId;
     }
 
-    public ComicCreatorsPK(Issue issue, Creator creator){
-        this.issue = issue;
-        this.creator = creator;
+    public void setIssueId(int issueId) {
+        this.issueId = issueId;
     }
 
-    public Issue getIssueID() {
-        return issue;
+    @Column(name = "CreatorID", nullable = false)
+    @Id
+    public int getCreatorId() {
+        return creatorId;
     }
 
-    public void setIssueID(int issueID) {
-        this.issue = issue;
-    }
-
-    public Creator getCreatorID() {
-        return creator;
-    }
-
-    public void setCreatorID(int creatorID) {
-        this.creator = creator;
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ComicCreatorsPK)) return false;
-        if(o == null) return false;
-        ComicCreatorsPK pk = (ComicCreatorsPK) o;
-        return pk.issue == issue && pk.creator == creator;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ComicCreatorsPK that = (ComicCreatorsPK) o;
+
+        if (issueId != that.issueId) return false;
+        if (creatorId != that.creatorId) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
-    }
-
-    public void setCreator(Creator creator) {
-        this.creator = creator;
-    }
-
-    public Creator getCreator() {
-        return this.creator;
-    }
-
-    public void setIssue(Issue issue) {
-        this.issue = issue;
-    }
-
-    public Issue getIssue() {
-        return this.issue;
+        int result = issueId;
+        result = 31 * result + creatorId;
+        return result;
     }
 }

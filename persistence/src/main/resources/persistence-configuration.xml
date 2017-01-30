@@ -10,7 +10,15 @@
     <bean id="orderRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository" />
     <bean id="stockRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository" />
     <bean id="supplierRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository" />
-    <bean id="supplierQuoteRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository" />
     <bean id="supplierPaymentRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierPaymentRepository" />
+    <bean id="supplierQuoteRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository" />
+    <bean id="customerAccountsRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAccountsRepository" />
+    <bean id="customerAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAddressRepository" />
+    <bean id="customerOrdersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerOrdersRepository" />
+    <bean id="emailAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.EmailAddressRepository" />
+    <bean id="invoiceRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.InvoiceRepository" />
+    <bean id="phoneNumbersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.PhoneNumbersRepository" />
+    <bean id="shoppingCartRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.ShoppingCartRepository" />
+    <bean id="vouchersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.VouchersRepository" />
 
 </beans>
