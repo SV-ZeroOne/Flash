@@ -7,7 +7,7 @@ import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRep
 import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
 
 /**
- * Created by kevin.gouws on 2017/01/17.
+ * @author kevin.gouws - Created on 2017/01/17.
  */
 public class StockOrderPlacement {
 
