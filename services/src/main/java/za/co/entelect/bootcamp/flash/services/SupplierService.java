@@ -1,6 +1,15 @@
 package za.co.entelect.bootcamp.flash.services;
 
-public interface SupplierService {
-    public String placeOrder(IssueOrderDTO issueOrder, String supplierRefNumber, int quantity);
-}
+import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
 
+/**
+ * @author kevin.gouws - Created on 2017/01/30.
+ */
+public class SupplierService {
+
+    private SupplierRepository supplierRepository;
+
+    public SupplierService(SupplierRepository supplierRepository) {
+        this.supplierRepository = supplierRepository;
+    }
+}
