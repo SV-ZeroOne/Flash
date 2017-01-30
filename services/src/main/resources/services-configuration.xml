@@ -7,11 +7,32 @@
     <import resource="persistence-configuration.xml"/>
 
     <!-- bean definitions here -->
-    <bean id="stockOrderPlacement" class="za.co.entelect.bootcamp.flash.services.StockOrderPlacement" >
+    <bean id="stockOrderPlacement" class="za.co.entelect.bootcamp.flash.services.StockOrderPlacement">
         <constructor-arg index="0" ref="issueRepository"/>
         <constructor-arg index="1" ref="orderRepository"/>
         <constructor-arg index="2" ref="supplierRepository"/>
         <constructor-arg index="3" ref="supplierQuoteRepository"/>
+    </bean>
+    <bean id="creatorService" class="za.co.entelect.bootcamp.flash.services.CreatorService">
+        <constructor-arg ref="creatorRepository"/>
+    </bean>
+    <bean id="issueService" class="za.co.entelect.bootcamp.flash.services.IssueService">
+        <constructor-arg ref="issueRepository"/>
+    </bean>
+    <bean id="orderService" class="za.co.entelect.bootcamp.flash.services.OrderService">
+        <constructor-arg ref="orderRepository"/>
+    </bean>
+    <bean id="stockService" class="za.co.entelect.bootcamp.flash.services.StockService">
+        <constructor-arg ref="stockRepository"/>
+    </bean>
+    <bean id="supplierPaymentService" class="za.co.entelect.bootcamp.flash.services.SupplierPaymentService">
+        <constructor-arg ref="supplierPaymentRepository"/>
+    </bean>
+    <bean id="supplierQuoteService" class="za.co.entelect.bootcamp.flash.services.SupplierQuoteService">
+        <constructor-arg ref="supplierQuoteRepository"/>
+    </bean>
+    <bean id="supplierService" class="za.co.entelect.bootcamp.flash.services.SupplierService">
+        <constructor-arg ref="supplierRepository"/>
     </bean>
 
 </beans>
