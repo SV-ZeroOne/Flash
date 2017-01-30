@@ -6,8 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import za.co.entelect.bootcamp.flash.domain.Issue;
-import za.co.entelect.bootcamp.flash.domain.Order;
+import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
 
 /**
@@ -26,7 +25,7 @@ import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
 
     @Test
     public void testGetOrderFromDB() {
-        Issue firstIssue = stockOrderPlacement.getIssue(2);
+        Issues firstIssue = stockOrderPlacement.getIssue(2);
         Assert.assertTrue(firstIssue != null);
         System.out.println(firstIssue.toString());
     }

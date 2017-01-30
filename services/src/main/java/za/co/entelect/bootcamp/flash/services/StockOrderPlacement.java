@@ -1,6 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
-import za.co.entelect.bootcamp.flash.domain.Issue;
+import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository;
@@ -24,7 +24,7 @@ public class StockOrderPlacement {
         this.supplierRepository = supplierRepository;
     }
 
-    public Issue getIssue(int issueID) {
+    public Issues getIssue(int issueID) {
         return issueRepository.read(issueID);
     }
 }

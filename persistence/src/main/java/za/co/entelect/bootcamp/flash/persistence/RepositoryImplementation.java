@@ -1,6 +1,6 @@
 package za.co.entelect.bootcamp.flash.persistence;
 
-import za.co.entelect.bootcamp.flash.domain.Entities;
+import za.co.entelect.bootcamp.flash.domain.EntityInterface;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by steve.velcev on 2017/01/19.
  */
-public abstract class RepositoryImplementation<TKey, TEntity extends Entities<TKey>> implements RepositoryInterface<TKey, TEntity> {
+public abstract class RepositoryImplementation<TKey, TEntity extends EntityInterface<TKey>> implements RepositoryInterface<TKey, TEntity> {
 
     protected EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PersistenceUnit");
     protected EntityManager entityManager = entityManagerFactory.createEntityManager();
