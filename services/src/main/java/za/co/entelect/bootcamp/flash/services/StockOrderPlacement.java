@@ -15,19 +15,13 @@ public class StockOrderPlacement {
     private OrderRepository orderRepository;
     private SupplierQuoteRepository supplierQuoteRepository;
     private SupplierRepository supplierRepository;
-    private IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory;
-    private SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory;
 
     public StockOrderPlacement(IssueRepository issueRepository, OrderRepository orderRepository,
-                               SupplierRepository supplierRepository, SupplierQuoteRepository supplierQuoteRepository,
-                               IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory,
-                               SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory) {
+                               SupplierRepository supplierRepository, SupplierQuoteRepository supplierQuoteRepository) {
         this.issueRepository = issueRepository;
         this.orderRepository = orderRepository;
         this.supplierQuoteRepository = supplierQuoteRepository;
         this.supplierRepository = supplierRepository;
-        this.issueOrderDTOAdapterFactory = issueOrderDTOAdapterFactory;
-        this.supplierPaymentDTOAdapterFactory = supplierPaymentDTOAdapterFactory;
     }
 
     public Issue getIssue(int issueID) {
