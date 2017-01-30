@@ -2,6 +2,7 @@ package za.co.entelect.bootcamp.flash.services;
 
 import za.co.entelect.bootcamp.flash.domain.Issue;
 
+@Deprecated
 public class IssueOrderDTOAdapter extends IssueOrderDTO {
 
     private Issue issue;

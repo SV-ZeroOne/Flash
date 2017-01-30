@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
+@Deprecated
 public class SupplierPaymentDTO {
 
         private String supplierRefNumber;

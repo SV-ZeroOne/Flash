@@ -11,8 +11,6 @@ import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierReposito
  */
 public class StockOrderPlacement {
 
-    private PaymentService paymentService;
-    private SupplierService supplierService;
     private IssueRepository issueRepository;
     private OrderRepository orderRepository;
     private SupplierQuoteRepository supplierQuoteRepository;
@@ -35,39 +33,4 @@ public class StockOrderPlacement {
     public Issue getIssue(int issueID) {
         return issueRepository.read(issueID);
     }
-
-    /*public String placeOrder(int issueID, int quantity) throws Exception {
-        IssueOrderDTOAdapterFactory issueOrderDTOAdapterFactory = new IssueOrderDTOAdapterFactory();
-        Issue issue = issueRepository.read(issueID);
-        Supplier supplier = supplierRepository.read(supplierQuote.getSupplierID());
-        if (issue == null) {
-            throw new Exception("Issue does not exist");
-        } else if (supplier == null) {
-            throw new Exception("Supplier does not exist");
-        }
-        orderID++;
-
-        IssueOrderDTOAdapter issueOrderDTOAdapter =
-                issueOrderDTOAdapterFactory.createIssueOrderDTOAdapter(issue, quantity);
-        this.supplierService.placeOrder(issueOrderDTOAdapter, supplier.getReferenceNumber(), quantity);
-        BigDecimal orderTotal = supplierQuote.getPrice().multiply(new BigDecimal(quantity));
-        Order newOrder = new Order(orderID, new Date(20171230), issueID, (short) quantity, orderTotal,
-                "Ref#1337", new Date(20171230), "Pending",
-                supplierQuote.getSupplierID());
-        orderRepository.create(newOrder);
-        return "Success";
-    }
-
-    public void makePayment(int orderID) throws Exception {
-        SupplierPaymentDTOAdapterFactory supplierPaymentDTOAdapterFactory = new SupplierPaymentDTOAdapterFactory();
-        Supplier supplier = supplierRepository.read(supplierQuote.getSupplierID());
-        if (supplier == null) {
-            throw new Exception("Supplier does not exist");
-        }
-        SupplierPaymentDTOAdapter supplierPaymentDTOAdapter =
-                supplierPaymentDTOAdapterFactory.createSupplierPaymentDTOAdapter(supplier,
-                        new SupplierPayment(orderID+100, orderID,
-                                orderRepository.read(orderID).getTotal(), new Date(20171230)));
-        this.paymentService.makePayment(supplierPaymentDTOAdapter);
-    }*/
 }

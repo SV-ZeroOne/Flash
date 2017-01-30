@@ -6,6 +6,7 @@ import za.co.entelect.bootcamp.flash.domain.SupplierPayment;
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
+@Deprecated
 public class SupplierPaymentDTOAdapterFactory {
 
     public SupplierPaymentDTOAdapter createSupplierPaymentDTOAdapter(Supplier supplier, SupplierPayment supplierPayment) {

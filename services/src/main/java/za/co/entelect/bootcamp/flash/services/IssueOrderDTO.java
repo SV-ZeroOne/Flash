@@ -3,6 +3,7 @@ package za.co.entelect.bootcamp.flash.services;
 /**
  * Created by byron.dinkelmann on 2017/01/16.
  */
+@Deprecated
 public class IssueOrderDTO {
 
         private int issueID;
