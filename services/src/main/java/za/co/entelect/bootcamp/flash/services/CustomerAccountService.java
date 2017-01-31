@@ -1,5 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
+import za.co.entelect.bootcamp.flash.domain.CustomerAccounts;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAccountsRepository;
 
 /**
@@ -11,5 +12,9 @@ public class CustomerAccountService {
 
     public CustomerAccountService(CustomerAccountsRepository customerAccountsRepository) {
         this.customerAccountsRepository = customerAccountsRepository;
+    }
+
+    public void createCustomerAccount(CustomerAccounts newCustomer){
+        customerAccountsRepository.create(newCustomer);
     }
 }
