@@ -19,6 +19,14 @@
             <td>Surname:</td>
             <td>${surname}</td>
         </tr>
+        <tr>
+            <td>Password:</td>
+            <td>${password}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>${email}</td>
+        </tr>
     </table>
 </head>
 <body>
