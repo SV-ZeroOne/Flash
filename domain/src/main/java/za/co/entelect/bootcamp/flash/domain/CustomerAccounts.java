@@ -18,6 +18,7 @@ public class CustomerAccounts implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.customerId;
     }

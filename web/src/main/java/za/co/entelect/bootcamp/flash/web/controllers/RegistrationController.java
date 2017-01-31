@@ -38,7 +38,7 @@ public class RegistrationController {
         model.addAttribute("firstName", customer.getFirstName());
         model.addAttribute("surname", customer.getSurname());
         model.addAttribute("password", customer.getPassword());
-        customerAccountService.createCustomerAccount(customer);
+        customerAccountService.getCustomerAccountsRepository().create(customer);
         return "accountConfirmation";
     }
 

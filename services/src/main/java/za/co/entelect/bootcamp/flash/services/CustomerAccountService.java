@@ -14,7 +14,15 @@ public class CustomerAccountService {
         this.customerAccountsRepository = customerAccountsRepository;
     }
 
-    public void createCustomerAccount(CustomerAccounts newCustomer){
-        customerAccountsRepository.create(newCustomer);
+//    public void createCustomerAccount(CustomerAccounts newCustomer){
+//        customerAccountsRepository.create(newCustomer);
+//    }
+
+    public CustomerAccountsRepository getCustomerAccountsRepository() {
+        return customerAccountsRepository;
+    }
+
+    public void setCustomerAccountsRepository(CustomerAccountsRepository customerAccountsRepository) {
+        this.customerAccountsRepository = customerAccountsRepository;
     }
 }
