@@ -16,11 +16,32 @@
     <bean id="creatorService" class="za.co.entelect.bootcamp.flash.services.CreatorService">
         <constructor-arg ref="creatorRepository"/>
     </bean>
+    <bean id="customerAccountService" class="za.co.entelect.bootcamp.flash.services.CustomerAccountService">
+        <constructor-arg ref="customerAccountsRepository"/>
+    </bean>
+    <bean id="customerAddressService" class="za.co.entelect.bootcamp.flash.services.CustomerAddressService">
+        <constructor-arg ref="customerAddressRepository"/>
+    </bean>
+    <bean id="customerOrderService" class="za.co.entelect.bootcamp.flash.services.CustomerOrderService">
+        <constructor-arg ref="customerOrdersRepository"/>
+    </bean>
+    <bean id="emailAddressService" class="za.co.entelect.bootcamp.flash.services.EmailAddressService">
+        <constructor-arg ref="emailAddressRepository"/>
+    </bean>
+    <bean id="invoiceService" class="za.co.entelect.bootcamp.flash.services.InvoiceService">
+        <constructor-arg ref="invoiceRepository"/>
+    </bean>
     <bean id="issueService" class="za.co.entelect.bootcamp.flash.services.IssueService">
         <constructor-arg ref="issueRepository"/>
     </bean>
     <bean id="orderService" class="za.co.entelect.bootcamp.flash.services.OrderService">
         <constructor-arg ref="orderRepository"/>
+    </bean>
+    <bean id="phoneNumberService" class="za.co.entelect.bootcamp.flash.services.PhoneNumberService">
+        <constructor-arg ref="phoneNumbersRepository"/>
+    </bean>
+    <bean id="shoppingCartService" class="za.co.entelect.bootcamp.flash.services.ShoppingCartService">
+        <constructor-arg ref="shoppingCartRepository"/>
     </bean>
     <bean id="stockService" class="za.co.entelect.bootcamp.flash.services.StockService">
         <constructor-arg ref="stockRepository"/>
@@ -33,6 +54,9 @@
     </bean>
     <bean id="supplierService" class="za.co.entelect.bootcamp.flash.services.SupplierService">
         <constructor-arg ref="supplierRepository"/>
+    </bean>
+    <bean id="voucherService" class="za.co.entelect.bootcamp.flash.services.VoucherService">
+        <constructor-arg ref="vouchersRepository"/>
     </bean>
 
 </beans>
