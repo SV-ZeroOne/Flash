@@ -1,6 +1,9 @@
 package za.co.entelect.bootcamp.flash.services;
 
+import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
+
+import java.util.List;
 
 /**
  * @author kevin.gouws - Created on 2017/01/30.
@@ -11,5 +14,13 @@ public class IssueService {
 
     public IssueService(IssueRepository issueRepository) {
         this.issueRepository = issueRepository;
+    }
+
+    public Issues getIssueByID(int id) {
+        return issueRepository.read(id);
+    }
+
+    public List<Issues> getAllIssues() {
+        return issueRepository.readAll();
     }
 }
