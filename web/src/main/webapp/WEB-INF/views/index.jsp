@@ -11,6 +11,7 @@
     <title>Square Eyes Comic Emporium</title>
 </head>
     <body>
-    ${greeting}
+    <h1 class="page-header">Our Issues</h1>
+    <p>${content}</p>
     </body>
 </html>

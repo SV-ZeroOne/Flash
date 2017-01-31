@@ -28,12 +28,12 @@ public class CustomerOrders implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerOrderID", nullable = false)
-    public int getCustomerOrderId() {
-        return customerOrderId;
+    public Integer getID() {
+        return this.customerOrderId;
     }
 
-    public void setCustomerOrderId(int customerOrderId) {
-        this.customerOrderId = customerOrderId;
+    public void setID(Integer entityKey) {
+        this.customerOrderId = entityKey;
     }
 
     @Basic
@@ -237,13 +237,5 @@ public class CustomerOrders implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
-    }
-
-    public Integer getID() {
-        return this.customerOrderId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.customerOrderId = entityKey;
     }
 }

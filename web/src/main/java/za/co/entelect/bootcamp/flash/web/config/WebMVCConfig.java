@@ -11,6 +11,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan(basePackages = "za.co.entelect.bootcamp.flash.web.controllers")
-public class WebConfig {
+public class WebMVCConfig {
 
 }

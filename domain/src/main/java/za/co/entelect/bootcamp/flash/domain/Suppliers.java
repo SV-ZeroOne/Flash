@@ -17,12 +17,12 @@ public class Suppliers implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "SupplierID", nullable = false)
-    public int getSupplierId() {
-        return supplierId;
+    public Integer getID() {
+        return this.supplierId;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setID(Integer entityKey) {
+        this.supplierId = entityKey;
     }
 
     @Basic
@@ -78,13 +78,5 @@ public class Suppliers implements EntityInterface<Integer> {
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (referenceNumber != null ? referenceNumber.hashCode() : 0);
         return result;
-    }
-
-    public Integer getID() {
-        return this.supplierId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.supplierId = entityKey;
     }
 }

@@ -20,12 +20,12 @@ public class Vouchers implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "VoucherID", nullable = false)
-    public int getVoucherId() {
-        return voucherId;
+    public Integer getID() {
+        return this.voucherId;
     }
 
-    public void setVoucherId(int voucherId) {
-        this.voucherId = voucherId;
+    public void setID(Integer entityKey) {
+        this.voucherId = entityKey;
     }
 
     @Basic
@@ -92,13 +92,5 @@ public class Vouchers implements EntityInterface<Integer> {
         result = 31 * result + (dateIssued != null ? dateIssued.hashCode() : 0);
         result = 31 * result + (valid ? 1 : 0);
         return result;
-    }
-
-    public Integer getID() {
-        return this.voucherId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.voucherId = entityKey;
     }
 }

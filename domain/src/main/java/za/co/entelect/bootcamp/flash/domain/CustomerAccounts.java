@@ -18,12 +18,12 @@ public class CustomerAccounts implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerID", nullable = false)
-    public int getCustomerId() {
-        return customerId;
+    public Integer getID() {
+        return this.customerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setID(Integer entityKey) {
+        this.customerId = entityKey;
     }
 
     @Basic
@@ -78,13 +78,5 @@ public class CustomerAccounts implements EntityInterface<Integer> {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + Arrays.hashCode(password);
         return result;
-    }
-
-    public Integer getID() {
-        return this.customerId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.customerId = entityKey;
     }
 }

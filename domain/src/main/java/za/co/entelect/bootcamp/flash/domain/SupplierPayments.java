@@ -16,12 +16,12 @@ public class SupplierPayments implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "PaymentID", nullable = false)
-    public int getPaymentId() {
-        return paymentId;
+    public Integer getID() {
+        return this.paymentId;
     }
 
-    public void setPaymentId(int paymentId) {
-        this.paymentId = paymentId;
+    public void setID(Integer entityKey) {
+        this.paymentId = entityKey;
     }
 
     @Basic
@@ -75,13 +75,5 @@ public class SupplierPayments implements EntityInterface<Integer> {
 
     public void setOrdersByOrderId(Orders ordersByOrderId) {
         this.ordersByOrderId = ordersByOrderId;
-    }
-
-    public Integer getID() {
-        return this.paymentId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.paymentId = entityKey;
     }
 }

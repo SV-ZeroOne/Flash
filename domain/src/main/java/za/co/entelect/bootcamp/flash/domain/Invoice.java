@@ -15,12 +15,12 @@ public class Invoice implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "InvoiceID", nullable = false)
-    public int getInvoiceId() {
-        return invoiceId;
+    public Integer getID() {
+        return this.invoiceId;
     }
 
-    public void setInvoiceId(int invoiceId) {
-        this.invoiceId = invoiceId;
+    public void setID(Integer entityKey) {
+        this.invoiceId = entityKey;
     }
 
     @Basic
@@ -74,13 +74,5 @@ public class Invoice implements EntityInterface<Integer> {
 
     public void setCustomerOrdersByCustomerOrderId(CustomerOrders customerOrdersByCustomerOrderId) {
         this.customerOrdersByCustomerOrderId = customerOrdersByCustomerOrderId;
-    }
-
-    public Integer getID() {
-        return this.invoiceId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.invoiceId = entityKey;
     }
 }

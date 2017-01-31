@@ -20,12 +20,12 @@ public class Issues implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "IssueID", nullable = false)
-    public int getIssueId() {
-        return issueId;
+    public Integer getID() {
+        return this.issueId;
     }
 
-    public void setIssueId(int issueId) {
-        this.issueId = issueId;
+    public void setID(Integer entityKey) {
+        this.issueId = entityKey;
     }
 
     @Basic
@@ -106,13 +106,5 @@ public class Issues implements EntityInterface<Integer> {
         result = 31 * result + (seriesNumber != null ? seriesNumber.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
-    }
-
-    public Integer getID() {
-        return this.issueId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.issueId = entityKey;
     }
 }

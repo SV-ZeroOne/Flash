@@ -10,7 +10,7 @@ import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
 
 /**
- * Created by kevin.gouws on 2017/01/28.
+ * @author kevin.gouws - Created on 2017/01/28.
  */
 /*public class ServicesApplicationContextTest {
 
@@ -24,7 +24,7 @@ import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
     }
 
     @Test
-    public void testGetOrderFromDB() {
+    public void testGetIssueFromDB() {
         Issues firstIssue = stockOrderPlacement.getIssue(2);
         Assert.assertTrue(firstIssue != null);
         System.out.println(firstIssue.toString());

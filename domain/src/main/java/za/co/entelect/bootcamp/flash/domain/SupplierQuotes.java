@@ -16,12 +16,12 @@ public class SupplierQuotes implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "QuoteID", nullable = false)
-    public int getQuoteId() {
-        return quoteId;
+    public Integer getID() {
+        return this.quoteId;
     }
 
-    public void setQuoteId(int quoteId) {
-        this.quoteId = quoteId;
+    public void setID(Integer entityKey) {
+        this.quoteId = entityKey;
     }
 
     @Basic
@@ -75,13 +75,5 @@ public class SupplierQuotes implements EntityInterface<Integer> {
 
     public void setIssuesByIssueId(Issues issuesByIssueId) {
         this.issuesByIssueId = issuesByIssueId;
-    }
-
-    public Integer getID() {
-        return this.quoteId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.quoteId = entityKey;
     }
 }

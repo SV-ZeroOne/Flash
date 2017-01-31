@@ -14,12 +14,12 @@ public class PhoneNumbers implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "PhoneNumberID", nullable = false)
-    public int getPhoneNumberId() {
-        return phoneNumberId;
+    public Integer getID() {
+        return this.phoneNumberId;
     }
 
-    public void setPhoneNumberId(int phoneNumberId) {
-        this.phoneNumberId = phoneNumberId;
+    public void setID(Integer entityKey) {
+        this.phoneNumberId = entityKey;
     }
 
     @Basic
@@ -72,13 +72,5 @@ public class PhoneNumbers implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
-    }
-
-    public Integer getID() {
-        return this.phoneNumberId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.phoneNumberId = entityKey;
     }
 }

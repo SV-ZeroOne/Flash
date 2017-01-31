@@ -15,12 +15,12 @@ public class ShoppingCart implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "ShoppingCartID", nullable = false)
-    public int getShoppingCartId() {
-        return shoppingCartId;
+    public Integer getID() {
+        return this.shoppingCartId;
     }
 
-    public void setShoppingCartId(int shoppingCartId) {
-        this.shoppingCartId = shoppingCartId;
+    public void setID(Integer entityKey) {
+        this.shoppingCartId = entityKey;
     }
 
     @Basic
@@ -74,13 +74,5 @@ public class ShoppingCart implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
-    }
-
-    public Integer getID() {
-        return this.shoppingCartId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.shoppingCartId = entityKey;
     }
 }

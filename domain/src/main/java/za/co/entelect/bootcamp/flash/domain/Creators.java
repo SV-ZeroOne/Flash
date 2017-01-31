@@ -19,13 +19,19 @@ public class Creators implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CreatorID", nullable = false)
-    public int getCreatorId() {
+    public Integer getID() {
+        return this.creatorId;
+    }
+    /*public int getCreatorId() {
         return creatorId;
-    }
+    }*/
 
-    public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
+    public void setID(Integer entityKey) {
+        this.creatorId = entityKey;
     }
+   /* public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }*/
 
     @Basic
     @Column(name = "Name", nullable = true, length = 50)
@@ -95,11 +101,5 @@ public class Creators implements EntityInterface<Integer> {
         return result;
     }
 
-    public Integer getID() {
-        return this.creatorId;
-    }
 
-    public void setID(Integer entityKey) {
-        this.creatorId = entityKey;
-    }
 }

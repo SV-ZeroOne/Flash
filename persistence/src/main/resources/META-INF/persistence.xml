@@ -6,14 +6,14 @@
 
     <persistence-unit name="PersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>za.co.entelect.bootcamp.flash.domain.Supplier</class>
-        <class>za.co.entelect.bootcamp.flash.domain.SupplierQuote</class>
-        <class>za.co.entelect.bootcamp.flash.domain.Issue</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Suppliers</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierQuotes</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Issues</class>
         <class>za.co.entelect.bootcamp.flash.domain.ComicCreators</class>
-        <class>za.co.entelect.bootcamp.flash.domain.Creator</class>
-        <class>za.co.entelect.bootcamp.flash.domain.Order</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Creators</class>
+        <class>za.co.entelect.bootcamp.flash.domain.Orders</class>
         <class>za.co.entelect.bootcamp.flash.domain.Stock</class>
-        <class>za.co.entelect.bootcamp.flash.domain.SupplierPayment</class>
+        <class>za.co.entelect.bootcamp.flash.domain.SupplierPayments</class>
         <class>za.co.entelect.bootcamp.flash.domain.Creators</class>
         <class>za.co.entelect.bootcamp.flash.domain.CustomerAccounts</class>
         <class>za.co.entelect.bootcamp.flash.domain.CustomerAddress</class>

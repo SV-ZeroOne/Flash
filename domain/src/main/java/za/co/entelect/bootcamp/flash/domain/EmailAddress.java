@@ -14,13 +14,19 @@ public class EmailAddress implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "EmailAddressID", nullable = false)
-    public int getEmailAddressId() {
+    public Integer getID() {
+        return this.emailAddressId;
+    }
+    /*public int getEmailAddressId() {
         return emailAddressId;
-    }
+    }*/
 
-    public void setEmailAddressId(int emailAddressId) {
-        this.emailAddressId = emailAddressId;
+    public void setID(Integer entityKey) {
+        this.emailAddressId = entityKey;
     }
+    /*public void setEmailAddressId(int emailAddressId) {
+        this.emailAddressId = emailAddressId;
+    }*/
 
     @Basic
     @Column(name = "Email", nullable = false, length = 320)
@@ -72,13 +78,5 @@ public class EmailAddress implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
-    }
-
-    public Integer getID() {
-        return this.emailAddressId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.emailAddressId = entityKey;
     }
 }
