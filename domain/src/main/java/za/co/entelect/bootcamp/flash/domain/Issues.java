@@ -1,5 +1,7 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +19,7 @@ public class Issues implements EntityInterface<Integer> {
     private String publisher;
     private Short seriesNumber;
     private String description;
+    private String imageURL;
 
     @Id
     @Column(name = "IssueID", nullable = false)
@@ -76,6 +79,16 @@ public class Issues implements EntityInterface<Integer> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Basic
+    @Column(name = "ImageURL", nullable = true, length = 300)
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String image) {
+        this.imageURL = image;
     }
 
     @Override

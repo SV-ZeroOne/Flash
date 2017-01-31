@@ -1,5 +1,7 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
+
 import javax.persistence.*;
 
 /**

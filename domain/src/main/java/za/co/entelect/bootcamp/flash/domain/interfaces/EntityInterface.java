@@ -1,4 +1,4 @@
-package za.co.entelect.bootcamp.flash.domain;
+package za.co.entelect.bootcamp.flash.domain.interfaces;
 
 /**
  * @author kevin.gouws - Created on 2017/01/30.
