@@ -16,12 +16,12 @@ public class Stock implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "StockReferenceID", nullable = false)
-    public int getStockReferenceId() {
-        return stockReferenceId;
+    public Integer getID() {
+        return this.stockReferenceId;
     }
 
-    public void setStockReferenceId(int stockReferenceId) {
-        this.stockReferenceId = stockReferenceId;
+    public void setID(Integer entityKey) {
+        this.stockReferenceId = entityKey;
     }
 
     @Basic
@@ -86,13 +86,5 @@ public class Stock implements EntityInterface<Integer> {
 
     public void setIssuesByIssueId(Issues issuesByIssueId) {
         this.issuesByIssueId = issuesByIssueId;
-    }
-
-    public Integer getID() {
-        return this.stockReferenceId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.stockReferenceId = entityKey;
     }
 }

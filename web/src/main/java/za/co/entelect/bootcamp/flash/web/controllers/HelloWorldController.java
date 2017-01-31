@@ -14,7 +14,7 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody String getHelloWorldRest(ModelMap modelMap) {
-        modelMap.addAttribute("greeting", "Hello World");
+        modelMap.addAttribute("content", "Hello World");
         return "Hello, world!";
     }
 }

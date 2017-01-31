@@ -18,12 +18,12 @@ public class CustomerAddress implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerAddressID", nullable = false)
-    public int getCustomerAddressId() {
-        return customerAddressId;
+    public Integer getID() {
+        return this.customerAddressId;
     }
 
-    public void setCustomerAddressId(int customerAddressId) {
-        this.customerAddressId = customerAddressId;
+    public void setID(Integer entityKey) {
+        this.customerAddressId = entityKey;
     }
 
     @Basic
@@ -124,13 +124,5 @@ public class CustomerAddress implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
-    }
-
-    public Integer getID() {
-        return this.customerAddressId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.customerAddressId = entityKey;
     }
 }

@@ -2,7 +2,7 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author kevin.gouws - Created on 2017/01/30.
@@ -20,12 +20,12 @@ public class Orders implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "OrderID", nullable = false)
-    public int getOrderId() {
-        return orderId;
+    public Integer getID() {
+        return this.orderId;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setID(Integer entityKey) {
+        this.orderId = entityKey;
     }
 
     @Basic
@@ -59,7 +59,7 @@ public class Orders implements EntityInterface<Integer> {
     }
 
     @Basic
-    @Column(name = "ShipmentRef", nullable = true, length = 10)
+    @Column(name = "ShipmentRef", nullable = true, columnDefinition = "char(10)")
     public String getShipmentRef() {
         return shipmentRef;
     }
@@ -128,13 +128,5 @@ public class Orders implements EntityInterface<Integer> {
 
     public void setIssuesByIssueId(Issues issuesByIssueId) {
         this.issuesByIssueId = issuesByIssueId;
-    }
-
-    public Integer getID() {
-        return this.orderId;
-    }
-
-    public void setID(Integer entityKey) {
-        this.orderId = entityKey;
     }
 }
