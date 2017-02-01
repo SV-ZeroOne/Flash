@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
 
 /**
- * Created by kevin.gouws on 2017/01/13.
+ * @author kevin.gouws - Created on 2017/01/13.
  */
 public class Main {
 

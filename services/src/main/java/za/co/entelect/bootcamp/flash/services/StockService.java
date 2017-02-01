@@ -12,4 +12,12 @@ public class StockService {
     public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
+
+    public StockRepository getStockRepository() {
+        return stockRepository;
+    }
+
+    public void setStockRepository(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
 }

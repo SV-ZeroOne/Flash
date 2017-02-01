@@ -16,11 +16,11 @@ public class IssueService {
         this.issueRepository = issueRepository;
     }
 
-    public Issues getIssueByID(int id) {
-        return issueRepository.read(id);
+    public IssueRepository getIssueRepository() {
+        return issueRepository;
     }
 
-    public List<Issues> getAllIssues() {
-        return issueRepository.readAll();
+    public void setIssueRepository(IssueRepository issueRepository) {
+        this.issueRepository = issueRepository;
     }
 }

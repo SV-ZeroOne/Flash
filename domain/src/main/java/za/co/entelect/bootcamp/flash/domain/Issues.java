@@ -18,8 +18,8 @@ public class Issues implements EntityInterface<Integer> {
     private Date publicationDate;
     private String publisher;
     private Short seriesNumber;
-    private String description;
     private String imageURL;
+    private String description;
 
     @Id
     @Column(name = "IssueID", nullable = false)
@@ -72,16 +72,6 @@ public class Issues implements EntityInterface<Integer> {
     }
 
     @Basic
-    @Column(name = "Description", nullable = true, length = 2147483647)
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Basic
     @Column(name = "ImageURL", nullable = true, length = 300)
     public String getImageURL() {
         return imageURL;
@@ -89,6 +79,16 @@ public class Issues implements EntityInterface<Integer> {
 
     public void setImageURL(String image) {
         this.imageURL = image;
+    }
+
+    @Basic
+    @Column(name = "Description", nullable = true, length = 2147483647)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
