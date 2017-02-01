@@ -66,18 +66,18 @@
             <h1>Featured Comics</h1>
             <hr>
             <div id="featured" class="row">
-                <c:forEach items="${featuredIssues}" var="fIssue">
+                <c:forEach items="${featuredStock}" var="fStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${fIssue.imageURL}" alt="${fIssue.title}">
+                                <img class="comic-thumb" src="${fStock.getIssuesByIssueId().getImageURL()}" alt="${fStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${fIssue.title}</a></h4>
-                                <h5 class="series-no">Series #${fIssue.seriesNumber}</h5>
+                                <h4><a href="#">${fStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h5 class="series-no">Series #${fStock.getIssuesByIssueId().getSeriesNumber()} (${fStock.getCondition()})</h5>
                             </div>
                             <div class="price">
-                                <h4 class="pull-right"><small>Starting at: R XX</small></h4>
+                                <h4 class="pull-right"><small>R ${fStock.getPrice()}</small></h4>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">XX reviews</p>
@@ -99,18 +99,18 @@
             <h1>Specials</h1>
             <hr>
             <div id="specials" class="row">
-                <c:forEach items="${specialIssues}" var="sIssue">
+                <c:forEach items="${specialStock}" var="sStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${sIssue.imageURL}" alt="${sIssue.title}">
+                                <img class="comic-thumb" src="${sStock.getIssuesByIssueId().getImageURL()}" alt="${sStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${sIssue.title}</a></h4>
-                                <h5 class="series-no">Series #${sIssue.seriesNumber}</h5>
+                                <h4><a href="#">${sStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h5 class="series-no">Series #${sStock.getIssuesByIssueId().getSeriesNumber()} (${sStock.getCondition()})</h5>
                             </div>
                             <div class="price">
-                                <h4 class="pull-right"><small>Starting at: R XX</small></h4>
+                                <h4 class="pull-right"><small>R ${sStock.getPrice()}</small></h4>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">XX reviews</p>
@@ -132,18 +132,18 @@
             <h1>Top Sellers</h1>
             <hr>
             <div id="top-sellers" class="row">
-                <c:forEach items="${topSellerIssues}" var="tIssue">
+                <c:forEach items="${topStock}" var="tStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${tIssue.imageURL}" alt="${tIssue.title}">
+                                <img class="comic-thumb" src="${tStock.getIssuesByIssueId().getImageURL()}" alt="${tStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${tIssue.title}</a></h4>
-                                <h5 class="series-no">Series #${tIssue.seriesNumber}</h5>
+                                <h4><a href="#">${tStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h5 class="series-no">Series #${tStock.getIssuesByIssueId().getSeriesNumber()} (${tStock.getCondition()})</h5>
                             </div>
                             <div class="price">
-                                <h4 class="pull-right"><small>Starting at: R XX</small></h4>
+                                <h4 class="pull-right"><small>R ${tStock.getPrice()}</small></h4>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">XX reviews</p>
@@ -165,18 +165,18 @@
             <h1>New Stock</h1>
             <hr>
             <div id="new-stock" class="row">
-                <c:forEach items="${newStockIssues}" var="nIssue">
+                <c:forEach items="${newStock}" var="nStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${nIssue.imageURL}" alt="${nIssue.title}">
+                                <img class="comic-thumb" src="${nStock.getIssuesByIssueId().getImageURL()}" alt="${nStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${nIssue.title}</a></h4>
-                                <h5 class="series-no">Series #${nIssue.seriesNumber}</h5>
+                                <h4><a href="#">${nStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h5 class="series-no">Series #${nStock.getIssuesByIssueId().getSeriesNumber()} (${nStock.getCondition()})</h5>
                             </div>
                             <div class="price">
-                                <h4 class="pull-right"><small>Starting at: R XX</small></h4>
+                                <h4 class="pull-right"><small>R ${nStock.getPrice()}</small></h4>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">XX reviews</p>

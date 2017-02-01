@@ -34,7 +34,7 @@ public class HomeController {
         model.addAttribute("firstIssueImageURL", firstIssue.getImageURL());
         model.addAttribute("firstIssueTitle", firstIssue.getTitle());
         model.addAttribute("firstIssueSeries", firstIssue.getSeriesNumber());
-        model.addAttribute("cheapestStockPrice", cheapestStock.getPrice());*/
+        model.addAttribute("cheapestStockPrice", cheapestStock.getPrice());
         ArrayList<Issues> featuredIssues = (ArrayList<Issues>) issueService.getIssueRepository().getFourFeaturedIssues();
         ArrayList<Issues> specialIssues = (ArrayList<Issues>) issueService.getIssueRepository().getFourIssueSpecials();
         ArrayList<Issues> topSellerIssues = (ArrayList<Issues>) issueService.getIssueRepository().getFourTopSellers();
@@ -42,7 +42,15 @@ public class HomeController {
         model.addAttribute("featuredIssues", featuredIssues);
         model.addAttribute("specialIssues", specialIssues);
         model.addAttribute("topSellerIssues", topSellerIssues);
-        model.addAttribute("newStockIssues", newStockIssues);
+        model.addAttribute("newStockIssues", newStockIssues);*/
+        ArrayList<Stock> featuredStock = stockService.getStockRepository().getFeaturedComicsStock();
+        ArrayList<Stock> specialStock = stockService.getStockRepository().getSpecialsComicStock();
+        ArrayList<Stock> topStock = stockService.getStockRepository().getTopSellingComicStock();
+        ArrayList<Stock> newStock = stockService.getStockRepository().getNewComicStock();
+        model.addAttribute("featuredStock", featuredStock);
+        model.addAttribute("specialStock", specialStock);
+        model.addAttribute("topStock", topStock);
+        model.addAttribute("newStock", newStock);
         return "home";
     }
 
