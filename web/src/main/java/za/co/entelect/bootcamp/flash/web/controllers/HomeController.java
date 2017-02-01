@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author kevin.gouws - Created on 2017/01/30.
  */
 @Controller
-@RequestMapping({"/", "/home"})
+@RequestMapping({"/", "/#", "/home"})
 public class HomeController {
     private StockService stockService;
 

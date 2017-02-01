@@ -57,4 +57,15 @@ public class StockRepository extends RepositoryImplementation<Integer, Stock> im
 
         return (ArrayList<Stock>) newStockQuery.getResultList();
     }
+
+    public Stock getComicStock(int issueID, String condition) {
+        Query comicStockQuery = entityManager
+                .createQuery("SELECT s " +
+                        "FROM Stock s " +
+                        "WHERE s.issuesByIssueId.id = :issueID AND s.condition = :condition")
+                .setParameter("issueID", issueID)
+                .setParameter("condition", condition);
+
+        return (Stock) comicStockQuery.getSingleResult();
+    }
 }

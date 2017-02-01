@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Square Eyes Comic Emporium</title>
@@ -73,7 +73,11 @@
                                 <img class="comic-thumb" src="${fStock.getIssuesByIssueId().getImageUrl()}" alt="${fStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${fStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h4>
+                                    <a href="/comics/issue?id=${fStock.getIssuesByIssueId().getID()}&condition=${fStock.getCondition()}">
+                                    ${fStock.getIssuesByIssueId().getTitle()}
+                                    </a>
+                                </h4>
                                 <h5 class="series-no">Series #${fStock.getIssuesByIssueId().getSeriesNumber()} (${fStock.getCondition()})</h5>
                             </div>
                             <div class="price">
