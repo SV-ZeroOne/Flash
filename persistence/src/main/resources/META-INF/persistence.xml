@@ -12,6 +12,7 @@
         <class>za.co.entelect.bootcamp.flash.domain.ComicCreators</class>
         <class>za.co.entelect.bootcamp.flash.domain.Creators</class>
         <class>za.co.entelect.bootcamp.flash.domain.Orders</class>
+        <class>za.co.entelect.bootcamp.flash.domain.OrderDetails</class>
         <class>za.co.entelect.bootcamp.flash.domain.Stock</class>
         <class>za.co.entelect.bootcamp.flash.domain.SupplierPayments</class>
         <class>za.co.entelect.bootcamp.flash.domain.Creators</class>
@@ -29,7 +30,6 @@
         <class>za.co.entelect.bootcamp.flash.domain.Suppliers</class>
         <class>za.co.entelect.bootcamp.flash.domain.Vouchers</class>
         <class>za.co.entelect.bootcamp.flash.domain.UserRoles</class>
-        <class>za.co.entelect.bootcamp.flash.domain.OrderDetails</class>
         <properties>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

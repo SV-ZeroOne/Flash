@@ -35,20 +35,13 @@ public class StockRepository extends RepositoryImplementation<Integer, Stock> im
     }
 
     public ArrayList<Stock> getTopSellingComicStock() {
-        /*  SELECT TOP(4) s.IssueID, i.Title, i.ImageURL, SUM(od.DetailQuantity) AS TotalOrderQty
-            FROM OrderDetails AS od
-            INNER JOIN Stock AS s ON od.StockReferenceID = s.StockReferenceID
-            INNER JOIN Issues AS i ON s.IssueID = i.IssueID
-            GROUP BY s.IssueID, i.Title, i.ImageURL
-            ORDER BY  TotalOrderQty DESC; */
-
         Query topSellerStockQuery = entityManager
                 .createQuery("SELECT s " +
                         "FROM Stock s " +
+                        "INNER JOIN OrderDetails od ON s.id = od.stockByStockId.id " +
                         "INNER JOIN Issues i ON s.issuesByIssueId.id = i.id " +
-                        "INNER JOIN Orders o ON i.id = o.issuesByIssueId.id " +
-                        "WHERE o.qtyOrdered < 99 " +
-                        "ORDER BY o.qtyOrdered DESC")
+                        "GROUP BY s.id, s.issuesByIssueId.id, s.condition, s.availableQty, s.price " +
+                        "ORDER BY SUM(od.detailQuantity) DESC")
                 .setMaxResults(4);
 
         return (ArrayList<Stock>) topSellerStockQuery.getResultList();

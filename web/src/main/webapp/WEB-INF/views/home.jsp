@@ -70,7 +70,7 @@
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${fStock.getIssuesByIssueId().getImageURL()}" alt="${fStock.getIssuesByIssueId().getTitle()}">
+                                <img class="comic-thumb" src="${fStock.getIssuesByIssueId().getImageUrl()}" alt="${fStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
                                 <h4><a href="#">${fStock.getIssuesByIssueId().getTitle()}</a></h4>
@@ -103,7 +103,7 @@
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${sStock.getIssuesByIssueId().getImageURL()}" alt="${sStock.getIssuesByIssueId().getTitle()}">
+                                <img class="comic-thumb" src="${sStock.getIssuesByIssueId().getImageUrl()}" alt="${sStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
                                 <h4><a href="#">${sStock.getIssuesByIssueId().getTitle()}</a></h4>
@@ -136,7 +136,7 @@
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${tStock.getIssuesByIssueId().getImageURL()}" alt="${tStock.getIssuesByIssueId().getTitle()}">
+                                <img class="comic-thumb" src="${tStock.getIssuesByIssueId().getImageUrl()}" alt="${tStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
                                 <h4><a href="#">${tStock.getIssuesByIssueId().getTitle()}</a></h4>
@@ -169,7 +169,7 @@
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
                             <a href="#">
-                                <img class="comic-thumb" src="${nStock.getIssuesByIssueId().getImageURL()}" alt="${nStock.getIssuesByIssueId().getTitle()}">
+                                <img class="comic-thumb" src="${nStock.getIssuesByIssueId().getImageUrl()}" alt="${nStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
                                 <h4><a href="#">${nStock.getIssuesByIssueId().getTitle()}</a></h4>
