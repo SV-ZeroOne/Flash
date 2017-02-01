@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author kevin.gouws - Created on 2017/01/30.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping({"/", "/home"})
 public class HomeController {
     private IssueService issueService;
     private StockService stockService;
@@ -46,17 +46,8 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String getHomeRedirect(ModelMap model) {
-//        Issues firstIssue = issueService.getIssueRepository().read(2);
-//        Stock cheapestStock = (Stock) stockService.getStockRepository().getStockByIssueIDByPrice(2).get(0);
-//        model.addAttribute("firstIssue", firstIssue);
-//        model.addAttribute("cheapestStock", cheapestStock);
-        return "home";
-    }
-
     // Returns a REST request value
-    /*@RequestMapping(value = "/home", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/home/api", method = RequestMethod.GET)
     public @ResponseBody String getHomeRest(Model model) {
         Issues firstIssue = issueService.getIssueByID(2);
         model.addAttribute("firstIssue", firstIssue);

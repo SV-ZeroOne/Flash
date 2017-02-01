@@ -28,7 +28,7 @@ body {
 }
 
 .caption h4 {
-    white-space: nowrap;
+    height: 35px;
 }
 
 .series-no {
