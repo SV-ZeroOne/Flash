@@ -47,6 +47,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         return new BCryptPasswordEncoder();
     }
 
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
             CustomerAccounts userAcc = customerAccountService.getCustomerAccountsRepository().getCustomerAccountByUsername(s);
             //UserDetails userDetails = (UserDetails) new User(userAcc.getUserName(), userAcc.getPassword(), new GrantedAuthority[]{ new SimpleGrantedAuthority("ROLE_USER") });
