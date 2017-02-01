@@ -4,10 +4,10 @@ import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class Orders implements EntityInterface<Integer> {
@@ -61,7 +61,7 @@ public class Orders implements EntityInterface<Integer> {
     }
 
     @Basic
-    @Column(name = "ShipmentRef", nullable = true, columnDefinition = "char(10)")
+    @Column(name = "ShipmentRef", nullable = true, length = 10)
     public String getShipmentRef() {
         return shipmentRef;
     }

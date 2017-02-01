@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class Invoice implements EntityInterface<Integer> {

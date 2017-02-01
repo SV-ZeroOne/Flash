@@ -1,9 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
-import za.co.entelect.bootcamp.flash.domain.Issues;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
-
-import java.util.List;
+import za.co.entelect.bootcamp.flash.persistence.Implementations.IssueRepository;
 
 /**
  * @author kevin.gouws - Created on 2017/01/30.

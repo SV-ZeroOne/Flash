@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class Stock implements EntityInterface<Integer> {

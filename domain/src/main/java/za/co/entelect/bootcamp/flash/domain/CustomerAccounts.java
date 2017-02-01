@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.Arrays;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class CustomerAccounts implements EntityInterface<Integer> {

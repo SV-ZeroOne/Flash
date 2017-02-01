@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.Arrays;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class Creators implements EntityInterface<Integer> {
@@ -24,16 +24,10 @@ public class Creators implements EntityInterface<Integer> {
     public Integer getID() {
         return this.creatorId;
     }
-    /*public int getCreatorId() {
-        return creatorId;
-    }*/
 
     public void setID(Integer entityKey) {
         this.creatorId = entityKey;
     }
-   /* public void setCreatorId(int creatorId) {
-        this.creatorId = creatorId;
-    }*/
 
     @Basic
     @Column(name = "Name", nullable = true, length = 50)
@@ -102,6 +96,4 @@ public class Creators implements EntityInterface<Integer> {
         result = 31 * result + (emailAddress != null ? emailAddress.hashCode() : 0);
         return result;
     }
-
-
 }

@@ -2,7 +2,6 @@ package za.co.entelect.bootcamp.flash.app;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository;
 
 /**
  * @author kevin.gouws - Created on 2017/01/13.

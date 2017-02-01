@@ -3,7 +3,7 @@ package za.co.entelect.bootcamp.flash.domain;
 import javax.persistence.*;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 @IdClass(ComicCreatorsPK.class)
@@ -11,7 +11,6 @@ public class ComicCreators {
     private int issueId;
     private int creatorId;
     private String creatorRole;
-    private String testAttribute;
 
     @Id
     @Column(name = "IssueID", nullable = false)

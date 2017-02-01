@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.domain.Stock;
 import za.co.entelect.bootcamp.flash.services.IssueService;
 import za.co.entelect.bootcamp.flash.services.StockService;
