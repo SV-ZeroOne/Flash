@@ -12,4 +12,12 @@ public class PhoneNumberService {
     public PhoneNumberService(PhoneNumbersRepository phoneNumbersRepository) {
         this.phoneNumbersRepository = phoneNumbersRepository;
     }
+
+    public PhoneNumbersRepository getPhoneNumbersRepository() {
+        return phoneNumbersRepository;
+    }
+
+    public void setPhoneNumbersRepository(PhoneNumbersRepository phoneNumbersRepository) {
+        this.phoneNumbersRepository = phoneNumbersRepository;
+    }
 }

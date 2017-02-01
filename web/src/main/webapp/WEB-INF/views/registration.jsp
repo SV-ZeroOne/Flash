@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,7 @@
 
 <form:form method="POST" modelAttribute="customer" action="/addCustomer">
     <div class="form-group col-md-6 col-sm-6">
+        <table>
         <tr>
             <td><form:label path="account.firstName">Name</form:label></td>
             <td><form:input path="account.firstName" placeholder="Name"/></td>
@@ -35,44 +37,45 @@
             <td><form:label path="emailAddress.email">Email Address</form:label></td>
             <td><form:input path="emailAddress.email" placeholder="Email Address"/></td>
         </tr>
-
-
+        <tr>
+            <td><form:label path="phoneNumber.phoneNumber">Cellphone Number</form:label></td>
+            <td><form:input path="phoneNumber.phoneNumber" placeholder="Cellphone Number"/></td>
+        </tr>
     </table>
     </div>
+
     <div class="form-group col-md-6 col-sm-6">
         <table>
             <tr>
-                <td><form:label path="Address1">Address Line 1</form:label></td>
-                <td><form:input path="Address1" placeholder="Address Line 1"/></td>
+                <td><form:label path="address.address1">Address Line 1</form:label></td>
+                <td><form:input path="address.address1" placeholder="Address Line 1"/></td>
             </tr>
             <tr>
-                <td><form:label path="Address2">Address Line 2</form:label></td>
-                <td><form:input path="Address2" placeholder="Address Line 2"/></td>
+                <td><form:label path="address.address2">Address Line 2</form:label></td>
+                <td><form:input path="address.address2" placeholder="Address Line 2"/></td>
             </tr>
             <tr>
-                <td><form:label path="Suburb">Suburb</form:label></td>
-                <td><form:input path="Suburb" placeholder="Suburb"/></td>
+                <td><form:label path="address.suburb">Suburb</form:label></td>
+                <td><form:input path="address.suburb" placeholder="Suburb"/></td>
             </tr>
             <tr>
-                <td><form:label path="City">City</form:label></td>
-                <td><form:input path="City" placeholder="City"/></td>
+                <td><form:label path="address.city">City</form:label></td>
+                <td><form:input path="address.city" placeholder="City"/></td>
             </tr>
             <tr>
-                <td><form:label path="PostalCode">Postal Code</form:label></td>
-                <td><form:input path="PostalCode" placeholder="Postal Code"/></td>
+                <td><form:label path="address.postalCode">Postal Code</form:label></td>
+                <td><form:input path="address.postalCode" placeholder="Postal Code"/></td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Register"/>
-                </td>
-            </tr>
-
         </table>
     </div>
-
+    <input type="submit" value="Register"/>
 
 </form:form>
 </div>
+<form:form action="/logout" method="POST">
+    <input type="submit" value="Log out" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form:form>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -12,9 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import za.co.entelect.bootcamp.flash.domain.CustomerAccounts;
 import za.co.entelect.bootcamp.flash.domain.CustomerAddress;
 import za.co.entelect.bootcamp.flash.domain.EmailAddress;
+import za.co.entelect.bootcamp.flash.domain.PhoneNumbers;
 import za.co.entelect.bootcamp.flash.services.CustomerAccountService;
 import za.co.entelect.bootcamp.flash.services.CustomerAddressService;
 import za.co.entelect.bootcamp.flash.services.EmailAddressService;
+import za.co.entelect.bootcamp.flash.services.PhoneNumberService;
 
 /**
  * Created by steve.velcev on 2017/01/31.
@@ -24,12 +26,18 @@ public class RegistrationController {
     private CustomerAccountService customerAccountService;
     private EmailAddressService emailAddressService;
     private CustomerAddressService customerAddressService;
+    private PhoneNumberService phoneNumberService;
 
     @Autowired
-    public RegistrationController(CustomerAccountService customerService, EmailAddressService emailAddressService, CustomerAddressService customerAddressService){
+    public RegistrationController(CustomerAccountService customerService,
+                                  EmailAddressService emailAddressService,
+                                  CustomerAddressService customerAddressService,
+                                  PhoneNumberService phoneNumberService)
+    {
         this.customerAccountService = customerService;
         this.emailAddressService = emailAddressService;
         this.customerAddressService = customerAddressService;
+        this.phoneNumberService = phoneNumberService;
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -52,17 +60,24 @@ public class RegistrationController {
         model.addAttribute("surname", customer.getAccount().getSurname());
         model.addAttribute("password", customer.getAccount().getPassword());
         model.addAttribute("email", customer.getEmailAddress().getEmail());
-        model.addAttribute("Address1", customer.getAddress().getAddress1());
-        model.addAttribute("Address2", customer.getAddress().getAddress2());
-        model.addAttribute("Suburb", customer.getAddress().getSuburb());
-        model.addAttribute("City", customer.getAddress().getCity());
-        model.addAttribute("PostalCode", customer.getAddress().getCity());
+        model.addAttribute("address1", customer.getAddress().getAddress1());
+        model.addAttribute("address2", customer.getAddress().getAddress2());
+        model.addAttribute("suburb", customer.getAddress().getSuburb());
+        model.addAttribute("city", customer.getAddress().getCity());
+        model.addAttribute("postalCode", customer.getAddress().getCity());
+        model.addAttribute("phoneNumber", customer.getPhoneNumber().getPhoneNumber());
+
         customerAccountService.getCustomerAccountsRepository().create(customer.getAccount());
         //get Newly created customer
         customer.getEmailAddress().setCustomerAccountsByCustomerId(customer.getAccount());
+        customer.getEmailAddress().setType("Primary");
         emailAddressService.getEmailAddressRepository().create(customer.getEmailAddress());
         customer.getAddress().setCustomerAccountsByCustomerId(customer.getAccount());
+        customer.getAddress().setAddressType("Postal");
         customerAddressService.getCustomerAddressRepository().create(customer.getAddress());
+        customer.getPhoneNumber().setCustomerAccountsByCustomerId(customer.getAccount());
+        customer.getPhoneNumber().setType("Cellphone");
+        phoneNumberService.getPhoneNumbersRepository().create(customer.getPhoneNumber());
         return "accountConfirmation";
     }
 
@@ -73,6 +88,15 @@ class WholeCustomer{
     private CustomerAccounts account;
     private EmailAddress emailAddress;
     private CustomerAddress address;
+    private PhoneNumbers phoneNumber;
+
+    public PhoneNumbers getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(PhoneNumbers phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public CustomerAddress getAddress() {
         return address;

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kevin.gouws
-  Date: 2017/01/31
-  Time: 1:53 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,5 +16,9 @@
     <h1 class="page-header">${firstIssue.title}</h1>
     <p>Series #${firstIssue.seriesNumber}</p>
 </div>
+<form:form action="/logout" method="POST">
+    <input type="submit" value="Log out" />
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form:form>
 </body>
 </html>
