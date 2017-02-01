@@ -15,6 +15,7 @@ public class CustomerAccounts implements EntityInterface<Integer> {
     private String firstName;
     private String surname;
     private byte[] password;
+    private String userName;
 
     @Id
     @Column(name = "CustomerID", nullable = false)
@@ -25,6 +26,16 @@ public class CustomerAccounts implements EntityInterface<Integer> {
 
     public void setID(Integer entityKey) {
         this.customerId = entityKey;
+    }
+
+    @Basic
+    @Column(name = "Username", nullable = true, length = 30)
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Basic

@@ -30,6 +30,10 @@
             <td><form:input path="account.surname" placeholder="Surname"/></td>
         </tr>
         <tr>
+            <td><form:label path="account.userName">Username</form:label></td>
+            <td><form:input path="account.userName" placeholder="Username"/></td>
+        </tr>
+        <tr>
             <td><form:label path="account.password">Password</form:label></td>
             <td><form:input path="account.password" placeholder="Password"/></td>
         </tr>
