@@ -12,4 +12,12 @@ public class UserRoleService {
     public UserRoleService(UserRolesRepository userRolesRepository) {
         this.userRolesRepository = userRolesRepository;
     }
+
+    public UserRolesRepository getUserRolesRepository() {
+        return userRolesRepository;
+    }
+
+    public void setUserRolesRepository(UserRolesRepository userRolesRepository) {
+        this.userRolesRepository = userRolesRepository;
+    }
 }

@@ -2,10 +2,7 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author kevin.gouws - Created on 2017/01/31.
@@ -14,6 +11,7 @@ import javax.persistence.Id;
 public class UserRoles implements EntityInterface<Integer> {
     private int userRoleId;
     private String role;
+    private CustomerAccounts customerAccountsByCustomerId;
 
     @Id
     @Column(name = "UserRoleID", nullable = false)
@@ -53,5 +51,15 @@ public class UserRoles implements EntityInterface<Integer> {
         int result = userRoleId;
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", referencedColumnName = "CustomerID", nullable = false)
+    public CustomerAccounts getCustomerAccountsByCustomerId() {
+        return customerAccountsByCustomerId;
+    }
+
+    public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
+        this.customerAccountsByCustomerId = customerAccountsByCustomerId;
     }
 }

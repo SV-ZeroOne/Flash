@@ -17,4 +17,5 @@ public class CustomerAccountsRepository extends RepositoryImplementation<Integer
                 .setParameter("userName", userName);
         return (CustomerAccounts) userNameQuery.getSingleResult();
     }
+
 }

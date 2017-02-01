@@ -3,6 +3,7 @@ package za.co.entelect.bootcamp.flash.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -29,6 +30,9 @@ public class RegistrationController {
     private EmailAddressService emailAddressService;
     private CustomerAddressService customerAddressService;
     private PhoneNumberService phoneNumberService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public RegistrationController(CustomerAccountService customerService,
@@ -65,11 +69,11 @@ public class RegistrationController {
         model.addAttribute("password", customer.getAccount().getPassword());
 
         //Generate Hashed Password
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String salt = BCrypt.gensalt(12);
-        System.out.println("Byte password: " + customer.getAccount().getPassword());
-        String hashed_password = BCrypt.hashpw(new String(customer.getAccount().getPassword()), salt);
-        System.out.println("String password: " + new String(customer.getAccount().getPassword()));
+        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        //String salt = BCrypt.gensalt(12);
+        //System.out.println("Byte password: " + customer.getAccount().getPassword());
+        //String hashed_password = BCrypt.hashpw(new String(customer.getAccount().getPassword()), salt);
+        //System.out.println("String password: " + new String(customer.getAccount().getPassword()));
 
         model.addAttribute("email", customer.getEmailAddress().getEmail());
         model.addAttribute("address1", customer.getAddress().getAddress1());
@@ -79,9 +83,11 @@ public class RegistrationController {
         model.addAttribute("postalCode", customer.getAddress().getCity());
         model.addAttribute("phoneNumber", customer.getPhoneNumber().getPhoneNumber());
 
-        customer.getAccount().setPassword(hashed_password.getBytes());
-        System.out.println("Back to byte password: " + hashed_password.getBytes());
-        System.out.println("New String Hashed Password: " + new String(customer.getAccount().getPassword()));
+        String stringPass = new String(customer.getAccount().getPassword());
+        byte[] hashedPass = passwordEncoder.encode(stringPass).getBytes();
+        customer.getAccount().setPassword(hashedPass);
+        //System.out.println("Back to byte password: " + hashed_password.getBytes());
+        //System.out.println("New String Hashed Password: " + new String(customer.getAccount().getPassword()));
         customerAccountService.getCustomerAccountsRepository().create(customer.getAccount());
         //get Newly created customer
         customer.getEmailAddress().setCustomerAccountsByCustomerId(customer.getAccount());
