@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import za.co.entelect.bootcamp.flash.domain.CustomerAccounts;
@@ -22,7 +23,8 @@ import java.util.List;
 /**
  * Created by steve.velcev on 2017/02/01.
  */
-@Service("userDetailsService")
+
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
     @Autowired
@@ -30,30 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private UserRoleService userRoleService;
 
-    @Transactional
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        CustomerAccounts userAcc = customerAccountService.getCustomerAccountsRepository().getCustomerAccountByUsername(userName);
-        //UserDetails userDetails = (UserDetails) new User(userAcc.getUserName(), userAcc.getPassword(), new GrantedAuthority[]{ new SimpleGrantedAuthority("ROLE_USER") });
-        if (userAcc == null) {
-            throw new UsernameNotFoundException(
-                    "No user found with username: "+ userName);
-        }
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
-        List<String> userRoles = new ArrayList<String>();
-        List<UserRoles> userRolesObjectList = new ArrayList<UserRoles>();
-        userRolesObjectList = userRoleService.getUserRolesRepository().getUserRolesByCustomerId(userAcc.getID());
-        for (UserRoles user: userRolesObjectList) {
-            userRoles.add(user.getRole());
-        }
-        return  new org.springframework.security.core.userdetails.User
-                (userAcc.getUserName(),
-                        new String(userAcc.getPassword()), enabled, accountNonExpired,
-                        credentialsNonExpired, accountNonLocked,
-                        getAuthorities(userRoles));
-    }
+
 
     private static List<GrantedAuthority> getAuthorities (List<String> roles) {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
@@ -68,5 +47,30 @@ public class CustomUserDetailsService implements UserDetailsService{
         return new BCryptPasswordEncoder();
     }
 
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+            CustomerAccounts userAcc = customerAccountService.getCustomerAccountsRepository().getCustomerAccountByUsername(s);
+            //UserDetails userDetails = (UserDetails) new User(userAcc.getUserName(), userAcc.getPassword(), new GrantedAuthority[]{ new SimpleGrantedAuthority("ROLE_USER") });
+            if (userAcc == null) {
+                throw new UsernameNotFoundException(
+                        "No user found with username: "+ s);
+            }
+            boolean enabled = true;
+            boolean accountNonExpired = true;
+            boolean credentialsNonExpired = true;
+            boolean accountNonLocked = true;
+            List<String> userRoles = new ArrayList<String>();
+            List<UserRoles> userRolesObjectList = userRoleService.getUserRolesRepository().getUserRolesByCustomerId(userAcc.getID());
+            for (UserRoles user: userRolesObjectList) {
+                userRoles.add(user.getRole());
+            }
+            return  new org.springframework.security.core.userdetails.User
+                    (userAcc.getUserName(),
+                            new String(userAcc.getPassword()),
+                            enabled,
+                            accountNonExpired,
+                            credentialsNonExpired,
+                            accountNonLocked,
+                            getAuthorities(userRoles));
+        }
 }
 

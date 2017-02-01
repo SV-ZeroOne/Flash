@@ -1,7 +1,6 @@
 package za.co.entelect.bootcamp.flash.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    CustomUserDetailsService userDetailsService;
 
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -42,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.userDetailsService(customUserDetailsService);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Bean
