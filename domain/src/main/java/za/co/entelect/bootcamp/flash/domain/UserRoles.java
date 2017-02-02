@@ -15,6 +15,7 @@ public class UserRoles implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "UserRoleID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.userRoleId;
     }
