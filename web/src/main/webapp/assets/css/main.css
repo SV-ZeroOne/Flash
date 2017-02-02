@@ -141,5 +141,30 @@ ul.dropdown-cart li .item-right{
 .registrationForm {
     margin: auto;
     text-align: center;
+}
 
+.header-rule {
+    border: 1px solid #9b9b9b;
+}
+
+.buttons {
+    margin-top: 5px;
+    padding-right: 14px;
+}
+
+.preview, .card {
+    height: 100%;
+    margin-bottom: 85px;
+}
+
+.tab-content{
+    padding: 10px;
+}
+
+.nav-tabs > li > a{
+    color: #3c3c3c;
+}
+
+.nav-tabs > li > a:hover{
+    color: #0c0c0c;
 }
