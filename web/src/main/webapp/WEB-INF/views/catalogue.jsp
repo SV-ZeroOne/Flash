@@ -6,7 +6,7 @@
   Time: 3:04 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" errorPage="error.jsp"%>
 
 <html>
 <head>
@@ -25,6 +25,12 @@
 <body>
 <%@ include file="navbar.jsp" %>
 <div class="container">
+    <%--<%--%>
+        <%--int test = 0;--%>
+        <%--if(test<20){--%>
+            <%--throw new ServletException("Mandatory Parameter missing");--%>
+        <%--}--%>
+    <%--%>--%>
 
     <div class="dropdown pull-right">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Product Filter

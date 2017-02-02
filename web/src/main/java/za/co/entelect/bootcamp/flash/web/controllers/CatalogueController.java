@@ -35,6 +35,7 @@ public class CatalogueController {
         @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
     public String catalogueView(@RequestParam(required=false, value ="page") Integer inPage, @RequestParam("filter") String inFilter, Model model) {
 
+
         //displayList = new ArrayList<Stock>();
             if(inPage==null){inPage = 1;}
         if(inPage <= 0)
