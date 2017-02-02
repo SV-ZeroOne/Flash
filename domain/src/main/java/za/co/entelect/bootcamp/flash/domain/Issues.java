@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class Issues implements EntityInterface<Integer> {
@@ -18,8 +18,8 @@ public class Issues implements EntityInterface<Integer> {
     private Date publicationDate;
     private String publisher;
     private Short seriesNumber;
+    private String imageUrl;
     private String description;
-    private String imageURL;
 
     @Id
     @Column(name = "IssueID", nullable = false)
@@ -72,6 +72,16 @@ public class Issues implements EntityInterface<Integer> {
     }
 
     @Basic
+    @Column(name = "ImageURL", nullable = true, length = 300)
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    @Basic
     @Column(name = "Description", nullable = true, length = 2147483647)
     public String getDescription() {
         return description;
@@ -79,16 +89,6 @@ public class Issues implements EntityInterface<Integer> {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Basic
-    @Column(name = "ImageURL", nullable = true, length = 300)
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public void setImageURL(String image) {
-        this.imageURL = image;
     }
 
     @Override
@@ -105,6 +105,7 @@ public class Issues implements EntityInterface<Integer> {
         if (publisher != null ? !publisher.equals(issues.publisher) : issues.publisher != null) return false;
         if (seriesNumber != null ? !seriesNumber.equals(issues.seriesNumber) : issues.seriesNumber != null)
             return false;
+        if (imageUrl != null ? !imageUrl.equals(issues.imageUrl) : issues.imageUrl != null) return false;
         if (description != null ? !description.equals(issues.description) : issues.description != null) return false;
 
         return true;
@@ -117,6 +118,7 @@ public class Issues implements EntityInterface<Integer> {
         result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
         result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
         result = 31 * result + (seriesNumber != null ? seriesNumber.hashCode() : 0);
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }

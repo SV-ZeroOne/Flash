@@ -34,6 +34,9 @@
     <bean id="issueService" class="za.co.entelect.bootcamp.flash.services.IssueService">
         <constructor-arg ref="issueRepository"/>
     </bean>
+    <bean id="orderDetailsService" class="za.co.entelect.bootcamp.flash.services.OrderDetailsService">
+        <constructor-arg ref="orderDetailsRepository"/>
+    </bean>
     <bean id="orderService" class="za.co.entelect.bootcamp.flash.services.OrderService">
         <constructor-arg ref="orderRepository"/>
     </bean>

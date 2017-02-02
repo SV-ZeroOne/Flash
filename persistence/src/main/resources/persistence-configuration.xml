@@ -5,21 +5,22 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <bean id="creatorRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CreatorRepository" />
-    <bean id="issueRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.IssueRepository" />
-    <bean id="orderRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.OrderRepository" />
-    <bean id="stockRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository" />
-    <bean id="supplierRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository" />
-    <bean id="supplierPaymentRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierPaymentRepository" />
-    <bean id="supplierQuoteRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierQuoteRepository" />
-    <bean id="customerAccountsRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAccountsRepository" />
-    <bean id="customerAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAddressRepository" />
-    <bean id="customerOrdersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerOrdersRepository" />
-    <bean id="emailAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.EmailAddressRepository" />
-    <bean id="invoiceRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.InvoiceRepository" />
-    <bean id="phoneNumbersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.PhoneNumbersRepository" />
-    <bean id="shoppingCartRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.ShoppingCartRepository" />
-    <bean id="vouchersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.VouchersRepository" />
-    <bean id="userRolesRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementation.UserRolesRepository" />
+    <bean id="creatorRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.CreatorRepository" />
+    <bean id="issueRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.IssueRepository" />
+    <bean id="orderRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.OrderRepository" />
+    <bean id="stockRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.StockRepository" />
+    <bean id="supplierRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.SupplierRepository" />
+    <bean id="supplierPaymentRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.SupplierPaymentRepository" />
+    <bean id="supplierQuoteRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.SupplierQuoteRepository" />
+    <bean id="customerAccountsRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.CustomerAccountsRepository" />
+    <bean id="customerAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.CustomerAddressRepository" />
+    <bean id="customerOrdersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.CustomerOrdersRepository" />
+    <bean id="emailAddressRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.EmailAddressRepository" />
+    <bean id="invoiceRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.InvoiceRepository" />
+    <bean id="phoneNumbersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.PhoneNumbersRepository" />
+    <bean id="shoppingCartRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.ShoppingCartRepository" />
+    <bean id="vouchersRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.VouchersRepository" />
+    <bean id="userRolesRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.UserRolesRepository" />
+    <bean id="orderDetailsRepository" class="za.co.entelect.bootcamp.flash.persistence.Implementations.OrderDetailsRepository" />
 
 </beans>

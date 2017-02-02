@@ -1,6 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
-import za.co.entelect.bootcamp.flash.persistence.Implementation.CustomerAddressRepository;
+import za.co.entelect.bootcamp.flash.persistence.Implementations.CustomerAddressRepository;
 
 /**
  * @author kevin.gouws - Created on 2017/01/31.
