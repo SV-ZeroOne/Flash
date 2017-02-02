@@ -168,3 +168,15 @@ ul.dropdown-cart li .item-right{
 .nav-tabs > li > a:hover{
     color: #0c0c0c;
 }
+
+.comic-title {
+    text-align: left;
+}
+
+.comic-thumb {
+    height: 120px;
+}
+
+.cart-form {
+    margin-bottom: 125px;
+}

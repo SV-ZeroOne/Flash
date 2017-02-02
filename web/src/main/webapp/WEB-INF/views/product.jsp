@@ -23,7 +23,7 @@
 <body>
 <jsp:include page="navbar.jsp"/>
 
-<div class="container">
+<div class="container full">
     <div class="myrow row">
         <div class="preview col-sm-4 col-lg-4 col-md-4">
             <div class="preview-pic tab-content">
