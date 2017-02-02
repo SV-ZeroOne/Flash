@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import za.co.entelect.bootcamp.flash.domain.CustomerAccounts;
 import za.co.entelect.bootcamp.flash.domain.ShoppingCart;
 import za.co.entelect.bootcamp.flash.domain.Stock;
-import za.co.entelect.bootcamp.flash.persistence.Implementations.ShoppingCartRepository;
 import za.co.entelect.bootcamp.flash.services.CustomerAccountService;
 import za.co.entelect.bootcamp.flash.services.ShoppingCartService;
 import za.co.entelect.bootcamp.flash.services.StockService;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +42,9 @@ public class ShoppingCartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
 
+        double cartTotal = 0;
+        DecimalFormat df = new DecimalFormat("#.00");
+
         CustomerAccounts customerAccounts = customerAccountService
                 .getCustomerAccountsRepository()
                 .getCustomerAccountByUsername(userName);
@@ -51,11 +55,15 @@ public class ShoppingCartController {
 
         ArrayList<Stock> cartItemsStock = new ArrayList<Stock>();
         for (ShoppingCart sc : shoppingCartItems) {
+            cartTotal += sc.getCartItemPrice().doubleValue();
             cartItemsStock.add(stockService.getStockRepository().read(sc.getStockByStockId().getID()));
         }
 
+        String total = df.format(cartTotal);
+
         model.addAttribute("shoppingCartItems", shoppingCartItems);
         model.addAttribute("cartItemsStock", cartItemsStock);
+        model.addAttribute("cartTotal", total);
 
         return "shoppingcart";
     }

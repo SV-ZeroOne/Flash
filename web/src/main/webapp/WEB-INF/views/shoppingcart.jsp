@@ -39,12 +39,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%--<c:forEach var="p" items="${people.firstnames}" varStatus="status">--%>
-                        <%--<tr>--%>
-                        <%--<td>${p}</td>--%>
-                        <%--<td>${people.lastnames[status.index]}</td>--%>
-                        <%--</tr>--%>
-                        <%--</c:forEach>--%>
                         <c:forEach items="${cartItemsStock}" var="cStock" varStatus="status">
                         <tr>
                             <td>
@@ -67,7 +61,7 @@
                         <tfoot>
                         <tr>
                             <th colspan="4">Total</th>
-                            <th colspan="2">R XXX.XX</th>
+                            <th colspan="2">R ${cartTotal}</th>
                         </tr>
                         </tfoot>
                     </table>
