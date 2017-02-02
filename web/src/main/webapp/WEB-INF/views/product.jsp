@@ -14,8 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css">
     <link type="text/css" rel="stylesheet" href="assets/css/product.css">
+    <script type="text/javascript" src="assets/javascript/product.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Square Eyes Comic Emporium - ${comicStock.getIssuesByIssueId().getTitle()}</title>
@@ -96,14 +97,14 @@
                 </div>
             </div>
             <div class="row pull-right buttons">
-                <a class="btn btn-default" href="#">Back</a>
-                <a class="btn btn-default" href="#">Add to Cart</a>
+                <button id="backBtn" class="btn btn-default">Back</button>
+                <button id="addBtn" class="btn btn-default">Add to Cart</button>
             </div>
         </div>
+        <div id="snackbar">${comicStock.getIssuesByIssueId().getTitle()} Added to Cart!</div>
     </div>
 </div>
 
-<div id="snackbar">Item Added to Cart!</div>
 
 <jsp:include page="footer.jsp"/>
 </body>

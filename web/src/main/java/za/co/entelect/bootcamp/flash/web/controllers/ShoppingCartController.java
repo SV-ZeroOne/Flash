@@ -1,6 +1,8 @@
 package za.co.entelect.bootcamp.flash.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,10 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/shopping-cart",method = RequestMethod.GET)
     public String viewHome(ModelMap model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+
+        model.addAttribute("userName", userName);
         return "shoppingcart";
     }
 }

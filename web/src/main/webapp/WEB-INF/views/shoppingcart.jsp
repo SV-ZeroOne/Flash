@@ -27,7 +27,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="basket">
         <div class="box">
             <form class="cart-form" method="" action="">
-                <h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> Your Shopping Cart</h1>
+                <h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> ${userName}'s Shopping Cart</h1>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -79,35 +79,7 @@
             </form>
         </div>
     </div>
-    <!-- /.col-md-9 -->
 </div>
-
-<%--<div class="container">--%>
-    <%--<div class="row">--%>
-        <%--<div class="card col-xs-12 col-sm-12 col-lg-12 col-md-12">--%>
-            <%--<div class="row">--%>
-                <%--<div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">--%>
-                    <%--<h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> Your Shopping Cart</h1>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="row">--%>
-                <%--<div class="col-sm-2 col-lg-2 col-md-2">--%>
-                    <%--&lt;%&ndash;Thumbnail&ndash;%&gt;--%>
-                    <%--<a class="thumbnail pull-left" href="#"> <img class="media-object" src="assets/images/comic1.jpg" style="width: 85px; height: 120px;"> </a>--%>
-                <%--</div>--%>
-                <%--<div class="col-xs-2 col-sm-9 col-lg-9 col-md-9">--%>
-                    <%--<h4>Product Title <small>#1337</small></h4>--%>
-                    <%--<h5><small>Condition: Fine</small></h5>--%>
-                    <%--<h5>Price</h5>--%>
-                    <%--<input type="text" class="form-control input-sm" value="1">--%>
-                <%--</div>--%>
-                <%--<div class="col-xs-1 col-sm-1 col-lg-1 col-md-1">--%>
-                    <%--&lt;%&ndash;Remove&ndash;%&gt;--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
 
 <jsp:include page="footer.jsp"/>
 </body>
