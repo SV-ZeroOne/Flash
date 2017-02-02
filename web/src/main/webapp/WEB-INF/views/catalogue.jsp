@@ -94,15 +94,13 @@
             <li class="page-item active">
                 <a class="page-link" href="#">${page}<span class="sr-only">${page}</span></a>
             </li>
-            <c:if test="${(page+1) < displaySize}">
-            <li class="page-item"><a class="?page=${page+1}&filter=${filter}"><c:out value="${page+1}"/></c:if></a></li>
-            <c:if test="${(page+2) < displaySize}">
-            <li class="page-item"><a class="?page=${page+2}&filter=${filter}"><c:out value="${page+2}"/></c:if></a></li>
-            <c:if test="${(page+3) < displaySize}">
-            <li class="page-item"><a class="?page=${page+3}&filter=${filter}"><c:out value="${page+3}"/></c:if></a></li>
+            <li class="page-item"><a class="?page=${page+1}&filter=${filter}">${page+1}</a></li>
+            <li class="page-item"><a class="?page=${page+2}&filter=${filter}">${page+2}</a></li>
+            <li class="page-item"><a class="?page=${page+3}&filter=${filter}">${page+3}</a></li>
             <li class="page-item">
             <li class="next"><a href="?page=${page+1}&filter=${filter}">Next</a></li>
         </ul>
+    <hr>
 </div>
 </body>
 <%@ include file="footer.jsp" %>

@@ -32,27 +32,30 @@ public class CatalogueController {
         this.stockService = stockService;
     }
 
-    @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
-    public String catalogueView(@RequestParam("page") int inPage,@RequestParam("filter") String inFilter, Model model) {
+        @RequestMapping(value = "/catalogue", method = RequestMethod.GET)
+    public String catalogueView(@RequestParam(required=false, value ="page") Integer inPage, @RequestParam("filter") String inFilter, Model model) {
 
         //displayList = new ArrayList<Stock>();
+            if(inPage==null){inPage = 1;}
         if(inPage <= 0)
         {
             inPage = 1;
         }
 
         currentPage = inPage;
-        int start = (inPage*displayAmount) - displayAmount;
+        int start = ((inPage*displayAmount)) - displayAmount;
         int end = inPage*displayAmount;
 
         if(!inFilter.equals("All"))
         {
-            List<Stock> displayFilterList = stockService.getFilterList(inFilter);
+            //List<Stock> displayFilterList = stockService.getStockRepository().getFilterList(inFilter);
+            displayList = stockService.getStockRepository().getFilterList(inFilter,start,end);
+
             //displayList = stockService.getFilterList(inFilter);
            // displayList = stockService.getNext(displayList,start,end);
-            displaySize = displayFilterList.size();
+            displaySize = displayList.size();
 
-            model.addAttribute("stockList",stockService.getNext(displayFilterList,start,end).toArray());
+            model.addAttribute("stockList",displayList.toArray());
             model.addAttribute("page", currentPage);
             model.addAttribute("filter", inFilter);
             model.addAttribute("displaySize", Math.ceil(displaySize/displayAmount));
