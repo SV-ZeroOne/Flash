@@ -1,3 +1,4 @@
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,10 @@
 <jsp:include page="navbar.jsp"/>
 <div id="aboutContent">
 <h1>About Square Eyes Comics</h1>
-<p>Square Eyes Comic book stores was established in January 2017. We aim to stock the widest range of comic books within the South African community.
-Providing you with the some of the cheapest prices online and delivering the best customer service possible.
-</p>
+<p>Square Eyes Comic book stores was established in January 2017.</p>
+<p>We aim to stock the widest range of comic books within the South African community.</p>
+<p>Providing you with the some of the cheapest prices online and delivering the best customer service possible.</p>
+    <img id="confirmationImage" src="assets/images/comicbooks.jpg"/>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
