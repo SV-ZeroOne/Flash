@@ -74,7 +74,7 @@
                             </a>
                             <div class="caption">
                                 <h4>
-                                    <a href="/comics/issue?id=${fStock.getIssuesByIssueId().getID()}&condition=${fStock.getCondition()}">
+                                    <a href="/issue?id=${fStock.getIssuesByIssueId().getID()}&condition=${fStock.getCondition()}">
                                     ${fStock.getIssuesByIssueId().getTitle()}
                                     </a>
                                 </h4>

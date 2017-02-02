@@ -13,7 +13,6 @@ import za.co.entelect.bootcamp.flash.services.StockService;
  */
 
 @Controller
-@RequestMapping("/comics")
 public class ProductController {
     private StockService stockService;
 
