@@ -1,9 +1,7 @@
 package za.co.entelect.bootcamp.flash.services;
 
 import za.co.entelect.bootcamp.flash.persistence.Implementations.StockRepository;
-import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.domain.Stock;
-import za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository;
 
 import java.util.ArrayList;
 import java.util.List;
