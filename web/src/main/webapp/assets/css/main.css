@@ -143,3 +143,22 @@ ul.dropdown-cart li .item-right{
     text-align: center;
 
 }
+
+#reigsterButton{
+    margin: auto;
+}
+
+#registrationTable{
+    margin: auto;
+    text-align: left;
+}
+
+#registrationTable td{
+    padding: 5px;
+}
+
+#errorDiv{
+    color: #ff0000;
+    font-style: italic;
+    font-weight: bold;
+}

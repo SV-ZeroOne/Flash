@@ -7,10 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,8 +91,11 @@ public class RegistrationController {
         //System.out.println("Back to byte password: " + hashed_password.getBytes());
         //System.out.println("New String Hashed Password: " + new String(customer.getAccount().getPassword()));
         //Check if username is unique before creating account.
-        if(checkUsername(customer)){
+        if(checkUsername(customer, result)){
             customerAccountService.getCustomerAccountsRepository().create(customer.getAccount());
+        }else{
+            model.addAttribute("errorMessage", "Username already exists");
+            return "/registration";
         }
         //get Newly created customer
         customer.getEmailAddress().setCustomerAccountsByCustomerId(customer.getAccount());
@@ -115,16 +115,20 @@ public class RegistrationController {
         return "accountConfirmation";
     }
 
-    private boolean checkUsername(WholeCustomer customer) {
+    private boolean checkUsername(WholeCustomer customer, BindingResult result) {
         String customerUsername = customer.getAccount().getUserName();
-        CustomerAccounts existingCustomer = customerAccountService.getCustomerAccountsRepository().getCustomerAccountByUsername(customerUsername);
-        if(existingCustomer != null){
-            System.out.println("Found customer with existing user name:");
-            TextBoxValidator newVal = new TextBoxValidator().validate(existingCustomer);
-            return false;
-        }else{
+        try{
+            CustomerAccounts existingCustomer = customerAccountService.getCustomerAccountsRepository().getCustomerAccountByUsername(customerUsername);
+            if(existingCustomer != null){
+                System.out.println("Found customer with existing user name:");
+                return false;
+            }else{
+                return true;
+            }
+        }catch (Exception e) {
             return true;
         }
+
     }
 
 }
@@ -173,14 +177,3 @@ class WholeCustomer{
     }
 }
 
-class TextBoxValidator implements Validator {
-
-    public boolean supports(Class<?> aClass) {
-        return false;
-    }
-
-    public void validate(Object o, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(
-                errors, "username", "required.username");
-    }
-}

@@ -17,6 +17,7 @@ public class PhoneNumbers implements EntityInterface<Integer> {
 
     @NotEmpty(message = "Please enter in a phone number")
     private String phoneNumber;
+
     private String type;
     private CustomerAccounts customerAccountsByCustomerId;
 
