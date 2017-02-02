@@ -5,7 +5,7 @@ import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 import javax.persistence.*;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class CustomerAddress implements EntityInterface<Integer> {
@@ -20,6 +20,7 @@ public class CustomerAddress implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerAddressID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.customerAddressId;
     }

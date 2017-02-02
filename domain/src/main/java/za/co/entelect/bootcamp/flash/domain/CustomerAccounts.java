@@ -2,30 +2,40 @@ package za.co.entelect.bootcamp.flash.domain;
 
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Arrays;
 
 /**
- * @author kevin.gouws - Created on 2017/01/30.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
 @Entity
 public class CustomerAccounts implements EntityInterface<Integer> {
+
     private int customerId;
     private String firstName;
     private String surname;
     private byte[] password;
+    private String userName;
 
     @Id
     @Column(name = "CustomerID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.customerId;
     }
 
     public void setID(Integer entityKey) {
         this.customerId = entityKey;
+    }
+
+    @Basic
+    @Column(name = "Username", nullable = true, length = 30)
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Basic

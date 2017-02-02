@@ -1,5 +1,6 @@
 package za.co.entelect.bootcamp.flash.services;
 
+import za.co.entelect.bootcamp.flash.persistence.Implementations.StockRepository;
 import za.co.entelect.bootcamp.flash.domain.Issues;
 import za.co.entelect.bootcamp.flash.domain.Stock;
 import za.co.entelect.bootcamp.flash.persistence.Implementation.StockRepository;
@@ -18,13 +19,14 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
+    public void setStockRepository(StockRepository stockRepository) {
+        this.stockRepository = stockRepository;
+    }
+
     public StockRepository getStockRepository() {
         return stockRepository;
     }
 
-    public void setStockRepository(StockRepository stockRepository) {
-        this.stockRepository = stockRepository;
-    }
     public List<Stock> getNextStockSet(int start, int end)
     {
         return stockRepository.getNextStockSet(start, end);

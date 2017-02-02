@@ -5,7 +5,7 @@
 //import org.junit.Before;
 //import org.junit.Test;
 //import za.co.entelect.bootcamp.flash.domain.*;
-//import za.co.entelect.bootcamp.flash.persistence.Implementation.SupplierRepository;
+//import za.co.entelect.bootcamp.flash.persistence.Implementations.SupplierRepository;
 //
 //import javax.persistence.*;
 //import java.sql.Date;

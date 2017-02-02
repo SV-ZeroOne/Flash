@@ -1,14 +1,5 @@
 package za.co.entelect.bootcamp.flash.services.test;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import za.co.entelect.bootcamp.flash.domain.Issues;
-import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
-
 /**
  * @author kevin.gouws - Created on 2017/01/28.
  */
