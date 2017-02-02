@@ -12,4 +12,12 @@ public class CustomerAddressService {
     public CustomerAddressService(CustomerAddressRepository customerAddressRepository) {
         this.customerAddressRepository = customerAddressRepository;
     }
+
+    public CustomerAddressRepository getCustomerAddressRepository() {
+        return customerAddressRepository;
+    }
+
+    public void setCustomerAddressRepository(CustomerAddressRepository customerAddressRepository) {
+        this.customerAddressRepository = customerAddressRepository;
+    }
 }

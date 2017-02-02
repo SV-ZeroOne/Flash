@@ -12,4 +12,12 @@ public class EmailAddressService {
     public EmailAddressService(EmailAddressRepository emailAddressRepository) {
         this.emailAddressRepository = emailAddressRepository;
     }
+
+    public EmailAddressRepository getEmailAddressRepository() {
+        return emailAddressRepository;
+    }
+
+    public void setEmailAddressRepository(EmailAddressRepository emailAddressRepository) {
+        this.emailAddressRepository = emailAddressRepository;
+    }
 }

@@ -12,4 +12,12 @@ public class CustomerAccountService {
     public CustomerAccountService(CustomerAccountsRepository customerAccountsRepository) {
         this.customerAccountsRepository = customerAccountsRepository;
     }
+
+    public CustomerAccountsRepository getCustomerAccountsRepository() {
+        return customerAccountsRepository;
+    }
+
+    public void setCustomerAccountsRepository(CustomerAccountsRepository customerAccountsRepository) {
+        this.customerAccountsRepository = customerAccountsRepository;
+    }
 }
