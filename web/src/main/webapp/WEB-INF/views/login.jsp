@@ -15,28 +15,42 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<h1>Login</h1>
-<form name='f' action="login" method='POST'>
+<h1 id="loginHeading">Login</h1>
+<div id="loginDiv" class="col-md-12 col-sm-12">
+
+<form  name='f' action="login" method='POST'>
     <c:if test="${param.error != null}">
         <p>
             Invalid login details.
         </p>
     </c:if>
-    <table>
+    <table id="loginForm">
         <tr>
             <td>User:</td>
+        </tr>
+        <tr>
             <td><input type='text' name='username' value=''></td>
         </tr>
         <tr>
             <td>Password:</td>
+        </tr>
+        <tr>
             <td><input type='password' name='password' /></td>
         </tr>
-        <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
         <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
+            <td><input id="loginButton" name="submit" type="submit" value="Login" /></td>
         </tr>
+        <tr>
+            <td>Dont have an account?</td>
+        </tr>
+        <tr>
+            <td><a href="/register">Register Here</a> </td>
+        </tr>
+        <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
+
     </table>
 </form>
+</div>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

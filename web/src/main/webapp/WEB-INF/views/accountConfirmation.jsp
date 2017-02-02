@@ -14,27 +14,13 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"/>
-<div class="container">
+<div id="confirmationPage" class="container">
 
 <h1>Thank you for creating an account with Square Eyes</h1>
-<table>
-    <tr>
-        <td>Name:</td>
-        <td>${firstName}</td>
-    </tr>
-    <tr>
-        <td>Surname:</td>
-        <td>${surname}</td>
-    </tr>
-    <tr>
-        <td>Password:</td>
-        <td>${password}</td>
-    </tr>
-    <tr>
-        <td>Email:</td>
-        <td>${email}</td>
-    </tr>
-</table>
+    <p>Thanks you for registering with us: ${firstName} ${surname}</p>
+    <p>Please enjoy our wide selection of comic books available for your purchase.</p>
+    
+    <img id="confirmationImage" src="assets/images/comicbooks.jpg"/>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
