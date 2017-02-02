@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,9 +97,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row pull-right buttons">
+            <hr class="header-rule">
+            <div class="row buttons">
                 <button id="backBtn" class="btn btn-default">Back</button>
-                <button id="addBtn" class="btn btn-default">Add to Cart</button>
+                <form:form method="POST" action="/add-to-cart" cssClass="pull-right">
+                    <input id="addBtn" type="submit" value="Add to Cart" class="pull-right btn btn-default">
+                </form:form>
             </div>
         </div>
         <div id="snackbar">${comicStock.getIssuesByIssueId().getTitle()} Added to Cart!</div>

@@ -27,7 +27,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="basket">
         <div class="box">
             <form class="cart-form" method="" action="">
-                <h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> ${userName}'s Shopping Cart</h1>
+                <h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> Your Shopping Cart</h1>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -35,32 +35,38 @@
                             <th colspan="2">Comic</th>
                             <th>Quantity</th>
                             <th>Price</th>
-                            <th>Discount</th>
                             <th colspan="2">Total</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <%--<c:forEach var="p" items="${people.firstnames}" varStatus="status">--%>
+                        <%--<tr>--%>
+                        <%--<td>${p}</td>--%>
+                        <%--<td>${people.lastnames[status.index]}</td>--%>
+                        <%--</tr>--%>
+                        <%--</c:forEach>--%>
+                        <c:forEach items="${cartItemsStock}" var="cStock" varStatus="status">
                         <tr>
                             <td>
                                 <a href="#">
-                                    <img class="comic-thumb thumbnail" src="assets/images/comic1.jpg" alt="Comic Name">
+                                    <img class="comic-thumb thumbnail" src="${cStock.getIssuesByIssueId().getImageUrl()}" alt="${cStock.getIssuesByIssueId().getTitle()}">
                                 </a>
                             </td>
-                            <td class="comic-title"><a href="#">TITLE</a>
+                            <td class="comic-title"><a href="#">${cStock.getIssuesByIssueId().getTitle()}</a>
                             </td>
                             <td>
-                                <input type="number" value="1" class="form-control" style="max-width: 100px;">
+                                <input id="qty-input" type="number" value="${shoppingCartItems[status.index].getQuantity()}" class="pull-left form-control">
                             </td>
-                            <td>R XXX.XX</td>
-                            <td>R 0.00</td>
-                            <td>R XXX.XX</td>
+                            <td>R ${cStock.getPrice()}</td>
+                            <td>R ${shoppingCartItems[status.index].getQuantity()*cStock.getPrice()}</td>
                             <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a>
                             </td>
                         </tr>
+                        </c:forEach>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="5">Total</th>
+                            <th colspan="4">Total</th>
                             <th colspan="2">R XXX.XX</th>
                         </tr>
                         </tfoot>
@@ -70,7 +76,7 @@
 
                 <div class="box-footer">
                     <div class="pull-left">
-                        <button class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</button>
+                        <a class="btn btn-default" href="/catalogue"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a>
                     </div>
                     <div class="pull-right">
                         <button type="submit" class="btn btn-primary">Proceed to checkout <span class="glyphicon glyphicon-chevron-right"></span></button>

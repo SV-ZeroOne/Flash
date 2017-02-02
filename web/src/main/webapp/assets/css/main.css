@@ -144,7 +144,7 @@ ul.dropdown-cart li .item-right{
 }
 
 .header-rule {
-    border: 1px solid #9b9b9b;
+    border: 1px solid #b4b4b4;
 }
 
 .buttons {
@@ -179,4 +179,13 @@ ul.dropdown-cart li .item-right{
 
 .cart-form {
     margin-bottom: 125px;
+}
+
+#qty-label {
+    padding-top: 5px;
+    margin-right: 10px;
+}
+
+#qty-input {
+    max-width: 85px;
 }

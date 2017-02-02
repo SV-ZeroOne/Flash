@@ -12,4 +12,12 @@ public class ShoppingCartService {
     public ShoppingCartService(ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartRepository = shoppingCartRepository;
     }
+
+    public ShoppingCartRepository getShoppingCartRepository() {
+        return shoppingCartRepository;
+    }
+
+    public void setShoppingCartRepository(ShoppingCartRepository shoppingCartRepository) {
+        this.shoppingCartRepository = shoppingCartRepository;
+    }
 }
