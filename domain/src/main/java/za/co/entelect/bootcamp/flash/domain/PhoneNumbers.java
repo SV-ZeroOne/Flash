@@ -1,8 +1,12 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * @author kevin.gouws - Created on 2017/02/01.
@@ -10,6 +14,8 @@ import javax.persistence.*;
 @Entity
 public class PhoneNumbers implements EntityInterface<Integer> {
     private int phoneNumberId;
+
+    @NotEmpty(message = "Please enter in a phone number")
     private String phoneNumber;
     private String type;
     private CustomerAccounts customerAccountsByCustomerId;

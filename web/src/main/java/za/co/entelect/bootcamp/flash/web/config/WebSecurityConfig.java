@@ -32,13 +32,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/catalogue**").permitAll()
                 .antMatchers("/issue**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers("/addCustomer").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
                 .httpBasic()
                 .and()
-                .logout();
+                .logout()
+                .logoutSuccessUrl("/home");
     }
 
 //    @Autowired

@@ -1,5 +1,6 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
 import javax.persistence.*;
@@ -10,10 +11,15 @@ import javax.persistence.*;
 @Entity
 public class CustomerAddress implements EntityInterface<Integer> {
     private int customerAddressId;
+
+    @NotEmpty(message = "Please enter in an address")
     private String address1;
     private String address2;
+    @NotEmpty(message = "Please enter in a suburb")
     private String suburb;
+    @NotEmpty(message = "Please enter in an city")
     private String city;
+    @NotEmpty(message = "Please enter in an postal code")
     private String postalCode;
     private String addressType;
     private CustomerAccounts customerAccountsByCustomerId;
