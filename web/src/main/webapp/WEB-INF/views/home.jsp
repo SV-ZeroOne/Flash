@@ -37,18 +37,18 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                <a href="#">
+                                <a href="/catalogue?page=1&filter=Publisher Marvel">
                                     <img class="slide-image" src="assets/images/marvel-logo.jpg" alt="Marvel Logo">
                                 </a>
                             </div>
                             <div class="item">
-                                <a href="#">
+                                <a href="/catalogue?page=1&filter=Publisher DC">
                                     <img class="slide-image" src="assets/images/dc-logo-v2.jpg" alt="DC Logo">
                                 </a>
                             </div>
                             <div class="item">
-                                <a href="#">
-                                    <img class="slide-image" src="assets/images/dark-horse-logo.jpg" alt="Marvel vs DC">
+                                <a href="/catalogue?page=1&filter=Publisher Darkhorse">
+                                    <img class="slide-image" src="assets/images/dark-horse-logo.jpg" alt="Darkhorse Logo">
                                 </a>
                             </div>
                         </div>
@@ -63,14 +63,15 @@
             </div>
 
             <hr>
-            <button class="pull-right btn btn-default" type="button">View More</button>
+            <a class="pull-right btn btn-default" href="/catalogue?page=1&filter=All">View More</a>
+            <%--<button class="pull-right btn btn-default" type="button">View More</button>--%>
             <h1>Featured Comics</h1>
             <hr>
             <div id="featured" class="row">
                 <c:forEach items="${featuredStock}" var="fStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
-                            <a href="#">
+                            <a href="/issue?id=${fStock.getIssuesByIssueId().getID()}&condition=${fStock.getCondition()}">
                                 <img class="comic-thumb" src="${fStock.getIssuesByIssueId().getImageUrl()}" alt="${fStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
@@ -107,11 +108,11 @@
                 <c:forEach items="${specialStock}" var="sStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
-                            <a href="#">
+                            <a href="/issue?id=${sStock.getIssuesByIssueId().getID()}&condition=${sStock.getCondition()}">
                                 <img class="comic-thumb" src="${sStock.getIssuesByIssueId().getImageUrl()}" alt="${sStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${sStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h4><a href="/issue?id=${sStock.getIssuesByIssueId().getID()}&condition=${sStock.getCondition()}">${sStock.getIssuesByIssueId().getTitle()}</a></h4>
                                 <h5 class="series-no">Series #${sStock.getIssuesByIssueId().getSeriesNumber()} (${sStock.getCondition()})</h5>
                             </div>
                             <div class="price">
@@ -140,11 +141,11 @@
                 <c:forEach items="${topStock}" var="tStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
-                            <a href="#">
+                            <a href="/issue?id=${tStock.getIssuesByIssueId().getID()}&condition=${tStock.getCondition()}">
                                 <img class="comic-thumb" src="${tStock.getIssuesByIssueId().getImageUrl()}" alt="${tStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${tStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h4><a href="/issue?id=${tStock.getIssuesByIssueId().getID()}&condition=${tStock.getCondition()}">${tStock.getIssuesByIssueId().getTitle()}</a></h4>
                                 <h5 class="series-no">Series #${tStock.getIssuesByIssueId().getSeriesNumber()} (${tStock.getCondition()})</h5>
                             </div>
                             <div class="price">
@@ -173,11 +174,11 @@
                 <c:forEach items="${newStock}" var="nStock">
                     <div class="col-sm-3 col-lg-3 col-md-3">
                         <div class="thumbnail">
-                            <a href="#">
+                            <a href="/issue?id=${nStock.getIssuesByIssueId().getID()}&condition=${nStock.getCondition()}">
                                 <img class="comic-thumb" src="${nStock.getIssuesByIssueId().getImageUrl()}" alt="${nStock.getIssuesByIssueId().getTitle()}">
                             </a>
                             <div class="caption">
-                                <h4><a href="#">${nStock.getIssuesByIssueId().getTitle()}</a></h4>
+                                <h4><a href="/issue?id=${nStock.getIssuesByIssueId().getID()}&condition=${nStock.getCondition()}">${nStock.getIssuesByIssueId().getTitle()}</a></h4>
                                 <h5 class="series-no">Series #${nStock.getIssuesByIssueId().getSeriesNumber()} (${nStock.getCondition()})</h5>
                             </div>
                             <div class="price">

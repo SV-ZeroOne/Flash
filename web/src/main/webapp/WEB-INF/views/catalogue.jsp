@@ -56,11 +56,11 @@
             <c:forEach items="${stockList}" var="item">
                 <div class="col-sm-3 col-lg-3 col-md-3">
                     <div class="thumbnail">
-                        <a href="#">
-                            <img class="comic-thumb" src="${item.issuesByIssueId.imageURL}" alt="${item.issuesByIssueId.title}">
+                        <a href="/issue?id=${item.getIssuesByIssueId().getID()}&condition=${item.getCondition()}">
+                            <img class="comic-thumb" src="${item.issuesByIssueId.imageUrl}" alt="${item.issuesByIssueId.title}">
                         </a>
                         <div class="caption">
-                            <h4><a href="#">${item.issuesByIssueId.title}</a></h4>
+                            <h4><a href="/issue?id=${item.getIssuesByIssueId().getID()}&condition=${item.getCondition()}">${item.issuesByIssueId.title}</a></h4>
                             <h5 class="series-no">Series : ${item.issuesByIssueId.seriesNumber}</h5>
                             <h5 class="series-no">Condition : ${item.condition}</h5>
 

@@ -28,11 +28,11 @@
                         <li><a href="#specials">Specials</a></li>
                         <li><a href="#top-sellers">Top Sellers</a></li>
                         <li><a href="#new-stock">New Stock</a></li>
-                        <li><a href="#">Catalogue</a></li>
+                        <li><a href="/catalogue?page=1&filter=All">Catalogue</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Publishers</li>
-                        <li><a href="#">Marvel</a></li>
-                        <li><a href="#">DC Comics</a></li>
+                        <li><a href="/catalogue?page=1&filter=Publisher Darkhorse">Dark Horse</a></li>
+                        <li><a href="/catalogue?page=1&filter=Publisher DC">DC Comics</a></li>
                     </ul>
                 </li>
                 <li><a href="#">About</a></li>
@@ -50,7 +50,7 @@
                 <input type="text" class="form-control" placeholder="Search...">
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div>
     </div>

@@ -11,7 +11,7 @@
         <p class="text-muted">
             <ul class="list-inline">
                 <li><a class="footer-link" href="/home">Home</a></li> |
-                <li><a class="footer-link" href="#">Comics</a></li> |
+                <li><a class="footer-link" href="/catalogue?page=1&filter=All">Comics</a></li> |
                 <li><a class="footer-link" href="#">About</a></li> |
                 <li><a class="footer-link" href="#">Contact</a></li>
             </ul>
