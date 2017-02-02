@@ -31,7 +31,7 @@
         <class>za.co.entelect.bootcamp.flash.domain.Vouchers</class>
         <class>za.co.entelect.bootcamp.flash.domain.UserRoles</class>
         <properties>
-            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost:1433;databaseName=SquareEyes;"/>

@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="navbar.jsp" %>
 <div class="container">
 
     <div class="dropdown pull-right">

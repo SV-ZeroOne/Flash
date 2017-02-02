@@ -60,7 +60,7 @@ public class CatalogueController {
             return "catalogue";
         }
 
-        displayList = stockService.getNextStockSet(start,end);
+        displayList = stockService.getStockRepository().getNextStockSet(start,end);
         displaySize = displayList.size();
         model.addAttribute("stockList",displayList.toArray());
         model.addAttribute("page", currentPage);
