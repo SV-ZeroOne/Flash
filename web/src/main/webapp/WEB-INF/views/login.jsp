@@ -44,11 +44,11 @@
             <td>Dont have an account?</td>
         </tr>
         <tr>
-            <td><a href="/register">Register Here</a> </td>
+            <td><a href="/registration">Register Here</a> </td>
         </tr>
         <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
-
     </table>
+
 </form>
 </div>
 <jsp:include page="footer.jsp"/>
