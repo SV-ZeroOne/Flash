@@ -5,7 +5,7 @@
   Time: 3:53 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -39,8 +39,8 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
             </ul>
-            <form class="navbar-form navbar-right">
-                <input type="text" class="form-control" placeholder="Search...">
+            <form class="navbar-form navbar-right" action="catalogue">
+                <input type="text" name="filter" class="form-control" placeholder="Search...">
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/login">Login</a></li>
