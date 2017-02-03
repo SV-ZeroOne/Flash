@@ -14,9 +14,11 @@ public class ShoppingCart implements EntityInterface<Integer> {
     private short quantity;
     private BigDecimal cartItemPrice;
     private CustomerAccounts customerAccountsByCustomerId;
+    private Stock stockByStockId;
 
     @Id
     @Column(name = "ShoppingCartID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.shoppingCartId;
     }
@@ -76,5 +78,15 @@ public class ShoppingCart implements EntityInterface<Integer> {
 
     public void setCustomerAccountsByCustomerId(CustomerAccounts customerAccountsByCustomerId) {
         this.customerAccountsByCustomerId = customerAccountsByCustomerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "StockReferenceID", referencedColumnName = "StockReferenceID", nullable = false)
+    public Stock getStockByStockId() {
+        return this.stockByStockId;
+    }
+
+    public void setStockByStockId(Stock stockByStockId) {
+        this.stockByStockId = stockByStockId;
     }
 }

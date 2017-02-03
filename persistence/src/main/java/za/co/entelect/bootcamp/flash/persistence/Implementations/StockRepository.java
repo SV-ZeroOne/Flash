@@ -74,86 +74,84 @@ public class StockRepository extends RepositoryImplementation<Integer, Stock> im
     {
         Query stockQuery = entityManager
                 .createQuery("SELECT s FROM Stock AS s"
-                        +" WHERE s.issuesByIssueId.id BETWEEN "+start+ " AND "+ (end-1));
+                        +" WHERE s.issuesByIssueId.id BETWEEN "+start+ " AND "+ (end));
         return stockQuery.getResultList();
 
     }
-    public List<Stock> getFilterList(String filter)
+    public List<Stock> getFilterList(String filter,int start,int end)
     {
-        if(filter.equals("Title AZ"))
-        {
+
+        if (filter.equals("Title AZ")) {
             Query stockQuery = entityManager
                     .createQuery("SELECT s FROM Stock AS s"
-                            +" ORDER BY s.issuesByIssueId.title ASC");
-            return stockQuery.getResultList();
-        }
-        else if(filter.equals("Title ZA"))
-        {
+                            + " ORDER BY s.issuesByIssueId.title ASC").setMaxResults(end);
+            return stockQuery.getResultList().subList(start, end);
+        } else if (filter.equals("Title ZA")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s " + "FROM Stock AS s"
-                            +" ORDER BY s.issuesByIssueId.title DESC ");
-            return stockQuery.getResultList();
-        }
-        else if(filter.equals("Publisher DC"))
-        {
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " ORDER BY s.issuesByIssueId.title DESC ").setMaxResults(end);
+
+            return stockQuery.getResultList().subList(start, end);
+        } else if (filter.equals("Publisher DC")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s " + "FROM Stock AS s"
-                            +" WHERE s.issuesByIssueId.publisher = 'DC'");
-            return stockQuery.getResultList();
-        }
-        else if(filter.equals("Publisher Darkhorse"))
-        {
+                    .createQuery("SELECT s FROM Stock AS s"
+                            //+" WHERE s.issuesByIssueId.id BETWEEN "+start+ " AND "+ (end)
+                            + " WHERE s.issuesByIssueId.publisher = 'DC'").setMaxResults(end);
+            return stockQuery.getResultList().subList(start, end);
+        } else if (filter.equals("Publisher Darkhorse")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s " + "FROM Stock AS s"
-                            +" WHERE s.issuesByIssueId.publisher = 'Darkhorse'");
-            return stockQuery.getResultList();
-        }
-        else if(filter.equals("Condition Very Fine"))
-        {
+                    .createQuery("SELECT s FROM Stock AS s"
+                            //+" WHERE s.issuesByIssueId.id BETWEEN "+start+ " AND "+ (end)
+                            + " WHERE s.issuesByIssueId.publisher = 'Darkhorse'").setMaxResults(end);
+            return stockQuery.getResultList().subList(start, end);
+        } else if (filter.equals("Condition Very Fine")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Very Fine'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Very Fine'");
             return stockQuery.getResultList();
-        }
-        else if(filter.equals("Condition Fine"))
-        {
+        } else if (filter.equals("Condition Fine")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Fine'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Fine'");
             return stockQuery.getResultList();
-        }
-        else if(filter.equals("Condition Average"))
-        {
+        } else if (filter.equals("Condition Average")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Average'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Average'");
             return stockQuery.getResultList();
-        }
-        else if(filter.equals("Condition Poor"))
-        {
+        } else if (filter.equals("Condition Poor")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Poor'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Poor'");
             return stockQuery.getResultList();
-        }
-        else if(filter.equals("priceHigh"))
-        {
+        } else if (filter.equals("Price High")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Very Fine'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Very Fine'");
             return stockQuery.getResultList();
-        }
-        else if(filter.equals("priceLow"))
-        {
+        } else if (filter.equals("Price Low")) {
             Query stockQuery = entityManager
-                    .createQuery("SELECT s FROM Stock AS s"+
-                            " WHERE s.condition = 'Poor'");
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.id BETWEEN " + start + " AND " + (end - 1)
+                            + " AND s.condition = 'Poor'");
             return stockQuery.getResultList();
+        } else if (filter.length() > 1) {
+            Query stockQuery = entityManager
+                    .createQuery("SELECT s FROM Stock AS s"
+                            + " WHERE s.issuesByIssueId.title LIKE :search").setParameter("search", "%" + filter + "%").setMaxResults(end);
+
+            return stockQuery.getResultList().subList(start, end);
         }
 
         Query stockQuery = entityManager
                 .createQuery("SELECT s " + "FROM Stock AS s"
-                        +" WHERE s.issuesByIssueId.id BETWEEN "+0+ " AND "+ (20-1));
+                        +" WHERE s.issuesByIssueId.id BETWEEN "+start+ " AND "+ (end)).setMaxResults(20);
         return stockQuery.getResultList();
     }
+
 }

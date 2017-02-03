@@ -270,3 +270,8 @@ For the product listing
 .container .text-muted {
     margin: 20px 0;
 }
+
+.filterValue{
+    padding-top: 5px;
+    padding-right: 10px;
+}

@@ -85,6 +85,17 @@ body {
     text-decoration: underline;
 }
 
+.cart-link,
+.cart-link:visited,
+.cart-link:active {
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.cart-link:hover {
+    color: #5e5e5e;
+    text-decoration: underline;
+}
 .container .text-muted {
     margin: 20px 0;
 }
@@ -142,6 +153,7 @@ ul.dropdown-cart li .item-right{
     margin: auto;
     text-align: center;
     padding-bottom: 100px;
+}
 }
 
 #reigsterButton{
@@ -292,4 +304,70 @@ ul.dropdown-cart li .item-right{
     height: auto;
     width: 30%;
     margin-bottom:50px;
+.header-rule {
+    border: 1px solid #b4b4b4;
+}
+
+.buttons {
+    margin-top: 5px;
+    padding-right: 14px;
+}
+
+.preview, .card {
+    height: 100%;
+    margin-bottom: 85px;
+}
+
+.tab-content{
+    padding: 10px;
+}
+
+.nav-tabs > li > a{
+    color: #3c3c3c;
+}
+
+.nav-tabs > li > a:hover{
+    color: #0c0c0c;
+}
+
+.comic-title {
+    text-align: left;
+}
+
+.comic-thumb {
+    height: 120px;
+}
+
+.cart-form {
+    margin-bottom: 125px;
+}
+
+#qty-label {
+    padding-top: 5px;
+    margin-right: 10px;
+}
+
+#qty-input {
+    max-width: 85px;
+}
+
+.payment-opt {
+    margin-bottom: 100px;
+}
+
+.btn-header {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.payment-input {
+    margin-bottom: 100px;
+}
+
+.cart-notif {
+    text-align: center;
+}
+
+.cart-msg {
+    padding-top: 15px;
 }
