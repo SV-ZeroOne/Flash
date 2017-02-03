@@ -64,7 +64,6 @@
 
             <hr>
             <a class="pull-right btn btn-default" href="/catalogue?page=1&filter=All">View More</a>
-            <%--<button class="pull-right btn btn-default" type="button">View More</button>--%>
             <h1>Featured Comics</h1>
             <hr>
             <div id="featured" class="row">

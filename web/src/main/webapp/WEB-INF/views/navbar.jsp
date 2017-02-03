@@ -37,14 +37,7 @@
                 </li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="shoppingCartAmount"> Shopping Cart </span><span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-cart" role="menu">
-                        <div class="shoppingCartDropDown"></div>
-                        <li class="divider"></li>
-                        <li><a class="text-center" href="#">Checkout</a></li>
-                    </ul>
-                </li>
+                <li><a href="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
             </ul>
             <form class="navbar-form navbar-right">
                 <input type="text" class="form-control" placeholder="Search...">
