@@ -1,8 +1,10 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Arrays;
 
 /**
@@ -12,9 +14,19 @@ import java.util.Arrays;
 public class CustomerAccounts implements EntityInterface<Integer> {
 
     private int customerId;
+    @NotNull(message ="Please enter in your first name")
+    @NotEmpty(message ="Please enter in your first name")
     private String firstName;
+
+    @NotNull(message ="Please enter in your first name")
+    @NotEmpty(message ="Please enter in your surname")
     private String surname;
+
+    @Size(min = 6, max = 100, message = "Password must be between 6 and 100 characters")
     private byte[] password;
+
+    @NotNull(message ="Please enter in a username")
+    @NotEmpty(message ="Please enter in a username")
     private String userName;
 
     @Id

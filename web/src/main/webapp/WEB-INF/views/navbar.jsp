@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kevin.gouws
-  Date: 2017/01/31
-  Time: 3:53 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -35,15 +30,34 @@
                         <li><a href="/catalogue?page=1&filter=Publisher DC">DC Comics</a></li>
                     </ul>
                 </li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a></li>
             </ul>
             <form class="navbar-form navbar-right" action="catalogue">
                 <input type="text" name="filter" class="form-control" placeholder="Search...">
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login">Login</a></li>
+                <li><sec:authorize var="loggedIn" access="isAuthenticated()" />
+                <c:choose>
+                    <c:when test="${loggedIn}">
+                        <form action="/logout" method="POST">
+                            <button type="submit" value="j_spring_security_logout" class="navBtn btn btn-default" data-toggle="collapse" data-target="#user">
+                                <span class="sr-only">Toggle user</span>
+                                <i class="fa fa-user"></i>Logout
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </button>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="login">
+                            <button type="submit" class="navBtn btn btn-default" data-toggle="collapse" data-target="#user">
+                                <span class="sr-only">Toggle user</span>
+                                <i class="fa fa-user"></i>Login/Register
+                            </button>
+                        </form>
+                    </c:otherwise>
+                </c:choose>
+                </li>
             </ul>
         </div>
     </div>

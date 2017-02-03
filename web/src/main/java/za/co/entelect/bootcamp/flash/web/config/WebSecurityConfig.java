@@ -28,18 +28,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/accountConfirmation").permitAll()
                 .antMatchers("/addCustomer").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/home").permitAll()
+                .antMatchers("/home*").permitAll()
                 .antMatchers("/#").permitAll()
                 .antMatchers("/catalogue**").permitAll()
                 .antMatchers("/issue**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers("/addCustomer").permitAll()
+                .antMatchers("/about").permitAll()
+                .antMatchers("/contact**").permitAll()
+                .antMatchers("/contact#").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
                 .httpBasic()
                 .and()
-                .logout();
+                .logout()
+                .logoutSuccessUrl("/home")
+                .logoutUrl("/logout");
     }
 
 //    @Autowired
