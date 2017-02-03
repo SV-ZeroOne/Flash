@@ -1,37 +1,39 @@
 package za.co.entelect.bootcamp.flash.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
 /**
- * Created by steve.velcev on 2017/01/13.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
-
 @Entity
-@Table (name = "ComicCreators")
-public class ComicCreators{
-
-    @EmbeddedId
-    private ComicCreatorsPK id;
-
-    @Column(name = "CreatorRole")
+@IdClass(ComicCreatorsPK.class)
+public class ComicCreators {
+    private int issueId;
+    private int creatorId;
     private String creatorRole;
 
-    public ComicCreators() {}
-
-    public ComicCreators(ComicCreatorsPK id, String creatorRole){
-        this.id = id;
-        this.creatorRole = creatorRole;
+    @Id
+    @Column(name = "IssueID", nullable = false)
+    public int getIssueId() {
+        return issueId;
     }
 
-    public ComicCreatorsPK getId() {
-        return id;
+    public void setIssueId(int issueId) {
+        this.issueId = issueId;
     }
 
-    public void setId(ComicCreatorsPK id) {
-        this.id = id;
+    @Id
+    @Column(name = "CreatorID", nullable = false)
+    public int getCreatorId() {
+        return creatorId;
     }
 
+    public void setCreatorId(int creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    @Basic
+    @Column(name = "CreatorRole", nullable = true, length = 50)
     public String getCreatorRole() {
         return creatorRole;
     }
@@ -41,19 +43,24 @@ public class ComicCreators{
     }
 
     @Override
-    public String toString() {
-        return "ComicCreators{" +
-                "issueID=" + id.getIssueID() +
-                ", creatorID=" + id.getCreatorID() +
-                ", creatorRole='" + creatorRole + '\'' +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ComicCreators that = (ComicCreators) o;
+
+        if (issueId != that.issueId) return false;
+        if (creatorId != that.creatorId) return false;
+        if (creatorRole != null ? !creatorRole.equals(that.creatorRole) : that.creatorRole != null) return false;
+
+        return true;
     }
 
-    public Integer getID() {
-        return null;
-    }
-
-    public void setID(Integer entityKey) {
-
+    @Override
+    public int hashCode() {
+        int result = issueId;
+        result = 31 * result + creatorId;
+        result = 31 * result + (creatorRole != null ? creatorRole.hashCode() : 0);
+        return result;
     }
 }

@@ -1,17 +1,7 @@
 package za.co.entelect.bootcamp.flash.services.test;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import za.co.entelect.bootcamp.flash.domain.Issue;
-import za.co.entelect.bootcamp.flash.domain.Order;
-import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
-
 /**
- * Created by kevin.gouws on 2017/01/28.
+ * @author kevin.gouws - Created on 2017/01/28.
  */
 /*public class ServicesApplicationContextTest {
 
@@ -25,8 +15,8 @@ import za.co.entelect.bootcamp.flash.services.StockOrderPlacement;
     }
 
     @Test
-    public void testGetOrderFromDB() {
-        Issue firstIssue = stockOrderPlacement.getIssue(2);
+    public void testGetIssueFromDB() {
+        Issues firstIssue = stockOrderPlacement.getIssue(2);
         Assert.assertTrue(firstIssue != null);
         System.out.println(firstIssue.toString());
     }

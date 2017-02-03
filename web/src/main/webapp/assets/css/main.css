@@ -1,0 +1,525 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 70px;
+    margin-bottom: 75px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: auto;
+    overflow: hidden;
+}
+
+.caption h4 {
+    height: 35px;
+}
+
+.series-no {
+    font-size: small;
+}
+
+.price {
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #853232;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.footer-link,
+.footer-link:visited,
+.footer-link:active {
+    color: #5e5e5e;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.cart-link,
+.cart-link:visited,
+.cart-link:active {
+    color: #0c0c0c;
+    text-decoration: underline;
+}
+
+.cart-link:hover {
+    color: #5e5e5e;
+    text-decoration: underline;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.product-title-display {
+    text-align: left;
+    padding-bottom: 5px;
+}
+
+.btn-default {
+    color: #f8f8f8;
+    background: black;
+ }
+
+/*Shopping Cart CSS */
+ul.dropdown-cart{
+    min-width:250px;
+}
+ul.dropdown-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+}
+ul.dropdown-cart li .item:hover{
+    background-color:#f3f3f3;
+}
+ul.dropdown-cart li .item:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.dropdown-cart li .item-left{
+    float:left;
+}
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info{
+    float:left;
+}
+ul.dropdown-cart li .item-left span.item-info{
+    margin-left:10px;
+}
+ul.dropdown-cart li .item-left span.item-info span{
+    display:block;
+
+}
+ul.dropdown-cart li .item-right{
+    float:right;
+}
+
+.registrationForm {
+    margin: auto;
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+#reigsterButton{
+    margin: auto;
+}
+
+#registrationTable{
+    margin: auto;
+    text-align: left;
+    background: #f5f5f5;
+    border-radius: 10px
+}
+
+#registrationTable td{
+    padding: 3px;
+}
+
+#headertext{
+    margin-top: 0px;
+}
+
+
+#errorDiv{
+    color: #ff0000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#confirmationPage{
+    text-align: center;
+}
+
+#confirmationImage{
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+    width: 80%;
+    margin-bottom:50px;
+}
+
+#loginForm{
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+#loginForm td{
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#loginHeading{
+    padding-top:20px;
+    text-align: center;
+}
+
+#loginDiv{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 100px;
+}
+
+
+#aboutContent{
+    text-align: center;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.navBtn{
+    margin-top: 9px;
+    margin-left: 7px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #5e5e5e;
+}
+
+#loginError{
+    color: red;
+    font-weight: bold;
+}
+
+#aboutImage {
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+    width: 30%;
+    margin-bottom: 50px;
+    padding-bottom: 100px;
+}
+
+#reigsterButton{
+    margin: auto;
+}
+
+#registrationTable{
+    margin: auto;
+    text-align: left;
+    background: #f5f5f5;
+    border-radius: 10px
+}
+
+#registrationTable td{
+    padding: 3px;
+}
+
+#headertext{
+    margin-top: 0px;
+}
+
+
+#errorDiv{
+    color: #ff0000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+#confirmationPage{
+    text-align: center;
+}
+
+#confirmationImage{
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+    width: 80%;
+    margin-bottom:50px;
+}
+
+#loginForm{
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+#loginForm td{
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#loginHeading{
+    padding-top:20px;
+    text-align: center;
+}
+
+#loginDiv{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 100px;
+}
+
+
+#aboutContent{
+    text-align: center;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+.navBtn{
+    margin-top: 9px;
+    margin-left: 7px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #5e5e5e;
+}
+
+#loginError{
+    color: red;
+    font-weight: bold;
+}
+
+#aboutImage {
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+    width: 30%;
+    margin-bottom: 50px;
+}
+
+.header-rule {
+    border: 1px solid #b4b4b4;
+}
+
+.buttons {
+    margin-top: 5px;
+    padding-right: 14px;
+}
+
+.preview, .card {
+    height: 100%;
+    margin-bottom: 85px;
+}
+
+.tab-content{
+    padding: 10px;
+}
+
+.nav-tabs > li > a{
+    color: #3c3c3c;
+}
+
+.nav-tabs > li > a:hover{
+    color: #0c0c0c;
+}
+
+.comic-title {
+    text-align: left;
+}
+
+.comic-thumb {
+    height: 120px;
+}
+
+.cart-form {
+    margin-bottom: 125px;
+}
+
+#qty-label {
+    padding-top: 5px;
+    margin-right: 10px;
+}
+
+#qty-input {
+    max-width: 85px;
+}
+
+.payment-opt {
+    margin-bottom: 100px;
+}
+
+.btn-header {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.payment-input {
+    margin-bottom: 100px;
+}
+
+.cart-notif {
+    text-align: center;
+}
+
+.cart-msg {
+    padding-top: 15px;
+}

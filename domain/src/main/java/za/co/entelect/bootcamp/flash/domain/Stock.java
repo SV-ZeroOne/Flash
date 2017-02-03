@@ -1,55 +1,33 @@
 package za.co.entelect.bootcamp.flash.domain;
 
-import javax.persistence.Entity;
+import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
- * Created by byron.dinkelmann on 2017/01/13.
+ * @author kevin.gouws - Created on 2017/02/01.
  */
-
 @Entity
-@Table
-public class Stock implements Entities<Integer> {
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "StockReferenceID", nullable = false)
-    private int stockReferenceID;
-    @Column(name = "IssueID")
-    private int issueID;
-    @Column(name = "Condition")
+public class Stock implements EntityInterface<Integer> {
+    private int stockReferenceId;
     private String condition;
-    @Column(name = "AvailableQty")
-    private short availableQty;
-    @Column(name = "Price")
+    private Short availableQty;
     private BigDecimal price;
+    private Issues issuesByIssueId;
 
-    public Stock() {}
-
-    public Stock(int stockReferenceID, int issueID, String condition, short availableQty, BigDecimal price) {
-        this.stockReferenceID = stockReferenceID;
-        this.issueID = issueID;
-        this.condition = condition;
-        this.availableQty = availableQty;
-        this.price = price;
-    }
-
+    @Id
+    @Column(name = "StockReferenceID", nullable = false)
     public Integer getID() {
-        return this.stockReferenceID;
+        return this.stockReferenceId;
     }
 
     public void setID(Integer entityKey) {
-        this.stockReferenceID = entityKey;
+        this.stockReferenceId = entityKey;
     }
 
-    public int getIssueID() {
-        return issueID;
-    }
-
-    public void setIssueID(int issueID) {
-        this.issueID = issueID;
-    }
-
+    @Basic
+    @Column(name = "Condition", nullable = true, length = 10)
     public String getCondition() {
         return condition;
     }
@@ -58,14 +36,18 @@ public class Stock implements Entities<Integer> {
         this.condition = condition;
     }
 
-    public short getAvailableQty() {
+    @Basic
+    @Column(name = "AvailableQty", nullable = true)
+    public Short getAvailableQty() {
         return availableQty;
     }
 
-    public void setAvailableQty(short availableQty) {
+    public void setAvailableQty(Short availableQty) {
         this.availableQty = availableQty;
     }
 
+    @Basic
+    @Column(name = "Price", nullable = true, precision = 2)
     public BigDecimal getPrice() {
         return price;
     }
@@ -75,13 +57,36 @@ public class Stock implements Entities<Integer> {
     }
 
     @Override
-    public String toString() {
-        return "Stock{" +
-                "stockReferenceID=" + stockReferenceID +
-                ", issueID=" + issueID +
-                ", condition='" + condition + '\'' +
-                ", availableQty=" + availableQty +
-                ", price=" + price +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Stock stock = (Stock) o;
+
+        if (stockReferenceId != stock.stockReferenceId) return false;
+        if (condition != null ? !condition.equals(stock.condition) : stock.condition != null) return false;
+        if (availableQty != null ? !availableQty.equals(stock.availableQty) : stock.availableQty != null) return false;
+        if (price != null ? !price.equals(stock.price) : stock.price != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = stockReferenceId;
+        result = 31 * result + (condition != null ? condition.hashCode() : 0);
+        result = 31 * result + (availableQty != null ? availableQty.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "IssueID", referencedColumnName = "IssueID")
+    public Issues getIssuesByIssueId() {
+        return issuesByIssueId;
+    }
+
+    public void setIssuesByIssueId(Issues issuesByIssueId) {
+        this.issuesByIssueId = issuesByIssueId;
     }
 }
