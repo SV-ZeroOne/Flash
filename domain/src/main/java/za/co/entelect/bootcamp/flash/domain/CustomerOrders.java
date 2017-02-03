@@ -30,6 +30,7 @@ public class CustomerOrders implements EntityInterface<Integer> {
 
     @Id
     @Column(name = "CustomerOrderID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     public Integer getID() {
         return this.customerOrderId;
     }

@@ -1,3 +1,4 @@
+/*
 package za.co.entelect.bootcamp.flash.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,11 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+*/
 /**
  * @author kevin.gouws - Created on 2017/02/02.
- */
+ *//*
+
 
 @Controller
 public class ShoppingCartController {
@@ -36,35 +39,36 @@ public class ShoppingCartController {
         this.shoppingCartService = shoppingCartService;
         this.customerAccountService = customerAccountService;
     }
-
-    @RequestMapping(value = "/shopping-cart",method = RequestMethod.GET)
-    public String viewHome(ModelMap model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userName = authentication.getName();
-
-        double cartTotal = 0;
-        DecimalFormat df = new DecimalFormat("#.00");
-
-        CustomerAccounts customerAccounts = customerAccountService
-                .getCustomerAccountsRepository()
-                .getCustomerAccountByUsername(userName);
-
-        ArrayList<ShoppingCart> shoppingCartItems = shoppingCartService
-                .getShoppingCartRepository()
-                .getUserCartItems(customerAccounts.getID());
-
-        ArrayList<Stock> cartItemsStock = new ArrayList<Stock>();
-        for (ShoppingCart sc : shoppingCartItems) {
-            cartTotal += sc.getCartItemPrice().doubleValue();
-            cartItemsStock.add(stockService.getStockRepository().read(sc.getStockByStockId().getID()));
-        }
-
-        String total = df.format(cartTotal);
-
-        model.addAttribute("shoppingCartItems", shoppingCartItems);
-        model.addAttribute("cartItemsStock", cartItemsStock);
-        model.addAttribute("cartTotal", total);
-
-        return "shoppingcart";
-    }
+//
+//    @RequestMapping(value = "/shopping-cart",method = RequestMethod.GET)
+//    public String viewHome(ModelMap model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String userName = authentication.getName();
+//
+//        double cartTotal = 0;
+//        DecimalFormat df = new DecimalFormat("#.00");
+//
+//        CustomerAccounts customerAccounts = customerAccountService
+//                .getCustomerAccountsRepository()
+//                .getCustomerAccountByUsername(userName);
+//
+//        ArrayList<ShoppingCart> shoppingCartItems = shoppingCartService
+//                .getShoppingCartRepository()
+//                .getUserCartItems(customerAccounts.getID());
+//
+//        ArrayList<Stock> cartItemsStock = new ArrayList<Stock>();
+//        for (ShoppingCart sc : shoppingCartItems) {
+//            cartTotal += sc.getCartItemPrice().doubleValue();
+//            cartItemsStock.add(stockService.getStockRepository().read(sc.getStockByStockId().getID()));
+//        }
+//
+//        String total = df.format(cartTotal);
+//
+//        model.addAttribute("shoppingCartItems", shoppingCartItems);
+//        model.addAttribute("cartItemsStock", cartItemsStock);
+//        model.addAttribute("cartTotal", total);
+//
+//        return "shoppingcart";
+//    }
 }
+*/

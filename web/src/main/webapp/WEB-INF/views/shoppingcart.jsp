@@ -60,8 +60,8 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th colspan="4">Total</th>
-                            <th colspan="2">R ${cartTotal}</th>
+                            <th colspan="4">Sub Total</th>
+                            <th colspan="2">R ${subTotal}</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -73,7 +73,7 @@
                         <a class="btn btn-default" href="/catalogue"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a>
                     </div>
                     <div class="pull-right">
-                        <button type="submit" class="btn btn-primary">Proceed to checkout <span class="glyphicon glyphicon-chevron-right"></span></button>
+                        <a type="submit" class="btn btn-primary" href="/checkout">Proceed to checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
                     </div>
                 </div>
             </form>

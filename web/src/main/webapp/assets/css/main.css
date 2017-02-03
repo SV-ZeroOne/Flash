@@ -189,3 +189,16 @@ ul.dropdown-cart li .item-right{
 #qty-input {
     max-width: 85px;
 }
+
+.payment-opt {
+    margin-bottom: 100px;
+}
+
+.btn-header {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.payment-input {
+    margin-bottom: 100px;
+}
