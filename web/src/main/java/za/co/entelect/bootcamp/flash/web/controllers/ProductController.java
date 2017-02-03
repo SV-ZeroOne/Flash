@@ -71,6 +71,6 @@ public class ProductController {
         //persist the cart item to the DB
         shoppingCartService.getShoppingCartRepository().create(cartItem);
 
-        return "shoppingcart";
+        return "home";
     }
 }

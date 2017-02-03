@@ -12,12 +12,30 @@ import java.util.ArrayList;
  */
 public class ShoppingCartRepository extends RepositoryImplementation<Integer, ShoppingCart>
         implements ShoppingCartInterface {
+    /*IF EXISTS ( SELECT * FROM ShoppingCart WHERE StockReferenceID = 251 AND CustomerID = 1005 )
+    UPDATE ShoppingCart
+    SET Quantity = Quantity+1
+    WHERE StockReferenceID = 251 AND CustomerID = 1005;
+    ELSE
+    INSERT INTO ShoppingCart (Quantity, CustomerID, CartItemPrice, StockReferenceID)
+    VALUES ();*/
 
-//    @Override
-//    public boolean create(ShoppingCart cartItem) {
-//        Query checkQ = entityManager.createQuery("")
-//        return false;
-//    }
+    @Override
+    public boolean create(ShoppingCart cartItem) {
+        try {
+            ShoppingCart existingItem = read(cartItem.getID());
+            if (existingItem == null) {
+                super.create(cartItem);
+            } else {
+                cartItem.setQuantity((short) (cartItem.getQuantity()+1));
+                super.update(cartItem);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public ArrayList<ShoppingCart> getUserCartItems(int userID) {
         Query userCartQuery = entityManager

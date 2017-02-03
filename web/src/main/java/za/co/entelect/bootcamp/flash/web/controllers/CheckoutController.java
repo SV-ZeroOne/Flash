@@ -38,7 +38,7 @@ public class CheckoutController {
     private ArrayList<ShoppingCart> shoppingCartItems;
     private ArrayList<Stock> cartItemsStock;
     double cartTotal,deliveryCost, orderCost;
-    private String subTotal, deliveryTotal, orderTotal, deliveryMethod;
+    private String subTotal, deliveryTotal, orderTotal, orderReference, deliveryMethod;
 
     @Autowired
     public CheckoutController(ShoppingCartService shoppingCartService,
@@ -58,7 +58,7 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "/shopping-cart",method = RequestMethod.GET)
-    public String viewHome(ModelMap model) {
+    public String viewCart(ModelMap model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
 
@@ -151,11 +151,13 @@ public class CheckoutController {
     }
 
     @RequestMapping(value = "/place-order", method = RequestMethod.POST)
-    public String placeOrder() {
+    public String placeOrder(ModelMap model) {
+
         CustomerOrders customerOrder = new CustomerOrders();
         customerOrder.setOrderAmount(BigDecimal.valueOf(orderCost));
         customerOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
-        customerOrder.setOrderReference(customerAccount.getID() + "-" + customerOrder.getOrderDate());
+        orderReference = customerAccount.getID() + "-" + customerOrder.getOrderDate();
+        customerOrder.setOrderReference(orderReference);
         customerOrder.setOrderAddress1(customerAddress.getAddress1());
         customerOrder.setOrderAddress2(customerAddress.getAddress2());
         customerOrder.setOrderSuburb(customerAddress.getSuburb());
@@ -172,7 +174,6 @@ public class CheckoutController {
         // Persist Order
         customerOrderService.getCustomerOrdersRepository().create(customerOrder);
 
-
         // Clear Shopping Cart
         ArrayList<ShoppingCart> shoppingCartToClear = shoppingCartService
                 .getShoppingCartRepository()
@@ -181,6 +182,8 @@ public class CheckoutController {
         for (ShoppingCart sc : shoppingCartToClear) {
             shoppingCartService.getShoppingCartRepository().delete(sc);
         }
+
+        model.addAttribute("orderReference", orderReference);
 
      return "confirmation";
     }

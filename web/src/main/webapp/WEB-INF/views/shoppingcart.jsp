@@ -62,7 +62,7 @@
                                         <td class="comic-title"><a href="#">${cStock.getIssuesByIssueId().getTitle()}</a>
                                         </td>
                                         <td>
-                                            <input id="qty-input" type="number" value="${shoppingCartItems[status.index].getQuantity()}" class="pull-left form-control">
+                                            ${shoppingCartItems[status.index].getQuantity()}
                                         </td>
                                         <td>R ${cStock.getPrice()}</td>
                                         <td>R ${shoppingCartItems[status.index].getQuantity()*cStock.getPrice()}</td>

@@ -27,7 +27,7 @@
 
 <div class="container">
     <h1 id="orderConfirmation">Your order has been successfully completed!</h1>
-    <h3 id="orderNumber"></h3>
+    <h3 id="orderNumber">Order Reference Number: ${orderReference}</h3>
     <p id="orderDetails">
         A copy of the your order invoice along with the order number will be emailed to you shortly.
         <br>
