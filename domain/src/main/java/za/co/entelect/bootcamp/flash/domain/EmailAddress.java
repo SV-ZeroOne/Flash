@@ -1,8 +1,10 @@
 package za.co.entelect.bootcamp.flash.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import za.co.entelect.bootcamp.flash.domain.interfaces.EntityInterface;
-
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 /**
  * @author kevin.gouws - Created on 2017/02/01.
@@ -10,6 +12,9 @@ import javax.persistence.*;
 @Entity
 public class EmailAddress implements EntityInterface<Integer> {
     private int emailAddressId;
+
+    @NotEmpty(message = "Please enter in a email address")
+    @Email(message = "Please enter in the correct email format")
     private String email;
     private String type;
     private CustomerAccounts customerAccountsByCustomerId;
