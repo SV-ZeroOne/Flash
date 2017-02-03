@@ -445,7 +445,7 @@ ul.dropdown-cart li .item-right{
     font-weight: bold;
 }
 
-#aboutImage{
+#aboutImage {
     margin: auto;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -453,7 +453,9 @@ ul.dropdown-cart li .item-right{
     max-width: 100%;
     height: auto;
     width: 30%;
-    margin-bottom:50px;
+    margin-bottom: 50px;
+}
+
 .header-rule {
     border: 1px solid #b4b4b4;
 }

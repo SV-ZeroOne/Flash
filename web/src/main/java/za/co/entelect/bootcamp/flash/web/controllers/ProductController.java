@@ -18,6 +18,8 @@ import za.co.entelect.bootcamp.flash.services.CustomerAccountService;
 import za.co.entelect.bootcamp.flash.services.ShoppingCartService;
 import za.co.entelect.bootcamp.flash.services.StockService;
 
+import java.util.ArrayList;
+
 /**
  * @author kevin.gouws - Created on 2017/02/01.
  */
@@ -49,7 +51,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/add-to-cart", method = RequestMethod.POST)
-    public String addProductToCart() {
+    public String addProductToCart(Model model) {
 
         // Get customer account using their username
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -70,6 +72,16 @@ public class ProductController {
 
         //persist the cart item to the DB
         shoppingCartService.getShoppingCartRepository().create(cartItem);
+
+
+        ArrayList<Stock> featuredStock = stockService.getStockRepository().getFeaturedComicsStock();
+        ArrayList<Stock> specialStock = stockService.getStockRepository().getSpecialsComicStock();
+        ArrayList<Stock> topStock = stockService.getStockRepository().getTopSellingComicStock();
+        ArrayList<Stock> newStock = stockService.getStockRepository().getNewComicStock();
+        model.addAttribute("featuredStock", featuredStock);
+        model.addAttribute("specialStock", specialStock);
+        model.addAttribute("topStock", topStock);
+        model.addAttribute("newStock", newStock);
 
         return "home";
     }

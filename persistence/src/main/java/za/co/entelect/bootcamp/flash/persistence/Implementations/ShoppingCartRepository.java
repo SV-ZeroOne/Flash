@@ -12,28 +12,23 @@ import java.util.ArrayList;
  */
 public class ShoppingCartRepository extends RepositoryImplementation<Integer, ShoppingCart>
         implements ShoppingCartInterface {
-    /*IF EXISTS ( SELECT * FROM ShoppingCart WHERE StockReferenceID = 251 AND CustomerID = 1005 )
-    UPDATE ShoppingCart
-    SET Quantity = Quantity+1
-    WHERE StockReferenceID = 251 AND CustomerID = 1005;
-    ELSE
-    INSERT INTO ShoppingCart (Quantity, CustomerID, CartItemPrice, StockReferenceID)
-    VALUES ();*/
 
     @Override
     public boolean create(ShoppingCart cartItem) {
+        Query existingItemQuery = entityManager
+                .createQuery("SELECT sc FROM ShoppingCart sc " +
+                        "WHERE sc.stockByStockId.id = :sID AND sc.customerAccountsByCustomerId.id = :cID")
+                .setParameter("sID", cartItem.getStockByStockId().getID())
+                .setParameter("cID", cartItem.getCustomerAccountsByCustomerId().getID());
+
         try {
-            ShoppingCart existingItem = read(cartItem.getID());
-            if (existingItem == null) {
-                super.create(cartItem);
-            } else {
-                cartItem.setQuantity((short) (cartItem.getQuantity()+1));
-                super.update(cartItem);
-            }
+            ShoppingCart existingCartItem = (ShoppingCart) existingItemQuery.getSingleResult();
+            existingCartItem.setQuantity((short) (existingCartItem.getQuantity() + cartItem.getQuantity()));
+            super.update(existingCartItem);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            super.create(cartItem);
+            return true;
         }
     }
 
