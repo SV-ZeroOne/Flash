@@ -19,7 +19,7 @@
 <p>Square Eyes Comic book stores was established in January 2017.</p>
 <p>We aim to stock the widest range of comic books within the South African community.</p>
 <p>Providing you with the some of the cheapest prices online and delivering the best customer service possible.</p>
-    <img id="confirmationImage" src="assets/images/comicbooks.jpg"/>
+    <img id="aboutImage" src="assets/images/comicbooks.jpg"/>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/accountConfirmation").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers("/home").permitAll()
+                .antMatchers("/home*").permitAll()
                 .antMatchers("/#").permitAll()
                 .antMatchers("/catalogue**").permitAll()
                 .antMatchers("/issue**").permitAll()
@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .httpBasic()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/home");
+                .logoutSuccessUrl("/home")
+                .logoutUrl("/logout");
     }
 
 //    @Autowired

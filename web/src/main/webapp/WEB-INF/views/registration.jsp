@@ -93,7 +93,7 @@
 
 
     <div  class="col-md-12 col-sm-12">
-        <input id="reigsterButton" onclick="onSubmit()" type="submit" value="Register"/>
+        <input class="btn btn-default" id="reigsterButton" onclick="onSubmit()" type="submit" value="Register"/>
     </div>
 
 </form:form>

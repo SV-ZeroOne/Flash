@@ -194,7 +194,7 @@ ul.dropdown-cart li .item-right{
 }
 
 #loginForm td{
-    padding: 10px;
+    padding: 5px;
     padding-left: 25px;
     padding-right: 25px;
 }
@@ -214,10 +214,6 @@ ul.dropdown-cart li .item-right{
     padding: 100px;
 }
 
-#loginContainer{
-    padding: 100px;
-    background-color: red;
-}
 
 #aboutContent{
     text-align: center;
@@ -268,4 +264,32 @@ ul.dropdown-cart li .item-right{
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+.navBtn{
+    margin-top: 9px;
+    margin-left: 7px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #5e5e5e;
+}
+
+#loginError{
+    color: red;
+    font-weight: bold;
+}
+
+#aboutImage{
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 100%;
+    height: auto;
+    width: 30%;
+    margin-bottom:50px;
 }

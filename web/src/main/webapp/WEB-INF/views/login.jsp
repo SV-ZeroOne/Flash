@@ -18,13 +18,10 @@
 <h1 id="loginHeading">Login</h1>
 <div id="loginDiv" class="col-md-12 col-sm-12">
 
-<form  name='f' action="login" method='POST'>
-    <c:if test="${param.error != null}">
-        <p>
-            Invalid login details.
-        </p>
-    </c:if>
+<form  name='f' action="/login" method='POST'>
+
     <table id="loginForm">
+
         <tr>
             <td>User:</td>
         </tr>
@@ -38,7 +35,16 @@
             <td><input type='password' name='password' /></td>
         </tr>
         <tr>
-            <td><input id="loginButton" name="submit" type="submit" value="Login" /></td>
+            <td><input class="btn btn-default" id="loginButton" name="submit" type="submit" value="Login"/></td>
+        </tr>
+        <tr>
+            <td>
+                <c:if test="${param.error != null}">
+                    <p id="loginError">
+                        Invalid login details.
+                    </p>
+                </c:if>
+            </td>
         </tr>
         <tr>
             <td>Dont have an account?</td>
