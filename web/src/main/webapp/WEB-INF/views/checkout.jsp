@@ -66,8 +66,9 @@
                     <input maxlength="4" type="text" value="${customerAddress.getPostalCode()}" required="required" class="form-control" placeholder="Enter Postal Code"  />
                 </div>
 
+                <a class="pull-left btn btn-default" href="/home">Cancel</a>
                 <div class="payment-opt dropdown pull-right"><h4 class="btn-header pull-left">Delivery Option - </h4>
-                    <a class="pull-right btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">Continue to Payment <span class="caret"></span></a>
+                    <a class="pull-right btn btn-success dropdown-toggle" data-toggle="dropdown" href="#">Continue to Payment <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/payment-details?deliveryOpt=Collect">Collection - R0.00</a></li>
                         <li><a href="/payment-details?deliveryOpt=Express">Express Delivery - R50.00</a></li>

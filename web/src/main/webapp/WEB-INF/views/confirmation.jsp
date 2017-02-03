@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="text-center">
-                <a id="homePageBtn" href="/home" class="btn btn-primary" type="button">Home Page</a>
+                <a id="homePageBtn" href="/home" class="btn btn-default" type="button">Home Page</a>
             </div>
         </div>
     </div>

@@ -28,54 +28,69 @@
         <div class="box">
             <form class="cart-form" method="" action="">
                 <h1 class="page-header"><span class="glyphicon glyphicon-shopping-cart"></span> Your Shopping Cart</h1>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th colspan="2">Comic</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th colspan="2">Total</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${cartItemsStock}" var="cStock" varStatus="status">
-                        <tr>
-                            <td>
-                                <a href="#">
-                                    <img class="comic-thumb thumbnail" src="${cStock.getIssuesByIssueId().getImageUrl()}" alt="${cStock.getIssuesByIssueId().getTitle()}">
-                                </a>
-                            </td>
-                            <td class="comic-title"><a href="#">${cStock.getIssuesByIssueId().getTitle()}</a>
-                            </td>
-                            <td>
-                                <input id="qty-input" type="number" value="${shoppingCartItems[status.index].getQuantity()}" class="pull-left form-control">
-                            </td>
-                            <td>R ${cStock.getPrice()}</td>
-                            <td>R ${shoppingCartItems[status.index].getQuantity()*cStock.getPrice()}</td>
-                            <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a>
-                            </td>
-                        </tr>
-                        </c:forEach>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th colspan="4">Sub Total</th>
-                            <th colspan="2">R ${subTotal}</th>
-                        </tr>
-                        </tfoot>
-                    </table>
+                <c:choose>
+                    <c:when test="${cartItemsStock.size()==0}">
+                        <div class="row">
+                            <div class="cart-notif col-md-12">
+                                <h3>Your cart is empty :(</h3>
+                                <p class="cart-msg">Start your shopping experience by
+                                    <a class="cart-link" href="/home">browsing our homepage</a> or
+                                    <a class="cart-link" href="/catalogue?page=1&filter=All">viewing our comic catalogue</a>
+                                </p>
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th colspan="2">Comic</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th colspan="2">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${cartItemsStock}" var="cStock" varStatus="status">
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                <img class="comic-thumb thumbnail" src="${cStock.getIssuesByIssueId().getImageUrl()}" alt="${cStock.getIssuesByIssueId().getTitle()}">
+                                            </a>
+                                        </td>
+                                        <td class="comic-title"><a href="#">${cStock.getIssuesByIssueId().getTitle()}</a>
+                                        </td>
+                                        <td>
+                                            <input id="qty-input" type="number" value="${shoppingCartItems[status.index].getQuantity()}" class="pull-left form-control">
+                                        </td>
+                                        <td>R ${cStock.getPrice()}</td>
+                                        <td>R ${shoppingCartItems[status.index].getQuantity()*cStock.getPrice()}</td>
+                                        <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th colspan="4">Sub Total</th>
+                                    <th colspan="2">R ${subTotal}</th>
+                                </tr>
+                                </tfoot>
+                            </table>
 
-                </div>
+                        </div>
 
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <a class="btn btn-default" href="/catalogue"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a>
-                    </div>
-                    <div class="pull-right">
-                        <a type="submit" class="btn btn-primary" href="/checkout">Proceed to checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
-                    </div>
-                </div>
+                        <div class="box-footer">
+                            <div class="pull-left">
+                                <a class="btn btn-default" href="/catalogue?page=1&filter=All"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a>
+                            </div>
+                            <div class="pull-right">
+                                <a type="submit" class="btn btn-success" href="/checkout">Proceed to checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </form>
         </div>
     </div>

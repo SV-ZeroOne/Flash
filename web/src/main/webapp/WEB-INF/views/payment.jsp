@@ -26,7 +26,7 @@
 
 <div class="container">
     <div class="row setup-content" id="recipient-details">
-        <h3 class="page-header">Order Summary</h3>
+        <h2 class="page-header">Order Summary</h2>
         <div class="col-md-6">
             <h4>Recipient</h4>
             <dl>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="row setup-content" id="order-details">
-        <h3 class="page-header">Cart Items</h3>
+        <h2 class="page-header">Cart Items</h2>
         <div class="col-md-12">
             <div class="table-responsive">
                 <table class="table">
@@ -108,7 +108,7 @@
 
     <form:form role="form" action="/place-order" method="post" class="payment-input">
         <div class="row setup-content" id="payment-details">
-            <h3 class="page-header">Payment Details</h3>
+            <h2 class="page-header">Payment Details</h2>
             <div class="col-md-12">
                 <label class="radio-inline"><input type="radio" name="optradio" checked="checked">Visa</label>
                 <label class="radio-inline"><input type="radio" name="optradio">Mastercard</label>
@@ -161,7 +161,8 @@
                 </div>
             </div>
         </div>
-        <input class="btn btn-success btn-lg pull-right" type="submit" value="Pay & Place Order" />
+        <a class="pull-left btn btn-default" href="/home">Cancel</a>
+        <input class="btn btn-success pull-right" type="submit" value="Pay & Place Order" />
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form:form>
 </div>
