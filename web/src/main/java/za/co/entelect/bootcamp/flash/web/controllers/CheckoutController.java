@@ -153,7 +153,7 @@ public class CheckoutController {
     @RequestMapping(value = "/place-order", method = RequestMethod.POST)
     public String placeOrder() {
         CustomerOrders customerOrder = new CustomerOrders();
-        customerOrder.setOrderAmount(new BigDecimal(orderCost));
+        customerOrder.setOrderAmount(BigDecimal.valueOf(orderCost));
         customerOrder.setOrderDate(new Timestamp(System.currentTimeMillis()));
         customerOrder.setOrderReference(customerAccount.getID() + "-" + customerOrder.getOrderDate());
         customerOrder.setOrderAddress1(customerAddress.getAddress1());
@@ -169,8 +169,19 @@ public class CheckoutController {
         customerOrder.setOrderStatus("Pending");
         customerOrder.setCustomerAccountsByCustomerId(customerAccount);
 
+        // Persist Order
         customerOrderService.getCustomerOrdersRepository().create(customerOrder);
 
-     return "home";
+
+        // Clear Shopping Cart
+        ArrayList<ShoppingCart> shoppingCartToClear = shoppingCartService
+                .getShoppingCartRepository()
+                .getUserCartItems(customerAccount.getID());
+
+        for (ShoppingCart sc : shoppingCartToClear) {
+            shoppingCartService.getShoppingCartRepository().delete(sc);
+        }
+
+     return "confirmation";
     }
 }

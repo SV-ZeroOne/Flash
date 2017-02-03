@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <form role="form" action="/place-order" method="post" class="payment-input">
+    <form:form role="form" action="/place-order" method="post" class="payment-input">
         <div class="row setup-content" id="payment-details">
             <h3 class="page-header">Payment Details</h3>
             <div class="col-md-12">
@@ -162,7 +162,8 @@
             </div>
         </div>
         <input class="btn btn-success btn-lg pull-right" type="submit" value="Pay & Place Order" />
-    </form>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form:form>
 </div>
 
 <jsp:include page="footer.jsp"/>
