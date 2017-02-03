@@ -30,7 +30,7 @@
         <div class="col-md-4">
             <h1>404 Page Not Found.</h1>
             <br/>
-            <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
+            <p><b>Error code:</b> 500</p>
             <p><b>Request URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
             <br/>
             <button onclick="history.back()">Back to Previous Page</button>
