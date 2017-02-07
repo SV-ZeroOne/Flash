@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ComicStock.Models
+namespace ComicStock.WebAPI.Models
 {
     public class CreatorDTO
     {
-        public string Name { get; set; }
     }
 }

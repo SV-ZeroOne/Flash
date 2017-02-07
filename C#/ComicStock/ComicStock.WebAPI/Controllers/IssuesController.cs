@@ -1,35 +1,42 @@
-﻿using System;
+﻿using ComicStock.WebAPI.Models;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
-using ComicStock.Models;
+using System.Web.Http.Description;
 
-namespace ComicStock.Controllers
+namespace ComicStock.WebAPI.Controllers
 {
     public class IssuesController : ApiController
     {
-        private IList<IssueDTO> Issues;
 
-        public IssuesController()
+        IssueRepository issueRepository;
+   
+        [ResponseType(typeof(IEnumerable<IssueDTO>))]
+        public IHttpActionResult Get()
         {
-            string filePath = AppDomain.CurrentDomain.GetData("DataDirectory").ToString() + "\\Issues.json";
-            //this.Issues = new JavaScriptSerializer().Deserialize<IList<IssueDTO>>(File.ReadAllText(filePath));
-        }
-
-        public IHttpActionResult get(string search)
-        {
-            return Ok(Issues.Where(x => x.Title.Contains(search)));
-        }
-        
-        public IHttpActionResult get(int id)
-        {
-            return Ok(Issues.FirstOrDefault(x => x.Id == id));
+            issueRepository = new IssueRepository();
+            return Ok(issueRepository.GetAll());
         }
 
-        public IHttpActionResult get()
+
+  
+        public IHttpActionResult Get(int id)
         {
-            return Ok(Issues);
+            issueRepository = new IssueRepository();
+            return Ok(issueRepository.GetById(id));
         }
+
+
+        [ResponseType(typeof(IEnumerable<IssueDTO>))]
+        [Route("api/Issues/search")]
+        public IHttpActionResult Search(string title)
+        {
+            issueRepository = new IssueRepository();
+            return Ok(issueRepository.SearchByTitle(title));
+        }
+
     }
 }
