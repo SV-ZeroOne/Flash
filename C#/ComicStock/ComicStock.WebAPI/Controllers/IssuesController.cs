@@ -1,4 +1,6 @@
-﻿using ComicStock.WebAPI.Models;
+﻿using ComicStock.Data;
+using ComicStock.Domain;
+using ComicStock.WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             issueRepository = new IssueRepository();
+            
             return Ok(issueRepository.GetAll());
         }
 
@@ -27,15 +30,6 @@ namespace ComicStock.WebAPI.Controllers
         {
             issueRepository = new IssueRepository();
             return Ok(issueRepository.GetById(id));
-        }
-
-
-        [ResponseType(typeof(IEnumerable<IssueDTO>))]
-        [Route("api/Issues/search")]
-        public IHttpActionResult Search(string title)
-        {
-            issueRepository = new IssueRepository();
-            return Ok(issueRepository.SearchByTitle(title));
         }
 
     }

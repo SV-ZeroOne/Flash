@@ -6,7 +6,6 @@ namespace ComicStock.Domain
     using System.ComponentModel.DataAnnotations.Schema;
     public partial class Issue
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Issue()
         {
             ComicCreators = new HashSet<ComicCreator>();
@@ -30,16 +29,12 @@ namespace ComicStock.Domain
 
         public string Description { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComicCreator> ComicCreators { get; set; }
+        public virtual ICollection<ComicCreator> ComicCreators { get;  }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual ICollection<Stock> Stocks { get; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SupplierQuote> SupplierQuotes { get; set; }
+        public virtual ICollection<SupplierQuote> SupplierQuotes { get;  }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IssueOrder> IssueOrders { get; set; }
+        public virtual ICollection<IssueOrder> IssueOrders { get;  }
     }
 }

@@ -9,7 +9,7 @@ namespace ComicStock.Data
     public interface IRepository<TEntity>
         where TEntity :class
     {
-        IQueryable<TEntity> GetById(int id);
+
         IQueryable<TEntity> GetAll();
 
         void Add(TEntity entity);

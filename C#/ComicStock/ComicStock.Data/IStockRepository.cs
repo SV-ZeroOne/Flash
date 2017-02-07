@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ComicStock.Data
+{ 
+    public interface IStockRepository : IRepository<Stock>
 {
-    public interface IIssueRepository : IRepository<Issue>
-    {
-    }
+    
+}
 }

@@ -33,12 +33,7 @@ namespace ComicStock.Data
             return query;
         }
 
-        public IQueryable<TEntity> GetById(int id)
-        {
-            // IQueryable<TEntity> query = entities.Set<TEntity>()Where
-            return null; 
-        }
-
+ 
         public void Update(TEntity entity)
         {
          //   entities.Entry(entity).State = System.Data.EntityState.Modified;

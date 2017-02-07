@@ -11,10 +11,12 @@ namespace ComicStock.Data
 {
     public class IssueRepository : Repository<ComicContext, Issue>, IIssueRepository
     {
-        Issue IIssueRepository.GetById(int issueID)
+        public Issue GetById(int issueID)
         {
             var query = context.Issues.FirstOrDefault(i => i.ID == issueID);
             return query;
         }
+
+    
     }
 }
