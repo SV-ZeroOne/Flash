@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComicStock.WebAPI.Models
+namespace ComicStock.Data
 {
     interface IIssueRepository
     {
-        IEnumerable<IssueDTO> GetAll();
-        IssueDTO GetById(int id);
 
-        IEnumerable<IssueDTO> SearchByTitle(String title);
+        //IEnumerable<Issue> SearchByTitle(String title);
 
     }
 }

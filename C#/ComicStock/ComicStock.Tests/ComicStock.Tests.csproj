@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -52,6 +56,28 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComicStock.API\ComicStock.API.csproj">
+      <Project>{07c0f588-0a85-4f18-8d7d-479d3287c637}</Project>
+      <Name>ComicStock.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComicStock.Data\ComicStock.Data.csproj">
+      <Project>{05cdb60f-d6dd-48d3-815b-bc14c98d3605}</Project>
+      <Name>ComicStock.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComicStock.Domain\ComicStock.Domain.csproj">
+      <Project>{15ffe031-9fda-4058-a96f-3bde7813b7c8}</Project>
+      <Name>ComicStock.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComicStock.WebAPI\ComicStock.WebAPI.csproj">
+      <Project>{513c22a0-5c3a-4c56-ab22-3cd0226b4177}</Project>
+      <Name>ComicStock.WebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

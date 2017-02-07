@@ -18,7 +18,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             issueRepository = new IssueRepository();
-            return Ok(issueRepository.GetAll());
+            return Ok();
         }
 
 
@@ -26,7 +26,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get(int id)
         {
             issueRepository = new IssueRepository();
-            return Ok(issueRepository.GetById(id));
+            return Ok();
         }
 
 
@@ -35,7 +35,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Search(string title)
         {
             issueRepository = new IssueRepository();
-            return Ok(issueRepository.SearchByTitle(title));
+            return Ok();
         }
 
     }
