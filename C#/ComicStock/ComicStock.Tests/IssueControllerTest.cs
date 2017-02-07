@@ -1,12 +1,11 @@
 ﻿using ComicStock.WebAPI.Controllers;
+using ComicStock.WebAPI.Models;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
 
 namespace ComicStock.Tests.Contollers
 {
@@ -18,9 +17,9 @@ namespace ComicStock.Tests.Contollers
         {
             var controller = new IssuesController();
 
-            var issueDTO = controller.Get(1);
+            var issueDTO = new IssueDTO();// controller.Get(1);
 
-            Assert.IsNotNull(IssueDTO);
+            Assert.IsNotNull(issueDTO);
             Assert.AreEqual(1, issueDTO);
 
 

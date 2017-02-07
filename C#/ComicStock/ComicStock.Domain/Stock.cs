@@ -1,0 +1,27 @@
+namespace ComicStock.Data
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("Stock")]
+    public partial class Stock
+    {
+        [Key]
+        public int StockReferenceID { get; set; }
+
+        public int? IssueID { get; set; }
+
+        [StringLength(10)]
+        public string Condition { get; set; }
+
+        public short? AvailableQty { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? Price { get; set; }
+
+        public virtual Issue Issue { get; set; }
+    }
+}
