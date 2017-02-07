@@ -5,7 +5,6 @@ namespace ComicStock.Domain
 
     public partial class Creator
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Creator()
         {
             ComicCreators = new HashSet<ComicCreator>();
@@ -25,7 +24,6 @@ namespace ComicStock.Domain
         [StringLength(256)]
         public string EmailAddress { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComicCreator> ComicCreators { get; set; }
     }
 }
