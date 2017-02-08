@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
 
 namespace ComicStock.WebAPI.Controllers
 {
@@ -20,8 +22,6 @@ namespace ComicStock.WebAPI.Controllers
     public IHttpActionResult Get()
     {
         stockRepository = new StockRepository();
-
-
             var stocks = from s in stockRepository.GetAll()
                          select new StockDTO()
                          {
@@ -30,18 +30,34 @@ namespace ComicStock.WebAPI.Controllers
                              Condition = s.Condition,
                              Price = s.Price,
                              AvailableQuantity = s.AvailableQty
-
                          };
-                    
         return Ok(stocks);
-
     }
 
     public IHttpActionResult Get(int id)
     {
         stockRepository = new StockRepository();
-        return Ok(stockRepository.GetById(id));
+            Stock s = stockRepository.GetById(id);
+            StockDTO dto = new StockDTO()
+            {
+                Id = s.ID,
+                issueID =s.IssueID,
+                Price =s.Price,
+                Condition = s.Condition,
+                AvailableQuantity =s.AvailableQty
+            
+            };
+        return Ok(dto);
     }
 
-}
+        [HttpPost]
+        public IHttpActionResult Add([FromBody] string stock)
+        {
+            Stock s = JsonConvert.DeserializeObject<Stock>(stock);
+            stockRepository = new StockRepository();
+            stockRepository.Add(s);
+            return Ok();
+        }
+
+    }
 }
