@@ -52,6 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComicContext.cs" />
+    <Compile Include="ContextConfiguration\ComicCreatorConfiguration.cs" />
+    <Compile Include="ContextConfiguration\CreatorConfiguration.cs" />
+    <Compile Include="ContextConfiguration\IssueConfiguration.cs" />
+    <Compile Include="ContextConfiguration\OrderConfiguration.cs" />
+    <Compile Include="ContextConfiguration\StockConfiguration.cs" />
+    <Compile Include="ContextConfiguration\SupplierConfiguration.cs" />
+    <Compile Include="ContextConfiguration\SupplierPaymentConfiguration.cs" />
+    <Compile Include="ContextConfiguration\SupplierQuoteConfiguration.cs" />
+    <Compile Include="ContextConfiguration\VoucherConfiguration.cs" />
     <Compile Include="IIssueRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IssueRepository.cs" />

@@ -6,6 +6,7 @@ namespace ComicStock.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Runtime.Remoting.Contexts;
+    using ContextConfiguration;
 
     public partial class ComicContext : DbContext
     {
@@ -26,114 +27,23 @@ namespace ComicStock.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ComicCreator>()
-                .Property(e => e.CreatorRole)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new ComicCreatorConfiguration());
 
-            modelBuilder.Entity<Creator>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new IssueConfiguration());
 
-            modelBuilder.Entity<Creator>()
-                .Property(e => e.CountryOfResidence)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new CreatorConfiguration());
 
-            modelBuilder.Entity<Creator>()
-                .Property(e => e.EmailAddress)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new OrderConfiguration());
 
-            modelBuilder.Entity<Creator>()
-                .HasMany(e => e.ComicCreators)
-                .WithRequired(e => e.Creator)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Configurations.Add(new StockConfiguration());
 
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Title)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new SupplierPaymentConfiguration());
 
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Publisher)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new SupplierQuoteConfiguration());
 
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Description)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new SupplierConfiguration());
 
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.ComicCreators)
-                .WithRequired(e => e.Issue)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.SupplierQuotes)
-                .WithRequired(e => e.Issue)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.IssueOrders)
-                .WithRequired(e => e.Issue)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Total)
-                .HasPrecision(8, 2);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.ShipmentRef)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.DeliveryStatus)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.IssueOrders)
-                .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Stock>()
-                .Property(e => e.Condition)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Stock>()
-                .Property(e => e.Price)
-                .HasPrecision(8, 2);
-
-            modelBuilder.Entity<SupplierPayment>()
-                .Property(e => e.Total)
-                .HasPrecision(8, 2);
-
-            modelBuilder.Entity<SupplierQuote>()
-                .Property(e => e.Price)
-                .HasPrecision(8, 2);
-
-            modelBuilder.Entity<SupplierQuote>()
-                .HasMany(e => e.IssueOrders)
-                .WithRequired(e => e.SupplierQuote)
-                .HasForeignKey(e => e.QuoteID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Supplier>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Supplier>()
-                .Property(e => e.City)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Supplier>()
-                .Property(e => e.ReferenceNumber)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Supplier>()
-                .HasMany(e => e.SupplierQuotes)
-                .WithRequired(e => e.Supplier)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Voucher>()
-                .Property(e => e.Code)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new VoucherConfiguration());
         }
     }
 }
