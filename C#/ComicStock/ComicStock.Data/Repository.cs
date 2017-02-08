@@ -20,6 +20,7 @@ namespace ComicStock.Data
         public virtual void Add(TEntity entity)
         {
             entities.Set<TEntity>().Add(entity);
+            entities.SaveChanges();
         }
 
         public virtual void Delete(int key)

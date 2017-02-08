@@ -21,7 +21,7 @@ namespace ComicStock.WebAPI.Models
 
     //    public List<CreatorDTO> Creators { get; set; }
 
-        public ICollection<StockDTO> Stock { get; set; }
+        public IEnumerable<StockDTO> Stock { get; set; }
 
         public IssueDTO() { }
 
