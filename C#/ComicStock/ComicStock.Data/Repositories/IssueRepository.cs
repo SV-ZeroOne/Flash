@@ -18,6 +18,5 @@ namespace ComicStock.Data.Repositories
             return query;
         }
 
-    
     }
 }

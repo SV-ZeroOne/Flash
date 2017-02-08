@@ -25,6 +25,10 @@ namespace ComicStock.Data.ContextConfiguration
             this.HasMany(e => e.IssueOrders)
                    .WithRequired(e => e.Order)
                    .WillCascadeOnDelete(false);
+
+            this.HasMany(e => e.SupplierPayments)
+                   .WithRequired(e => e.Order)
+                   .WillCascadeOnDelete(false);
         }
 
     }
