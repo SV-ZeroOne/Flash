@@ -9,6 +9,6 @@ namespace ComicStock.Data.IRepositories
 { 
     public interface IStockRepository : IRepository<Stock>
     {
-    
+        Stock GetById(int stockID);
     }
 }

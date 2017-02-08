@@ -1,4 +1,5 @@
 ﻿using ComicStock.Data;
+using ComicStock.Data.IRepositories;
 using ComicStock.Data.Repositories;
 using ComicStock.Domain;
 using ComicStock.WebAPI.Models;
@@ -15,7 +16,7 @@ namespace ComicStock.WebAPI.Controllers
     public class IssuesController : ApiController
     {
 
-        private readonly IssueRepository issueRepository;
+        private readonly IIssueRepository issueRepository;
 
         public IssuesController(IssueRepository issueRepository)
         {

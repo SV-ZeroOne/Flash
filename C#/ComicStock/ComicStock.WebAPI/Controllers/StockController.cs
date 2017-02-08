@@ -12,11 +12,12 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Newtonsoft.Json;
 using ComicStock.Data.Repositories;
+using ComicStock.Data.IRepositories;
 
 namespace ComicStock.WebAPI.Controllers
 {
     public class StockController : ApiController { 
-    private readonly StockRepository stockRepository;
+    private readonly IStockRepository stockRepository;
 
         public StockController(StockRepository stockRepository)
         {
