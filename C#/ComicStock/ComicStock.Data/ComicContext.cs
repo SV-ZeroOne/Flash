@@ -48,23 +48,7 @@ namespace ComicStock.Data
                 .WithRequired(e => e.Creator)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Total)
-                .HasPrecision(8, 2);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.ShipmentRef)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.DeliveryStatus)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
-                .HasMany(e => e.IssueOrders)
-                .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Configurations.Add(new OrderConfiguration());
 
             modelBuilder.Entity<Stock>()
                 .Property(e => e.Condition)
