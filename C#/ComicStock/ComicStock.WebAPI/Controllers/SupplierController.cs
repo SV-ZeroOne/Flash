@@ -24,11 +24,23 @@ namespace ComicStock.WebAPI.Controllers
 
         public IHttpActionResult Get(int id)
         {
-
+            SupplierDTO dto = null;
             Supplier supplier = supplierRepository.GetById(id);
-            SupplierDTO dto = new SupplierDTO(supplier);
-       
-            return Ok(dto);
+            if (supplier != null)
+            {
+                 dto = new SupplierDTO(supplier);
+            }
+            if (dto != null)
+            {
+                return Ok(dto);
+            }
+
+            return new System.Web.Http.Results.ResponseMessageResult(
+                Request.CreateErrorResponse(
+                    (HttpStatusCode)204,
+                    new HttpError("Supplier Not Found")
+                )
+            );
         }
 
         [ResponseType(typeof(IEnumerable<SupplierDTO>))]
@@ -60,9 +72,11 @@ namespace ComicStock.WebAPI.Controllers
         {
         }
 
-        // DELETE: api/Supplier/5
-        public void Delete(int id)
+  
+        public IHttpActionResult Delete(int id)
         {
+            supplierRepository.Delete(id);
+            return Ok();
         }
     }
 }

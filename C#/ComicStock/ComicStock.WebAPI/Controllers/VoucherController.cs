@@ -33,10 +33,23 @@ namespace ComicStock.WebAPI.Controllers
 
         public IHttpActionResult Get(int id)
         {
+            VoucherDTO dto = null;
             Voucher voucher = voucherRepository.GetById(id);
-            VoucherDTO dto = new VoucherDTO(voucher);
+            if (voucher != null)
+            {
+             dto = new VoucherDTO(voucher);
+            }
+            if (dto != null)
+            {
+                return Ok(dto);
+            }
 
-            return Ok(dto);
+            return new System.Web.Http.Results.ResponseMessageResult(
+                Request.CreateErrorResponse(
+                    (HttpStatusCode)204,
+                    new HttpError("Voucher Not Found")
+                )
+            );
         }
 
         [HttpPost]
@@ -59,10 +72,11 @@ namespace ComicStock.WebAPI.Controllers
         {
         }
 
-        // DELETE: api/Voucher/5
-        public void Delete(int id)
-        {
 
+        public IHttpActionResult Delete(int id)
+        {
+            voucherRepository.Delete(id);
+            return Ok();
         }
     }
 }

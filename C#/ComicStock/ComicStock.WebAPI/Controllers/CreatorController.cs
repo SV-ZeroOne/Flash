@@ -34,10 +34,23 @@ namespace ComicStock.WebAPI.Controllers
 
         public IHttpActionResult Get(int id)
         {
+            CreatorDTO dto = null;
 
             Creator c = this.creatorRepository.GetById(id);
-            CreatorDTO dto = new CreatorDTO(c);
-            return Ok(dto);
+            if (c != null) { 
+            dto = new CreatorDTO(c);
+            }
+           if(dto!=null)
+           {
+              return Ok(dto);
+           }
+
+            return new System.Web.Http.Results.ResponseMessageResult(
+                Request.CreateErrorResponse(
+                    (HttpStatusCode)204,
+                    new HttpError("Creator Not Found")
+                )
+            );
         }
 
         [HttpPost]
@@ -56,16 +69,15 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(newCreator.ID);
         }
 
-
-
         // PUT: api/Creator/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Creator/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            creatorRepository.Delete(id);
+            return Ok();
         }
     }
 }

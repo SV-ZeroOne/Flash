@@ -35,11 +35,24 @@ namespace ComicStock.WebAPI.Controllers
 
     public IHttpActionResult Get(int id)
     {
-      
+            StockDTO dto = null;
             Stock s = this.stockRepository.GetById(id);
-            StockDTO dto = new StockDTO(s);
-        return Ok(dto);
-    }
+            if (s != null)
+            {
+                dto = new StockDTO(s);
+            }
+            if (dto != null)
+            {
+                return Ok(dto);
+            }
+
+            return new System.Web.Http.Results.ResponseMessageResult(
+                Request.CreateErrorResponse(
+                    (HttpStatusCode)204,
+                    new HttpError("Stock Not Found")
+                )
+            );
+        }
 
         [HttpPost]
         public IHttpActionResult Post([FromBody]StockDTO stock)
@@ -69,6 +82,12 @@ namespace ComicStock.WebAPI.Controllers
             }
             return Ok();
 
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            stockRepository.Delete(id);
+            return Ok();
         }
 
     }
