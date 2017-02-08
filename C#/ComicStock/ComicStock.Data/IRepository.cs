@@ -10,8 +10,8 @@ namespace ComicStock.Data
         where TEntity :class
     {
 
-        IQueryable<TEntity> GetAll();
-
+        //IQueryable<TEntity> GetAll();
+        IEnumerable<TEntity> GetPage(int page, int pageSize);
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(int key);

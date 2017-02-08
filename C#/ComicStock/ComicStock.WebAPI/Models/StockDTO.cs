@@ -16,7 +16,7 @@ namespace ComicStock.WebAPI.Models
         public short? AvailableQuantity { get; set; }
         public decimal? Price { get; set; }
 
-        public StockDTO() { }
+        private StockDTO() { }
 
         public StockDTO(Stock stock)
         {

@@ -23,7 +23,7 @@ namespace ComicStock.WebAPI.Models
 
         public IEnumerable<StockDTO> Stock { get; set; }
 
-        public IssueDTO() { }
+        private IssueDTO() { }
 
         public IssueDTO(Issue issue)
         {

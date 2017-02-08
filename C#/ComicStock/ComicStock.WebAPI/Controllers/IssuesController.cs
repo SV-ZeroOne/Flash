@@ -18,37 +18,21 @@ namespace ComicStock.WebAPI.Controllers
 
         private readonly IIssueRepository issueRepository;
 
-        public IssuesController(IssueRepository issueRepository)
+        public IssuesController(IIssueRepository issueRepository)
         {
             this.issueRepository = issueRepository;
         }
    
         [ResponseType(typeof(IEnumerable<IssueDTO>))]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int page, int pageSize)
         {
-            
 
-            var issues = from i in issueRepository.GetAll()
-                         select new IssueDTO()
-                         {
-                             Id = i.ID,
-                             Description = i.Description,
-                             PublicationDate = i.PublicationDate,
-                             Publisher = i.Publisher,
-                             SeriesNumber = i.SeriesNumber,
-                             Title = i.Title,
-                             Stock = from x in i.Stocks select new StockDTO()
-                             {
-                                 Id = x.ID,
-                                 AvailableQuantity = x.AvailableQty,
-                                 Condition = x.Condition,
-                                 issueID = x.IssueID,
-                                 Price = x.Price
+            var issuesDomain = issueRepository.GetPage(page, pageSize);
 
-                             },
-                                                         
-
-                         };
+            IEnumerable<IssueDTO> issues = issuesDomain.Select(i => new IssueDTO(i)
+            {
+                Stock = i.Stocks.Select(s => new StockDTO(s))
+            });
 
             return Ok(issues);
         }
@@ -59,23 +43,10 @@ namespace ComicStock.WebAPI.Controllers
         {
            
             Issue issue = issueRepository.GetById(id);
-            IssueDTO dto = new IssueDTO()
+            IssueDTO dto = new IssueDTO(issue)
             {
-                Id = issue.ID,
-                Publisher = issue.Publisher,
-                PublicationDate = issue.PublicationDate,
-                SeriesNumber = issue.SeriesNumber,
-                Description = issue.Description,
-                Title = issue.Title,
                 Stock = from x in issue.Stocks
-                  select new StockDTO()
-                   {
-                      Id = x.ID,
-                      AvailableQuantity = x.AvailableQty,
-                      Condition = x.Condition,
-                      issueID = x.IssueID,
-                      Price = x.Price
-                   },
+                  select new StockDTO(x)
             };
             return Ok(dto);
         }

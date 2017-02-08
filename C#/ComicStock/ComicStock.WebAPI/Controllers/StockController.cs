@@ -19,24 +19,17 @@ namespace ComicStock.WebAPI.Controllers
     public class StockController : ApiController { 
     private readonly IStockRepository stockRepository;
 
-        public StockController(StockRepository stockRepository)
+        public StockController(IStockRepository stockRepository)
         {
             this.stockRepository = stockRepository;
         }
 
     [ResponseType(typeof(IQueryable<StockDTO>))]
-    public IHttpActionResult Get()
+    public IHttpActionResult Get(int page, int pageSize)
     {
-     
-            var stocks = from s in this.stockRepository.GetAll()
-                         select new StockDTO()
-                         {
-                             Id = s.ID,
-                             issueID = s.IssueID,
-                             Condition = s.Condition,
-                             Price = s.Price,
-                             AvailableQuantity = s.AvailableQty
-                         };
+
+            var stocks = from s in this.stockRepository.GetPage(page, pageSize)
+                         select new StockDTO(s);
         return Ok(stocks);
     }
 
@@ -44,15 +37,7 @@ namespace ComicStock.WebAPI.Controllers
     {
       
             Stock s = this.stockRepository.GetById(id);
-            StockDTO dto = new StockDTO()
-            {
-                Id = s.ID,
-                issueID =s.IssueID,
-                Price =s.Price,
-                Condition = s.Condition,
-                AvailableQuantity =s.AvailableQty
-            
-            };
+            StockDTO dto = new StockDTO(s);
         return Ok(dto);
     }
 

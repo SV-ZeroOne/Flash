@@ -7,20 +7,23 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data
 {
-    public abstract class Repository<TContext, TEntity> : IRepository<TEntity>
-          where TEntity : class where TContext : ComicContext, new()
+    public abstract class Repository<TContext, TEntity>
+          where TEntity : class
     {
-        private TContext entities = new TContext();
-        public TContext context
-        {
-            get { return entities; }
-            set { entities = value; }
+        protected Repository(ComicContext context) {
+            this.context = context;
         }
+        protected ComicContext context;
+        //public TContext context
+        //{
+        //    get { return entities; }
+        //    set { entities = value; }
+        //}
 
         public virtual void Add(TEntity entity)
         {
-            entities.Set<TEntity>().Add(entity);
-            entities.SaveChanges();
+            context.Set<TEntity>().Add(entity);
+            context.SaveChanges();
         }
 
         public virtual void Delete(int key)
@@ -28,13 +31,15 @@ namespace ComicStock.Data
            // entities.Set<TEntity>().Remove(entity);
         }
 
-        public virtual IQueryable<TEntity> GetAll()
+        protected IEnumerable<TEntity> GetPage(IQueryable<TEntity> entity, int page, int pageSize)
         {
-            IQueryable<TEntity> query = entities.Set<TEntity>();
-            return query;
+            return entity
+                .Skip(pageSize * page)
+                .Take(pageSize)
+                .ToList();
         }
 
- 
+
         public void Update(TEntity entity)
         {
          //   entities.Entry(entity).State = System.Data.EntityState.Modified;

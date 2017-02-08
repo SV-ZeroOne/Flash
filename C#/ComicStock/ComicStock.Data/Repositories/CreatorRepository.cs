@@ -10,6 +10,15 @@ namespace ComicStock.Data.Repositories
 {
     public class CreatorRepository : Repository<ComicContext, Creator>, ICreatorRepository
     {
+        public CreatorRepository(ComicContext context): base(context)
+        {
+
+        }
+        public IEnumerable<Creator> GetPage(int page, int pageSize)
+        {
+            var creators = this.context.Creators.AsQueryable().OrderBy(x => x.Name);
+            return base.GetPage(creators, page, pageSize);
+        }
     }
 }
 
