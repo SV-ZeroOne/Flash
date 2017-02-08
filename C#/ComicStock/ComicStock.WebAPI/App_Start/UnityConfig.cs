@@ -12,7 +12,6 @@ namespace ComicStock.WebAPI
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-            container.RegisterType<IIssueRepository, IssueRepository>(new HierarchicalLifetimeManager());
             container.AddExtension(new DataUnityContainerExtension());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
 

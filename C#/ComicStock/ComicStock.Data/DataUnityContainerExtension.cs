@@ -15,6 +15,7 @@ namespace ComicStock.Data
         {
             this.Container.RegisterType<ComicContext>();
             this.Container.RegisterType<IIssueRepository, IssueRepository>(new HierarchicalLifetimeManager());
+
         }
 
     }

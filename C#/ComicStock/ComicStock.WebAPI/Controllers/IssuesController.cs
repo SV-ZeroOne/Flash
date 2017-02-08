@@ -15,12 +15,17 @@ namespace ComicStock.WebAPI.Controllers
     public class IssuesController : ApiController
     {
 
-        IssueRepository issueRepository;
+        private readonly IssueRepository issueRepository;
+
+        public IssuesController(IssueRepository issueRepository)
+        {
+            this.issueRepository = issueRepository;
+        }
    
         [ResponseType(typeof(IEnumerable<IssueDTO>))]
         public IHttpActionResult Get()
         {
-            issueRepository = new IssueRepository();
+            
 
             var issues = from i in issueRepository.GetAll()
                          select new IssueDTO()
@@ -51,7 +56,7 @@ namespace ComicStock.WebAPI.Controllers
   
         public IHttpActionResult Get(int id)
         {
-            issueRepository = new IssueRepository();
+           
             Issue issue = issueRepository.GetById(id);
             IssueDTO dto = new IssueDTO()
             {
