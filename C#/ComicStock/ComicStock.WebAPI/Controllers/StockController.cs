@@ -11,18 +11,23 @@ using Newtonsoft;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Newtonsoft.Json;
+using ComicStock.Data.Repositories;
 
 namespace ComicStock.WebAPI.Controllers
 {
     public class StockController : ApiController { 
-    StockRepository stockRepository;
+    private readonly StockRepository stockRepository;
 
+        public StockController(StockRepository stockRepository)
+        {
+            this.stockRepository = stockRepository;
+        }
 
     [ResponseType(typeof(IQueryable<StockDTO>))]
     public IHttpActionResult Get()
     {
-        stockRepository = new StockRepository();
-            var stocks = from s in stockRepository.GetAll()
+     
+            var stocks = from s in this.stockRepository.GetAll()
                          select new StockDTO()
                          {
                              Id = s.ID,
@@ -36,8 +41,8 @@ namespace ComicStock.WebAPI.Controllers
 
     public IHttpActionResult Get(int id)
     {
-        stockRepository = new StockRepository();
-            Stock s = stockRepository.GetById(id);
+      
+            Stock s = this.stockRepository.GetById(id);
             StockDTO dto = new StockDTO()
             {
                 Id = s.ID,
@@ -53,7 +58,16 @@ namespace ComicStock.WebAPI.Controllers
         
         public IHttpActionResult Post([FromBody]StockDTO stock)
         {
-            return Ok();
+                     
+            Stock newStock = new Stock();
+            newStock.Condition = stock.Condition;
+            newStock.IssueID = stock.issueID;
+            newStock.Price = stock.Price;
+            newStock.AvailableQty = stock.AvailableQuantity;
+           
+            this.stockRepository.Add(newStock);           
+
+            return Ok(newStock.ID);
         }
 
     }
