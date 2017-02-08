@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComicStock.Data
+namespace ComicStock.Data.IRepositories
 {
-    public interface IIssueRepository : IRepository<Issue>
+    public interface ISupplierRepository : IRepository<Supplier>
     {
+
     }
+
 }

@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComicStock.Data
-{ 
-    public interface IStockRepository : IRepository<Stock>
+namespace ComicStock.Data.IRepositories
 {
-    
-}
+    public interface IIssueRepository : IRepository<Issue>
+    {
+    }
 }

@@ -1,4 +1,5 @@
-﻿using ComicStock.Domain;
+﻿using ComicStock.Data.IRepositories;
+using ComicStock.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿using ComicStock.Domain;
+﻿using ComicStock.Data.IRepositories;
+using ComicStock.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComicStock.Data
+namespace ComicStock.Data.Repositories
 {
     public class IssueRepository : Repository<ComicContext, Issue>, IIssueRepository
     {
