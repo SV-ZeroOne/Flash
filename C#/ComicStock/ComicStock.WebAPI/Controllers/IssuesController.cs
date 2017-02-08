@@ -20,8 +20,30 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             issueRepository = new IssueRepository();
-            
-            return Ok(issueRepository.GetAll());
+
+            var issues = from i in issueRepository.GetAll()
+                         select new IssueDTO()
+                         {
+                             Id = i.ID,
+                             Description = i.Description,
+                             PublicationDate = i.PublicationDate,
+                             Publisher = i.Publisher,
+                             SeriesNumber = i.SeriesNumber,
+                             Title = i.Title,
+                             Stock = from x in i.Stocks select new StockDTO()
+                             {
+                                 Id = x.ID,
+                                 AvailableQuantity = x.AvailableQty,
+                                 Condition = x.Condition,
+                                 issueID = x.IssueID,
+                                 Price = x.Price
+
+                             },
+                                                         
+
+                         };
+
+            return Ok(issues);
         }
 
 

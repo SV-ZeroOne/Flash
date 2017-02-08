@@ -21,6 +21,7 @@ namespace ComicStock.Domain
         [Column(TypeName = "numeric")]
         public decimal? Price { get; set; }
 
+        public virtual Issue Issue { get; set; }
       
     }
 }

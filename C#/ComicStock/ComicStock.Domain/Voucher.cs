@@ -9,17 +9,17 @@ namespace ComicStock.Domain
     public partial class Voucher
     {
         [Key]
-        [Column(Order = 0)]
- //       [DatabaseGenerated(DatabaseGeneratedOption.None)]
+ //     [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        [Key]
-        [Column(Order = 1, TypeName = "date")]
         public DateTime RedeemDate { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
         [StringLength(100)]
         public string Code { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal Value { get; set; }
+
+
     }
 }

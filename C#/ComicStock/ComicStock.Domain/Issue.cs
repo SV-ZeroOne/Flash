@@ -31,10 +31,10 @@ namespace ComicStock.Domain
 
         public virtual ICollection<ComicCreator> ComicCreators { get;  }
 
-        public virtual ICollection<Stock> Stocks { get; }
+        public virtual ICollection<Stock> Stocks { get; set; }
 
         public virtual ICollection<SupplierQuote> SupplierQuotes { get;  }
 
-        public virtual ICollection<IssueOrder> IssueOrders { get;  }
+        public virtual ICollection<IssueOrder> IssueOrders { get; }
     }
 }
