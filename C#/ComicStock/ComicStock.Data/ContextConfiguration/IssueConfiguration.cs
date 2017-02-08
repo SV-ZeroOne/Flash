@@ -21,6 +21,10 @@ namespace ComicStock.Data.ContextConfiguration
             this.Property(e => e.Description)
                 .IsUnicode(false);
 
+            this.HasMany(e => e.Stocks)
+                .WithRequired(e => e.Issue)
+                .WillCascadeOnDelete(false);
+
             this.HasMany(e => e.ComicCreators)
                 .WithRequired(e => e.Issue)
                 .WillCascadeOnDelete(false);

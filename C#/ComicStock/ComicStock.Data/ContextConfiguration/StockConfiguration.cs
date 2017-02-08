@@ -13,6 +13,7 @@ namespace ComicStock.Data.ContextConfiguration
             this.Property(e => e.Price)
                 .HasPrecision(8, 2);
 
+          
         }
     }
 }
