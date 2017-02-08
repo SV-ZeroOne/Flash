@@ -55,7 +55,7 @@ namespace ComicStock.WebAPI.Controllers
         return Ok(dto);
     }
 
-        
+        [HttpPost]
         public IHttpActionResult Post([FromBody]StockDTO stock)
         {
                      
