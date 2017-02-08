@@ -37,8 +37,6 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(issues);
         }
 
-
-  
         public IHttpActionResult Get(int id)
         {
            
@@ -51,7 +49,23 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(dto);
         }
 
-       
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]IssueDTO issue,StockDTO stock)
+        {
+
+            Issue newIssue = new Issue();
+            newIssue.ID = issue.Id;
+            newIssue.Title = issue.Title;
+            newIssue.PublicationDate = issue.PublicationDate;
+            newIssue.Publisher = issue.Publisher;
+            newIssue.SeriesNumber = issue.SeriesNumber;
+            newIssue.Description = issue.Description;
+
+            this.issueRepository.Add(newIssue);
+
+            return Ok(newIssue.ID);
+        }
+
 
     }
 }

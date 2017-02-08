@@ -220,14 +220,19 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CreatorController.cs" />
     <Compile Include="Controllers\IssuesController.cs" />
     <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreatorDTO.cs" />
     <Compile Include="Models\IssueDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />
+    <Compile Include="Models\SupplierDTO.cs" />
+    <Compile Include="Models\VoucherDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,6 @@ namespace ComicStock.Data.IRepositories
 {
     public interface IVoucherRepository : IRepository<Voucher>
     {
-
+        Voucher GetById(int voucherID);
     }
 }

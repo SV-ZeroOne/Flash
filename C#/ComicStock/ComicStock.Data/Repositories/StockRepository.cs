@@ -13,7 +13,14 @@ namespace ComicStock.Data
         public StockRepository(ComicContext context) :base(context)
         {
         }
-          public Stock GetById(int stockID)
+
+        public override void Delete(int id)
+        {
+            var stock = context.Stocks.First(s => s.ID == id);
+            context.Stocks.Remove(stock);
+        }
+
+        public Stock GetById(int stockID)
         {
             var query = context.Stocks.FirstOrDefault(i => i.ID == stockID);
             return query;

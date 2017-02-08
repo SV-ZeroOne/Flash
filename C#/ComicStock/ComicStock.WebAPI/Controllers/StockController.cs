@@ -56,5 +56,20 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(newStock.ID);
         }
 
+        [HttpPut]
+        public IHttpActionResult Put(int stockID, int availableQuantity, decimal price,string Condition)
+        {
+
+            this.stockRepository.GetById(stockID);
+            var stock = stockRepository.GetById(stockID);
+            StockDTO dto = new StockDTO(stock);
+            if (availableQuantity != null)
+            {
+
+            }
+            return Ok();
+
+        }
+
     }
 }

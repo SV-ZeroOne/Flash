@@ -14,6 +14,9 @@ namespace ComicStock.Data
         protected override void Initialize()
         {
             this.Container.RegisterType<ComicContext>();
+            this.Container.RegisterType<IVoucherRepository, VoucherRepository>(new HierarchicalLifetimeManager());
+            this.Container.RegisterType<ICreatorRepository, CreatorRepository>(new HierarchicalLifetimeManager());
+            this.Container.RegisterType<ISupplierRepository, SupplierRepository>(new HierarchicalLifetimeManager());
             this.Container.RegisterType<IIssueRepository, IssueRepository>(new HierarchicalLifetimeManager());
             this.Container.RegisterType<IStockRepository, StockRepository>(new HierarchicalLifetimeManager());
         }

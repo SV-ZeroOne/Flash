@@ -9,7 +9,7 @@ namespace ComicStock.Data.IRepositories
 {
     public interface ISupplierRepository : IRepository<Supplier>
     {
-
+        Supplier GetById(int id);
     }
 
 }

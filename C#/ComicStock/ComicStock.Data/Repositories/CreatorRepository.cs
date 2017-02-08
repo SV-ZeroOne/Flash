@@ -19,6 +19,20 @@ namespace ComicStock.Data.Repositories
             var creators = this.context.Creators.AsQueryable().OrderBy(x => x.Name);
             return base.GetPage(creators, page, pageSize);
         }
+
+        public Creator GetById(int creatorID)
+        {
+            var query = context.Creators.FirstOrDefault(c => c.ID == creatorID);
+            return query;
+        }
+
+        public override void Delete(int id)
+        {
+            var creator = context.Creators.First(c => c.ID == id);
+            context.Creators.Remove(creator);
+
+        }
+
     }
 }
 

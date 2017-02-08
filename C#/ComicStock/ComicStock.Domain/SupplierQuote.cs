@@ -12,7 +12,8 @@ namespace ComicStock.Domain
         {
             IssueOrders = new HashSet<IssueOrder>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int IssueID { get; set; }
