@@ -50,12 +50,9 @@ namespace ComicStock.WebAPI.Controllers
         return Ok(dto);
     }
 
-        [HttpPost]
-        public IHttpActionResult Add([FromBody] string stock)
+        
+        public IHttpActionResult Post([FromBody]StockDTO stock)
         {
-            Stock s = JsonConvert.DeserializeObject<Stock>(stock);
-            stockRepository = new StockRepository();
-            stockRepository.Add(s);
             return Ok();
         }
 
