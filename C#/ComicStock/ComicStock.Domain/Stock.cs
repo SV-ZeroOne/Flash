@@ -9,6 +9,8 @@ namespace ComicStock.Domain
     [Table("Stock")]
     public partial class Stock
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int? IssueID { get; set; }
