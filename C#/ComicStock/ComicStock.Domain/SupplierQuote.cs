@@ -8,7 +8,6 @@ namespace ComicStock.Domain
 
     public partial class SupplierQuote
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SupplierQuote()
         {
             IssueOrders = new HashSet<IssueOrder>();
@@ -29,7 +28,6 @@ namespace ComicStock.Domain
 
         public virtual Supplier Supplier { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IssueOrder> IssueOrders { get; set; }
+        public virtual ICollection<IssueOrder> IssueOrders { get;  }
     }
 }

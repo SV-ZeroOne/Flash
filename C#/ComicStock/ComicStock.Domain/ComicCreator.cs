@@ -10,12 +10,10 @@ namespace ComicStock.Domain
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IssueID { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CreatorID { get; set; }
 
         [StringLength(50)]
