@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComicStock.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,7 +21,19 @@ namespace ComicStock.WebAPI.Models
 
     //    public List<CreatorDTO> Creators { get; set; }
 
-        public IEnumerable<StockDTO> Stock { get; set; }
+        public ICollection<StockDTO> Stock { get; set; }
+
+        public IssueDTO() { }
+
+        public IssueDTO(Issue issue)
+        {
+            this.Id = issue.ID;
+            this.SeriesNumber = issue.SeriesNumber;
+            this.Publisher = issue.Publisher;
+            this.Description = issue.Description;
+            this.Title = issue.Title;
+            this.PublicationDate = issue.PublicationDate;
+        }
 
     }
 
