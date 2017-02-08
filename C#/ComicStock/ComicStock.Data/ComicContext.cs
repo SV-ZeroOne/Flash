@@ -50,17 +50,11 @@ namespace ComicStock.Data
 
             modelBuilder.Configurations.Add(new OrderConfiguration());
 
-            modelBuilder.Entity<Stock>()
-                .Property(e => e.Condition)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new StockConfiguration());
 
-            modelBuilder.Entity<Stock>()
-                .Property(e => e.Price)
-                .HasPrecision(8, 2);
 
-            modelBuilder.Entity<SupplierPayment>()
-                .Property(e => e.Total)
-                .HasPrecision(8, 2);
+
+            modelBuilder.Configurations.Add(new SupplierPaymentConfiguration());
 
             modelBuilder.Entity<SupplierQuote>()
                 .Property(e => e.Price)
@@ -89,9 +83,7 @@ namespace ComicStock.Data
                 .WithRequired(e => e.Supplier)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Voucher>()
-                .Property(e => e.Code)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new VoucherConfiguration());
         }
     }
 }
