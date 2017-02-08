@@ -37,8 +37,6 @@ namespace ComicStock.Data
 
             modelBuilder.Configurations.Add(new StockConfiguration());
 
-
-
             modelBuilder.Configurations.Add(new SupplierPaymentConfiguration());
 
             modelBuilder.Configurations.Add(new SupplierQuoteConfiguration());
