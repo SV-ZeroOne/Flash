@@ -6,6 +6,7 @@ namespace ComicStock.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Runtime.Remoting.Contexts;
+    using ContextConfiguration;
 
     public partial class ComicContext : DbContext
     {
@@ -26,9 +27,9 @@ namespace ComicStock.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ComicCreator>()
-                .Property(e => e.CreatorRole)
-                .IsUnicode(false);
+            modelBuilder.Configurations.Add(new ComicCreatorConfiguration());
+
+            modelBuilder.Configurations.Add(new IssueConfiguration());
 
             modelBuilder.Entity<Creator>()
                 .Property(e => e.Name)
@@ -45,33 +46,6 @@ namespace ComicStock.Data
             modelBuilder.Entity<Creator>()
                 .HasMany(e => e.ComicCreators)
                 .WithRequired(e => e.Creator)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Title)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Publisher)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Issue>()
-                .Property(e => e.Description)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.ComicCreators)
-                .WithRequired(e => e.Issue)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.SupplierQuotes)
-                .WithRequired(e => e.Issue)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Issue>()
-                .HasMany(e => e.IssueOrders)
-                .WithRequired(e => e.Issue)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
