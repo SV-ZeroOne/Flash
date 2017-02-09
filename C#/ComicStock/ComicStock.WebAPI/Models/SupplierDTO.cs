@@ -9,17 +9,27 @@ namespace ComicStock.WebAPI.Models
     public class SupplierDTO
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string city { get; set; }
-        public string refNum { get; set; }
-        private SupplierDTO() { }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string RefNum { get; set; }
+
+        public SupplierDTO() { }
 
         public SupplierDTO(Supplier supplier)
         {
             this.Id = supplier.ID;
-            this.name = supplier.Name;
-            this.city = supplier.City;
-            this.refNum = supplier.ReferenceNumber;
+            this.Name = supplier.Name;
+            this.City = supplier.City;
+            this.RefNum = supplier.ReferenceNumber;
+        }
+
+        public Supplier CreateDomainObject()
+        {
+            Supplier supplier = new Supplier();
+            supplier.Name = this.Name;
+            supplier.City = this.City;
+            supplier.ReferenceNumber = this.RefNum;
+            return supplier;
         }
 
     }

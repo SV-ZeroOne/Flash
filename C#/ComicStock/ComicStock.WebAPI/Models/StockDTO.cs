@@ -8,25 +8,31 @@ namespace ComicStock.WebAPI.Models
 {
     public class StockDTO
     {
-     
 
         public int Id { get;  set; }
-        public int? issueID { get; set; }
         public string Condition { get; set; }
         public short? AvailableQuantity { get; set; }
         public decimal? Price { get; set; }
+        public IssueDTO Issue { get; set; }
 
-        private StockDTO() { }
+        public StockDTO() { }
 
         public StockDTO(Stock stock)
         {
             this.Id = stock.ID;
-            this.issueID = stock.IssueID;
             this.Condition = stock.Condition;
             this.AvailableQuantity = stock.AvailableQty;
             this.Price = stock.Price;
         }
 
+        public Stock CreateDomainObject()
+        {
+            Stock stock = new Stock();
+            stock.Condition = this.Condition;
+            stock.AvailableQty = this.AvailableQuantity;
+            stock.Price = this.Price;
+            return stock;
+        }
 
     }
 }

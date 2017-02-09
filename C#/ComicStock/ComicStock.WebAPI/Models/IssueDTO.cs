@@ -11,19 +11,14 @@ namespace ComicStock.WebAPI.Models
 
         public int Id { get; set; }
         public short? SeriesNumber { get; set; }
-
         public string Publisher { get; set; }
         public String Description { get; set; }
-
         public String Title { get; set; }
-
         public DateTime? PublicationDate { get; set; }
-
-    //    public List<CreatorDTO> Creators { get; set; }
-
+        public IEnumerable<CreatorDTO> Creators { get; set; }
         public IEnumerable<StockDTO> Stock { get; set; }
 
-        private IssueDTO() { }
+        public IssueDTO() { }
 
         public IssueDTO(Issue issue)
         {
@@ -33,6 +28,17 @@ namespace ComicStock.WebAPI.Models
             this.Description = issue.Description;
             this.Title = issue.Title;
             this.PublicationDate = issue.PublicationDate;
+        }
+
+        public Issue CreateDomainObject()
+        {
+            Issue issue = new Issue();
+            issue.SeriesNumber = this.SeriesNumber;
+            issue.Publisher = this.Publisher;
+            issue.Description = this.Description;
+            issue.Title = this.Title;
+            issue.PublicationDate = this.PublicationDate;
+            return issue;
         }
 
     }

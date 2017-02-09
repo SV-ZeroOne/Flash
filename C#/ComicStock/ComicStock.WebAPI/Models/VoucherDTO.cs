@@ -13,13 +13,23 @@ namespace ComicStock.WebAPI.Models
         public DateTime RedeemDate { get; set; }
         public decimal Value { get; set; }
 
-        private VoucherDTO() { }
+        public VoucherDTO() { }
+
         public VoucherDTO(Voucher voucher)
         {
             this.Id = voucher.ID;
             this.Code = voucher.Code;
             this.RedeemDate = voucher.RedeemDate;
             this.Value = voucher.Value;
+        }
+
+        public Voucher CreateDomainObject()
+        {
+            Voucher voucher = new Voucher();
+            voucher.Code = this.Code;
+            voucher.RedeemDate = this.RedeemDate;
+            voucher.Value = this.Value;
+            return voucher;
         }
     }
 }
