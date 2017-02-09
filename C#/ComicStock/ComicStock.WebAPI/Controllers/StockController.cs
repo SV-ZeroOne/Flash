@@ -70,13 +70,18 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put([FromBody] StockDTO stock)
+        public IHttpActionResult Put(int id, [FromBody]StockDTO stockDTO)
         {
-            Stock s = stock.CreateDomainObject();
-            stockRepository.Update(s);
-                        
-            return Ok();
-
+            Stock stock = stockRepository.GetById(id);
+            if (stock != null)
+            {
+                stockRepository.Update(stockDTO.CreateDomainObject(stock));
+                return Ok(stockDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Stock id: " + id + " not found")
+                );
         }
 
         public IHttpActionResult Delete(int id)

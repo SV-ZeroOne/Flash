@@ -25,9 +25,8 @@ namespace ComicStock.WebAPI.Models
             this.Price = stock.Price;
         }
 
-        public Stock CreateDomainObject()
+        public Stock CreateDomainObject(Stock stock)
         {
-            Stock stock = new Stock();
             stock.Condition = this.Condition;
             stock.AvailableQty = this.AvailableQuantity;
             stock.Price = this.Price;
