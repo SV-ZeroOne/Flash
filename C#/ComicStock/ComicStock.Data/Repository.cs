@@ -27,9 +27,14 @@ namespace ComicStock.Data
 
         protected IEnumerable<TEntity> GetPage(IQueryable<TEntity> entity, int page, int pageSize)
         {
+            int count = entity.Count();
+
             return entity
-                .Skip(pageSize * page)
-                .Take(pageSize)
+                .Skip(pageSize * (page-1))
+                .Take((page * pageSize) > count 
+                        ? (pageSize * page) - (pageSize * page - count) 
+                        : pageSize
+                )
                 .ToList();
         }
 
