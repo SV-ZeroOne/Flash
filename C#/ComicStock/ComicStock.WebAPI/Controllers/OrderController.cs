@@ -86,11 +86,5 @@ namespace ComicStock.WebAPI.Controllers
                 "Stock id: " + id + " not found")
                 );
         }
-
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    orderRepository.Delete(id);
-        //    return Ok();
-        //}
     }
 }
