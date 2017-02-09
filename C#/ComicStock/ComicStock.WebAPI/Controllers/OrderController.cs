@@ -55,10 +55,11 @@ namespace ComicStock.WebAPI.Controllers
         {
             Order order = orderDTO.CreateDomainObject(new Order());
             order.Supplier = orderDTO.Supplier.CreateDomainObject(new Supplier());
-            order.IssueOrders = (ICollection<IssueOrder>)orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder() {
+            order.IssueOrders = orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
+            {
                 SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
                 Issue = io.Issue.CreateDomainObject(new Issue())
-            }));
+            })).ToList();
 
             order = supplierOrder.placeOrder(order);
 

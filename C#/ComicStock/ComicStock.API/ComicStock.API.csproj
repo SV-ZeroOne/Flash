@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIUnityContainerExtension.cs" />
+    <Compile Include="ISupplierOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SupplierOrder.cs" />
   </ItemGroup>

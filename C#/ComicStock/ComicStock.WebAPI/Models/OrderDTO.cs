@@ -18,7 +18,7 @@ namespace ComicStock.WebAPI.Models
         public IEnumerable<IssueOrderDTO> IssueOrders { get; set; }
         public IEnumerable<SupplierPaymentDTO> SupplierPayments { get; set; }
 
-        private OrderDTO() { }
+        public OrderDTO() { }
 
         public OrderDTO(Order order)
         {
