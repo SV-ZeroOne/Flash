@@ -16,8 +16,9 @@ namespace ComicStock.Data
 
         public override void Delete(int id)
         {
-            var stock = context.Stocks.First(s => s.ID == id);
-            context.Stocks.Remove(stock);
+            Stock s = GetById(id);
+            s.AvailableQty = 0;
+            Update(s);
         }
 
         public Stock GetById(int stockID)

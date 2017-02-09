@@ -33,10 +33,10 @@ namespace ComicStock.Data
                 .ToList();
         }
 
-
         public void Update(TEntity entity)
         {
-         //   entities.Entry(entity).State = System.Data.EntityState.Modified;
+            context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }
