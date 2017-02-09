@@ -43,6 +43,14 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(suppliers);
         }
 
+        [Route("api/Suppliers/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<SupplierDTO> suppliers = supplierRepository.GetPage(search, page, pageSize).Select(s => new SupplierDTO(s));
+
+            return Ok(suppliers);
+        }
+
         [HttpPost]
         public IHttpActionResult Post([FromBody]SupplierDTO supplierDTO)
         {

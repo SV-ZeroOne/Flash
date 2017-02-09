@@ -20,6 +20,14 @@ namespace ComicStock.Data
             return base.GetPage(suppliers, page, pageSize);
         }
 
+        public IEnumerable<Supplier> GetPage(string search, int page, int pageSize)
+        {
+            var suppliers = this.context.Suppliers.AsQueryable()
+                .OrderBy(x => x.Name)
+                .Where((x => x.Name.Contains(search) || x.ReferenceNumber.Contains(search)));
+            return base.GetPage(suppliers, page, pageSize);
+        }
+
         public Supplier GetById(int supplierID)
         {
             var query = context.Suppliers.FirstOrDefault(s => s.ID == supplierID);

@@ -51,7 +51,15 @@ namespace ComicStock.WebAPI.Controllers
                 "Stock id: " + id + " not found")
                 );
         }
-        
+
+        [Route("api/Stocks/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<StockDTO> stocks = stockRepository.GetPage(search, page, pageSize).Select(s => new StockDTO(s));
+            
+            return Ok(stocks);
+        }
+
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
             Stock stock = stockDTO.CreateDomainObject(new Stock());

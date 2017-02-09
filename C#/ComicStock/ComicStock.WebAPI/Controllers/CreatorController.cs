@@ -44,7 +44,18 @@ namespace ComicStock.WebAPI.Controllers
                 "Creator id: " + id + " not found")
                 );
         }
-        
+
+        [Route("api/Creators/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<CreatorDTO> creators = creatorRepository.GetPage(search, page, pageSize).Select(c => new CreatorDTO(c)
+            {
+                Issues = c.ComicCreators.Select(cc => new IssueDTO(cc.Issue))
+            });
+
+            return Ok(creators);
+        }
+
         public IHttpActionResult Post([FromBody]CreatorDTO creator)
         {
             Creator newCreator = creator.CreateDomainObject(new Creator());
