@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ComicStock.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class OrderRepositoryTests
     {
         [TestMethod]
         public void TestMethod1()
