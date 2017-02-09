@@ -21,48 +21,33 @@ namespace ComicStock.WebAPI.Controllers
             this.creatorRepository = creatorRepository;
         }
 
-
-        [ResponseType(typeof(IEnumerable<CreatorDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
             var creatorsDomain = creatorRepository.GetPage(page, pageSize);
 
             IEnumerable<CreatorDTO> creators = creatorsDomain.Select(c => new CreatorDTO(c));
-         
+
             return Ok(creators);
         }
 
         public IHttpActionResult Get(int id)
         {
-            CreatorDTO dto = null;
-
-            Creator c = this.creatorRepository.GetById(id);
-            if (c != null) { 
-            dto = new CreatorDTO(c);
+            Creator creator = creatorRepository.GetById(id);
+            if (creator != null)
+            {
+                CreatorDTO dto = new CreatorDTO(creator);
+                dto.Issues = creator.ComicCreators.Select(cc => new IssueDTO(cc.Issue));
+                return Ok(dto);
             }
-           if(dto!=null)
-           {
-              return Ok(dto);
-           }
-
-            return new System.Web.Http.Results.ResponseMessageResult(
-                Request.CreateErrorResponse(
-                    (HttpStatusCode)204,
-                    new HttpError("Creator Not Found")
-                )
-            );
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Creator id: " + id + " not found")
+                );
         }
-
-        [HttpPost]
+        
         public IHttpActionResult Post([FromBody]CreatorDTO creator)
         {
-
-            Creator newCreator = new Creator();
-            newCreator.ID = creator.Id;
-            newCreator.CountryOfResidence = creator.Country;
-            newCreator.EmailAddress = creator.Email;
-            newCreator.TaxReferenceNumber = creator.TaxRef;
-            newCreator.Name = creator.Name;
+            Creator newCreator = creator.CreateDomainObject(new Creator());
 
             this.creatorRepository.Add(newCreator);
 

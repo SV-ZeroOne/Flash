@@ -28,9 +28,12 @@ namespace ComicStock.WebAPI.Controllers
         [ResponseType(typeof(IQueryable<StockDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
-            var stocks = from s in this.stockRepository.GetPage(page, pageSize)
-                         select new StockDTO(s);
-            return Ok(stocks);
+            IEnumerable<StockDTO> issues = stockRepository.GetPage(page, pageSize).Select(i => new StockDTO(i)
+            {
+                Issue = new IssueDTO(i.Issue)
+            });
+
+            return Ok(issues);
         }
 
         public IHttpActionResult Get(int id)
@@ -48,8 +51,7 @@ namespace ComicStock.WebAPI.Controllers
                 "Stock id: " + id + " not found")
                 );
         }
-
-        [HttpPost]
+        
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
             Stock stock = stockDTO.CreateDomainObject(new Stock());
@@ -58,10 +60,20 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(stock.ID);
         }
-
-        [HttpPut]
+        
         public IHttpActionResult Put(int id, [FromBody]StockDTO stockDTO)
         {
+            Stock stock = stockRepository.GetById(id);
+            if (stock != null)
+            {
+                StockDTO dto = new StockDTO(stock);
+                dto.Issue = new IssueDTO(stock.Issue);
+                return Ok(dto);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Creator id: " + id + " not found")
+                );
             Stock stock = stockRepository.GetById(id);
             if (stock != null)
             {

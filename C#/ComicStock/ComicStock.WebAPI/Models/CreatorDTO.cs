@@ -14,6 +14,7 @@ namespace ComicStock.WebAPI.Models
         public string Country { get; set; }
         public byte[] TaxRef { get; set; }
         public string Email { get; set; }
+        public IEnumerable<IssueDTO> Issues { get; set; }
 
         public CreatorDTO() { }
 

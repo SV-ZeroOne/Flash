@@ -20,49 +20,37 @@ namespace ComicStock.WebAPI.Controllers
             this.supplierRepository = supplierRepository;
         }
 
-
-
         public IHttpActionResult Get(int id)
         {
-            SupplierDTO dto = null;
             Supplier supplier = supplierRepository.GetById(id);
             if (supplier != null)
             {
-                 dto = new SupplierDTO(supplier);
-            }
-            if (dto != null)
-            {
+                SupplierDTO dto = new SupplierDTO(supplier);
                 return Ok(dto);
             }
 
-            return new System.Web.Http.Results.ResponseMessageResult(
-                Request.CreateErrorResponse(
-                    (HttpStatusCode)204,
-                    new HttpError("Supplier Not Found")
-                )
-            );
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Stock id: " + id + " not found")
+                );
         }
 
         [ResponseType(typeof(IEnumerable<SupplierDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
-            var suppliersDomain = supplierRepository.GetPage(page, pageSize);
-            IEnumerable<SupplierDTO> suppliers = suppliersDomain.Select(s => new SupplierDTO(s));
+            IEnumerable<SupplierDTO> suppliers = supplierRepository.GetPage(page, pageSize).Select(i => new SupplierDTO(i));
+
             return Ok(suppliers);
         }
 
         [HttpPost]
-        public IHttpActionResult Post([FromBody]SupplierDTO supplier)
+        public IHttpActionResult Post([FromBody]SupplierDTO supplierDTO)
         {
+            Supplier supplier = supplierDTO.CreateDomainObject(new Supplier());
 
-            Supplier newSupplier = new Supplier();
-            newSupplier.Name = supplier.Name;
-            newSupplier.City = supplier.City;
-            newSupplier.ReferenceNumber = supplier.RefNum;
+            this.supplierRepository.Add(supplier);
 
-            this.supplierRepository.Add(newSupplier);
-
-            return Ok(newSupplier.ID);
+            return Ok(supplier.ID);
         }
 
 

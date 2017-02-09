@@ -24,7 +24,6 @@ namespace ComicStock.WebAPI.Controllers
             this.issueRepository = issueRepository;
         }
    
-        [ResponseType(typeof(IEnumerable<IssueDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
             IEnumerable<IssueDTO> issues = issueRepository.GetPage(page, pageSize).Select(i => new IssueDTO(i)
