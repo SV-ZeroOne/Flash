@@ -53,7 +53,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
 
-            Issue issue = issueDTO.CreateIssue();
+            Issue issue = issueDTO.CreateDomainObject();
 
             this.issueRepository.Add(issue);
 

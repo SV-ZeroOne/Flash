@@ -56,9 +56,9 @@ namespace ComicStock.WebAPI.Controllers
         {
 
             Supplier newSupplier = new Supplier();
-            newSupplier.Name = supplier.name;
-            newSupplier.City = supplier.city;
-            newSupplier.ReferenceNumber = supplier.refNum;
+            newSupplier.Name = supplier.Name;
+            newSupplier.City = supplier.City;
+            newSupplier.ReferenceNumber = supplier.RefNum;
 
             this.supplierRepository.Add(newSupplier);
 
