@@ -231,9 +231,12 @@
     </Compile>
     <Compile Include="Models\CreatorDTO.cs" />
     <Compile Include="Models\IssueDTO.cs" />
+    <Compile Include="Models\IssueOrderDTO.cs" />
     <Compile Include="Models\OrderDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />
     <Compile Include="Models\SupplierDTO.cs" />
+    <Compile Include="Models\SupplierPaymentDTO.cs" />
+    <Compile Include="Models\SupplierQuoteDTO.cs" />
     <Compile Include="Models\VoucherDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -327,7 +330,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55076</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

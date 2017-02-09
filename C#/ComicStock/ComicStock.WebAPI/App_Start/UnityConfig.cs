@@ -4,6 +4,7 @@ using Unity.WebApi;
 using ComicStock.Data;
 using ComicStock.Data.IRepositories;
 using ComicStock.Data.Repositories;
+using ComicStock.API;
 
 namespace ComicStock.WebAPI
 {
@@ -13,7 +14,7 @@ namespace ComicStock.WebAPI
         {
 			var container = new UnityContainer();
             container.AddExtension(new DataUnityContainerExtension());
-            container.AddExtension(new DataUnityContainerExtension());
+            container.AddExtension(new APIUnityContainerExtension());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
 
         }

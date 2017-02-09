@@ -1,4 +1,7 @@
-﻿using ComicStock.Data.IRepositories;
+﻿using ComicStock.API;
+using ComicStock.Data.IRepositories;
+using ComicStock.Domain;
+using ComicStock.WebAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,64 +14,82 @@ namespace ComicStock.WebAPI.Controllers
     public class OrderController : ApiController
     {
         private readonly IOrderRepository orderRepository;
-        public OrderController(IOrderRepository orderRepository)
+        private readonly SupplierOrder supplierOrder;
+
+        public OrderController(IOrderRepository orderRepository, SupplierOrder supplierOrder)
         {
             this.orderRepository = orderRepository;
+            this.supplierOrder = supplierOrder;
         }
-
-
-       /* [ResponseType(typeof(IEnumerable<OrderDTO>))]
+        
         public IHttpActionResult Get(int page, int pageSize)
         {
-            var ordersDomain = orderRepository.GetPage(page, pageSize);
-
-            IEnumerable<OrderDTO> orders = ordersDomain.Select(c => new OrderDTO(c));
+            IEnumerable<OrderDTO> orders = orderRepository.GetPage(page, pageSize).Select(s => new OrderDTO(s));
 
             return Ok(orders);
         }
 
         public IHttpActionResult Get(int id)
         {
-            OrderDTO dto = null;
+            Order order = this.orderRepository.GetById(id);
+            if (order != null)
+            {
+                OrderDTO dto = new OrderDTO(order);
+                dto.IssueOrders = order.IssueOrders.Select(io => new IssueOrderDTO(io) {
+                    Issue = new IssueDTO(io.Issue),
+                    SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
+                });
+                dto.Supplier = new SupplierDTO(order.Supplier);
 
-            Order c = this.orderRepository.GetById(id);
-            if (c != null)
-            {
-                dto = new OrderDTO(c);
-            }
-            if (dto != null)
-            {
                 return Ok(dto);
             }
 
-            return new System.Web.Http.Results.ResponseMessageResult(
-                Request.CreateErrorResponse(
-                    (HttpStatusCode)204,
-                    new HttpError("Creator Not Found")
-                )
-            );
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Stock id: " + id + " not found")
+                );
         }
 
         [HttpPost]
-        public IHttpActionResult Post([FromBody]OrderDTO creator)
+        public IHttpActionResult Post([FromBody]OrderDTO orderDTO)
         {
+            Order order = orderDTO.CreateDomainObject(new Order());
+            order.Supplier = orderDTO.Supplier.CreateDomainObject(new Supplier());
+            order.IssueOrders = (ICollection<IssueOrder>)orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder() {
+                SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
+                Issue = io.Issue.CreateDomainObject(new Issue())
+            }));
 
-            Order newCreator = new Order();
-            newCreator.ID = creator.Id;
-            newCreator.CountryOfResidence = creator.Country;
-            newCreator.EmailAddress = creator.Email;
-            newCreator.TaxReferenceNumber = creator.TaxRef;
-            newCreator.Name = creator.Name;
+            order = supplierOrder.placeOrder(order);
 
-            this.orderRepository.Add(newCreator);
+            return Ok(order.ID);
+        }
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]OrderDTO orderDTO)
+        {
+            Order order = orderRepository.GetById(id);
 
-            return Ok(newCreator.ID);
+            
+            if (order != null)
+            {
+                order = orderDTO.CreateDomainObject(order);
+                order.Supplier = orderDTO.Supplier.CreateDomainObject(order.Supplier);
+                order.IssueOrders = (ICollection<IssueOrder>)orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
+                {
+                    SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
+                    Issue = io.Issue.CreateDomainObject(new Issue())
+                }));
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Stock id: " + id + " not found")
+                );
         }
 
-        // PUT: api/Creator/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-        */
+        //public IHttpActionResult Delete(int id)
+        //{
+        //    orderRepository.Delete(id);
+        //    return Ok();
+        //}
     }
 }

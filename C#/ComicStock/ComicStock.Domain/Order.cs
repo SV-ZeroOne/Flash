@@ -20,8 +20,6 @@ namespace ComicStock.Domain
         [Column(TypeName = "datetime2")]
         public DateTime? OrderDate { get; set; }
 
-        public short? QtyOrdered { get; set; }
-
         [Column(TypeName = "numeric")]
         public decimal? Total { get; set; }
 
@@ -38,7 +36,7 @@ namespace ComicStock.Domain
 
         public virtual ICollection<SupplierPayment> SupplierPayments { get;  }
 
-        public virtual ICollection<IssueOrder> IssueOrders { get;  }
+        public virtual ICollection<IssueOrder> IssueOrders { get; set; }
 
         public virtual Supplier Supplier { get; set; }
     }
