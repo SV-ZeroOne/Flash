@@ -60,8 +60,7 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
-
-
+        [HttpPost]
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
             Issue issue = issueDTO.CreateDomainObject(new Issue());
@@ -70,5 +69,23 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(issue.ID);
         }
+
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]IssueDTO issueDTO)
+        {
+            Issue issue = issueRepository.GetById(id);
+            if (issue != null)
+            {
+                issueRepository.Update(issueDTO.CreateDomainObject(issue));
+                return Ok(issueDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Issue id: " + id + " not found")
+                );
+        }
+
+
+
     }
 }

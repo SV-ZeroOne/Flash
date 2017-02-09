@@ -8,7 +8,7 @@ using ComicStock.Data.IRepositories;
 
 namespace ComicStock.Data
 {
-    internal class SupplierRepository : Repository<ComicContext, Supplier>, ISupplierRepository
+    public class SupplierRepository : Repository<ComicContext, Supplier>, ISupplierRepository
     {
         public SupplierRepository(ComicContext context): base(context)
         {
@@ -24,7 +24,8 @@ namespace ComicStock.Data
         {
             var suppliers = this.context.Suppliers.AsQueryable()
                 .OrderBy(x => x.Name)
-                .Where((x => x.Name.Contains(search) || x.ReferenceNumber.Contains(search)));
+                .Where(x => x.Name.Contains(search));
+
             return base.GetPage(suppliers, page, pageSize);
         }
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data.Repositories
 {
-    internal class IssueRepository : Repository<ComicContext, Issue>, IIssueRepository
+    public class IssueRepository : Repository<ComicContext, Issue>, IIssueRepository
     {
         public IssueRepository(ComicContext context): base(context)
         {

@@ -55,7 +55,7 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(creators);
         }
-
+        [HttpPost]
         public IHttpActionResult Post([FromBody]CreatorDTO creator)
         {
             Creator newCreator = creator.CreateDomainObject(new Creator());
@@ -65,9 +65,19 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(newCreator.ID);
         }
 
-        // PUT: api/Creator/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]CreatorDTO creatorDTO)
         {
+            Creator creator = creatorRepository.GetById(id);
+            if (creator != null)
+            {
+                creatorRepository.Update(creatorDTO.CreateDomainObject(creator));
+                return Ok(creatorDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Creator id: " + id + " not found")
+                );
         }
 
     }

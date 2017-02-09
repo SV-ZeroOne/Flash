@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data
 {
-    internal class StockRepository : Repository<ComicContext, Stock>, IStockRepository
+    public class StockRepository : Repository<ComicContext, Stock>, IStockRepository
     {
         public StockRepository(ComicContext context) :base(context)
         {

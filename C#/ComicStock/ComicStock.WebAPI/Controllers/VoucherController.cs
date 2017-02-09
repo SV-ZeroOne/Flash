@@ -58,11 +58,18 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put([FromBody]VoucherDTO voucher)
+        public IHttpActionResult Put(int id, [FromBody]VoucherDTO voucherDTO)
         {
-
-            Voucher v = voucher.CreateDomainObject();
-            return Ok();
+            Voucher voucher = voucherRepository.GetById(id);
+            if (voucher != null)
+            {
+                voucherRepository.Update(voucherDTO.CreateDomainObject(voucher));
+                return Ok(voucherDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Voucher id: " + id + " not found")
+                );
         }
 
 

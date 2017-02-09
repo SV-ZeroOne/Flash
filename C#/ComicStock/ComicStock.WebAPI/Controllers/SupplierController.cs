@@ -63,9 +63,19 @@ namespace ComicStock.WebAPI.Controllers
 
 
 
-        // PUT: api/Supplier/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]SupplierDTO supplierDTO)
         {
+            Supplier supplier = supplierRepository.GetById(id);
+            if (supplier != null)
+            {
+                supplierRepository.Update(supplierDTO.CreateDomainObject(supplier));
+                return Ok(supplierDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Supplier id: " + id + " not found")
+                );
         }
 
     }

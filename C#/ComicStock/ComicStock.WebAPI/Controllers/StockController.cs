@@ -60,6 +60,7 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(stocks);
         }
 
+        [HttpPost]
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
             Stock stock = stockDTO.CreateDomainObject(new Stock());
@@ -68,7 +69,7 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(stock.ID);
         }
-        
+        [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]StockDTO stockDTO)
         {
             Stock stock = stockRepository.GetById(id);
