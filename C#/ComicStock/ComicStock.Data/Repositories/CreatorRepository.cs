@@ -19,6 +19,13 @@ namespace ComicStock.Data.Repositories
             var creators = this.context.Creators.AsQueryable().OrderBy(x => x.Name);
             return base.GetPage(creators, page, pageSize);
         }
+        public IEnumerable<Creator> GetPage(string search, int page, int pageSize)
+        {
+            var creators = this.context.Creators.AsQueryable()
+             .OrderBy(x => x.Name)
+             .Where((x => x.Name.Contains(search)));
+            return base.GetPage(creators, page, pageSize);
+        }
 
         public Creator GetById(int creatorID)
         {
@@ -33,6 +40,7 @@ namespace ComicStock.Data.Repositories
 
         }
 
+   
     }
 }
 

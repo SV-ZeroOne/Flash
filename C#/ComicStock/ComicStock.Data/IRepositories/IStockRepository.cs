@@ -10,5 +10,6 @@ namespace ComicStock.Data.IRepositories
     public interface IStockRepository : IRepository<Stock>
     {
         Stock GetById(int stockID);
+        IEnumerable<Stock> GetPage(string search, int page, int pageSize);
     }
 }
