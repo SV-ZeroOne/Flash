@@ -70,8 +70,8 @@ namespace ComicStock.WebAPI.Controllers
         [HttpPut]
         public IHttpActionResult Put([FromBody]VoucherDTO voucher)
         {
-          
 
+            Voucher v = voucher.CreateDomainObject();
             return Ok();
         }
 

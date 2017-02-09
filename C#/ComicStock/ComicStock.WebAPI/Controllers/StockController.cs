@@ -70,16 +70,11 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int stockID, int availableQuantity, decimal price,string Condition)
+        public IHttpActionResult Put([FromBody] StockDTO stock)
         {
-
-            this.stockRepository.GetById(stockID);
-            var stock = stockRepository.GetById(stockID);
-            StockDTO dto = new StockDTO(stock);
-            if (availableQuantity != null)
-            {
-
-            }
+            Stock s = stock.CreateDomainObject();
+            stockRepository.Update(s);
+                        
             return Ok();
 
         }
