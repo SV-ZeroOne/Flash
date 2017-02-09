@@ -12,43 +12,61 @@ namespace ComicStock.API
     public class SupplierOrder : ISupplierOrder
     {
         IOrderRepository orderRepository;
+        IIssueRepository issueRepository;
+        ISupplierRepository supplierRepository;
 
-        public SupplierOrder(IOrderRepository orderRepository)
+        public SupplierOrder(IOrderRepository orderRepository, IIssueRepository issueRepository, ISupplierRepository supplierRepository)
         {
             this.orderRepository = orderRepository;
+            this.issueRepository = issueRepository;
+            this.supplierRepository = supplierRepository;
         }
 
-        private bool validateIssueOrders(IEnumerable<IssueOrder> issueOrders)
+        private SupplierQuote validateIssue(Supplier supplier, SupplierQuote supplierQuote, Issue issue)
         {
-            if (issueOrders != null || issueOrders.Count() > 0)
+            foreach (SupplierQuote i in issue.SupplierQuotes)
             {
-                
-                foreach(Issue i in issueOrders.Select(io => io.Issue))
-                {
-                    validateIssue(i);
-
-                }
-                return true;
+                if (i.Supplier.ID == supplier.ID && supplierQuote.ID == i.ID)
+                    return supplierQuote;
             }
-            throw new NoIssuesProvidedException();
+            throw new IssueNotFoundException();
         }
-
-        private bool validateIssue(Issue issue)
-        {
-            if (issue == null)
-            {
-                throw new NoIssuesProvidedException();
-            }
-            return true;
-        }
+        
 
 
         public Order placeOrder(Order order)
         {
-            validateIssueOrders(order.IssueOrders);
-            if (order.Supplier == null)
-                throw new NoSupplierProvidedException();
-            return orderRepository.GetById(1661);
+            if (order.Supplier == null || order.Supplier.ID == null) throw new NullSupplierProvidedException();
+            order.Supplier = supplierRepository.GetById(order.Supplier.ID);
+            if (order.Supplier == null) throw new SupplierNotFoundException();
+
+            if (order.IssueOrders != null || order.IssueOrders.Count() > 0)
+            {
+                foreach (IssueOrder i in order.IssueOrders)
+                {
+                    if (i.Issue == null || i.Issue.ID == null) throw new NullIssueProvidedException();
+                    if (i.SupplierQuote == null || i.SupplierQuote.ID == null) throw new NullSupplierQuoteProvidedException();
+
+                    i.Issue = issueRepository.GetById(i.Issue.ID);
+                    if (order.IssueOrders == null) throw new IssueNotFoundException();
+                    i.SupplierQuote = i.Issue.SupplierQuotes.FirstOrDefault(x => x.ID == i.SupplierQuote.ID);
+
+                    i.SupplierQuote = validateIssue(order.Supplier, i.SupplierQuote, i.Issue);
+                }
+            }
+            else throw new NoIssuesProvidedException();
+
+            SupplierPayment supplierPayment = new SupplierPayment();
+
+            supplierPayment.ProcessedDate = new DateTime();
+            supplierPayment.Total = order.IssueOrders.Sum(x => x.SupplierQuote.Price);
+            supplierPayment.Order = order;
+
+            order.SupplierPayments.Add(supplierPayment);
+
+            orderRepository.Add(order);
+
+            return order;
         }
     }
 }

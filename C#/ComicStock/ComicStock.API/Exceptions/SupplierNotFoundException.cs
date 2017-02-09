@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ComicStock.API.Exceptions
 {
-    public class NoIssuesProvidedException : Exception
+    public class SupplierNotFoundException : Exception
     {
         public override string Message
         {
             get
             {
-                return "NoIssuesProvidedException";
+                return "SupplierNotFoundException";
             }
         }
     }

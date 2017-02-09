@@ -63,6 +63,18 @@ namespace ComicStock.WebAPI.Controllers
 
             order = supplierOrder.placeOrder(order);
 
+            try
+            {
+                //order = supplierOrder.placeOrder(order);
+            }
+            catch(Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Error inserting the order: " + ex.Message)
+                );
+            }
+
             return Ok(order.ID);
         }
         [HttpPut]

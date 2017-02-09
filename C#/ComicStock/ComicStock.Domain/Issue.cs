@@ -30,7 +30,7 @@ namespace ComicStock.Domain
 
         public string Description { get; set; }
 
-        public virtual ICollection<ComicCreator> ComicCreators { get;  }
+        public virtual ICollection<ComicCreator> ComicCreators { get; set;  }
 
         public virtual ICollection<Stock> Stocks { get; set; }
 

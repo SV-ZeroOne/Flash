@@ -8,5 +8,12 @@ namespace ComicStock.API.Exceptions
 {
     public class NoSupplierProvidedException : Exception
     {
+        public override string Message
+        {
+            get
+            {
+                return "NoSupplierProvidedException";
+            }
+        }
     }
 }
