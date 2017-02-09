@@ -79,11 +79,7 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(newIssue.ID);
         }
 
-        public IHttpActionResult Delete(int id)
-        {
-            issueRepository.Delete(id);
-            return Ok();
-        }
+
 
 
     }

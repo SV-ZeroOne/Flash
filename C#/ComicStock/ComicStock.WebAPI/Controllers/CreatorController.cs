@@ -74,10 +74,5 @@ namespace ComicStock.WebAPI.Controllers
         {
         }
 
-        public IHttpActionResult Delete(int id)
-        {
-            creatorRepository.Delete(id);
-            return Ok();
-        }
     }
 }
