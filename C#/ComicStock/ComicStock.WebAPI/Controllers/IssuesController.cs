@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 
 namespace ComicStock.WebAPI.Controllers
 {
@@ -33,17 +34,22 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(issues);
         }
-          
-        public IHttpActionResult Get(int id)
+
+        public IHttpActionResult Get(HttpRequestMessage request, int id)
         {
             Issue issue = issueRepository.GetById(id);
-            IssueDTO dto = new IssueDTO(issue);
-            dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
-
-            return Ok(dto);
+            if (issue != null)
+            {
+                IssueDTO dto = new IssueDTO(issue);
+                dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
+                return Ok(dto);
+            }
+            return (IHttpActionResult)request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Issue ID: " + id + " Not Found"
+                );
         }
 
-        [HttpPost]
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
 
@@ -53,6 +59,5 @@ namespace ComicStock.WebAPI.Controllers
 
             return Ok(issue.ID);
         }
-
     }
 }

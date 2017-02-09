@@ -27,5 +27,13 @@ namespace ComicStock.Data.Repositories
             return query;
         }
 
+        public override void Delete(int id)
+        {
+            var issue = context.Issues.First(i => i.ID == id);
+            context.Issues.Remove(issue);
+        }
+
+        
+
     }
 }

@@ -13,7 +13,8 @@ namespace ComicStock.Domain
             SupplierPayments = new HashSet<SupplierPayment>();
             IssueOrders = new HashSet<IssueOrder>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Column(TypeName = "datetime2")]

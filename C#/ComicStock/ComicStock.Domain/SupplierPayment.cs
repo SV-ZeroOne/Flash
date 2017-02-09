@@ -8,6 +8,8 @@ namespace ComicStock.Domain
 
     public partial class SupplierPayment
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         public int? OrderID { get; set; }

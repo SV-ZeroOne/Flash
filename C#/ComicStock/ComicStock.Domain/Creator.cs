@@ -12,7 +12,8 @@ namespace ComicStock.Domain
         {
             ComicCreators = new HashSet<ComicCreator>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [StringLength(50)]

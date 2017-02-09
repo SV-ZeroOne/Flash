@@ -9,7 +9,7 @@ namespace ComicStock.Data.IRepositories
 {
     public interface ICreatorRepository : IRepository<Creator>
     {
-
+        Creator GetById(int creatorID);
     }
     
 }

@@ -13,7 +13,8 @@ namespace ComicStock.Domain
             SupplierQuotes = new HashSet<SupplierQuote>();
             IssueOrders = new HashSet<IssueOrder>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [StringLength(500)]

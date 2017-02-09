@@ -14,11 +14,24 @@ namespace ComicStock.Data.Repositories
         {
 
         }
+        public override void Delete(int id)
+        {
+            var voucher = context.Vouchers.First(v => v.ID == id);
+            context.Vouchers.Remove(voucher);
+        }
+
+        public Voucher GetById(int voucherID)
+        {
+            var query = context.Vouchers.FirstOrDefault(v => v.ID == voucherID);
+            return query;
+        }
+
         public IEnumerable<Voucher> GetPage(int page, int pageSize)
         {
             var vouchers = this.context.Vouchers.AsQueryable().OrderBy(x => x.Code);
             return base.GetPage(vouchers, page, pageSize);
         }
+
 
     }
 }

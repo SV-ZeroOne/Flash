@@ -14,11 +14,7 @@ namespace ComicStock.Data
             this.context = context;
         }
         protected ComicContext context;
-        //public TContext context
-        //{
-        //    get { return entities; }
-        //    set { entities = value; }
-        //}
+  
 
         public virtual void Add(TEntity entity)
         {
@@ -26,10 +22,8 @@ namespace ComicStock.Data
             context.SaveChanges();
         }
 
-        public virtual void Delete(int key)
-        {
-           // entities.Set<TEntity>().Remove(entity);
-        }
+        public abstract void Delete(int id);
+      
 
         protected IEnumerable<TEntity> GetPage(IQueryable<TEntity> entity, int page, int pageSize)
         {
