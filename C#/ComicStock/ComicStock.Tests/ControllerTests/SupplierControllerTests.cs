@@ -46,5 +46,46 @@ namespace ComicStock.Tests.ControllerTests
             Assert.IsNotNull(contentResult.Content);
 
         }
+
+
+        [TestMethod]
+        public void PutReturnsUpdatedSupplierDTO()
+        {
+
+            var mockRepository = new Mock<ISupplierRepository>();
+            mockRepository.Setup(x => x.GetById(4))
+                .Returns(new Supplier
+                {
+                    ID = 4,
+                    Name = "Test Name",
+                    City = "Sandton",
+                    ReferenceNumber = null,
+                });
+            var controller = new SupplierController(mockRepository.Object);
+
+            //Int32 taxRefTest = 5;
+            Supplier testCreator = new Supplier
+            {
+                ID = 4,
+                Name = "Test Name Updated",
+                City = "Sandton Updated",
+                ReferenceNumber = null,
+
+            };
+
+            SupplierDTO testCreatorDTO = new SupplierDTO(testCreator);
+
+            // Act  
+            IHttpActionResult actionResult = controller.Put(4, testCreatorDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<SupplierDTO>;
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(4, contentResult.Content.Id);
+            Assert.AreEqual("Test Name Updated", contentResult.Content.Name);
+            Assert.AreEqual("Sandton Updated", contentResult.Content.City);
+            Assert.IsNull(contentResult.Content.RefNum);
+
+        }
     }
 }

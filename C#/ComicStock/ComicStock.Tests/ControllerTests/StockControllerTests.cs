@@ -28,7 +28,7 @@ namespace ComicStock.Tests.ControllerTests
             //IHttpActionResult actionResult = controller.Get(testID);
             //var contentResult = actionResult as OkNegotiatedContentResult<StockDTO>;
 
-            //Assert.IsNotNull(contentResult.Content.Issue.Id);
+            //Assert.IsNotNull(contentResult);
             //Assert.IsNotNull(contentResult.Content);
             //Assert.AreEqual(testID, contentResult.Content.Id);
 

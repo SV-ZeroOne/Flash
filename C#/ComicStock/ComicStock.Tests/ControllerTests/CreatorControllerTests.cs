@@ -46,5 +46,49 @@ namespace ComicStock.Tests.ControllerTests
             Assert.IsNotNull(contentResult.Content);
 
         }
+
+        [TestMethod]
+        public void PutReturnsUpdatedCreatorDTO()
+        {
+
+            var mockRepository = new Mock<ICreatorRepository>();
+            mockRepository.Setup(x => x.GetById(4))
+                .Returns(new Creator
+                {
+                    ID = 4,
+                    Name = "Test Name",
+                    CountryOfResidence = "South Africa",
+                    EmailAddress = "test@testdomain.com",
+                    TaxReferenceNumber = null,
+                });
+            var controller = new CreatorController(mockRepository.Object);
+
+            //Int32 taxRefTest = 5;
+            Creator testCreator = new Creator
+            {
+                ID = 4,
+                Name = "Test Name Updated",
+                CountryOfResidence = "South Africa Updated",
+                EmailAddress = "testupdated@testdomain.com",
+                TaxReferenceNumber = null,
+
+            };
+
+            CreatorDTO testCreatorDTO = new CreatorDTO(testCreator);
+
+            // Act  
+            IHttpActionResult actionResult = controller.Put(4, testCreatorDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<CreatorDTO>;
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(4, contentResult.Content.Id);
+            Assert.AreEqual("Test Name Updated", contentResult.Content.Name);
+            Assert.AreEqual("South Africa Updated", contentResult.Content.Country);
+            Assert.AreEqual("testupdated@testdomain.com", contentResult.Content.Email);
+            Assert.IsNull(contentResult.Content.TaxRef);
+
+        }
+        
     }
 }
