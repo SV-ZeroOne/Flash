@@ -24,7 +24,6 @@ namespace ComicStock.WebAPI.Controllers
             this.issueRepository = issueRepository;
         }
    
-        [ResponseType(typeof(IEnumerable<IssueDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
             IEnumerable<IssueDTO> issues = issueRepository.GetPage(page, pageSize).Select(i => new IssueDTO(i)
@@ -35,7 +34,18 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(issues);
         }
 
-        public IHttpActionResult Get(HttpRequestMessage request, int id)
+        [Route("api/Issues/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<IssueDTO> issues = issueRepository.GetPage(search, page, pageSize).Select(i => new IssueDTO(i)
+            {
+                Stock = i.Stocks.Select(s => new StockDTO(s))
+            });
+
+            return Ok(issues);
+        }
+
+        public IHttpActionResult Get(int id)
         {
             Issue issue = issueRepository.GetById(id);
             if (issue != null)
@@ -44,16 +54,17 @@ namespace ComicStock.WebAPI.Controllers
                 dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
                 return Ok(dto);
             }
-            return (IHttpActionResult)request.CreateErrorResponse(
+            return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
-                "Issue ID: " + id + " Not Found"
+                "Stock id: " + id + " not found")
                 );
         }
 
+
+
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
-
-            Issue issue = issueDTO.CreateDomainObject();
+            Issue issue = issueDTO.CreateDomainObject(new Issue());
 
             this.issueRepository.Add(issue);
 

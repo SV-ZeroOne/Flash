@@ -23,9 +23,8 @@ namespace ComicStock.WebAPI.Models
             this.RefNum = supplier.ReferenceNumber;
         }
 
-        public Supplier CreateDomainObject()
+        public Supplier CreateDomainObject(Supplier supplier)
         {
-            Supplier supplier = new Supplier();
             supplier.Name = this.Name;
             supplier.City = this.City;
             supplier.ReferenceNumber = this.RefNum;

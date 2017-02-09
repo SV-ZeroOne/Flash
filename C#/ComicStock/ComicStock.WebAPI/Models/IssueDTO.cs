@@ -30,9 +30,8 @@ namespace ComicStock.WebAPI.Models
             this.PublicationDate = issue.PublicationDate;
         }
 
-        public Issue CreateDomainObject()
+        public Issue CreateDomainObject(Issue issue)
         {
-            Issue issue = new Issue();
             issue.SeriesNumber = this.SeriesNumber;
             issue.Publisher = this.Publisher;
             issue.Description = this.Description;
