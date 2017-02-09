@@ -67,9 +67,12 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(newVoucher.ID);
         }
 
-        // PUT: api/Voucher/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put([FromBody]VoucherDTO voucher)
         {
+          
+
+            return Ok();
         }
 
 
