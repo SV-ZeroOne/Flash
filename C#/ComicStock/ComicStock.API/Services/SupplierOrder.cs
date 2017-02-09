@@ -25,8 +25,9 @@ namespace ComicStock.API
                 
                 foreach(Issue i in issueOrders.Select(io => io.Issue))
                 {
-                    validateIssue(i)
-                };
+                    validateIssue(i);
+
+                }
                 return true;
             }
             throw new NoIssuesProvidedException();
