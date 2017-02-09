@@ -14,7 +14,9 @@ namespace ComicStock.WebAPI.Models
         public string ShipmentRef { get; set; }
         public DateTime? ShipmentDate { get; set; }
         public string DeliveryStatus { get; set; }
-        public Supplier Supplier { get; set; }
+        public SupplierDTO Supplier { get; set; }
+        public IEnumerable<IssueOrderDTO> IssueOrders { get; set; }
+        public IEnumerable<SupplierPaymentDTO> SupplierPayments { get; set; }
 
         private OrderDTO() { }
 
