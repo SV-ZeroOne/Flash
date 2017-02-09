@@ -60,7 +60,7 @@ namespace ComicStock.WebAPI.Controllers
                      
             Stock newStock = new Stock();
             newStock.Condition = stock.Condition;
-            newStock.IssueID = stock.issueID;
+            newStock.IssueID = stock.Issue.Id;
             newStock.Price = stock.Price;
             newStock.AvailableQty = stock.AvailableQuantity;
            

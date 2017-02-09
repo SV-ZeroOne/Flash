@@ -27,10 +27,7 @@ namespace ComicStock.WebAPI.Controllers
         [ResponseType(typeof(IEnumerable<IssueDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
-
-            var issuesDomain = issueRepository.GetPage(page, pageSize);
-
-            IEnumerable<IssueDTO> issues = issuesDomain.Select(i => new IssueDTO(i)
+            IEnumerable<IssueDTO> issues = issueRepository.GetPage(page, pageSize).Select(i => new IssueDTO(i)
             {
                 Stock = i.Stocks.Select(s => new StockDTO(s))
             });
@@ -38,49 +35,29 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(issues);
         }
 
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(HttpRequestMessage request, int id)
         {
-            IssueDTO dto =null;
             Issue issue = issueRepository.GetById(id);
             if (issue != null)
             {
-                dto = new IssueDTO(issue)
-                {
-                    Stock = from x in issue.Stocks
-                            select new StockDTO(x)
-                };
-            }
-            if (issue != null)
-            {
+                IssueDTO dto = new IssueDTO(issue);
+                dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
                 return Ok(dto);
             }
-            String message = "Issue Not Found";
-            return new ResponseMessageResult(
-                Request.CreateErrorResponse(
-                    (HttpStatusCode)204, message
-                )
-            );
+            return (IHttpActionResult)request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Issue ID: " + id + " Not Found"
+                );
         }
 
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]IssueDTO issue,StockDTO stock)
+        public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
 
-            Issue newIssue = new Issue();
-            newIssue.ID = issue.Id;
-            newIssue.Title = issue.Title;
-            newIssue.PublicationDate = issue.PublicationDate;
-            newIssue.Publisher = issue.Publisher;
-            newIssue.SeriesNumber = issue.SeriesNumber;
-            newIssue.Description = issue.Description;
+            Issue issue = issueDTO.CreateDomainObject();
 
-            this.issueRepository.Add(newIssue);
+            this.issueRepository.Add(issue);
 
-            return Ok(newIssue.ID);
+            return Ok(issue.ID);
         }
-
-
-
-
     }
 }
