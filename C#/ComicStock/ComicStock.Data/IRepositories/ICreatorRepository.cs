@@ -10,6 +10,7 @@ namespace ComicStock.Data.IRepositories
     public interface ICreatorRepository : IRepository<Creator>
     {
         Creator GetById(int creatorID);
+        IEnumerable<Creator> GetPage(string search, int page, int pageSize);
     }
     
 }

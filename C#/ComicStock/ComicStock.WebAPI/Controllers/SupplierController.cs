@@ -43,6 +43,14 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(suppliers);
         }
 
+        [Route("api/Suppliers/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<SupplierDTO> suppliers = supplierRepository.GetPage(search, page, pageSize).Select(s => new SupplierDTO(s));
+
+            return Ok(suppliers);
+        }
+
         [HttpPost]
         public IHttpActionResult Post([FromBody]SupplierDTO supplierDTO)
         {
@@ -55,9 +63,19 @@ namespace ComicStock.WebAPI.Controllers
 
 
 
-        // PUT: api/Supplier/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody]SupplierDTO supplierDTO)
         {
+            Supplier supplier = supplierRepository.GetById(id);
+            if (supplier != null)
+            {
+                supplierRepository.Update(supplierDTO.CreateDomainObject(supplier));
+                return Ok(supplierDTO);
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Supplier id: " + id + " not found")
+                );
         }
 
     }

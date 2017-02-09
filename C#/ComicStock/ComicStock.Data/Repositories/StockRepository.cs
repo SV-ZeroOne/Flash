@@ -31,5 +31,13 @@ namespace ComicStock.Data
             var stock = this.context.Stocks.AsQueryable().OrderBy(x => x.ID);
             return base.GetPage(stock, page, pageSize);
         }
+
+        public IEnumerable<Stock> GetPage(string search, int page, int pageSize)
+        {
+            var stocks = this.context.Stocks.AsQueryable()
+                .OrderBy(x => x.ID)
+                .Where((x => x.Condition.Contains(search)));
+            return base.GetPage(stocks, page, pageSize);
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace ComicStock.Tests
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
