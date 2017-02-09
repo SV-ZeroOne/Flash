@@ -21,6 +21,15 @@ namespace ComicStock.Data.Repositories
             var issues = this.context.Issues.AsQueryable().OrderBy(x => x.Title);
             return base.GetPage(issues, page, pageSize);
         }
+
+        public IEnumerable<Issue> GetPage(string search, int page, int pageSize)
+        {
+            var issues = this.context.Issues.AsQueryable()
+                .OrderBy(x => x.Title)
+                .Where((x => x.Title.Contains(search) ||  x.Publisher.Contains(search)));
+            return base.GetPage(issues, page, pageSize);
+        }
+
         public Issue GetById(int issueID)
         {
             var query = context.Issues.FirstOrDefault(i => i.ID == issueID);

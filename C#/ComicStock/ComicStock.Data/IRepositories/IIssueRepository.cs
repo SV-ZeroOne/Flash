@@ -9,6 +9,7 @@ namespace ComicStock.Data.IRepositories
 {
     public interface IIssueRepository : IRepository<Issue>
     {
-       Issue GetById(int issueID);
+        Issue GetById(int issueID);
+        IEnumerable<Issue> GetPage(string search, int page, int pageSize);
     }
 }

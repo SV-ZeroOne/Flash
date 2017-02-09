@@ -34,6 +34,17 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(issues);
         }
 
+        [Route("api/Issues/search")]
+        public IHttpActionResult Get(string search, int page, int pageSize)
+        {
+            IEnumerable<IssueDTO> issues = issueRepository.GetPage(search, page, pageSize).Select(i => new IssueDTO(i)
+            {
+                Stock = i.Stocks.Select(s => new StockDTO(s))
+            });
+
+            return Ok(issues);
+        }
+
         public IHttpActionResult Get(int id)
         {
             Issue issue = issueRepository.GetById(id);
@@ -48,6 +59,8 @@ namespace ComicStock.WebAPI.Controllers
                 "Stock id: " + id + " not found")
                 );
         }
+
+
 
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {

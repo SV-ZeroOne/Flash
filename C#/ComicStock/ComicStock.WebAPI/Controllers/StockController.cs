@@ -66,17 +66,6 @@ namespace ComicStock.WebAPI.Controllers
             Stock stock = stockRepository.GetById(id);
             if (stock != null)
             {
-                StockDTO dto = new StockDTO(stock);
-                dto.Issue = new IssueDTO(stock.Issue);
-                return Ok(dto);
-            }
-            return ResponseMessage(Request.CreateErrorResponse(
-                HttpStatusCode.NotFound,
-                "Creator id: " + id + " not found")
-                );
-            Stock stock = stockRepository.GetById(id);
-            if (stock != null)
-            {
                 stockRepository.Update(stockDTO.CreateDomainObject(stock));
                 return Ok(stockDTO);
             }
