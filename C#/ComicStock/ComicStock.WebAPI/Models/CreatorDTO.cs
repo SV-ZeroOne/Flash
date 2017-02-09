@@ -26,9 +26,8 @@ namespace ComicStock.WebAPI.Models
             this.TaxRef = creator.TaxReferenceNumber;
         }
 
-        public Creator CreateDomainObject()
+        public Creator CreateDomainObject(Creator creator)
         {
-            Creator creator = new Creator();
             creator.Name = this.Name;
             creator.CountryOfResidence = this.Country;
             creator.TaxReferenceNumber = this.TaxRef;

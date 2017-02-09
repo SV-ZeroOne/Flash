@@ -35,7 +35,7 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(issues);
         }
 
-        public IHttpActionResult Get(HttpRequestMessage request, int id)
+        public IHttpActionResult Get(int id)
         {
             Issue issue = issueRepository.GetById(id);
             if (issue != null)
@@ -44,16 +44,15 @@ namespace ComicStock.WebAPI.Controllers
                 dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
                 return Ok(dto);
             }
-            return (IHttpActionResult)request.CreateErrorResponse(
+            return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
-                "Issue ID: " + id + " Not Found"
+                "Stock id: " + id + " not found")
                 );
         }
 
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
-
-            Issue issue = issueDTO.CreateDomainObject();
+            Issue issue = issueDTO.CreateDomainObject(new Issue());
 
             this.issueRepository.Add(issue);
 
