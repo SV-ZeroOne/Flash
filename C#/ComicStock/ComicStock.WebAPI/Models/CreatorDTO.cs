@@ -14,6 +14,7 @@ namespace ComicStock.WebAPI.Models
         public string Country { get; set; }
         public byte[] TaxRef { get; set; }
         public string Email { get; set; }
+        public IEnumerable<IssueDTO> Issues { get; set; }
 
         public CreatorDTO() { }
 
@@ -26,9 +27,8 @@ namespace ComicStock.WebAPI.Models
             this.TaxRef = creator.TaxReferenceNumber;
         }
 
-        public Creator CreateDomainObject()
+        public Creator CreateDomainObject(Creator creator)
         {
-            Creator creator = new Creator();
             creator.Name = this.Name;
             creator.CountryOfResidence = this.Country;
             creator.TaxReferenceNumber = this.TaxRef;

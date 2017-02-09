@@ -23,9 +23,8 @@ namespace ComicStock.WebAPI.Models
             this.Value = voucher.Value;
         }
 
-        public Voucher CreateDomainObject()
+        public Voucher CreateDomainObject(Voucher voucher)
         {
-            Voucher voucher = new Voucher();
             voucher.Code = this.Code;
             voucher.RedeemDate = this.RedeemDate;
             voucher.Value = this.Value;

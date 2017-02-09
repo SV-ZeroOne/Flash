@@ -13,6 +13,7 @@ namespace ComicStock.WebAPI
         {
 			var container = new UnityContainer();
             container.AddExtension(new DataUnityContainerExtension());
+            container.AddExtension(new DataUnityContainerExtension());
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
 
         }

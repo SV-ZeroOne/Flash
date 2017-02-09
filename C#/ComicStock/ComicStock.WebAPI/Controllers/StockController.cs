@@ -16,60 +16,51 @@ using ComicStock.Data.IRepositories;
 
 namespace ComicStock.WebAPI.Controllers
 {
-    public class StockController : ApiController { 
-    private readonly IStockRepository stockRepository;
+    public class StockController : ApiController
+    {
+        private readonly IStockRepository stockRepository;
 
         public StockController(IStockRepository stockRepository)
         {
             this.stockRepository = stockRepository;
         }
 
-    [ResponseType(typeof(IQueryable<StockDTO>))]
-    public IHttpActionResult Get(int page, int pageSize)
-    {
-
-            var stocks = from s in this.stockRepository.GetPage(page, pageSize)
-                         select new StockDTO(s);
-        return Ok(stocks);
-    }
-
-    public IHttpActionResult Get(int id)
-    {
-            StockDTO dto = null;
-            Stock s = this.stockRepository.GetById(id);
-            if (s != null)
+        [ResponseType(typeof(IQueryable<StockDTO>))]
+        public IHttpActionResult Get(int page, int pageSize)
+        {
+            IEnumerable<StockDTO> issues = stockRepository.GetPage(page, pageSize).Select(i => new StockDTO(i)
             {
-                dto = new StockDTO(s);
-            }
-            if (dto != null)
+                Issue = new IssueDTO(i.Issue)
+            });
+
+            return Ok(issues);
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            Stock stock = this.stockRepository.GetById(id);
+            if (stock != null)
             {
+                StockDTO dto = new StockDTO(stock);
+                dto.Issue = new IssueDTO(stock.Issue);
                 return Ok(dto);
             }
 
-            return new System.Web.Http.Results.ResponseMessageResult(
-                Request.CreateErrorResponse(
-                    (HttpStatusCode)204,
-                    new HttpError("Stock Not Found")
-                )
-            );
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Stock id: " + id + " not found")
+                );
         }
-
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]StockDTO stock)
+        
+        public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
-                     
-            Stock newStock = new Stock();
-            newStock.Condition = stock.Condition;
-            newStock.IssueID = stock.Issue.Id;
-            newStock.Price = stock.Price;
-            newStock.AvailableQty = stock.AvailableQuantity;
-           
-            this.stockRepository.Add(newStock);           
+            Stock stock = stockDTO.CreateDomainObject(new Stock());
 
-            return Ok(newStock.ID);
+            this.stockRepository.Add(stock);
+
+            return Ok(stock.ID);
         }
-
-        [HttpPut]
+        
         public IHttpActionResult Put(int id, [FromBody]StockDTO stockDTO)
         {
             Stock stock = stockRepository.GetById(id);
@@ -79,7 +70,7 @@ namespace ComicStock.WebAPI.Controllers
                 return Ok(stockDTO);
             }
             return ResponseMessage(Request.CreateErrorResponse(
-                HttpStatusCode.NotFound, 
+                HttpStatusCode.NotFound,
                 "Stock id: " + id + " not found")
                 );
 
