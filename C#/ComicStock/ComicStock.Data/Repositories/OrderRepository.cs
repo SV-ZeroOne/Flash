@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data.Repositories
 {
-    public class OrderRepository : Repository<ComicContext, Order>, IOrderRepository
+    internal class OrderRepository : Repository<ComicContext, Order>, IOrderRepository
     {
 
         public OrderRepository(ComicContext context) : base(context)

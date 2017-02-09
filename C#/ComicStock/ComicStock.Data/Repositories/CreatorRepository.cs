@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data.Repositories
 {
-    public class CreatorRepository : Repository<ComicContext, Creator>, ICreatorRepository
+    internal class CreatorRepository : Repository<ComicContext, Creator>, ICreatorRepository
     {
         public CreatorRepository(ComicContext context): base(context)
         {

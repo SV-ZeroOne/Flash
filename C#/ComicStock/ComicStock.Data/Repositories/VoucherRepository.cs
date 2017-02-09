@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.Data.Repositories
 {
-    public class VoucherRepository : Repository<ComicContext, Voucher>, IVoucherRepository
+    internal class VoucherRepository : Repository<ComicContext, Voucher>, IVoucherRepository
     {
         public VoucherRepository(ComicContext context): base(context)
         {

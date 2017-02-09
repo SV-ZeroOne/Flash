@@ -8,7 +8,7 @@ using ComicStock.Data.IRepositories;
 
 namespace ComicStock.Data
 {
-    public class SupplierRepository : Repository<ComicContext, Supplier>, ISupplierRepository
+    internal class SupplierRepository : Repository<ComicContext, Supplier>, ISupplierRepository
     {
         public SupplierRepository(ComicContext context): base(context)
         {
