@@ -35,6 +35,17 @@ namespace ComicStock.WebAPI.Models
             this.PublicationDate = issue.PublicationDate;
         }
 
+        public Issue CreateIssue()
+        {
+            Issue issue = new Issue();
+            issue.SeriesNumber = this.SeriesNumber;
+            issue.Publisher = this.Publisher;
+            issue.Description = this.Description;
+            issue.Title = this.Title;
+            issue.PublicationDate = this.PublicationDate;
+            return issue;
+        }
+
     }
 
 }

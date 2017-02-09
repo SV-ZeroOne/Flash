@@ -26,32 +26,33 @@ namespace ComicStock.WebAPI.Controllers
         [ResponseType(typeof(IEnumerable<IssueDTO>))]
         public IHttpActionResult Get(int page, int pageSize)
         {
-
-            var issuesDomain = issueRepository.GetPage(page, pageSize);
-
-            IEnumerable<IssueDTO> issues = issuesDomain.Select(i => new IssueDTO(i)
+            IEnumerable<IssueDTO> issues = issueRepository.GetPage(page, pageSize).Select(i => new IssueDTO(i)
             {
                 Stock = i.Stocks.Select(s => new StockDTO(s))
             });
 
             return Ok(issues);
         }
-
-
-  
+          
         public IHttpActionResult Get(int id)
         {
-           
             Issue issue = issueRepository.GetById(id);
-            IssueDTO dto = new IssueDTO(issue)
-            {
-                Stock = from x in issue.Stocks
-                  select new StockDTO(x)
-            };
+            IssueDTO dto = new IssueDTO(issue);
+            dto.Stock = issue.Stocks.Select(s => new StockDTO(s));
+
             return Ok(dto);
         }
 
-       
+        [HttpPost]
+        public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
+        {
+
+            Issue issue = issueDTO.CreateIssue();
+
+            this.issueRepository.Add(issue);
+
+            return Ok(issue.ID);
+        }
 
     }
 }
