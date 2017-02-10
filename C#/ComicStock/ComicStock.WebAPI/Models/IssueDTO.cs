@@ -40,7 +40,6 @@ namespace ComicStock.WebAPI.Models
             issue.PublicationDate = this.PublicationDate;
             return issue;
         }
-
     }
 
 }

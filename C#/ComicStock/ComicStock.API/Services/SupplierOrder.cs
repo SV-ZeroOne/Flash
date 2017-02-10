@@ -1,4 +1,5 @@
 ﻿using ComicStock.API.Exceptions;
+using ComicStock.API.Services;
 using ComicStock.Data.IRepositories;
 using ComicStock.Domain;
 using System;
@@ -14,12 +15,19 @@ namespace ComicStock.API
         IOrderRepository orderRepository;
         IIssueRepository issueRepository;
         ISupplierRepository supplierRepository;
+        IStockRepository stockRepository;
 
-        public SupplierOrder(IOrderRepository orderRepository, IIssueRepository issueRepository, ISupplierRepository supplierRepository)
+        IThirdPartyPayment thirdPartyPayment;
+
+        public SupplierOrder(IOrderRepository orderRepository, IIssueRepository issueRepository, 
+            ISupplierRepository supplierRepository, IThirdPartyPayment thirdPartyPayment,
+            IStockRepository stockRepository)
         {
             this.orderRepository = orderRepository;
             this.issueRepository = issueRepository;
             this.supplierRepository = supplierRepository;
+            this.thirdPartyPayment = thirdPartyPayment;
+            this.stockRepository = stockRepository;
         }
 
         private SupplierQuote validateIssue(Supplier supplier, SupplierQuote supplierQuote, Issue issue)
@@ -61,18 +69,32 @@ namespace ComicStock.API
                 }
             }
             else throw new NoIssuesProvidedException();
+                
+            thirdPartyPayment.makePayment(order);
 
-            SupplierPayment supplierPayment = new SupplierPayment();
+            foreach (IssueOrder i in order.IssueOrders)
+            {
+                Stock s = i.Issue.Stocks.FirstOrDefault(x => x.Condition == "Very Fine");
+                if (s == null) {
+                    s = new Stock()
+                    {
+                        Issue = i.Issue,
+                        IssueID = i.Issue.ID,
+                        Condition = "Very Fine",
+                        AvailableQty = i.QuantityOrdered,
+                        Price = i.SupplierQuote.Price * (decimal)1.50
+                    };
+                    stockRepository.Add(s);
+                }
+                else
+                {
+                    s.AvailableQty += i.QuantityOrdered;
+                    stockRepository.Update(s);
+                }
 
-            supplierPayment.ProcessedDate = new DateTime();
-            supplierPayment.Total = order.IssueOrders.Sum(x => x.SupplierQuote.Price);
-            supplierPayment.Order = order;
-            
-            order.SupplierPayments.Add(supplierPayment);
-
+            }
 
             orderRepository.Add(order);
-
             return order;
         }
     }
