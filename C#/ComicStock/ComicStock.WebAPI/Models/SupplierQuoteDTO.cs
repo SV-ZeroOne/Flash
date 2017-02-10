@@ -31,6 +31,7 @@ namespace ComicStock.WebAPI.Models
 
         public SupplierQuote CreateDomainObject(SupplierQuote supplierQuote)
         {
+            supplierQuote.ID = this.Id;
             supplierQuote.Price = this.Price;
             supplierQuote.EffectiveDate = this.EffectiveDate;
             return supplierQuote;

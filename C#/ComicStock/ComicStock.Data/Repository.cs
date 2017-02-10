@@ -14,11 +14,17 @@ namespace ComicStock.Data
             this.context = context;
         }
         protected ComicContext context;
-  
+
 
         public virtual void Add(TEntity entity)
         {
             context.Set<TEntity>().Add(entity);
+            context.SaveChanges();
+        }
+
+        public virtual void Create(TEntity entity)
+        {
+            context.Set<TEntity>().Attach(entity);
             context.SaveChanges();
         }
 

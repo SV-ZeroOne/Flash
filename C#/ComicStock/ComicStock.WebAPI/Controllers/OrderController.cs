@@ -40,6 +40,7 @@ namespace ComicStock.WebAPI.Controllers
                     SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
                 });
                 dto.Supplier = new SupplierDTO(order.Supplier);
+                dto.SupplierPayments = order.SupplierPayments.Select(sp => new SupplierPaymentDTO(sp));
 
                 return Ok(dto);
             }
@@ -55,14 +56,35 @@ namespace ComicStock.WebAPI.Controllers
         {
             Order order = orderDTO.CreateDomainObject(new Order());
             order.Supplier = orderDTO.Supplier.CreateDomainObject(new Supplier());
-            order.IssueOrders = (ICollection<IssueOrder>)orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder() {
+            order.IssueOrders = orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
+            {
                 SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
                 Issue = io.Issue.CreateDomainObject(new Issue())
-            }));
+            })).ToList();
+            
 
-            order = supplierOrder.placeOrder(order);
+            try
+            {
+                order = supplierOrder.placeOrder(order);
+            }
+            catch(Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Error inserting the order: " + ex.Message)
+                );
+            }
 
-            return Ok(order.ID);
+            OrderDTO dto = new OrderDTO(order);
+            dto.IssueOrders = order.IssueOrders.Select(io => new IssueOrderDTO(io)
+            {
+                Issue = new IssueDTO(io.Issue),
+                SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
+            });
+            dto.Supplier = new SupplierDTO(order.Supplier);
+            dto.SupplierPayments = order.SupplierPayments.Select(sp => new SupplierPaymentDTO(sp));
+
+            return Ok(dto);
         }
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]OrderDTO orderDTO)

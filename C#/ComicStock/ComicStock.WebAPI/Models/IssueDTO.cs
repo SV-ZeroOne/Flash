@@ -32,6 +32,7 @@ namespace ComicStock.WebAPI.Models
 
         public Issue CreateDomainObject(Issue issue)
         {
+            issue.ID = this.Id;
             issue.SeriesNumber = this.SeriesNumber;
             issue.Publisher = this.Publisher;
             issue.Description = this.Description;

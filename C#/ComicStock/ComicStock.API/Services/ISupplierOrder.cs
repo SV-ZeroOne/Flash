@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ComicStock.API
 {
-    public class SupplierOrder
+    public interface ISupplierOrder
     {
-        public Order placeOrder(Order order)
-        {
-            throw new NotImplementedException();
-        }
+        Order placeOrder(Order order);
     }
 }
