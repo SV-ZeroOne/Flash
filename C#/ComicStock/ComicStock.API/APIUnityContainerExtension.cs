@@ -14,6 +14,7 @@ namespace ComicStock.API
     {
         protected override void Initialize()
         {
+            this.Container.RegisterType<ComicContext>(new HierarchicalLifetimeManager());
             this.Container.RegisterType<ISupplierOrder, SupplierOrder>(new HierarchicalLifetimeManager());
         }
     }

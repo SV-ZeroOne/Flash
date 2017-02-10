@@ -36,22 +36,28 @@ namespace ComicStock.API
 
         public Order placeOrder(Order order)
         {
-            if (order.Supplier == null || order.Supplier.ID == null) throw new NullSupplierProvidedException();
+            if (order.Supplier == null) throw new NullSupplierProvidedException();
             order.Supplier = supplierRepository.GetById(order.Supplier.ID);
             if (order.Supplier == null) throw new SupplierNotFoundException();
+            order.SupplierID = order.Supplier.ID;
 
             if (order.IssueOrders != null || order.IssueOrders.Count() > 0)
             {
                 foreach (IssueOrder i in order.IssueOrders)
                 {
-                    if (i.Issue == null || i.Issue.ID == null) throw new NullIssueProvidedException();
-                    if (i.SupplierQuote == null || i.SupplierQuote.ID == null) throw new NullSupplierQuoteProvidedException();
+                    if (i.Issue == null) throw new NullIssueProvidedException();
+                    if (i.SupplierQuote == null) throw new NullSupplierQuoteProvidedException();
 
                     i.Issue = issueRepository.GetById(i.Issue.ID);
                     if (order.IssueOrders == null) throw new IssueNotFoundException();
+                    i.IssueID = i.Issue.ID;
+
                     i.SupplierQuote = i.Issue.SupplierQuotes.FirstOrDefault(x => x.ID == i.SupplierQuote.ID);
+                    if (i.SupplierQuote == null) throw new NullSupplierQuoteProvidedException();
+                    i.QuoteID = i.SupplierQuote.ID;
 
                     i.SupplierQuote = validateIssue(order.Supplier, i.SupplierQuote, i.Issue);
+                    i.Order = order;
                 }
             }
             else throw new NoIssuesProvidedException();
@@ -61,8 +67,9 @@ namespace ComicStock.API
             supplierPayment.ProcessedDate = new DateTime();
             supplierPayment.Total = order.IssueOrders.Sum(x => x.SupplierQuote.Price);
             supplierPayment.Order = order;
-
+            
             order.SupplierPayments.Add(supplierPayment);
+
 
             orderRepository.Add(order);
 

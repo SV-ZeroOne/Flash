@@ -40,6 +40,7 @@ namespace ComicStock.WebAPI.Controllers
                     SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
                 });
                 dto.Supplier = new SupplierDTO(order.Supplier);
+                dto.SupplierPayments = order.SupplierPayments.Select(sp => new SupplierPaymentDTO(sp));
 
                 return Ok(dto);
             }
@@ -60,12 +61,11 @@ namespace ComicStock.WebAPI.Controllers
                 SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
                 Issue = io.Issue.CreateDomainObject(new Issue())
             })).ToList();
-
-            order = supplierOrder.placeOrder(order);
+            
 
             try
             {
-                //order = supplierOrder.placeOrder(order);
+                order = supplierOrder.placeOrder(order);
             }
             catch(Exception ex)
             {
@@ -75,7 +75,16 @@ namespace ComicStock.WebAPI.Controllers
                 );
             }
 
-            return Ok(order.ID);
+            OrderDTO dto = new OrderDTO(order);
+            dto.IssueOrders = order.IssueOrders.Select(io => new IssueOrderDTO(io)
+            {
+                Issue = new IssueDTO(io.Issue),
+                SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
+            });
+            dto.Supplier = new SupplierDTO(order.Supplier);
+            dto.SupplierPayments = order.SupplierPayments.Select(sp => new SupplierPaymentDTO(sp));
+
+            return Ok(dto);
         }
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]OrderDTO orderDTO)
