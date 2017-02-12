@@ -71,7 +71,7 @@ namespace ComicStock.WebAPI.Controllers
             {
                 return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
-                "Error inserting the order: " + ex.Message)
+                "Error placing the order: " + ex.Message)
                 );
             }
 
