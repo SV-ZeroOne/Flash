@@ -71,7 +71,7 @@ namespace ComicStock.WebAPI.Controllers
             {
                 return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
-                "Error inserting the order: " + ex.Message)
+                "Error placing the order: " + ex.Message)
                 );
             }
 
@@ -89,22 +89,20 @@ namespace ComicStock.WebAPI.Controllers
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]OrderDTO orderDTO)
         {
-            Order order = orderRepository.GetById(id);
-
-            
-            if (order != null)
-            {
-                order = orderDTO.CreateDomainObject(order);
-                order.Supplier = orderDTO.Supplier.CreateDomainObject(order.Supplier);
-                order.IssueOrders = (ICollection<IssueOrder>)orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
-                {
-                    SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
-                    Issue = io.Issue.CreateDomainObject(new Issue())
-                }));
-            }
+            //Order order = orderRepository.GetById(id);
+            //if (order != null)
+            //{
+            //    order = orderDTO.CreateDomainObject(order);
+            //    order.Supplier = orderDTO.Supplier.CreateDomainObject(order.Supplier);
+            //    order.IssueOrders = orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
+            //    {
+            //        SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
+            //        Issue = io.Issue.CreateDomainObject()
+            //    })).ToList();
+            //}
             return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
-                "Stock id: " + id + " not found")
+                "Not implemented exception")
                 );
         }
     }
