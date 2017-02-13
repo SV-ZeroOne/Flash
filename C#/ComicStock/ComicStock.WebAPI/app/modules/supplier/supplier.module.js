@@ -3,6 +3,15 @@ angular.module('supplierModule', [])
         function ($http, ModalService) {
 
             var $ctrl = this;
+            $ctrl.message = 'Supplier Management';
+            $ctrl.newSupplier = {};
+            $ctrl.currentSupplier = {};
+            $ctrl.modalTitle = "";
+            $ctrl.name = "";
+            $ctrl.city = "";
+            $ctrl.refNum = "";
+
+
             $http
                 .get('/api/Supplier?page=1&pageSize=25')
                 .then(function(response) {
@@ -10,8 +19,8 @@ angular.module('supplierModule', [])
                 })
                 .catch(function(errorResponse) {
                 });
-            $ctrl.message = 'Supplier Management';
-            $ctrl.modalTitle = 'Add a New Supplier';
+     
+           
 
             $ctrl.page = function() {
                 $http
@@ -20,7 +29,7 @@ angular.module('supplierModule', [])
                         $ctrl.suppliers = response.data;
                     });
             }
-            $ctrl.newSupplier = {};
+           
 
             $ctrl.submit = function () {
                 $ctrl.newSupplier.Name = $ctrl.name;
@@ -34,9 +43,37 @@ angular.module('supplierModule', [])
                         alert('Creation failed ' + errorResponse);
                     });
             }
-         
            
-            $ctrl.show = function() {
+            
+            $ctrl.edit = function(id) {
+                $ctrl.modalTitle = 'Edit Supplier';
+                $http
+                   .get('/api/Supplier/1')
+               .then(function (response) {
+                   $ctrl.name = response.data.Name;
+                   $ctrl.city = response.data.City;
+                   $ctrl.refNum = response.data.RefNum;
+                   ModalService.showModal({
+                       templateUrl: "/app/modules/supplier/templates/modal.html",
+                       controller: "supplierController"
+                   }).then(function (modal) {
+
+                       modal.element.modal();
+                       modal.close.then(function (result) {
+                           console.log(result);
+                       });
+                   });
+               })
+               .catch(function (errorResponse) {
+                   alert('No such supplier exists' + errorResponse.data);
+               });
+
+            }
+
+            
+
+            $ctrl.show = function () {
+                $ctrl.modalTitle = 'Add a New Supplier';
                 ModalService.showModal({
                     templateUrl: "/app/modules/supplier/templates/modal.html",
                     controller: "supplierController"

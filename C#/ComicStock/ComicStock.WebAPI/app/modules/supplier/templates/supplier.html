@@ -109,6 +109,7 @@
                                     <th>Supplier Name</th>
                                     <th>City</th>
                                     <th>Reference Number</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody >
@@ -117,6 +118,8 @@
                                     <td>{{supplier.Name}}</td>
                                     <td>{{supplier.City}}</td>
                                     <td>{{supplier.RefNum}}</td>
+                                    <td><button  ng-click='$ctrl.edit(1)' style="cursor: pointer;"><i class="fa fa-pencil"/></button></td>
+
                                 </tr>
                                 </tbody>
 
