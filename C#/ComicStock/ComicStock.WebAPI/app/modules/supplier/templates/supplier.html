@@ -1,5 +1,5 @@
 ﻿<div class="brand clearfix" >
-    <a href="index.html" class="logo"><img src="app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
+    <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
         <li><a href="#">Help</a></li>
@@ -51,99 +51,83 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                   
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>{{$ctrl.message}}</h2>
+                        </div>
+                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Supplier</button>
+                       </div>
+                      
+                    </div>
+                    <hr />
+                 
+                   
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Suppliers</div>
+                        <div class="panel-body">
+                            <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
-                    <h2 class="page-title">{{$ctrl.message}}</h2>
+                           
+                            <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Suppliers</div>
-                                <div class="panel-body">
-                                    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label for="dropdown">
+                                            Show
+                                            <select id="dropdown" ng-model="$ctrl.size" class="form-control input-sm" ng-click="$ctrl.page()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
+                                        </label>
+                                    </div>
 
-                                    <div class="container" ng-app="app" ng-controller="Controller">
+                                    <div class="col-sm-4">
+                                        <div class="text-center">
+                                            <ul class="pagination" ng-model="$ctrl.page" ng-click="$ctrl.page()">
+                                                <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
+                                                <li class="active"><a href="#!">1</a></li>
+                                                <li class="waves-effect"><a href="#!">2</a></li>
+                                                <li class="waves-effect"><a href="#!">3</a></li>
+                                                <li class="waves-effect"><a href="#!">4</a></li>
+                                                <li class="waves-effect"><a href="#!">5</a></li>
+                                                <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
 
-                                        <h3>Angular Modal Service</h3>
-                                        <a class="btn btn-default" ng-click="$ctrl.showModal()">Show a Modal</a>
-                                        <p>{{message}}</p>
+                                        <label class="text-left">
+                                            Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                        </label>
 
-                                        <!-- The actual modal template, just a bit o bootstrap -->
-                                        <script type="text/ng-template" id="modal.html">
-                                            <div class="modal fade">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                            <h4 class="modal-title">Yes or No?</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>It's your call...</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
-                                                            <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </script>
 
                                     </div>
-                                    <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                                       
-                                         <div class="row">
 
 
-                                            <div class="col-sm-4" >
-                                                <label for="dropdown">
-                                                    Show
-                                                    <select id="dropdown" ng-model="$ctrl.size" class="form-control input-sm" ng-click="$ctrl.page()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
-                                                </label>
-</div>
-                                    
-                                            <div class="col-sm-4">
-                                                <div class="text-center">
-                                                    <ul class="pagination" ng-model="$ctrl.page" ng-click="$ctrl.page()">
-                                                        <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
-                                                        <li class="active"><a href="#!">1</a></li>
-                                                        <li class="waves-effect"><a href="#!">2</a></li>
-                                                        <li class="waves-effect"><a href="#!">3</a></li>
-                                                        <li class="waves-effect"><a href="#!">4</a></li>
-                                                        <li class="waves-effect"><a href="#!">5</a></li>
-                                                        <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 text-right">
-                                             
-                                                    <label class="text-left">
-                                                        Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="zctb">
-                                                    </label>
-                            
-
-                                            </div>
-                                         
-                                          
-                                        </div>
-                                         <thead>
-                                        <tr>
-                                            <th>Supplier Name</th>
-                                            <th>City</th>
-                                            <th>Reference Number</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody >
-                                        
-                                        <tr ng-repeat="supplier in $ctrl.suppliers">
-                                            <td>{{supplier.Name}}</td>
-                                            <td>{{supplier.City}}</td>
-                                            <td>{{supplier.RefNum}}</td>
-                                        </tr>
-                                        </tbody>
-
-                                    </table>
-                                  
                                 </div>
-                            </div>
-                            </div>
+                                <thead>
+                                <tr>
+                                    <th>Supplier Name</th>
+                                    <th>City</th>
+                                    <th>Reference Number</th>
+                                    <th>Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+
+                                <tr ng-repeat="supplier in $ctrl.suppliers">
+                                    <td>{{supplier.Name}}</td>
+                                    <td>{{supplier.City}}</td>
+                                    <td>{{supplier.RefNum}}</td>
+                                    <td><button  ng-click='$ctrl.edit(1)' style="cursor: pointer;"><i class="fa fa-pencil"/></button></td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
                         
                     </div>
 
