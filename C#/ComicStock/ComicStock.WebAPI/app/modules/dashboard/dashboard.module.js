@@ -1,4 +1,5 @@
-﻿squareEyes.controller('mainController', function ($scope) {
+angular.module('dashboardModule',[])
+    .controller('mainController', function ($scope) {
     var $ctrl = this;
     $ctrl.message = 'Dashboard';
 
@@ -15,7 +16,3 @@
     //    });
 
 });
-
-
-
-
