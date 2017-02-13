@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Drawing;
+using System.Web;
 using System.Web.Optimization;
 
 namespace ComicStock.WebAPI
@@ -27,30 +28,22 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/Controller.js"
                 ));
 
-
-            bundles.Add(new StyleBundle("~/assets/css").Include(
-
-                      "~/app/assets/css/style.less",
-                      "~/app/assets/css/style.css",
-                      "~/app/assets/css/bootstrap.css",
-                      "~/app/assets/css/bootstrap-social.css",
-                      "~/app/assets/css/jquery.dataTables.min.css",
-                      "~/app/assets/css/font-awesome.min.css",
-                      "~/app/assets/css/fileinput.min.css",
-                      "~/app/assets/css/dataTables.min.css",
-                      "~/app/assets/css/bootstrap-select.css",
-                      "~/app/assets/css/bootstrap.css",
-                      "~/app/assets/css/awesome-bootstrap.checkbox.css",
-                      "~/app/assets/css/bootstrap.min.css",
-                      "~/app/assets/css/css/vars.css",
-                      "~/app/assets/css/dataTables.min.css",
-                      "~/app/assets/css/bootstrap-select.css",
-                      "~/app/assets/css/less/vars.less",
-                      "~/app/assets/css/less/components.less"
-
-
-                      ));
-  
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.min.css",
+                       "~/Content/font-awesome.min.css",
+                      "~/Content/jquery.dataTables.min.css",
+                      "~/Content/bootstrap-social.css",
+                      "~/Content/bootstrap-select.css",
+                      "~/Content/fileinput.min.css",
+                      "~/Content/awesome-bootstrap.checkbox.css",
+                      "~/Content/style.less",
+                      "~/Content/style.css",
+                      "~/Content/bootstrap.css",
+                      "~/Content/css/vars.css",
+                      "~/Content/bootstrap-select.css",
+                      "~/Content/vars.less",
+                      "~/Content/components.less"
+                ));
         }
     }
 }

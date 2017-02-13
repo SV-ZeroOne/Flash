@@ -264,14 +264,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="App_Data\Issues.json" />
-    <Content Include="app\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="app\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="app\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="app\assets\js\jquery-1.10.2.min.map" />
-    <Content Include="app\assets\less\components.less" />
-    <Content Include="app\assets\less\style.less" />
-    <Content Include="app\assets\less\vars.less" />
-    <Content Include="app\supplier\tests" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

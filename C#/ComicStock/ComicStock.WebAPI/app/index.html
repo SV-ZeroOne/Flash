@@ -1,4 +1,4 @@
-﻿<div class="brand clearfix" ng-controller="mainController as $ctrl">
+﻿<div class="brand clearfix" >
     <a href="index.html" class="logo"><img src="img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
@@ -22,12 +22,12 @@
                 <input type="text" class="ts-sidebar-search" placeholder="Search here...">
             </li>
            
-            <li class="open"><a href="#!/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="open"><a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li>
-                <a href="#!/supplier"><i class="fa fa-desktop"></i> Supplier Management</a>
+                <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
             </li>
-            <li><a href="#!/voucher"><i class="fa fa-table"></i> Voucher Management</a></li>
-            <li><a href="#!/order"><i class="fa fa-edit"></i> Order Management</a></li>
+            <li><a href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
+            <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
             <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
             <li><a href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
            
@@ -46,7 +46,7 @@
             </ul>
         </ul>
     </nav>
-    <div class="content-wrapper">
+    <div class="content-wrapper" ng-controller="mainController as $ctrl">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
