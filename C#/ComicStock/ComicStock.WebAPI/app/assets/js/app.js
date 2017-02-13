@@ -1,4 +1,4 @@
-﻿var squareEyes = angular.module('squareEyes', ['ngRoute', 'supplierModule'])
+﻿var squareEyes = angular.module('squareEyes', ['ngRoute', 'supplierModule','angularModalService'])
 
 .config(function ($routeProvider) {
     $routeProvider
