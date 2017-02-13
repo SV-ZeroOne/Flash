@@ -21,8 +21,8 @@ angular.module('supplierModule', [])
             }
             $ctrl.showModal = function(ModalService) {
                 ModalService.showModal({
-                    templateUrl: "template.html",
-                    controller: "ModalController"
+                    templateUrl: "supplier.html",
+                    controller: "supplierController"
                 }).then(function(modal) {
 
                     //it's a bootstrap element, use 'modal' to show it
