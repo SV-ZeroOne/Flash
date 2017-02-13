@@ -17,6 +17,7 @@
 
 });
 
+
 squareEyes.controller('mainController', function () {
     var $ctrl = this;
     $ctrl.message = 'Dashboard';
@@ -27,16 +28,13 @@ squareEyes.controller('supplierController',
 
         var $ctrl = this;
         $http
-            .get('/api/Supplier?page=1&pageSize=2')
+            .get('/api/Supplier?page=1&pageSize=25')
             .then(function(response) {
                 $ctrl.suppliers = response.data;
             })
             .catch(function(errorResponse) {
-
             });
-
         $ctrl.message = 'Supplier Management';
-
 
 });
 
