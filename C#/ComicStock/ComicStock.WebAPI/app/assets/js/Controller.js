@@ -11,7 +11,7 @@
         // route for the voucher page
         .when('/supplier',
         {
-            templateUrl: '/app/supplier/templates/supplier.html',
+            templateUrl: '/app/modules/supplier/templates/supplier.html',
             controller: 'supplierController'
         });
 
