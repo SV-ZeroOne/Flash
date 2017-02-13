@@ -11,11 +11,12 @@
         // route for the voucher page
         .when('/supplier',
         {
-            templateUrl: '/app/supplier/templates/supplier.html',
+            templateUrl: '/app/modules/supplier/templates/supplier.html',
             controller: 'supplierController'
         });
 
 });
+
 
 squareEyes.controller('mainController', function () {
     var $ctrl = this;
@@ -27,16 +28,13 @@ squareEyes.controller('supplierController',
 
         var $ctrl = this;
         $http
-            .get('/api/Supplier?page=1&pageSize=2')
+            .get('/api/Supplier?page=1&pageSize=25')
             .then(function(response) {
                 $ctrl.suppliers = response.data;
             })
             .catch(function(errorResponse) {
-
             });
-
         $ctrl.message = 'Supplier Management';
-
 
 });
 
