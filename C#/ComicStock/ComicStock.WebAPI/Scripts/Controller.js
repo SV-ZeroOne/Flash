@@ -9,25 +9,25 @@
         })
 
         // route for the voucher page
-        .when('/voucher',
+        .when('/supplier',
         {
-            templateUrl: 'voucher.html',
-            controller: 'voucherController'
+            templateUrl: 'supplier.html',
+            controller: 'supplierController'
         });
 
 });
 
-squareEyes.controller('mainController', function ($scope) {
-   
-    $scope.message = 'Dashboard';
+squareEyes.controller('mainController', function () {
+    var $ctrl = this;
+    $ctrl.message = 'Dashboard';
 });
 
-squareEyes.controller('voucherController',
+squareEyes.controller('supplierController',
     function($http) {
 
         var $ctrl = this;
         $http
-            .get('http://localhost:55076/api/Supplier?page=1&pageSize=2')
+            .get('/api/Supplier?page=1&pageSize=2')
             .then(function(response) {
                 $ctrl.suppliers = response.data;
             })

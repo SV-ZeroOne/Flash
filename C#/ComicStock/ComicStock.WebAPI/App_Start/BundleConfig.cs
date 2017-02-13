@@ -18,11 +18,9 @@ namespace ComicStock.WebAPI
                       "~/Scripts/app.js",
                       "~/Scripts/Controller.js",
                       "~/Scripts/bootstrap-select.js",
-
                       "~/Scripts/bootstrap-select.js",
                        "~/Scripts/angular.min.js",
                       "~/Scripts/Controller.js",
-
                       "~/Scripts/bootstrap-select.min.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootstrap.min.js",
@@ -31,19 +29,14 @@ namespace ComicStock.WebAPI
                       "~/Scripts/dataTables.bootstrapmin.js",
                       "~/Scripts/fileinput.js",
                       "~/Scripts/jquery.dataTables.min.js",
-
                       "~/Scripts/jquery.min.js",
-
                       "~/Scripts/main.js"
-                     
 
                 ));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
 
-
-                      
                       "~/Content/style.less",
                       "~/Content/style.css",
                       "~/Content/bootstrap.css",
@@ -56,8 +49,7 @@ namespace ComicStock.WebAPI
                       "~/Content/bootstrap.css",
                       "~/Content/awesome-bootstrap.checkbox.css",
                       "~/Content/bootstrap.min.css",
-                   //   "~/Content/css/vars.css",
-              
+                      "~/Content/css/vars.css",
                       "~/Content/dataTables.min.css",
                       "~/Content/bootstrap-select.css",
                       "~/Content/less/vars.less",
