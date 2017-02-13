@@ -1,41 +1,21 @@
-﻿squareEyes.config(function ($routeProvider) {
-    $routeProvider
-
-        // route for the index page
-        .when('/',
-        {
-            templateUrl: '/app/index.html',
-            controller: 'mainController'
-        })
-
-        // route for the voucher page
-        .when('/supplier',
-        {
-            templateUrl: '/app/modules/supplier/templates/supplier.html',
-            controller: 'supplierController'
-        });
-
-});
-
-
-squareEyes.controller('mainController', function () {
+﻿squareEyes.controller('mainController', function ($scope) {
     var $ctrl = this;
     $ctrl.message = 'Dashboard';
-});
 
-squareEyes.controller('supplierController',
-    function($http) {
+    //ModalService.showModal({
+    //    templateUrl: "index.html",
+    //    controller: "mainController"
+    //}).then(function(modal) {
 
-        var $ctrl = this;
-        $http
-            .get('/api/Supplier?page=1&pageSize=25')
-            .then(function(response) {
-                $ctrl.suppliers = response.data;
-            })
-            .catch(function(errorResponse) {
-            });
-        $ctrl.message = 'Supplier Management';
+    //    //it's a bootstrap element, use 'modal' to show it
+    //    modal.element.modal();
+    //    modal.close.then(function(result) {
+    //        console.log(result);
+    //    });
+    //    });
 
 });
+
+
 
 

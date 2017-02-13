@@ -66,13 +66,13 @@
                                             <div class="col-sm-4" >
                                                 <label for="dropdown">
                                                     Show
-                                                    <select id="dropdown" class="form-control input-sm" ng-click="$ctrl.pageSize()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
+                                                    <select id="dropdown" ng-model="$ctrl.size" class="form-control input-sm" ng-click="$ctrl.page()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
                                                 </label>
 </div>
                                     
                                             <div class="col-sm-4">
                                                 <div class="text-center">
-                                                    <ul class="pagination">
+                                                    <ul class="pagination" ng-model="$ctrl.page" ng-click="$ctrl.page()">
                                                         <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
                                                         <li class="active"><a href="#!">1</a></li>
                                                         <li class="waves-effect"><a href="#!">2</a></li>

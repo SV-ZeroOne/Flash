@@ -228,6 +228,8 @@
     <Content Include="app\assets\css\style.css" />
     <Content Include="app\assets\css\vars.css" />
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\assets\js\angular-modal-service.js" />
+    <Content Include="app\assets\js\angular-modal-service.min.js" />
     <Content Include="app\assets\js\angular-route.min.js" />
     <Content Include="app\assets\js\angular.min.js" />
     <Content Include="app\assets\js\app.js" />

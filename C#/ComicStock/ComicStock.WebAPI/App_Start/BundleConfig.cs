@@ -14,7 +14,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/bootstrap-select.min.js",
                       "~/app/assets/js/bootstrap.min.js",
-                      "~/app/assets/js/dataTables.bootstrapmin.js",
+                      "~/app/assets/js/dataTables.bootstrap.min.js",
                       "~/app/assets/js/fileinput.js",
                       "~/app/assets/js/jquery.dataTables.min.js",
                       "~/app/assets/js/jquery.min.js",
@@ -24,9 +24,15 @@ namespace ComicStock.WebAPI
             bundles.Add(new ScriptBundle("~/angular/js").Include(
                       "~/app/assets/js/angular.min.js",
                       "~/app/assets/js/angular-route.min.js",
+                      "~/app/modules/supplier/supplier.module.js",
                       "~/app/assets/js/app.js",
                       "~/app/assets/js/Controller.js"
+                      
+
+
                 ));
+
+    
 
             bundles.Add(new StyleBundle("~/assets/css").Include(
                       "~/app/assets/css/bootstrap.min.css",
