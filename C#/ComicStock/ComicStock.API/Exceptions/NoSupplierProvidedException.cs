@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ComicStock.API.Exceptions
 {
-    public class NoSupplierProvidedException : Exception
+    public class NoSupplierProvidedException : HttpException
     {
         public override string Message
         {
