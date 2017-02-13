@@ -1,4 +1,5 @@
 ﻿using ComicStock.API;
+using ComicStock.API.Exceptions;
 using ComicStock.Data.IRepositories;
 using ComicStock.Domain;
 using ComicStock.WebAPI.Models;
@@ -67,7 +68,14 @@ namespace ComicStock.WebAPI.Controllers
             {
                 order = supplierOrder.placeOrder(order);
             }
-            catch(Exception ex)
+            catch (HttpException httpEx)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(
+                httpEx.httpStatusCode,
+                "Error placing the order: " + httpEx.Message)
+                );
+            }
+            catch (Exception ex)
             {
                 return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,

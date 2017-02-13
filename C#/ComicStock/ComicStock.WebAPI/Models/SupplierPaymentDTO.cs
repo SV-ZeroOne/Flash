@@ -16,6 +16,11 @@ namespace ComicStock.WebAPI.Models
 
         public virtual OrderDTO Order { get; set; }
 
+        public SupplierPaymentDTO()
+        {
+
+        }
+
         public SupplierPaymentDTO(SupplierPayment supplierPayment)
         {
             this.Id = supplierPayment.ID;

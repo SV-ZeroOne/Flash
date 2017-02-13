@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace ComicStock.API.Exceptions
 {
-    public class IssueNotFoundException : Exception
+    public class IssueNotFoundException : HttpException
     {
+        public IssueNotFoundException()
+        {
+            httpStatusCode = System.Net.HttpStatusCode.PartialContent;
+        }
         public override string Message
         {
             get
