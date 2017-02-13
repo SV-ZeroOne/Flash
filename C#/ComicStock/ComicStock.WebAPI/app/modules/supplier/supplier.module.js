@@ -1,6 +1,6 @@
 angular.module('supplierModule', [])
     .controller('supplierController',
-        function($http) {
+        function ($http, ModalService) {
 
             var $ctrl = this;
             $http
@@ -11,6 +11,7 @@ angular.module('supplierModule', [])
                 .catch(function(errorResponse) {
                 });
             $ctrl.message = 'Supplier Management';
+            $ctrl.modalTitle = 'Add a New Supplier';
 
             $ctrl.page = function() {
                 $http
@@ -19,22 +20,40 @@ angular.module('supplierModule', [])
                         $ctrl.suppliers = response.data;
                     });
             }
-            $ctrl.showModal = function(ModalService) {
+            $ctrl.newSupplier = {};
+
+            $ctrl.submit = function () {
+                $ctrl.newSupplier.Name = $ctrl.name;
+                $ctrl.newSupplier.City = $ctrl.city;
+                $ctrl.newSupplier.RefNum = $ctrl.refNum;
+                $http.post('/api/Supplier', $ctrl.newSupplier)
+                    .then(function(response) {
+                        alert("User created " +response);
+                    })
+                    .catch(function(errorResponse) {
+                        alert('Creation failed ' + errorResponse);
+                    });
+            }
+         
+           
+            $ctrl.show = function() {
                 ModalService.showModal({
-                    templateUrl: "supplier.html",
+                    templateUrl: "/app/modules/supplier/templates/modal.html",
                     controller: "supplierController"
                 }).then(function(modal) {
 
-                    //it's a bootstrap element, use 'modal' to show it
                     modal.element.modal();
                     modal.close.then(function(result) {
                         console.log(result);
                     });
 
                 });
-            };
+            }
+          
         });
-       
+
+         
+   
 
            
      

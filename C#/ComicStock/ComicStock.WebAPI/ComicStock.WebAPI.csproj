@@ -230,6 +230,7 @@
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />
+    <Content Include="app\assets\img\plus.png" />
     <Content Include="app\assets\img\ts-avatar.jpg" />
     <Content Include="app\assets\js\angular-modal-service.min.js" />
     <Content Include="app\assets\js\angular-route.min.js" />
@@ -255,6 +256,7 @@
     <Content Include="app\modules\supplier\controller\supplier.controller.js" />
     <Content Include="app\modules\supplier\supplier.css" />
     <Content Include="app\modules\supplier\supplier.module.js" />
+    <Content Include="app\modules\supplier\templates\modal.html" />
     <Content Include="app\modules\supplier\templates\supplier.html" />
     <Content Include="app\modules\supplier\templates\supplier.tpl.html" />
     <Content Include="favicon.ico" />
