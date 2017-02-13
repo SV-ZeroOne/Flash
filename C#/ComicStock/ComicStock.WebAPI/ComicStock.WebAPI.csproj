@@ -184,7 +184,6 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -214,6 +213,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
     <Content Include="app\assets\css\awesome-bootstrap-checkbox.css" />
     <Content Include="app\assets\css\bootstrap-select.css" />
     <Content Include="app\assets\css\bootstrap-social.css" />
@@ -232,7 +232,6 @@
     <Content Include="app\assets\js\angular-modal-service.min.js" />
     <Content Include="app\assets\js\angular-route.min.js" />
     <Content Include="app\assets\js\angular.min.js" />
-    <Content Include="app\assets\js\app.js" />
     <Content Include="app\assets\js\bootstrap-select.js" />
     <Content Include="app\assets\js\bootstrap-select.min.js" />
     <Content Include="app\assets\js\bootstrap.js" />
@@ -253,6 +252,12 @@
     <Content Include="app\assets\js\respond.min.js" />
     <None Include="app\assets\js\_references.js" />
     <Content Include="app\index.html" />
+    <Content Include="app\modules\dashboard\components\dashboard.component.js" />
+    <Content Include="app\modules\dashboard\controller\dashboard.controller.js" />
+    <Content Include="app\modules\dashboard\dashboard.css" />
+    <Content Include="app\modules\dashboard\dashboard.module.js" />
+    <Content Include="app\modules\dashboard\templates\dashboard.html" />
+    <Content Include="app\modules\dashboard\templates\dashboard.tpl.html" />
     <Content Include="app\modules\supplier\components\supplier.component.js" />
     <Content Include="app\modules\supplier\controller\supplier.controller.js" />
     <Content Include="app\modules\supplier\supplier.css" />

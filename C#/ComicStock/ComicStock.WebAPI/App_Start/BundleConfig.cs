@@ -25,10 +25,8 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/angular.min.js",
                       "~/app/assets/js/angular-route.min.js",
                       "~/app/modules/supplier/supplier.module.js",
-                      "~/app/assets/js/app.js",
-                      "~/app/assets/js/Controller.js"
-                      
-
+                      "~/app/modules/dashboard/dashboard.module.js",
+                      "~/app/app.js"
 
                 ));
 
