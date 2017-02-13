@@ -12,12 +12,11 @@ namespace ComicStock.WebAPI
 
             bundles.Add(new ScriptBundle("~/assets/js").Include(
                       "~/app/assets/js/jquery.min.js",
-                      "~/app/assets/js/bootstrap-select.min.js",
                       "~/app/assets/js/bootstrap.min.js",
-                      "~/app/assets/js/dataTables.bootstrap.min.js",
-                      "~/app/assets/js/fileinput.js",
-                      "~/app/assets/js/jquery.dataTables.min.js",
+                      "~/app/assets/js/bootstrap-select.min.js",
                       "~/app/assets/js/jquery.min.js",
+                      "~/app/assets/js/jquery.dataTables.min.js",
+                      "~/app/assets/js/fileinput.js",
                       "~/app/assets/js/main.js"
                 ));
 
