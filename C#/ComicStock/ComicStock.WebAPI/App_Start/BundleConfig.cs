@@ -9,51 +9,44 @@ namespace ComicStock.WebAPI
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-            bundles.Add(new ScriptBundle("~/bundles/javascript").Include(
+            bundles.Add(new ScriptBundle("~/assets/js").Include(
+                      "~/app/assets/js/jquery.min.js",
+                      "~/app/assets/js/bootstrap-select.min.js",
+                      "~/app/assets/js/bootstrap.min.js",
+                      "~/app/assets/js/dataTables.bootstrapmin.js",
+                      "~/app/assets/js/fileinput.js",
+                      "~/app/assets/js/jquery.dataTables.min.js",
+                      "~/app/assets/js/jquery.min.js",
+                      "~/app/assets/js/main.js"
+                ));
 
-
-                      "~/Scripts/jquery.min.js",
-                      "~/Scripts/angular.min.js",
-                      "~/Scripts/angular-route.min.js",
-                      "~/Scripts/app.js",
-                      "~/Scripts/Controller.js",
-                      "~/Scripts/bootstrap-select.js",
-                      "~/Scripts/bootstrap-select.js",
-                       "~/Scripts/angular.min.js",
-                      "~/Scripts/Controller.js",
-                      "~/Scripts/bootstrap-select.min.js",
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/Chart.min.js",
-                      "~/Scripts/chartData.js",
-                      "~/Scripts/dataTables.bootstrapmin.js",
-                      "~/Scripts/fileinput.js",
-                      "~/Scripts/jquery.dataTables.min.js",
-                      "~/Scripts/jquery.min.js",
-                      "~/Scripts/main.js"
-
+            bundles.Add(new ScriptBundle("~/angular/js").Include(
+                      "~/app/assets/js/angular.min.js",
+                      "~/app/assets/js/angular-route.min.js",
+                      "~/app/assets/js/app.js",
+                      "~/app/assets/js/Controller.js"
                 ));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/assets/css").Include(
 
-                      "~/Content/style.less",
-                      "~/Content/style.css",
-                      "~/Content/bootstrap.css",
-                      "~/Content/bootstrap-social.css",
-                      "~/Content/jquery.dataTables.min.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/fileinput.min.css",
-                      "~/Content/dataTables.min.css",
-                      "~/Content/bootstrap-select.css",
-                      "~/Content/bootstrap.css",
-                      "~/Content/awesome-bootstrap.checkbox.css",
-                      "~/Content/bootstrap.min.css",
-                      "~/Content/css/vars.css",
-                      "~/Content/dataTables.min.css",
-                      "~/Content/bootstrap-select.css",
-                      "~/Content/less/vars.less",
-                      "~/Content/less/components.less"
+                      "~/app/assets/css/style.less",
+                      "~/app/assets/css/style.css",
+                      "~/app/assets/css/bootstrap.css",
+                      "~/app/assets/css/bootstrap-social.css",
+                      "~/app/assets/css/jquery.dataTables.min.css",
+                      "~/app/assets/css/font-awesome.min.css",
+                      "~/app/assets/css/fileinput.min.css",
+                      "~/app/assets/css/dataTables.min.css",
+                      "~/app/assets/css/bootstrap-select.css",
+                      "~/app/assets/css/bootstrap.css",
+                      "~/app/assets/css/awesome-bootstrap.checkbox.css",
+                      "~/app/assets/css/bootstrap.min.css",
+                      "~/app/assets/css/css/vars.css",
+                      "~/app/assets/css/dataTables.min.css",
+                      "~/app/assets/css/bootstrap-select.css",
+                      "~/app/assets/css/less/vars.less",
+                      "~/app/assets/css/less/components.less"
 
 
                       ));
