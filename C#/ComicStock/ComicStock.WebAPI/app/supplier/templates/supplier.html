@@ -22,7 +22,7 @@
                 <input type="text" class="ts-sidebar-search" placeholder="Search here...">
             </li>
 
-            <li> <a href="#!/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="open">
                 <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
             </li>
@@ -54,33 +54,43 @@
 
                     <h2 class="page-title">{{$ctrl.message}}</h2>
 
-                
-                        
                             <div class="panel panel-default">
-                                <div class="panel-heading">Table by DataTables plugin</div>
+                                <div class="panel-heading">Suppliers</div>
                                 <div class="panel-body">
-                                    <div class="row">
-                                        
-                                        <div class="col-sm-6">
-                                            <div class="dataTables_length" id="zctb_length">
-                                                <label>Show <select name="zctb_length" aria-controls="zctb" class="form-control input-sm">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select> entries</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div id="zctb_filter" class="dataTables_filter">
-                                                <label>Search:
-                                                    <input type="search" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                
+                                    <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                                       
+                                         <div class="row">
+
+                                            <div class="col-sm-4" >
+                                                <label for="dropdown">
+                                                    Show
+                                                    <select id="dropdown" class="form-control input-sm" ng-click="$ctrl.pageSize()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
                                                 </label>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="text-center">
+                                                    <ul class="pagination">
+                                                        <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
+                                                        <li class="active"><a href="#!">1</a></li>
+                                                        <li class="waves-effect"><a href="#!">2</a></li>
+                                                        <li class="waves-effect"><a href="#!">3</a></li>
+                                                        <li class="waves-effect"><a href="#!">4</a></li>
+                                                        <li class="waves-effect"><a href="#!">5</a></li>
+                                                        <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="text-right">
+                                                    <label class="text-left">
+                                                        Search:<input type="search" class="form-control" placeholder="" aria-controls="zctb">
+                                                    </label>
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-                                        <thead>
+                                         <thead>
                                         <tr>
                                             <th>Supplier Name</th>
                                             <th>City</th>
@@ -88,22 +98,14 @@
                                         </tr>
                                         </thead>
                                         <tbody >
+                                        
                                         <tr ng-repeat="supplier in $ctrl.suppliers">
                                             <td>{{supplier.Name}}</td>
                                             <td>{{supplier.City}}</td>
                                             <td>{{supplier.RefNum}}</td>
                                         </tr>
                                         </tbody>
-                                      <div class="row">
-                                        
-                                        <div class="col-sm-5">
-                                            <div class="dataTables_info" id="zctb_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <div class="dataTables_paginate paging_simple_numbers" id="zctb_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="zctb_previous"><a href="#" aria-controls="zctb" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="zctb" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="zctb" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="zctb" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="zctb" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="zctb" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="zctb" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="zctb_next"><a href="#" aria-controls="zctb" data-dt-idx="7" tabindex="0">Next</a></li></ul>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     </table>
                                   
                                 </div>
@@ -115,5 +117,5 @@
                 </div>
             </div>
 
-       
+
         </div>
