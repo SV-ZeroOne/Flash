@@ -24,6 +24,7 @@ namespace ComicStock.WebAPI
             bundles.Add(new ScriptBundle("~/angular/js").Include(
                       "~/app/assets/js/angular.min.js",
                       "~/app/assets/js/angular-route.min.js",
+                      "~/app/assets/js/swx-session-storage.min.js",
                       "~/app/assets/js/angular-modal-service.min.js",
                       "~/app/modules/supplier/supplier.module.js",
                       "~/app/modules/dashboard/dashboard.module.js",

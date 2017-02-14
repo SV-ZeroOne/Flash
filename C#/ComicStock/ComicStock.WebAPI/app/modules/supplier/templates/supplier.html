@@ -69,7 +69,6 @@
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
-                           
                             <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
                                 <div class="row">
@@ -118,7 +117,7 @@
                                     <td>{{supplier.Name}}</td>
                                     <td>{{supplier.City}}</td>
                                     <td>{{supplier.RefNum}}</td>
-                                    <td><button  ng-click='$ctrl.edit(1)' style="cursor: pointer;"><i class="fa fa-pencil"/></button></td>
+                                    <td><button  ng-click='$ctrl.edit(supplier.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></button></td>
 
                                 </tr>
                                 </tbody>

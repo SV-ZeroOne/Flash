@@ -1,5 +1,5 @@
 
-var squareEyes = angular.module('squareEyes', ['ngRoute', 'supplierModule','angularModalService','dashboardModule'])
+var squareEyes = angular.module('squareEyes', ['swxSessionStorage', 'ngRoute', 'supplierModule', 'angularModalService', 'dashboardModule'])
 
 
 .config(function ($routeProvider) {

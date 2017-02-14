@@ -3,12 +3,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">{{$ctrl.modalTitle}}</h4>
+                    <h4 class="modal-title" ng-model="modalTitle" >{{$ctrl.modalTitle}}</h4>
                 </div>
                 <div class="modal-body">
-                    <label for="tag1">Name:</label><input type="text" ng-model="$ctrl.name" value="$ctrl.name" data-role="tagsinput" id="tag1" class="form-control">
-                    <label for="tag2">City:</label><input type="text" ng-model="$ctrl.city" value="$ctrl.city" data-role="tagsinput" id="tag2" class="form-control">
-                    <label for="tag3">Reference Number:</label><input type="text" ng-model="$ctrl.refNum" value="{{$ctrl.refNum}}" data-role="tagsinput" id="tag3" class="form-control">
+                    <label for="tag1">Name:</label><input type="text" ng-model="$ctrl.name"  data-role="tagsinput" id="tag1" class="form-control">
+                    <label for="tag2">City:</label><input type="text" ng-model="$ctrl.city"  data-role="tagsinput" id="tag2" class="form-control">
+                    <label for="tag3">Reference Number:</label><input type="text" ng-model="$ctrl.refNum"  data-role="tagsinput" id="tag3" class="form-control">
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -16,6 +16,5 @@
                 </div>
             </div>
         </div>
-
 </div>
 
