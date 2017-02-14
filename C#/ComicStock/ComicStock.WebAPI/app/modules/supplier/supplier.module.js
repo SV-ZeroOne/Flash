@@ -69,14 +69,6 @@ angular.module('supplierModule', [])
 
             }
 
-            $ctrl.update = function() {
-                this.modalTitle = 'Edit Supplier';
-            }
-
-            $ctrl.put = function() {
-
-            }
-
             $ctrl.show = function() {
                 ModalService.showModal({
                     templateUrl: "/app/modules/supplier/templates/modal.html",
@@ -95,6 +87,7 @@ angular.module('supplierModule', [])
     .controller('modalController',
         function($http, $sessionStorage) {
             var $ctrl = this;
+            $ctrl.newSupplier = {};
           
             $ctrl.modalTitle = 'Edit a Supplier';
 
@@ -109,6 +102,26 @@ angular.module('supplierModule', [])
                 .catch(function(errorResponse) {
                     alert('No such supplier exists' + errorResponse.data);
                 });
+
+
+            $ctrl.submit = function () {
+                $ctrl.newSupplier.Id = $sessionStorage.get('ID');
+                $ctrl.newSupplier.Name = $ctrl.name;
+                $ctrl.newSupplier.City = $ctrl.city;
+                $ctrl.newSupplier.RefNum = $ctrl.refNum;
+  
+
+                $http
+                    .put('/api/Supplier/' + $sessionStorage.get('ID'), $ctrl.newSupplier)
+                    .then(function (response) {
+                        alert("User updated " + response);
+                    })
+                    .catch(function (errorResponse) {
+                        alert('Update failed ' + errorResponse);
+                    });
+
+            }
+
 
         });
 
