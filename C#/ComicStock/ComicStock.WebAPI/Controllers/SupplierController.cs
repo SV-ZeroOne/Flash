@@ -55,12 +55,6 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [Route("api/Supplier/count")]
-        public IHttpActionResult Get(string search)
-        {
-            return Ok(supplierRepository.Count());
-        }
-
-        [Route("api/Supplier/count")]
         public IHttpActionResult Get()
         {
             return Ok(supplierRepository.Count());
@@ -73,7 +67,7 @@ namespace ComicStock.WebAPI.Controllers
 
             this.supplierRepository.Add(supplier);
 
-            return Ok(supplier.ID);
+            return Content(HttpStatusCode.Created, supplier.ID);
         }
 
 
