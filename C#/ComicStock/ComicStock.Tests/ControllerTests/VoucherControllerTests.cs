@@ -47,7 +47,7 @@ namespace ComicStock.Tests.ControllerTests
             Voucher testVoucher =
             new Voucher
             {
-                Code = "testCode",
+                Code = "test Code",
                 RedeemDate = new DateTime(2011, 11, 11),
                 Value = 100,
             };
@@ -60,15 +60,15 @@ namespace ComicStock.Tests.ControllerTests
             int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
 
-
-            testVoucherDTO.Code = "test code put";
+            testVoucherDTO.Id = testID;
+            testVoucherDTO.Code = "new code put";
             testVoucherDTO.Value = 150;
 
             IHttpActionResult actionResultPut = voucherController.Put(testID, testVoucherDTO);
             var contentResultPut = actionResultPut as OkNegotiatedContentResult<VoucherDTO>;
 
             Assert.IsNotNull(contentResultPut.Content);
-            Assert.AreEqual("test code put", contentResultPut.Content.Code);
+            Assert.AreEqual("new code put", contentResultPut.Content.Code);
             Assert.AreEqual(150, contentResultPut.Content.Value);
 
 
