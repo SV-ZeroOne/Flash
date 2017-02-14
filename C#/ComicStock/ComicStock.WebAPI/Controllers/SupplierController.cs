@@ -55,6 +55,12 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [Route("api/Supplier/count")]
+        public IHttpActionResult Get(string search)
+        {
+            return Ok(supplierRepository.Count());
+        }
+
+        [Route("api/Supplier/count")]
         public IHttpActionResult Get()
         {
             return Ok(supplierRepository.Count());

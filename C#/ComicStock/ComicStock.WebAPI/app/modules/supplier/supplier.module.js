@@ -12,53 +12,68 @@ angular.module('supplierModule', [])
             $ctrl.refNum = "";
 
             $ctrl.suppliers = {};
+            $ctrl.search = "";
 
-            $ctrl.pageSizeOptions = [10,25,50,100];
-            $ctrl.pageSize = 25;
+            $ctrl.pagination = {
 
-            $ctrl.pageOptions = [];
-            $ctrl.page = 1;
+                pageSizeOptions : [10,25,50,100],
+                pageSize : 25,
 
-            $ctrl.count = 0;
-            $ctrl.numPages = 0;
+                pageOptions : [],
+                page : 1,
 
-            $ctrl.prevDisable = "disable"
-            $ctrl.nextDisable = "disable"
+                count : 0,
+                numPages : 0,
+
+                prevDisable : "disable",
+                nextDisable : "disable"
+            }
 
 
-            $ctrl.updateTable = function(){
-                $http
-                    .get('/api/Supplier?page=' + $ctrl.page + '&pageSize=' + $ctrl.pageSize)
+            $ctrl.updateTable = function () {
+                if ($ctrl.search == "") $http
+                    .get('/api/Supplier?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .then(function (response) {
+                        $ctrl.suppliers = response.data;
+                        console.log($ctrl.suppliers);
+                    })
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse)
+                    });
+                else $http
+                    .get('/api/Supplier/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function(response) {
                         $ctrl.suppliers = response.data;
+                        console.log($ctrl.suppliers);
                     })
-                    .catch(function(errorResponse) {
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse)
                     });
 
                 $http
                     .get('/api/Supplier/count')
                     .then(function (response) {
-                        $ctrl.count = response.data;
+                        $ctrl.pagination.count = response.data;
 
-                        $ctrl.numPages = Math.ceil($ctrl.count / $ctrl.pageSize);
-                        $ctrl.pageOptions = [];
-                        for (var x = 1; x <= $ctrl.numPages; x++)
-                            $ctrl.pageOptions.push(x);
+                        $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
+                        $ctrl.pagination.pageOptions = [];
+                        for (var x = 1; x <= $ctrl.pagination.numPages; x++)
+                            $ctrl.pagination.pageOptions.push(x);
 
                         if ($ctrl.page == $ctrl.numPages)
-                            $ctrl.nextDisable = "disable";
+                            $ctrl.pagination.nextDisable = "disable";
                         else
-                            $ctrl.nextDisable = "";
+                            $ctrl.pagination.nextDisable = "";
 
                         if ($ctrl.page <= 1)
-                            $ctrl.prevDisable = "disable";
+                            $ctrl.pagination.prevDisable = "disable";
                         else
-                            $ctrl.prevDisable = "";
+                            $ctrl.pagination.prevDisable = "";
                     })
                     .catch(function (errorResponse) {
-                        Console.log(errorResponse)
+                        console.log(errorResponse)
                     });
-
+                console.log($ctrl.pagination)
                 
             }
 
@@ -66,7 +81,7 @@ angular.module('supplierModule', [])
             
 
             $ctrl.pageTo = function(page){
-                $ctrl.page = page;
+                $ctrl.pagination.page = page;
                 $ctrl.updateTable();
             }
 

@@ -79,30 +79,29 @@
                                             <select name="mySelect" id="mySelect"
                                                     class="form-control input-sm"
                                                     ng-click="$ctrl.updateTable()"
-                                                    ng-options="option for option in $ctrl.pageSizeOptions track by option"
-                                                    ng-model="$ctrl.pageSize"></select>
+                                                    ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
+                                                    ng-model="$ctrl.pagination.pageSize"></select>
                                         </label>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="text-center">
                                             <ul class="pagination" ng-model="$ctrl.page">
-                                                <li ng-class="$ctrl.prevDisable" ng-click="$ctrl.pageTo(($ctrl.page > 1) ? ($ctrl.page - 1) : $ctrl.page)">
+                                                <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-left "></i></a>
                                                 </li>
-                                                <li class="waves-effect" ng-repeat="n in $ctrl.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
+                                                <li class="waves-effect" ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
                                                     <a>{{n}}</a>
                                                 </li>
-                                                <li ng-class="$ctrl.nextDisable" ng-click="$ctrl.pageTo(($ctrl.page < $ctrl.numPages) ? ($ctrl.page + 1) : $ctrl.page)">
+                                                <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-right"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-sm-4 text-right">
-
                                         <label class="text-left">
-                                            Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                            Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
                                         </label>
 
 
