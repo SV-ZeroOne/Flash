@@ -31,6 +31,7 @@ namespace ComicStock.WebAPI
                       "~/app/modules/supplier/supplier.module.js",
                       "~/app/modules/creator/creator.module.js",
                       "~/app/modules/voucher/voucher.module.js",
+                      "~/app/modules/order/order.module.js",
                       "~/app/modules/dashboard/dashboard.module.js",
                       "~/app/app.js"
 
