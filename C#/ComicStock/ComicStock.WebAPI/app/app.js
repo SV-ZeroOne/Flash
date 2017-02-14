@@ -1,5 +1,7 @@
 
+
 var squareEyes = angular.module('squareEyes', ['swxSessionStorage', 'ngRoute', 'supplierModule', 'angularModalService', 'dashboardModule'])
+
 
 
 .config(function ($routeProvider) {
@@ -8,7 +10,7 @@ var squareEyes = angular.module('squareEyes', ['swxSessionStorage', 'ngRoute', '
         // route for the index page
         .when('/',
         {
-            templateUrl: '/app/index.html'
+            templateUrl: '/app/modules/dashboard/templates/dashboard.html'
             //  controller: 'mainController'
         })
 
