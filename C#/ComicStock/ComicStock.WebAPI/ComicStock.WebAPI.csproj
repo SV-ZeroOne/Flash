@@ -250,6 +250,9 @@
     <Content Include="app\assets\js\sweetalert2.min.js" />
     <Content Include="app\assets\js\swx-session-storage.min.js" />
     <Content Include="app\index.html" />
+    <Content Include="app\modules\creator\templates\modal.html" />
+    <Content Include="app\modules\creator\templates\modalEdit.html" />
+    <Content Include="app\modules\creator\templates\creator.html" />
     <Content Include="app\modules\dashboard\components\dashboard.component.js" />
     <Content Include="app\modules\dashboard\controller\dashboard.controller.js" />
     <Content Include="app\modules\dashboard\dashboard.css" />
@@ -268,6 +271,7 @@
     <Content Include="app\modules\voucher\templates\modal.html" />
     <Content Include="app\modules\voucher\templates\modalEdit.html" />
     <Content Include="app\modules\voucher\templates\voucher.html" />
+    <Content Include="app\modules\creator\creator.module.js" />
     <Content Include="app\modules\voucher\voucher.module.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

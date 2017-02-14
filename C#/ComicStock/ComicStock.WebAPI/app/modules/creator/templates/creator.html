@@ -14,7 +14,7 @@
         </li>
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="voucherController as $ctrl">
+<div class="ts-main-content" ng-controller ="creatorController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Search</li>
@@ -26,10 +26,10 @@
             <li >
                 <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
             </li>
-            <li><a class="open" href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
+            <li><a  href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
             <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
             <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
-            <li><a href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
+            <li><a class="open" href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
  
 
             <!-- Account from above -->
@@ -57,7 +57,7 @@
                             <h2>{{$ctrl.message}}</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Voucher</button>
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Creator</button>
                        </div>
                       
                     </div>
@@ -65,7 +65,7 @@
                  
                    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Vouchers</div>
+                        <div class="panel-heading">Creators</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -110,19 +110,21 @@
                                 </div>
                                 <thead>
                                 <tr>
-                                    <th>Voucher Code</th>
-                                    <th>Redeem Date</th>
-                                    <th>Voucher Value</th>
+                                    <th>Creator Name</th>
+                                    <th>Country of Residence</th>
+                                    <th>Tax Reference Number</th>
+                                    <th>Email Address</th>
                                     <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody >
 
-                                <tr ng-repeat="voucher in $ctrl.vouchers">
-                                    <td>{{voucher.Code}}</td>
-                                    <td>{{voucher.RedeemDate}}</td>
-                                    <td>{{voucher.Value}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(voucher.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+                                <tr ng-repeat="creator in $ctrl.creators">
+                                    <td>{{creator.Name}}</td>
+                                    <td>{{creator.CountryOfResidence}}</td>
+                                    <td>{{creator.TaxReferenceNumber}}</td>
+                                    <td>{{creator.EmailAddress}}</td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(creator.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
 
                                 </tr>
                                 </tbody>
