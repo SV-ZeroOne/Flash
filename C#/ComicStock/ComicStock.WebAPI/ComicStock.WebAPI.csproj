@@ -230,6 +230,7 @@
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />
+    <Content Include="app\assets\img\logo1.jpg" />
     <Content Include="app\assets\img\plus.png" />
     <Content Include="app\assets\img\ts-avatar.jpg" />
     <Content Include="app\assets\js\angular-messages.js" />
