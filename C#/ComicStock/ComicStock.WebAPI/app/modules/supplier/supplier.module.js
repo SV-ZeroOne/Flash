@@ -45,7 +45,7 @@ angular.module('supplierModule', [])
                         console.log($ctrl.suppliers);
                     })
                     .catch(function (errorResponse) {
-                        console.log(errorResponse)
+                        console.log(errorResponse);
                     });
 
                 $http
@@ -69,10 +69,10 @@ angular.module('supplierModule', [])
                             $ctrl.pagination.prevDisable = "";
                     })
                     .catch(function (errorResponse) {
-                        console.log(errorResponse)
+                        console.log(errorResponse);
                     });
-                console.log($ctrl.pagination)
-                
+                console.log($ctrl.pagination);
+
             }
 
             $ctrl.updateTable()
@@ -87,22 +87,22 @@ angular.module('supplierModule', [])
                 $ctrl.updateTable();
             }
 
-
-
-            $ctrl.submit = function() {
+            $ctrl.submit = function (isFormValid) {
+                if (!isFormValid) {
+                    swal('Failed', 'User fields not valid - please try again.', 'error');
+                    return;
+                }
                 $ctrl.newSupplier.Name = $ctrl.name;
                 $ctrl.newSupplier.City = $ctrl.city;
                 $ctrl.newSupplier.RefNum = $ctrl.refNum;
                 $http.post('/api/Supplier', $ctrl.newSupplier)
-                    .then(function(response) {
-
-                        alert("User created " + response);
-
+                    .then(function(response) {s
+                        swal('Success','User created','success');
+                        $ctrl.updateTable();
                     })
                     .catch(function(errorResponse) {
-                        alert('Creation failed ' + errorResponse);
+                        swal('Oops...', 'Something went wrong!', 'error');
                     });
-                $ctrl.updateTable();
             }
 
 
@@ -120,6 +120,7 @@ angular.module('supplierModule', [])
                         ModalService.showModal({
                             templateUrl: "/app/modules/supplier/templates/modalEdit.html",
                             controller: 'modalController'
+           
                         }).then(function(modal) {
 
                             modal.element.modal();
@@ -128,8 +129,9 @@ angular.module('supplierModule', [])
                             });
                         });
                     })
-                    .catch(function(errorResponse) {
-                        alert('No such supplier exists' + errorResponse.data);
+                    .catch(function (errorResponse) {
+                        swal('Oops...', 'Something went wrong!', 'error')
+                        
                     });
 
             }
@@ -167,11 +169,15 @@ angular.module('supplierModule', [])
                     }
                 )
                 .catch(function(errorResponse) {
-                    alert('No such supplier exists' + errorResponse.data);
+                    swal('Error','No such supplier exists','error');
                 });
 
 
-            $ctrl.submit = function () {
+            $ctrl.submit = function (isFormValid) {
+                if (!isFormValid) {
+                    swal('Failed', 'User fields not valid - please try again', 'error');
+                    return;
+                }
                 $ctrl.newSupplier.Id = $sessionStorage.get('ID');
                 $ctrl.newSupplier.Name = $ctrl.name;
                 $ctrl.newSupplier.City = $ctrl.city;
@@ -181,11 +187,15 @@ angular.module('supplierModule', [])
                 $http
                     .put('/api/Supplier/' + $sessionStorage.get('ID'), $ctrl.newSupplier)
                     .then(function (response) {
-                        alert("User updated " + response);
                         $scope.$emit('updateTheTablePlease');
+                        swal(
+                            'Good job!',
+                            'User updated',
+                            'success'
+                        );
                     })
                     .catch(function (errorResponse) {
-                        alert('Update failed ' + errorResponse);
+                        swal('Error','Update failed ','error');
                     });
 
             }
