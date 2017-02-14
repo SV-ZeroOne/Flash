@@ -11,25 +11,36 @@ angular.module('supplierModule', [])
             $ctrl.city = "";
             $ctrl.refNum = "";
 
+            $ctrl.pageSizeOptions = [10,25,50,100];
+            $ctrl.pageSize = 25;
 
-            $http
-                .get('/api/Supplier?page=1&pageSize=25')
-                .then(function(response) {
-                    $ctrl.suppliers = response.data;
-                })
-                .catch(function(errorResponse) {
-                });
-     
-           
+            $ctrl.pageOptions = [1, 2, 3, 4, 5];
+            $ctrl.page = 1;
 
-            $ctrl.page = function() {
+            $ctrl.count = 18000;
+
+
+            $ctrl.updateTable = function(){
                 $http
-                    .get('/api/Supplier?page=' + $ctrl.size + '&pageSize=' + $ctrl.size)
+                    .get('/api/Supplier?page=' + $ctrl.page + '&pageSize=' + $ctrl.pageSize)
                     .then(function(response) {
                         $ctrl.suppliers = response.data;
+                    })
+                    .catch(function(errorResponse) {
                     });
             }
-           
+
+            $ctrl.updateTable()
+
+            $ctrl.getPageOptions = function(){
+
+            }
+
+            $ctrl.pageTo = function(page){
+                $ctrl.page = page;
+                $ctrl.updateTable();
+            }
+
 
             $ctrl.submit = function () {
                 $ctrl.newSupplier.Name = $ctrl.name;
