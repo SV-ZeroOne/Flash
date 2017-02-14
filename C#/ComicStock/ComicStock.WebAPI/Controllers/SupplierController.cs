@@ -93,5 +93,20 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
+        public IHttpActionResult Delete(int id)
+        {
+            Supplier supplier = supplierRepository.GetById(id);
+            if (supplier != null)
+            {
+                supplierRepository.Delete(id);
+                return Ok(id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }

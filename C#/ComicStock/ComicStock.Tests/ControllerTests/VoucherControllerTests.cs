@@ -12,81 +12,81 @@ using ComicStock.WebAPI.Models;
 
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    using Data.Repositories;
+
+    [TestFixture]
     public class VoucherControllerTests
     {
-        [TestMethod]
+        private IVoucherRepository voucherRepository;
+        private VoucherController voucherController;
+
+        [SetUp]
+        public void init()
+        {
+            voucherRepository = new VoucherRepository(new Data.ComicContext());
+            voucherController = new VoucherController(voucherRepository);
+        }
+
+        [Test]
         public void GetReturnsVoucherWithSameId()
         {
             int testID = 1;
-
-            var mockRepository = new Mock<IVoucherRepository>();
-            mockRepository.Setup(x => x.GetById(testID))
-                .Returns(new Voucher { ID = testID });
-
-            var controller = new VoucherController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Get(testID);
+            IHttpActionResult actionResult = voucherController.Get(testID);
             var contentResult = actionResult as OkNegotiatedContentResult<VoucherDTO>;
 
-            Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
             Assert.AreEqual(testID, contentResult.Content.Id);
 
         }
 
-        [TestMethod]
+        [Test]
         public void PostReturnsVoucherIDAddRepository()
         {
-            var mockRepository = new Mock<IVoucherRepository>();
-            var controller = new VoucherController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Post(new VoucherDTO { });
-            var contentResult = actionResult as OkNegotiatedContentResult<int>;
-
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-
-        }
-
-        [TestMethod]
-        public void PutReturnsUpdatedVoucherDTO()
-        {
-
-            var mockRepository = new Mock<IVoucherRepository>();
-            mockRepository.Setup(x => x.GetById(4))
-                .Returns(new Voucher
-                {
-                    ID = 4,
-                    Code = "Test Code",
-                    RedeemDate = new DateTime(2000, 10, 23),
-                    Value = 100,
-                });
-            var controller = new VoucherController(mockRepository.Object);
-
-            Voucher testVoucher = new Voucher
+            Voucher testVoucher =
+            new Voucher
             {
-                ID = 4,
-                Code = "Test Code Updated",
-                RedeemDate = new DateTime(2009, 4, 13),
-                Value = 200,
-
+                Code = "test Code",
+                RedeemDate = new DateTime(2011, 11, 11),
+                Value = 100,
             };
 
             VoucherDTO testVoucherDTO = new VoucherDTO(testVoucher);
 
-            // Act  
-            IHttpActionResult actionResult = controller.Put(4, testVoucherDTO);
-            var contentResult = actionResult as OkNegotiatedContentResult<VoucherDTO>;
+            IHttpActionResult actionResult = voucherController.Post(testVoucherDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-            Assert.IsNotNull(contentResult);
+            int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(4, contentResult.Content.Id);
-            Assert.AreEqual("Test Code Updated", contentResult.Content.Code);
-            Assert.AreEqual(new DateTime(2009, 4, 13), contentResult.Content.RedeemDate);
-            Assert.AreEqual(200, contentResult.Content.Value);
 
+            testVoucherDTO.Id = testID;
+            testVoucherDTO.Code = "new code put";
+            testVoucherDTO.Value = 150;
+
+            IHttpActionResult actionResultPut = voucherController.Put(testID, testVoucherDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<VoucherDTO>;
+
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual("new code put", contentResultPut.Content.Code);
+            Assert.AreEqual(150, contentResultPut.Content.Value);
+
+
+            actionResult = voucherController.Delete(testID);
+            Assert.IsNotNull(actionResult);
 
         }
+        [Test]
+        public void GetReturnsVouchersGetPage()
+        {
+            int page = 1;
+            int size = 1;
+            IHttpActionResult actionResult = voucherController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<VoucherDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
+
+        }
+ 
     }
 }

@@ -8,86 +8,106 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using ComicStock.WebAPI.Models;
 
+
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    using Data.Repositories;
+    using Data;
+    using API;
+    using API.Services;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    [TestFixture]
     public class OrderControllerTests
     {
-        //[TestMethod]
-        //public void GetReturnsOrderWithSameId()
-        //{
-        //    int testID = 1;
 
-        //    var mockRepository = new Mock<IOrderRepository>();
-        //    mockRepository.Setup(x => x.GetById(testID))
-        //        .Returns(new Order { ID = testID });
+        private IOrderRepository orderRepository;
+        private IIssueRepository issueRepository;
+        private ISupplierRepository supplierRepository;
+        private IThirdPartyPayment thirdPartyPayment;
+        private IStockRepository stockRepository;
 
-        //    var controller = new OrderController(mockRepository.Object);
+        private OrderController orderController;
 
-        //    IHttpActionResult actionResult = controller.Get(testID);
-        //    var contentResult = actionResult as OkNegotiatedContentResult<OrderDTO>;
+        private SupplierOrder supplierOrder;
 
-        //    Assert.IsNotNull(contentResult);
-        //    Assert.IsNotNull(contentResult.Content);
-        //    Assert.AreEqual(testID, contentResult.Content.Id);
+        [SetUp]
+        public void init()
+        {
+            orderRepository = new OrderRepository(new Data.ComicContext());
+            issueRepository = new IssueRepository(new Data.ComicContext());
+            supplierRepository = new SupplierRepository(new Data.ComicContext());
+            stockRepository = new StockRepository(new Data.ComicContext());
+            thirdPartyPayment = new ThirdPartyPaymentMock();
+            supplierOrder = new SupplierOrder(orderRepository, issueRepository, supplierRepository,thirdPartyPayment, stockRepository);
+            orderController = new OrderController(orderRepository, supplierOrder);
+        }
 
-        //}
+        [Test]
+        public void GetReturnsOrderWithSameId()
+        {
+            int testID = 3;
+            IHttpActionResult actionResult = orderController.Get(testID);
+            var contentResult = actionResult as OkNegotiatedContentResult<OrderDTO>;
 
-        //[TestMethod]
-        //public void PostReturnsOrderIDAddRepository()
-        //{
-        //    var mockRepository = new Mock<IOrderRepository>();
-        //    var controller = new OrderController(mockRepository.Object);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(testID, contentResult.Content.Id);
 
-        //    IHttpActionResult actionResult = controller.Post(new OrderDTO{ });
-        //    var contentResult = actionResult as OkNegotiatedContentResult<int>;
+        }
 
-        //    Assert.IsNotNull(contentResult);
-        //    Assert.IsNotNull(contentResult.Content);
+        [Test]
+        public void PostReturnsOrderIDAddRepository()
+        {
+            /*Order testOrder =
+            new Order
+            {
+                OrderDate = null,
+                Total = 100,
+                ShipmentRef = null,
+                ShipmentDate = null,
+                DeliveryStatus = "test",
+            };
 
-        //}
+            OrderDTO testOrderDTO = new OrderDTO(testOrder);
 
-        //[TestMethod]
-        //public void PutReturnsUpdatedCreatorDTO()
-        //{
+            IHttpActionResult actionResult = orderController.Post(testOrderDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-        //    var mockRepository = new Mock<IOrderRepository>();
-        //    mockRepository.Setup(x => x.GetById(4))
-        //        .Returns(new Order
-        //        {
-        //            ID = 4,
-        //            Name = "Test Name",
-        //            CountryOfResidence = "South Africa",
-        //            EmailAddress = "test@testdomain.com",
-        //            TaxReferenceNumber = null,
-        //        });
-        //    var controller = new OrderController(mockRepository.Object);
+            int testID = contentResult.Content;
+            Assert.IsNotNull(contentResult.Content);
 
-        //    //Int32 taxRefTest = 5;
-        //    Creator testCreator = new Creator
-        //    {
-        //        ID = 4,
-        //        Name = "Test Name Updated",
-        //        CountryOfResidence = "South Africa Updated",
-        //        EmailAddress = "testupdated@testdomain.com",
-        //        TaxReferenceNumber = null,
+            testOrderDTO.Id = testID;
+            testOrderDTO.Total = 150;
+            testOrderDTO.ShipmentRef = "test ref put";
+            testOrderDTO.DeliveryStatus = "del put";
 
-        //    };
+            IHttpActionResult actionResultPut = orderController.Put(testID, testOrderDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<OrderDTO>;
 
-        //    OrderDTO testCreatorDTO = new OrderDTO(testCreator);
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual(150, contentResultPut.Content.Total);
+            Assert.AreEqual("test ref put", contentResultPut.Content.ShipmentRef);
+            Assert.AreEqual("del put", contentResultPut.Content.DeliveryStatus);
+            
 
-        //    // Act  
-        //    IHttpActionResult actionResult = controller.Put(4, testCreatorDTO);
-        //    var contentResult = actionResult as OkNegotiatedContentResult<OrderDTO>;
+            actionResult = orderController.Delete(testID);
+            Assert.IsNotNull(actionResult);*/
 
-        //    Assert.IsNotNull(contentResult);
-        //    Assert.IsNotNull(contentResult.Content);
-        //    Assert.AreEqual(4, contentResult.Content.Id);
-        //    Assert.AreEqual("Test Name Updated", contentResult.Content.Name);
-        //    Assert.AreEqual("South Africa Updated", contentResult.Content.Country);
-        //    Assert.AreEqual("testupdated@testdomain.com", contentResult.Content.Email);
-        //    Assert.IsNull(contentResult.Content.TaxRef);
+        }
+        [Test]
+        public void GetReturnsOrderGetPage()
+        {
+            int page = 1;
+            int size = 10;
+            IHttpActionResult actionResult = orderController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<OrderDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
 
-        //}
+        }
+
     }
 }

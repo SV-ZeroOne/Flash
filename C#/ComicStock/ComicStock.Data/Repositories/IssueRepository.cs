@@ -40,6 +40,7 @@ namespace ComicStock.Data.Repositories
         {
             var issue = context.Issues.First(i => i.ID == id);
             context.Issues.Remove(issue);
+            context.SaveChanges();
         }
 
         
