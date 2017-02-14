@@ -147,7 +147,7 @@ angular.module('voucherModule', [])
             $http
                 .get('/api/Voucher/' + $sessionStorage.get('ID'))
                 .then(function (response) {
-                    $ctrl.code = response.data.Name;
+                    $ctrl.code = response.data.Code;
                     $ctrl.date = response.data.RedeemDate;
                     $ctrl.value = response.data.Value;
                 }

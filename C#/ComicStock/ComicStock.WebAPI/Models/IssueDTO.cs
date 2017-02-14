@@ -14,6 +14,7 @@ namespace ComicStock.WebAPI.Models
         public string Publisher { get; set; }
         public String Description { get; set; }
         public String Title { get; set; }
+        public String Role { get; set; }
         public DateTime? PublicationDate { get; set; }
         public IEnumerable<CreatorDTO> Creators { get; set; }
         public IEnumerable<StockDTO> Stock { get; set; }
@@ -28,6 +29,16 @@ namespace ComicStock.WebAPI.Models
             this.Description = issue.Description;
             this.Title = issue.Title;
             this.PublicationDate = issue.PublicationDate;
+        }
+        public IssueDTO(Issue issue,String role)
+        {
+            this.Id = issue.ID;
+            this.SeriesNumber = issue.SeriesNumber;
+            this.Publisher = issue.Publisher;
+            this.Description = issue.Description;
+            this.Title = issue.Title;
+            this.PublicationDate = issue.PublicationDate;
+            this.Role = role;
         }
 
         public Issue CreateDomainObject(Issue issue)

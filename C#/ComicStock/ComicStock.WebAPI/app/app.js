@@ -1,4 +1,4 @@
-var squareEyes = angular.module('squareEyes', ['ngMessages','swxSessionStorage', 'ngRoute', 'supplierModule','creatorModule', 'voucherModule','angularModalService', 'dashboardModule'])
+var squareEyes = angular.module('squareEyes', ['ngMessages','swxSessionStorage', 'ngRoute', 'supplierModule','creatorModule', 'voucherModule','angularModalService','creatorRoleModule', 'dashboardModule'])
 
 .config(function ($routeProvider) {
         $routeProvider
@@ -19,6 +19,11 @@ var squareEyes = angular.module('squareEyes', ['ngMessages','swxSessionStorage',
             {
                 templateUrl: '/app/modules/voucher/templates/voucher.html'
             })
+            .when('/role',
+            {
+                templateUrl: '/app/modules/creatorRole/templates/role.html'
+            })
+
             .when('/creator',
             {
                 templateUrl: '/app/modules/creator/templates/creator.html'

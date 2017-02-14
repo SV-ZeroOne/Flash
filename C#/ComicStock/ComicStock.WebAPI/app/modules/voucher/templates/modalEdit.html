@@ -16,9 +16,16 @@
                 <div ng-messages="validate.date.$error" style="color:#e74c3c" role="alert">
                     <div ng-if="validate.date.$error.date" ng-message="required">Redeem Date not valid</div>
                 </div>
-                <label for="tag3">Voucher Value:</label><input name="value" type="text" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
+                <label for="tag3">Voucher Value:</label><input name="value" ng-min="0" type="number" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
                 <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
                     <div ng-if="validate.value.$error.required" ng-message="required">Value required</div>
+                </div>
+           
+                <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
+                    <div ng-if="!validate.value.$error.required &amp;&amp;validate.value.$error.number" ng-message="number">Value must be number</div>
+                </div>
+                <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
+                    <div ng-if="!validate.value.$error.required &amp;&amp; !validate.value.$error.number &amp;&amp; validate.value.$error.min" ng-message="min">Value must be larger than zero</div>
                 </div>
             </div>
             <div class="modal-footer">

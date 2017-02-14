@@ -250,6 +250,10 @@
     <Content Include="app\assets\js\sweetalert2.min.js" />
     <Content Include="app\assets\js\swx-session-storage.min.js" />
     <Content Include="app\index.html" />
+    <Content Include="app\modules\creatorRole\role.module.js" />
+    <Content Include="app\modules\creatorRole\templates\role.html" />
+    <Content Include="app\modules\creatorRole\templates\modal.html" />
+    <Content Include="app\modules\creatorRole\templates\modalEdit.html" />
     <Content Include="app\modules\creator\templates\modal.html" />
     <Content Include="app\modules\creator\templates\modalEdit.html" />
     <Content Include="app\modules\creator\templates\creator.html" />
