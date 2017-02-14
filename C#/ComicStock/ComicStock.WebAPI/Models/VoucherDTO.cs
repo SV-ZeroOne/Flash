@@ -10,7 +10,7 @@ namespace ComicStock.WebAPI.Models
     {
         public int Id { get; set;}
         public string Code { get; set; }
-        public DateTime RedeemDate { get; set; }
+        public DateTime? RedeemDate { get; set; }
         public decimal Value { get; set; }
 
         public VoucherDTO() { }

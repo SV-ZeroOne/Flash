@@ -12,7 +12,7 @@ namespace ComicStock.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        public DateTime RedeemDate { get; set; }
+        public DateTime? RedeemDate { get; set; }
 
         [StringLength(100)]
         public string Code { get; set; }
