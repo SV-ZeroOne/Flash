@@ -67,7 +67,7 @@ namespace ComicStock.WebAPI.Controllers
 
             this.supplierRepository.Add(supplier);
 
-            return Content(HttpStatusCode.Created, supplier.ID);
+            return Ok(supplier.ID);
         }
 
 
