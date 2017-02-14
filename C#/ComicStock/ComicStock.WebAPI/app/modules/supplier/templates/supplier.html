@@ -80,18 +80,16 @@
                                                     class="form-control input-sm"
                                                     ng-click="$ctrl.updateTable()"
                                                     ng-options="option for option in $ctrl.pageSizeOptions track by option"
-                                                    ng-model="$ctrl.size"></select>
+                                                    ng-model="$ctrl.pageSize"></select>
                                         </label>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="text-center">
                                             <ul class="pagination" ng-model="$ctrl.page">
-                                                <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
-                                                <div ng-repeat="n in $ctrl.pageOptions track by $index">
-                                                    <li class="waves-effect" ng-click="$ctrl.pageTo(n)"><a href="#">{{n}}</a></li>
-                                                </div>
-                                                <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"></i></a></li>
+                                                <li class="disabled"><a a ng-click="$ctrl.pageTo($ctrl.page - 1)"><i class="fa fa-angle-left "></i></a></li>
+                                                <li class="waves-effect" ng-repeat="n in $ctrl.pageOptions track by $index"><a ng-click="$ctrl.pageTo(n)">{{n}}</a></li>
+                                                <li class="waves-effect"><a a ng-click="$ctrl.pageTo($ctrl.page + 1)"><i class="fa fa-angle-right"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>

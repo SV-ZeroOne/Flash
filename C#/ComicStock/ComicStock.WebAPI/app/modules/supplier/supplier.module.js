@@ -11,13 +11,15 @@ angular.module('supplierModule', [])
             $ctrl.city = "";
             $ctrl.refNum = "";
 
+            $ctrl.suppliers = {};
+
             $ctrl.pageSizeOptions = [10,25,50,100];
             $ctrl.pageSize = 25;
 
-            $ctrl.pageOptions = [1, 2, 3, 4, 5];
+            $ctrl.pageOptions = [];
             $ctrl.page = 1;
 
-            $ctrl.count = 18000;
+            $ctrl.count = 0;
 
 
             $ctrl.updateTable = function(){
@@ -28,13 +30,26 @@ angular.module('supplierModule', [])
                     })
                     .catch(function(errorResponse) {
                     });
+
+                $http
+                    .get('/api/Supplier/count')
+                    .then(function (response) {
+                        $ctrl.count = response.data;
+
+                        var numPages = Math.ceil($ctrl.count / $ctrl.pageSize);
+                        $ctrl.pageOptions = [];
+                        for (var x = 1; x <= numPages; x++)
+                            $ctrl.pageOptions.push(x);
+                    })
+                    .catch(function (errorResponse) {
+                        Console.log(errorResponse)
+                    });
+
+                
             }
 
             $ctrl.updateTable()
-
-            $ctrl.getPageOptions = function(){
-
-            }
+            
 
             $ctrl.pageTo = function(page){
                 $ctrl.page = page;
