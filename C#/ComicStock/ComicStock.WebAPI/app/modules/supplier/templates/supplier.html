@@ -73,29 +73,34 @@
 
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <label for="dropdown">
+                                        <label for="mySelect">
                                             Show
-                                            <select id="dropdown" ng-model="$ctrl.size" class="form-control input-sm" ng-click="$ctrl.page()"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>
+                                            <select name="mySelect" id="mySelect"
+                                                    class="form-control input-sm"
+                                                    ng-click="$ctrl.updateTable()"
+                                                    ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
+                                                    ng-model="$ctrl.pagination.pageSize"></select>
                                         </label>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <div class="text-center">
-                                            <ul class="pagination" ng-model="$ctrl.page" ng-click="$ctrl.page()">
-                                                <li class="disabled"><a href="#!"><i class="fa fa-angle-left "></i></a></li>
-                                                <li class="active"><a href="#!">1</a></li>
-                                                <li class="waves-effect"><a href="#!">2</a></li>
-                                                <li class="waves-effect"><a href="#!">3</a></li>
-                                                <li class="waves-effect"><a href="#!">4</a></li>
-                                                <li class="waves-effect"><a href="#!">5</a></li>
-                                                <li class="waves-effect"><a href="#!"><i class="fa fa-angle-right"></i></a></li>
+                                            <ul class="pagination" ng-model="$ctrl.page">
+                                                <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
+                                                    <a><i class="fa fa-angle-left "></i></a>
+                                                </li>
+                                                <li class="waves-effect" ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
+                                                    <a>{{n}}</a>
+                                                </li>
+                                                <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
+                                                    <a><i class="fa fa-angle-right"></i></a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-sm-4 text-right">
-
                                         <label class="text-left">
-                                            Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                            Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
                                         </label>
 
 

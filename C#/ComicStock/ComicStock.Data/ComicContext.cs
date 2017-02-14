@@ -11,10 +11,13 @@ namespace ComicStock.Data
     public partial class ComicContext : DbContext
     {
         public ComicContext()
-            : base("name=ComicContext")
+        #if DEBUG
+            : base("SquareEyes")
+            #else
+            : base("SquareEyesRelease")
+            #endif 
         {
         }
-
         public virtual DbSet<Creator> Creators { get; set; }
         public virtual DbSet<Issue> Issues { get; set; }
         public virtual DbSet<Order> Orders { get; set; }

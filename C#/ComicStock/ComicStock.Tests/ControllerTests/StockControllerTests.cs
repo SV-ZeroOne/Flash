@@ -9,98 +9,110 @@ using System.Web.Http.Results;
 using ComicStock.WebAPI.Models;
 using System.Net;
 
+
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    using Data;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    [TestFixture]
     public class StockControllerTests
     {
-        [TestMethod]
+
+        private IStockRepository stockRepository;
+        private StockController stockController;
+
+        [SetUp]
+        public void init()
+        {
+            stockRepository = new StockRepository(new Data.ComicContext());
+            stockController = new StockController(stockRepository);
+        }
+
+
+        [Test]
         public void GetReturnsStockWithSameId()
         {
-            //int testID = 1;
+            int testID = 3;
+            IHttpActionResult actionResult = stockController.Get(testID);
+            var contentResult = actionResult as OkNegotiatedContentResult<StockDTO>;
 
-            //var mockRepository = new Mock<IStockRepository>();
-            //mockRepository.Setup(x => x.GetById(testID))
-            //    .Returns(new Stock { ID = testID });
-
-            //var controller = new StockController(mockRepository.Object);
-
-            //IHttpActionResult actionResult = controller.Get(testID);
-            //var contentResult = actionResult as OkNegotiatedContentResult<StockDTO>;
-
-            //Assert.IsNotNull(contentResult);
-            //Assert.IsNotNull(contentResult.Content);
-            //Assert.AreEqual(testID, contentResult.Content.Id);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(testID, contentResult.Content.Id);
 
         }
 
-        [TestMethod]
+        /*[Test]
         public void PostReturnsStockIDAddRepository()
         {
-            var mockRepository = new Mock<IStockRepository>();
-            var controller = new StockController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Post(new StockDTO { });
-            var contentResult = actionResult as OkNegotiatedContentResult<int>;
-
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-
-        }
-
-        [TestMethod]
-        public void PutReturnsUpdatedStockDTO()
-        {
-
-            short Qty = 10;
-            var mockRepository = new Mock<IStockRepository>();
-            mockRepository.Setup(x => x.GetById(4))
-                .Returns(new Stock { ID = 4,
-                    AvailableQty = Qty,
-                    Condition = "Very Fine",
-                    Price = 250,
-                });
-            var controller = new StockController(mockRepository.Object);
-
-            short testQty = 5;
-            Stock testStock = new Stock
+            Stock testStock =
+            new Stock
             {
-                ID = 4,
-                AvailableQty = testQty,
-                Condition = "Fine",
+                IssueID = null,
+                Condition = "testCon",
+                AvailableQty = Int16.Parse("5"),
                 Price = 100,
-
             };
 
             StockDTO testStockDTO = new StockDTO(testStock);
 
-            // Act  
-            IHttpActionResult actionResult = controller.Put(4, testStockDTO);
-            var contentResult = actionResult as OkNegotiatedContentResult<StockDTO>;
+            IHttpActionResult actionResult = stockController.Post(testStockDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-            Assert.IsNotNull(contentResult);
+            int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(4, contentResult.Content.Id);
-            Assert.AreEqual(testQty, contentResult.Content.AvailableQuantity);
-            Assert.AreEqual("Fine", contentResult.Content.Condition);
-            Assert.AreEqual(100, contentResult.Content.Price);
+
+            /*testIssueDTO.Title = "issue put";
+            testIssueDTO.Publisher = "test publisher put";
+            testIssueDTO.Description = "issue put";
+
+            IHttpActionResult actionResultPut = issuesController.Put(testID, testIssueDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<IssueDTO>;
+
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual("issue put", contentResultPut.Content.Title);
+            Assert.AreEqual("test publisher put", contentResultPut.Content.Publisher);
+            Assert.AreEqual("issue put", contentResultPut.Content.Description);
+            
+
+            actionResult = stockController.Delete(testID);
+            Assert.IsNotNull(actionResult);
+
+            IHttpActionResult actionResultUpdate = stockController.Get(testID);
+            var contentResultUpdate = actionResultUpdate as OkNegotiatedContentResult<StockDTO>;
+
+            Assert.AreEqual(Int16.Parse("0"), contentResultUpdate.Content.AvailableQuantity);
+
+        }*/
+        [Test]
+        public void GetReturnsStockGetPage()
+        {
+            int page = 1;
+            int size = 10;
+            IHttpActionResult actionResult = stockController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<StockDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
 
         }
-        [TestMethod]
-        public void DeleteStock()
+
+        [Test]
+        public void GetReturnsIssuesGetPageSearch()
         {
-            int testID = 1;
-
-            var mockRepository = new Mock<IStockRepository>();
-            mockRepository.Setup(x => x.GetById(testID))
-                .Returns(new Stock { ID = testID });
-
-            var controller = new StockController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Delete(testID);
-            var contentResult = actionResult as OkNegotiatedContentResult<StockDTO>;
-
-            Assert.IsNull(contentResult);
+            int page = 1;
+            int size = 10;
+            String search = "Very Fine";
+            IHttpActionResult actionResult = stockController.Get(search, page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<StockDTO>>;
+            Assert.IsNotNull(contentResult);
+            foreach (var item in contentResult.Content)
+            {
+                StringAssert.Contains(search, item.Condition);
+            }
+            Assert.AreEqual(size, contentResult.Content.Count());
 
         }
     }

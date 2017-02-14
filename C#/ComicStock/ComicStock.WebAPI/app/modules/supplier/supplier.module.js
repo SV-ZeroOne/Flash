@@ -8,23 +8,80 @@ angular.module('supplierModule', [])
             $ctrl.currentSupplier = {};
             $ctrl.modalTitle = 'Add a Supplier';
 
+            $ctrl.suppliers = {};
+            $ctrl.search = "";
 
-            $http
-                .get('/api/Supplier?page=1&pageSize=10')
-                .then(function(response) {
-                    $ctrl.suppliers = response.data;
-                })
-                .catch(function(errorResponse) {
-                });
+            $ctrl.pagination = {
+
+                pageSizeOptions : [10,25,50,100],
+                pageSize : 25,
+
+                pageOptions : [],
+                page : 1,
+
+                count : 0,
+                numPages : 0,
+
+                prevDisable : "disable",
+                nextDisable : "disable"
+            }
 
 
-            $ctrl.page = function() {
-                $http
-                    .get('/api/Supplier?page=' + $ctrl.size + '&pageSize=' + $ctrl.size)
+            $ctrl.updateTable = function () {
+                if ($ctrl.search == "") $http
+                    .get('/api/Supplier?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .then(function (response) {
+                        $ctrl.suppliers = response.data;
+                        console.log($ctrl.suppliers);
+                    })
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse)
+                    });
+                else $http
+                    .get('/api/Supplier/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function(response) {
                         $ctrl.suppliers = response.data;
+                        console.log($ctrl.suppliers);
+                    })
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse)
                     });
+
+                $http
+                    .get('/api/Supplier/count')
+                    .then(function (response) {
+                        $ctrl.pagination.count = response.data;
+
+                        $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
+                        $ctrl.pagination.pageOptions = [];
+                        for (var x = 1; x <= $ctrl.pagination.numPages; x++)
+                            $ctrl.pagination.pageOptions.push(x);
+
+                        if ($ctrl.page == $ctrl.numPages)
+                            $ctrl.pagination.nextDisable = "disable";
+                        else
+                            $ctrl.pagination.nextDisable = "";
+
+                        if ($ctrl.page <= 1)
+                            $ctrl.pagination.prevDisable = "disable";
+                        else
+                            $ctrl.pagination.prevDisable = "";
+                    })
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse)
+                    });
+                console.log($ctrl.pagination)
+                
             }
+
+            $ctrl.updateTable()
+            
+
+            $ctrl.pageTo = function(page){
+                $ctrl.pagination.page = page;
+                $ctrl.updateTable();
+            }
+
 
 
             $ctrl.submit = function() {

@@ -18,6 +18,7 @@ namespace ComicStock.Data.Repositories
         {
             var voucher = context.Vouchers.First(v => v.ID == id);
             context.Vouchers.Remove(voucher);
+            context.SaveChanges();
         }
 
         public Voucher GetById(int voucherID)

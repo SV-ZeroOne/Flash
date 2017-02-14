@@ -113,5 +113,20 @@ namespace ComicStock.WebAPI.Controllers
                 "Not implemented exception")
                 );
         }
+
+        public IHttpActionResult Delete(int id)
+        {
+            Order supplier = orderRepository.GetById(id);
+            if (supplier != null)
+            {
+                orderRepository.Delete(id);
+                return Ok(id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
     }
 }

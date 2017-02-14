@@ -7,7 +7,7 @@ namespace ComicStock.Tests
     public class SupplierRepositoryTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SupplierRepositoryTest()
         {
         }
     }

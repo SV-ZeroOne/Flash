@@ -22,6 +22,16 @@ namespace ComicStock.Data
             context.SaveChanges();
         }
 
+        public virtual int Count()
+        {
+            return context.Set<TEntity>().Count();
+        }
+
+        public virtual int Count(IQueryable<TEntity> entity)
+        {
+            return context.Set<TEntity>().Count();
+        }
+
         public virtual void Create(TEntity entity)
         {
             context.Set<TEntity>().Attach(entity);

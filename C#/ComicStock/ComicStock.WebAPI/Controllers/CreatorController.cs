@@ -80,5 +80,20 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
+        public IHttpActionResult Delete(int id)
+        {
+            Creator creator = creatorRepository.GetById(id);
+            if (creator != null)
+            {
+                creatorRepository.Delete(id);
+                return Ok(id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+
     }
 }

@@ -86,8 +86,17 @@ namespace ComicStock.WebAPI.Controllers
 
         public IHttpActionResult Delete(int id)
         {
-            stockRepository.Delete(id);
-            return Ok();
+            Stock stock = stockRepository.GetById(id);
+            if (stock != null)
+            {
+                stockRepository.Delete(id);
+                return Ok(id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
 
     }
