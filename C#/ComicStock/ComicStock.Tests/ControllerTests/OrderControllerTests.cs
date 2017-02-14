@@ -61,41 +61,7 @@ namespace ComicStock.Tests.ControllerTests
         [Test]
         public void PostReturnsOrderIDAddRepository()
         {
-            /*Order testOrder =
-            new Order
-            {
-                OrderDate = null,
-                Total = 100,
-                ShipmentRef = null,
-                ShipmentDate = null,
-                DeliveryStatus = "test",
-            };
-
-            OrderDTO testOrderDTO = new OrderDTO(testOrder);
-
-            IHttpActionResult actionResult = orderController.Post(testOrderDTO);
-            var contentResult = actionResult as OkNegotiatedContentResult<int>;
-
-            int testID = contentResult.Content;
-            Assert.IsNotNull(contentResult.Content);
-
-            testOrderDTO.Id = testID;
-            testOrderDTO.Total = 150;
-            testOrderDTO.ShipmentRef = "test ref put";
-            testOrderDTO.DeliveryStatus = "del put";
-
-            IHttpActionResult actionResultPut = orderController.Put(testID, testOrderDTO);
-            var contentResultPut = actionResultPut as OkNegotiatedContentResult<OrderDTO>;
-
-            Assert.IsNotNull(contentResultPut.Content);
-            Assert.AreEqual(150, contentResultPut.Content.Total);
-            Assert.AreEqual("test ref put", contentResultPut.Content.ShipmentRef);
-            Assert.AreEqual("del put", contentResultPut.Content.DeliveryStatus);
             
-
-            actionResult = orderController.Delete(testID);
-            Assert.IsNotNull(actionResult);*/
-
         }
         [Test]
         public void GetReturnsOrderGetPage()

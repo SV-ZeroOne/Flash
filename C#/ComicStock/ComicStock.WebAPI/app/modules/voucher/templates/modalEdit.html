@@ -1,0 +1,31 @@
+﻿<div class="modal fade" ng-controller="modalVoucherController as $ctrl">
+    <div class="modal-dialog" style="left: 0%;">
+        <form name="validate">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <label for="tag1">Code:</label><input name ="code" type="text" ng-model="$ctrl.code" data-role="tagsinput" id="tag1" class="form-control" required>
+                <div ng-messages="validate.code.$error" style="color:#e74c3c" role="alert">
+                    <div ng-if="validate.code.$error.required" ng-message="required">Code required</div>
+                </div>
+
+                <label for="tag2">Redeem Date:</label><input type="date" name="date" ng-model="$ctrl.date" data-role="tagsinput" id="tag2" class="form-control" required>
+                <div ng-messages="validate.date.$error" style="color:#e74c3c" role="alert">
+                    <div ng-if="validate.date.$error.date" ng-message="required">Redeem Date not valid</div>
+                </div>
+                <label for="tag3">Voucher Value:</label><input name="value" type="text" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
+                <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
+                    <div ng-if="validate.value.$error.required" ng-message="required">Value required</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" ng-click="$ctrl.submit(validate.$valid)" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+            </form>
+    </div>
+</div>

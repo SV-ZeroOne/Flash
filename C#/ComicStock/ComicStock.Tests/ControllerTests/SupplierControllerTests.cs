@@ -99,9 +99,6 @@ namespace ComicStock.Tests.ControllerTests
             IHttpActionResult actionResult = supplierController.Get(search, page, size);
             var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<SupplierDTO>>;
             Assert.IsNotNull(contentResult);
-
-            //StringAssert.Contains(search, contentResult.Content.First().RefNum);
-
             Assert.AreEqual("R9F3R5XWZ1R56KI", contentResult.Content.First().RefNum);
             Assert.AreEqual("Virginia Beach", contentResult.Content.First().City);
 
