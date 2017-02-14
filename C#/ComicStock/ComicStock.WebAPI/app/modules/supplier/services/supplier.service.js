@@ -1,34 +1,5 @@
-angular.module('supplierModule', [])
-    .controller('supplierController',
-        function($http, $rootScope, ModalService, $sessionStorage) {
-
-            var $ctrl = this;
-            $ctrl.message = 'Supplier Management';
-            $ctrl.newSupplier = {};
-            $ctrl.currentSupplier = {};
-            $ctrl.modalTitle = 'Add a Supplier';
-
-            $ctrl.suppliers = {};
-            $ctrl.search = "";
-
-            $ctrl.pagination = {
-
-                pageSizeOptions : [10,25,50,100],
-                pageSize : 25,
-
-                pageOptions : [],
-                page : 1,
-
-                count : 0,
-                numPages : 0,
-
-                prevDisable : "disable",
-                nextDisable : "disable"
-            }
-
-
-            $ctrl.updateTable = function () {
-                console.log("Update the table");
+angular.service('getSuppliers', [])
+            this.updateTable = function () {
                 if ($ctrl.search == "") $http
                     .get('/api/Supplier?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
@@ -72,15 +43,11 @@ angular.module('supplierModule', [])
                         console.log(errorResponse)
                     });
                 console.log($ctrl.pagination)
-                
+
             }
 
             $ctrl.updateTable()
 
-            $rootScope.$on('updateTheTablePlease', function(event) {
-                $ctrl.updateTable();
-            });
-            
 
             $ctrl.pageTo = function(page){
                 $ctrl.pagination.page = page;
@@ -95,14 +62,11 @@ angular.module('supplierModule', [])
                 $ctrl.newSupplier.RefNum = $ctrl.refNum;
                 $http.post('/api/Supplier', $ctrl.newSupplier)
                     .then(function(response) {
-
                         alert("User created " + response);
-
                     })
                     .catch(function(errorResponse) {
                         alert('Creation failed ' + errorResponse);
                     });
-                $ctrl.updateTable();
             }
 
 
@@ -150,13 +114,11 @@ angular.module('supplierModule', [])
 
         })
     .controller('modalController',
-        function($http, $scope, $sessionStorage) {
+        function($http, $sessionStorage) {
             var $ctrl = this;
             $ctrl.newSupplier = {};
-          
+
             $ctrl.modalTitle = 'Edit a Supplier';
-
-
 
             $http
                 .get('/api/Supplier/' + $sessionStorage.get('ID'))
@@ -176,13 +138,12 @@ angular.module('supplierModule', [])
                 $ctrl.newSupplier.Name = $ctrl.name;
                 $ctrl.newSupplier.City = $ctrl.city;
                 $ctrl.newSupplier.RefNum = $ctrl.refNum;
-  
+
 
                 $http
                     .put('/api/Supplier/' + $sessionStorage.get('ID'), $ctrl.newSupplier)
                     .then(function (response) {
                         alert("User updated " + response);
-                        $scope.$emit('updateTheTablePlease');
                     })
                     .catch(function (errorResponse) {
                         alert('Update failed ' + errorResponse);
@@ -197,10 +158,10 @@ angular.module('supplierModule', [])
 
 
 
-   
 
-           
-     
+
+
+
 
 
 
