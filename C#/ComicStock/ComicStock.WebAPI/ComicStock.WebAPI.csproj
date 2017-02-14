@@ -264,6 +264,10 @@
     <Content Include="app\modules\supplier\templates\modalEdit.html" />
     <Content Include="app\modules\supplier\templates\supplier.html" />
     <Content Include="app\modules\supplier\templates\supplier.tpl.html" />
+    <Content Include="app\modules\voucher\templates\modal.html" />
+    <Content Include="app\modules\voucher\templates\modalEdit.html" />
+    <Content Include="app\modules\voucher\templates\voucher.html" />
+    <Content Include="app\modules\voucher\voucher.module.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
