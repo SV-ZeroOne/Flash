@@ -1,34 +1,5 @@
-angular.module('supplierModule', [])
-    .controller('supplierController',
-        function($http, $rootScope, ModalService, $sessionStorage) {
-
-            var $ctrl = this;
-            $ctrl.message = 'Supplier Management';
-            $ctrl.newSupplier = {};
-            $ctrl.currentSupplier = {};
-            $ctrl.modalTitle = 'Add a Supplier';
-
-            $ctrl.suppliers = {};
-            $ctrl.search = "";
-
-            $ctrl.pagination = {
-
-                pageSizeOptions : [10,25,50,100],
-                pageSize : 25,
-
-                pageOptions : [],
-                page : 1,
-
-                count : 0,
-                numPages : 0,
-
-                prevDisable : "disable",
-                nextDisable : "disable"
-            }
-
-
-            $ctrl.updateTable = function () {
-                console.log("Update the table");
+angular.service('getSuppliers', [])
+            this.updateTable = function () {
                 if ($ctrl.search == "") $http
                     .get('/api/Supplier?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
@@ -45,7 +16,7 @@ angular.module('supplierModule', [])
                         console.log($ctrl.suppliers);
                     })
                     .catch(function (errorResponse) {
-                        console.log(errorResponse);
+                        console.log(errorResponse)
                     });
 
                 $http
@@ -58,29 +29,25 @@ angular.module('supplierModule', [])
                         for (var x = 1; x <= $ctrl.pagination.numPages; x++)
                             $ctrl.pagination.pageOptions.push(x);
 
-                        if ($ctrl.pagination.page == $ctrl.pagination.numPages)
+                        if ($ctrl.page == $ctrl.numPages)
                             $ctrl.pagination.nextDisable = "disable";
                         else
                             $ctrl.pagination.nextDisable = "";
 
-                        if ($ctrl.pagination.page <= 1)
+                        if ($ctrl.page <= 1)
                             $ctrl.pagination.prevDisable = "disable";
                         else
                             $ctrl.pagination.prevDisable = "";
                     })
                     .catch(function (errorResponse) {
-                        console.log(errorResponse);
+                        console.log(errorResponse)
                     });
-                console.log($ctrl.pagination);
+                console.log($ctrl.pagination)
 
             }
 
             $ctrl.updateTable()
 
-            $rootScope.$on('updateTheTablePlease', function(event) {
-                $ctrl.updateTable();
-            });
-            
 
             $ctrl.pageTo = function(page){
                 $ctrl.pagination.page = page;
@@ -88,6 +55,19 @@ angular.module('supplierModule', [])
             }
 
 
+
+            $ctrl.submit = function() {
+                $ctrl.newSupplier.Name = $ctrl.name;
+                $ctrl.newSupplier.City = $ctrl.city;
+                $ctrl.newSupplier.RefNum = $ctrl.refNum;
+                $http.post('/api/Supplier', $ctrl.newSupplier)
+                    .then(function(response) {
+                        alert("User created " + response);
+                    })
+                    .catch(function(errorResponse) {
+                        alert('Creation failed ' + errorResponse);
+                    });
+            }
 
 
             $ctrl.edit = function(id) {
@@ -104,7 +84,6 @@ angular.module('supplierModule', [])
                         ModalService.showModal({
                             templateUrl: "/app/modules/supplier/templates/modalEdit.html",
                             controller: 'modalController'
-           
                         }).then(function(modal) {
 
                             modal.element.modal();
@@ -113,9 +92,8 @@ angular.module('supplierModule', [])
                             });
                         });
                     })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', 'error')
-                        
+                    .catch(function(errorResponse) {
+                        alert('No such supplier exists' + errorResponse.data);
                     });
 
             }
@@ -123,7 +101,7 @@ angular.module('supplierModule', [])
             $ctrl.show = function() {
                 ModalService.showModal({
                     templateUrl: "/app/modules/supplier/templates/modal.html",
-                    controller: "modalAddController"
+                    controller: "supplierController"
                 }).then(function(modal) {
                     console.log(modal);
                     modal.element.modal();
@@ -136,13 +114,11 @@ angular.module('supplierModule', [])
 
         })
     .controller('modalController',
-        function($http, $scope, $sessionStorage) {
+        function($http, $sessionStorage) {
             var $ctrl = this;
             $ctrl.newSupplier = {};
-          
+
             $ctrl.modalTitle = 'Edit a Supplier';
-
-
 
             $http
                 .get('/api/Supplier/' + $sessionStorage.get('ID'))
@@ -153,15 +129,11 @@ angular.module('supplierModule', [])
                     }
                 )
                 .catch(function(errorResponse) {
-                    swal('Error','No such supplier exists','error');
+                    alert('No such supplier exists' + errorResponse.data);
                 });
 
 
-            $ctrl.submit = function (isFormValid) {
-                if (!isFormValid) {
-                    swal('Failed', 'User fields not valid - please try again', 'error');
-                    return;
-                }
+            $ctrl.submit = function () {
                 $ctrl.newSupplier.Id = $sessionStorage.get('ID');
                 $ctrl.newSupplier.Name = $ctrl.name;
                 $ctrl.newSupplier.City = $ctrl.city;
@@ -171,61 +143,25 @@ angular.module('supplierModule', [])
                 $http
                     .put('/api/Supplier/' + $sessionStorage.get('ID'), $ctrl.newSupplier)
                     .then(function (response) {
-                        $scope.$emit('updateTheTablePlease');
-                        swal(
-                            'Good job!',
-                            'User updated',
-                            'success'
-                        );
+                        alert("User updated " + response);
                     })
                     .catch(function (errorResponse) {
-                        swal('Error','Update failed ','error');
+                        alert('Update failed ' + errorResponse);
                     });
 
             }
 
 
-        }).controller('modalAddController',
-        function($http, $scope, $sessionStorage) {
-            var $ctrl = this;
-            $ctrl.newSupplier = {};
-
-            $ctrl.modalTitle = 'Add a Supplier';
-
-
-
-            $ctrl.submit = function (isFormValid) {
-                if (!isFormValid) {
-                    swal('Failed', 'User fields not valid - please try again.', 'error');
-                    return;
-                }
-                $ctrl.newSupplier.Name = $ctrl.name;
-                $ctrl.newSupplier.City = $ctrl.city;
-                $ctrl.newSupplier.RefNum = $ctrl.refNum;
-                $http.post('/api/Supplier', $ctrl.newSupplier)
-                    .then(function(response) {
-                        swal('Success','Supplier created','success');
-                        console.log("success1");
-                        $scope.$emit('updateTheTablePlease');
-                        console.log("success2");
-                    })
-                    .catch(function(errorResponse) {
-                        swal('Oops...', 'Something went wrong!', 'error');
-                    });
-            }
-
-
-
-        });;
+        });
 
 
 
 
 
-   
 
-           
-     
+
+
+
 
 
 

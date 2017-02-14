@@ -77,7 +77,7 @@
                                             Show
                                             <select name="mySelect" id="mySelect"
                                                     class="form-control input-sm"
-                                                    ng-click="$ctrl.updateTable()"
+                                                    ng-change="$ctrl.updateTable()"
                                                     ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
                                                     ng-model="$ctrl.pagination.pageSize"></select>
                                         </label>
