@@ -245,6 +245,7 @@
     <Content Include="app\assets\js\main.js" />
     <Content Include="app\assets\js\modernizr-2.6.2.js" />
     <Content Include="app\assets\js\respond.min.js" />
+    <Content Include="app\assets\js\swx-session-storage.min.js" />
     <Content Include="app\index.html" />
     <Content Include="app\modules\dashboard\components\dashboard.component.js" />
     <Content Include="app\modules\dashboard\controller\dashboard.controller.js" />
@@ -257,6 +258,7 @@
     <Content Include="app\modules\supplier\supplier.css" />
     <Content Include="app\modules\supplier\supplier.module.js" />
     <Content Include="app\modules\supplier\templates\modal.html" />
+    <Content Include="app\modules\supplier\templates\modalEdit.html" />
     <Content Include="app\modules\supplier\templates\supplier.html" />
     <Content Include="app\modules\supplier\templates\supplier.tpl.html" />
     <Content Include="favicon.ico" />
