@@ -92,14 +92,14 @@ angular.module('creatorRoleModule', [])
     .controller('modalCreatorRoleController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newCreator = {};
+            $ctrl.newIssue = {};
 
             $ctrl.modalTitle = 'Edit Issue/Role';
 
 
 
             $http
-                .get('/api/Creator/' + $sessionStorage.get('ID'))
+                .get('/api/Creator/' + $sessionStorage.get(''))
                 .then(function (response) {
                     $ctrl.name = response.data.Name;
                     $ctrl.country = response.data.Country;
