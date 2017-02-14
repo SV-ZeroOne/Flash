@@ -29,7 +29,7 @@
             <li><a  href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
             <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
             <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
-            <li class="open"><a  href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></liclass="open">
+            <li class="open"><a  href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
  
 
             <!-- Account from above -->
@@ -119,9 +119,9 @@
 
                                 <tr ng-repeat="creator in $ctrl.creators">
                                     <td>{{creator.Name}}</td>
-                                    <td>{{creator.CountryOfResidence}}</td>
-                                    <td>{{creator.TaxReferenceNumber}}</td>
-                                    <td>{{creator.EmailAddress}}</td>
+                                    <td>{{creator.Country}}</td>
+                                    <td>{{creator.TaxRef}}</td>
+                                    <td>{{creator.Email}}</td>
                                     <td><a style="cursor: pointer" ng-click='$ctrl.edit(creator.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
 
                                 </tr>

@@ -98,9 +98,9 @@ angular.module('creatorModule', [])
                     .get('/api/Creator/' + id)
                     .then(function (response) {
                         $ctrl.name = response.data.Name;
-                        $ctrl.country = response.data.CountryOfResidence;
-                        $ctrl.tax = response.data.TaxReferenceNumber;
-                        $ctrl.email = response.data.EmailAddress;
+                        $ctrl.country = response.data.Country;
+                        $ctrl.tax = response.data.TaxRef;
+                        $ctrl.email = response.data.Email;
 
                         ModalService.showModal({
                             templateUrl: "/app/modules/creator/templates/modalEdit.html",
@@ -149,9 +149,9 @@ angular.module('creatorModule', [])
                 .get('/api/Creator/' + $sessionStorage.get('ID'))
                 .then(function (response) {
                     $ctrl.name = response.data.Name;
-                    $ctrl.country = response.data.CountryOfResidence;
-                    $ctrl.tax = response.data.TaxReferenceNumber;
-                    $ctrl.email = response.data.EmailAddress;
+                    $ctrl.country = response.data.Country;
+                    $ctrl.tax = response.data.TaxRef;
+                    $ctrl.email = response.data.Email;
                 }
                 )
                 .catch(function (errorResponse) {
@@ -166,9 +166,9 @@ angular.module('creatorModule', [])
                 }
                 $ctrl.newCreator.Id = $sessionStorage.get('ID');
                 $ctrl.newCreator.Name = $ctrl.name;
-                $ctrl.newCreator.CountryOfResidence = $ctrl.country;
-                $ctrl.newCreator.TaxReferenceNumber = $ctrl.tax;
-                $ctrl.newCreator.EmailAddress = $ctrl.email;
+                $ctrl.newCreator.Country = $ctrl.country;
+                $ctrl.newCreator.TaxRef = $ctrl.tax;
+                $ctrl.newCreator.Email = $ctrl.email;
 
 
                 $http
@@ -203,9 +203,9 @@ angular.module('creatorModule', [])
                     return;
                 }
                 $ctrl.newCreator.Name = $ctrl.name;
-                $ctrl.newCreator.CountryOfResidence = $ctrl.country;
-                $ctrl.newCreator.TaxReferenceNumber = $ctrl.tax;
-                $ctrl.newCreator.EmailAddress = $ctrl.email;
+                $ctrl.newCreator.Country = $ctrl.country;
+                $ctrl.newCreator.TaxRef = $ctrl.tax;
+                $ctrl.newCreator.Email = $ctrl.email;
                 $http.post('/api/Creator', $ctrl.newCreator)
                     .then(function (response) {
                         swal('Success', 'Creator created', 'success');
