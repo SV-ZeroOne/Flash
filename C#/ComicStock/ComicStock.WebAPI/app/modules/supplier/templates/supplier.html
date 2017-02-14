@@ -87,9 +87,15 @@
                                     <div class="col-sm-4">
                                         <div class="text-center">
                                             <ul class="pagination" ng-model="$ctrl.page">
-                                                <li class="disabled"><a a ng-click="$ctrl.pageTo($ctrl.page - 1)"><i class="fa fa-angle-left "></i></a></li>
-                                                <li class="waves-effect" ng-repeat="n in $ctrl.pageOptions track by $index"><a ng-click="$ctrl.pageTo(n)">{{n}}</a></li>
-                                                <li class="waves-effect"><a a ng-click="$ctrl.pageTo($ctrl.page + 1)"><i class="fa fa-angle-right"></i></a></li>
+                                                <li ng-class="$ctrl.prevDisable" ng-click="$ctrl.pageTo(($ctrl.page > 1) ? ($ctrl.page - 1) : $ctrl.page)">
+                                                    <a><i class="fa fa-angle-left "></i></a>
+                                                </li>
+                                                <li class="waves-effect" ng-repeat="n in $ctrl.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
+                                                    <a>{{n}}</a>
+                                                </li>
+                                                <li ng-class="$ctrl.nextDisable" ng-click="$ctrl.pageTo(($ctrl.page < $ctrl.numPages) ? ($ctrl.page + 1) : $ctrl.page)">
+                                                    <a><i class="fa fa-angle-right"></i></a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

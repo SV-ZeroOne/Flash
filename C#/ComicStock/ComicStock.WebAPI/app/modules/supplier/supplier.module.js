@@ -20,6 +20,10 @@ angular.module('supplierModule', [])
             $ctrl.page = 1;
 
             $ctrl.count = 0;
+            $ctrl.numPages = 0;
+
+            $ctrl.prevDisable = "disable"
+            $ctrl.nextDisable = "disable"
 
 
             $ctrl.updateTable = function(){
@@ -36,10 +40,20 @@ angular.module('supplierModule', [])
                     .then(function (response) {
                         $ctrl.count = response.data;
 
-                        var numPages = Math.ceil($ctrl.count / $ctrl.pageSize);
+                        $ctrl.numPages = Math.ceil($ctrl.count / $ctrl.pageSize);
                         $ctrl.pageOptions = [];
-                        for (var x = 1; x <= numPages; x++)
+                        for (var x = 1; x <= $ctrl.numPages; x++)
                             $ctrl.pageOptions.push(x);
+
+                        if ($ctrl.page == $ctrl.numPages)
+                            $ctrl.nextDisable = "disable";
+                        else
+                            $ctrl.nextDisable = "";
+
+                        if ($ctrl.page <= 1)
+                            $ctrl.prevDisable = "disable";
+                        else
+                            $ctrl.prevDisable = "";
                     })
                     .catch(function (errorResponse) {
                         Console.log(errorResponse)
