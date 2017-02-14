@@ -10,81 +10,100 @@ using ComicStock.WebAPI.Models;
 
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    using Data;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    [TestFixture]
     public class SupplierControllerTests
     {
-        [TestMethod]
+        private ISupplierRepository supplierRepository;
+        private SupplierController supplierController;
+
+        [SetUp]
+        public void init()
+        {
+            supplierRepository = new SupplierRepository(new Data.ComicContext());
+            supplierController = new SupplierController(supplierRepository);
+        }
+
+        [Test]
         public void GetReturnsSupplierWithSameId()
         {
-            int testID = 1;
-
-            var mockRepository = new Mock<ISupplierRepository>();
-            mockRepository.Setup(x => x.GetById(testID))
-                .Returns(new Supplier { ID = testID });
-
-            var controller = new SupplierController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Get(testID);
+            int testID = 3;
+            IHttpActionResult actionResult = supplierController.Get(testID);
             var contentResult = actionResult as OkNegotiatedContentResult<SupplierDTO>;
 
-            Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
             Assert.AreEqual(testID, contentResult.Content.Id);
 
         }
 
-        [TestMethod]
+        [Test]
         public void PostReturnsSupplierIDAddRepository()
         {
-            var mockRepository = new Mock<ISupplierRepository>();
-            var controller = new SupplierController(mockRepository.Object);
+            Supplier testSupplier =
+            new Supplier
+            {
+                Name = "supplier test",
+                City = "test city",
+                ReferenceNumber = "test ref",
+            };
 
-            IHttpActionResult actionResult = controller.Post(new SupplierDTO { });
+            SupplierDTO testSupplierDTO = new SupplierDTO(testSupplier);
+
+            IHttpActionResult actionResult = supplierController.Post(testSupplierDTO);
             var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-            Assert.IsNotNull(contentResult);
+            int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
+
+            testSupplierDTO.Id = testID;
+            testSupplierDTO.Name = "supplier test put";
+            testSupplierDTO.City = "test supplier put";
+            testSupplierDTO.RefNum = "ref put";
+
+            IHttpActionResult actionResultPut = supplierController.Put(testID, testSupplierDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<SupplierDTO>;
+
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual("supplier test put", contentResultPut.Content.Name);
+            Assert.AreEqual("test supplier put", contentResultPut.Content.City);
+            Assert.AreEqual("ref put", contentResultPut.Content.RefNum);
+
+
+            actionResult = supplierController.Delete(testID);
+            Assert.IsNotNull(actionResult);
+
+        }
+        [Test]
+        public void GetReturnsSuppliersGetPage()
+        {
+            int page = 1;
+            int size = 10;
+            IHttpActionResult actionResult = supplierController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<SupplierDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
 
         }
 
-
-        [TestMethod]
-        public void PutReturnsUpdatedSupplierDTO()
+        [Test]
+        public void GetReturnsSupplierGetPageSearch()
         {
-
-            var mockRepository = new Mock<ISupplierRepository>();
-            mockRepository.Setup(x => x.GetById(4))
-                .Returns(new Supplier
-                {
-                    ID = 4,
-                    Name = "Test Name",
-                    City = "Sandton",
-                    ReferenceNumber = null,
-                });
-            var controller = new SupplierController(mockRepository.Object);
-
-            //Int32 taxRefTest = 5;
-            Supplier testCreator = new Supplier
-            {
-                ID = 4,
-                Name = "Test Name Updated",
-                City = "Sandton Updated",
-                ReferenceNumber = null,
-
-            };
-
-            SupplierDTO testCreatorDTO = new SupplierDTO(testCreator);
-
-            // Act  
-            IHttpActionResult actionResult = controller.Put(4, testCreatorDTO);
-            var contentResult = actionResult as OkNegotiatedContentResult<SupplierDTO>;
-
+            int page = 1;
+            int size = 10;
+            String search = "Unerazz";
+            IHttpActionResult actionResult = supplierController.Get(search, page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<SupplierDTO>>;
             Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(4, contentResult.Content.Id);
-            Assert.AreEqual("Test Name Updated", contentResult.Content.Name);
-            Assert.AreEqual("Sandton Updated", contentResult.Content.City);
-            Assert.IsNull(contentResult.Content.RefNum);
+
+            //StringAssert.Contains(search, contentResult.Content.First().RefNum);
+
+            Assert.AreEqual("R9F3R5XWZ1R56KI", contentResult.Content.First().RefNum);
+            Assert.AreEqual("Virginia Beach", contentResult.Content.First().City);
 
         }
     }

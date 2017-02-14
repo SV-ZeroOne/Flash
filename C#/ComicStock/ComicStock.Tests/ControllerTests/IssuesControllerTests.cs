@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ComicStock.Data.IRepositories;
 using Moq;
 using System.Collections.Generic;
@@ -9,45 +8,105 @@ using ComicStock.Domain;
 using System.Web.Http;
 using System.Web.Http.Results;
 using ComicStock.WebAPI.Models;
+using System.Web.Http.Dependencies;
+using ComicStock.Data.Repositories;
 
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    [TestFixture]
     public class IssuesControllerTests
     {
-        [TestMethod]
+        private IIssueRepository issueRepository;
+        private IssuesController issuesController;
+
+        [SetUp]
+        public void init()
+        {
+            issueRepository = new IssueRepository(new Data.ComicContext());
+            issuesController = new IssuesController(issueRepository);
+        }
+
+        [Test]
         public void GetReturnsIssueWithSameId()
         {
-            int testID = 1;
-
-            var mockRepository = new Mock<IIssueRepository>();
-            mockRepository.Setup(x => x.GetById(testID))
-                .Returns(new Issue { ID = testID });
-
-            var controller = new IssuesController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Get(testID);
+            int testID = 3;
+            IHttpActionResult actionResult = issuesController.Get(testID);
             var contentResult = actionResult as OkNegotiatedContentResult<IssueDTO>;
 
-            Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
             Assert.AreEqual(testID, contentResult.Content.Id);
 
         }
 
-        [TestMethod]
+        [Test]
         public void PostReturnsIssueIDAddRepository()
         {
-            var mockRepository = new Mock<IIssueRepository>();
-            var controller = new IssuesController(mockRepository.Object);
+            Issue testIssue =
+            new Issue
+            {
+                
+                Title = "issue test",
+                PublicationDate = new DateTime(2011, 11, 11),
+                Publisher = "test publisher",
+                SeriesNumber = 11,
+                Description = "issue test"
+            };
 
-            IHttpActionResult actionResult = controller.Post(new IssueDTO {});
+            IssueDTO testIssueDTO = new IssueDTO(testIssue);
+
+            IHttpActionResult actionResult = issuesController.Post(testIssueDTO);
             var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-            Assert.IsNotNull(contentResult);
+            int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
+
+            testIssueDTO.Id = testID;
+            testIssueDTO.Title = "issue put";
+            testIssueDTO.Publisher = "test publisher put";
+            testIssueDTO.Description = "issue put";
+
+            IHttpActionResult actionResultPut = issuesController.Put(testID, testIssueDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<IssueDTO>;
+
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual("issue put", contentResultPut.Content.Title);
+            Assert.AreEqual("test publisher put", contentResultPut.Content.Publisher);
+            Assert.AreEqual("issue put", contentResultPut.Content.Description);
+
+
+            actionResult = issuesController.Delete(testID);
+            Assert.IsNotNull(actionResult);
+
+        }
+        [Test]
+        public void GetReturnsIssuesGetPage()
+        {
+            int page = 1;
+            int size = 10;
+            IHttpActionResult actionResult = issuesController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<IssueDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
 
         }
 
+        [Test]
+        public void GetReturnsIssuesGetPageSearch()
+        {
+            int page = 1;
+            int size = 10;
+            String search = "1st Issue Special";
+            IHttpActionResult actionResult = issuesController.Get(search, page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<IssueDTO>>;
+            Assert.IsNotNull(contentResult);
+            foreach (var item in contentResult.Content)
+            {
+                StringAssert.Contains(search, item.Title);
+            }
+            Assert.AreEqual(size, contentResult.Content.Count());
+
+        }
     }
 }

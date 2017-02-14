@@ -10,85 +10,109 @@ using ComicStock.WebAPI.Models;
 
 namespace ComicStock.Tests.ControllerTests
 {
-    [TestClass]
+    using System;
+    using NUnit.Framework;
+    using Data.Repositories;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    [TestFixture]
     public class CreatorControllerTests
     {
-        [TestMethod]
-        public void GetReturnsIssueWithSameId()
+        private ICreatorRepository creatorRepository;
+        private CreatorController creatorController;
+
+        [SetUp]
+        public void init()
         {
-            int testID = 1;
+            creatorRepository = new CreatorRepository(new Data.ComicContext());
+            creatorController = new CreatorController(creatorRepository);
+        }
 
-            var mockRepository = new Mock<ICreatorRepository>();
-            mockRepository.Setup(x => x.GetById(testID))
-                .Returns(new Creator { ID = testID });
 
-            var controller = new CreatorController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Get(testID);
+        [TestMethod]
+        public void GetReturnsCreatorWithSameId()
+        {
+            int testID = 3;
+            IHttpActionResult actionResult = creatorController.Get(testID);
             var contentResult = actionResult as OkNegotiatedContentResult<CreatorDTO>;
 
-            Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
             Assert.AreEqual(testID, contentResult.Content.Id);
 
         }
 
         [TestMethod]
-        public void PostReturnsCreatorIDAddRepository()
+        public void PostReturnsIssueIDAddRepository()
         {
-            var mockRepository = new Mock<ICreatorRepository>();
-            var controller = new CreatorController(mockRepository.Object);
-
-            IHttpActionResult actionResult = controller.Post(new CreatorDTO { });
-            var contentResult = actionResult as OkNegotiatedContentResult<int>;
-
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-
-        }
-
-        [TestMethod]
-        public void PutReturnsUpdatedCreatorDTO()
-        {
-
-            var mockRepository = new Mock<ICreatorRepository>();
-            mockRepository.Setup(x => x.GetById(4))
-                .Returns(new Creator
-                {
-                    ID = 4,
-                    Name = "Test Name",
-                    CountryOfResidence = "South Africa",
-                    EmailAddress = "test@testdomain.com",
-                    TaxReferenceNumber = null,
-                });
-            var controller = new CreatorController(mockRepository.Object);
-
-            //Int32 taxRefTest = 5;
-            Creator testCreator = new Creator
+            Creator testCreator =
+            new Creator
             {
                 ID = 4,
-                Name = "Test Name Updated",
-                CountryOfResidence = "South Africa Updated",
-                EmailAddress = "testupdated@testdomain.com",
+                Name = "Test Name",
+                CountryOfResidence = "South Africa",
+                EmailAddress = "test@testdomain.com",
                 TaxReferenceNumber = null,
-
             };
+
 
             CreatorDTO testCreatorDTO = new CreatorDTO(testCreator);
 
-            // Act  
-            IHttpActionResult actionResult = controller.Put(4, testCreatorDTO);
-            var contentResult = actionResult as OkNegotiatedContentResult<CreatorDTO>;
+            IHttpActionResult actionResult = creatorController.Post(testCreatorDTO);
+            var contentResult = actionResult as OkNegotiatedContentResult<int>;
 
-            Assert.IsNotNull(contentResult);
+            int testID = contentResult.Content;
             Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(4, contentResult.Content.Id);
-            Assert.AreEqual("Test Name Updated", contentResult.Content.Name);
-            Assert.AreEqual("South Africa Updated", contentResult.Content.Country);
-            Assert.AreEqual("testupdated@testdomain.com", contentResult.Content.Email);
-            Assert.IsNull(contentResult.Content.TaxRef);
+
+            testCreatorDTO.Id = testID;
+            testCreatorDTO.Name = "creator put";
+            testCreatorDTO.Country = "test county put";
+            testCreatorDTO.Email = "testput@testdomain.com";
+
+            IHttpActionResult actionResultPut = creatorController.Put(testID, testCreatorDTO);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<CreatorDTO>;
+
+            Assert.IsNotNull(contentResultPut.Content);
+            Assert.AreEqual("creator put", contentResultPut.Content.Name);
+            Assert.AreEqual("test county put", contentResultPut.Content.Country);
+            Assert.AreEqual("testput@testdomain.com", contentResultPut.Content.Email);
+
+
+            actionResult = creatorController.Delete(testID);
+            Assert.IsNotNull(actionResult);
 
         }
-        
+
+        [Test]
+        public void GetReturnsIssuesGetPage()
+        {
+            int page = 1;
+            int size = 10;
+            IHttpActionResult actionResult = creatorController.Get(page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<CreatorDTO>>;
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(size, contentResult.Content.Count());
+
+        }
+
+        [Test]
+        public void GetReturnsCreatorGetPageSearch()
+        {
+            int page = 1;
+            int size = 1;
+            String search = "Nicole Franco";
+            IHttpActionResult actionResult = creatorController.Get(search, page, size);
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<CreatorDTO>>;
+            Assert.IsNotNull(contentResult);
+
+            StringAssert.Contains(search, contentResult.Content.First().Name);
+            Assert.AreEqual(size, contentResult.Content.Count());
+
+        }
+
+
+
+
+
     }
 }
