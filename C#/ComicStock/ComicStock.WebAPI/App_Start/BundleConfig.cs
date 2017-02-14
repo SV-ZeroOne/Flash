@@ -13,6 +13,7 @@ namespace ComicStock.WebAPI
             bundles.Add(new ScriptBundle("~/assets/js").Include(
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/bootstrap.min.js",
+                      "~/app/assets/js/sweetalert2.min.js",
                       "~/app/assets/js/bootstrap-select.min.js",
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/jquery.dataTables.min.js",
@@ -24,6 +25,7 @@ namespace ComicStock.WebAPI
             bundles.Add(new ScriptBundle("~/angular/js").Include(
                       "~/app/assets/js/angular.min.js",
                       "~/app/assets/js/angular-route.min.js",
+                      "~/app/assets/js/angular-messages.js",
                       "~/app/assets/js/swx-session-storage.min.js",
                       "~/app/assets/js/angular-modal-service.min.js",
                       "~/app/modules/supplier/supplier.module.js",
@@ -32,8 +34,6 @@ namespace ComicStock.WebAPI
 
                 ));
 
-    
-
             bundles.Add(new StyleBundle("~/assets/css").Include(
                       "~/app/assets/css/bootstrap.min.css",
                        "~/app/assets/css/font-awesome.min.css",
@@ -41,6 +41,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/css/bootstrap-social.css",
                       "~/app/assets/css/bootstrap-select.css",
                       "~/app/assets/css/fileinput.min.css",
+                      "~/app/assets/css/sweetalert2.min.css",
                       "~/app/assets/css/awesome-bootstrap.checkbox.css",
                       "~/app/assets/css/style.less",
                       "~/app/assets/css/style.css",
