@@ -100,6 +100,12 @@ namespace ComicStock.WebAPI.Controllers
             
         }
 
+        [Route("api/Issues/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(issueRepository.Count());
+        }
+
 
 
     }
