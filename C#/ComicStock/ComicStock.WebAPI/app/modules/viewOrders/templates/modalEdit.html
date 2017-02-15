@@ -6,7 +6,6 @@
                 <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
             </div>
-            
             <div class="modal-body">
                 <label for="tag1">Name:</label><input name ="name" type="text" ng-model="$ctrl.name" data-role="tagsinput" id="tag1" class="form-control" required>
                 <div ng-messages="validate.name.$error" style="color:#e74c3c" role="alert">

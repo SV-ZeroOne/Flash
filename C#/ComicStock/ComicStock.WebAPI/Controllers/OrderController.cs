@@ -30,6 +30,12 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(orders);
         }
 
+        [Route("api/Order/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(orderRepository.Count());
+        }
+
         public IHttpActionResult Get(int id)
         {
             Order order = this.orderRepository.GetById(id);

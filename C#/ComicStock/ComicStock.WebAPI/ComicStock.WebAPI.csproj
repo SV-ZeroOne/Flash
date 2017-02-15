@@ -273,6 +273,10 @@
     <Content Include="app\modules\supplier\templates\modalEdit.html" />
     <Content Include="app\modules\supplier\templates\supplier.html" />
     <Content Include="app\modules\supplier\templates\supplier.tpl.html" />
+    <Content Include="app\modules\viewOrders\templates\order.html" />
+    <Content Include="app\modules\viewOrders\templates\modal.html" />
+    <Content Include="app\modules\viewOrders\templates\modalEdit.html" />
+    <Content Include="app\modules\viewOrders\viewOrders.module.js" />
     <Content Include="app\modules\voucher\templates\modal.html" />
     <Content Include="app\modules\voucher\templates\modalEdit.html" />
     <Content Include="app\modules\voucher\templates\voucher.html" />
