@@ -7,9 +7,33 @@
                 <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
             </div>
             <div class="modal-body">
-                <h2>Title: {{$ctrl.title}}</h2>
-                <h2>Series Number: {{$ctrl.seriesNumber}}</h2>
-                <h2>Condition: {{$ctrl.condition}}</h2>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label type="text">Title:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.title}}</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label type="text">Series Number: </label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.seriesNumber}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label type="text">Condition</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.condition}}</p>
+                    </div>
+
+                </div>
+            
                 <label for="tag2">Available Quantity:</label><input type="number" name="availableQty" ng-model="$ctrl.availableQty" data-role="tagsinput" id="tag2" class="form-control" min="0" required>
                 <div ng-messages="validate.availableQty.$error" style="color:#e74c3c" role="alert">
                     <div ng-if="validate.availableQty.$error" ng-message="min">Available quantity cannot be negative</div>
