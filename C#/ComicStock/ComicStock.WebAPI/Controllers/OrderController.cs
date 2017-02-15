@@ -103,17 +103,20 @@ namespace ComicStock.WebAPI.Controllers
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]OrderDTO orderDTO)
         {
-            //Order order = orderRepository.GetById(id);
-            //if (order != null)
-            //{
-            //    order = orderDTO.CreateDomainObject(order);
-            //    order.Supplier = orderDTO.Supplier.CreateDomainObject(order.Supplier);
-            //    order.IssueOrders = orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
-            //    {
-            //        SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
-            //        Issue = io.Issue.CreateDomainObject()
-            //    })).ToList();
-            //}
+            Order order = orderRepository.GetById(id);
+            if (order != null)
+            {
+
+        
+                orderRepository.Update(orderDTO.CreateDomainObject(order));
+                return Ok(orderDTO);
+               //
+                //order.IssueOrders = orderDTO.IssueOrders.Select(io => io.CreateDomainObject(new IssueOrder()
+                //{
+                //    SupplierQuote = io.SupplierQuote.CreateDomainObject(new SupplierQuote()),
+                //    Issue = io.Issue.CreateDomainObject()
+                //})).ToList();
+            }
             return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
                 "Not implemented exception")

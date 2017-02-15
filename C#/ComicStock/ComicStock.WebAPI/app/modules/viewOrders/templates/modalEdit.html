@@ -1,4 +1,4 @@
-﻿<div class="modal fade" ng-controller="modalCreatorController as $ctrl">
+﻿<div class="modal fade" ng-controller="modalViewOrdersController as $ctrl">
     <div class="modal-dialog" style="left: 0%;">
         <form name="validate">
         <div class="modal-content">
@@ -7,27 +7,28 @@
                 <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
             </div>
             <div class="modal-body">
-                <label for="tag1">Name:</label><input name ="name" type="text" ng-model="$ctrl.name" data-role="tagsinput" id="tag1" class="form-control" required>
-                <div ng-messages="validate.name.$error" style="color:#e74c3c" role="alert">
-                    <div ng-if="validate.name.$error.required" ng-message="required">Name required</div>
+                <div class="row">
+                    <label type="date">Order Date: {{$ctrl.date}}</label>
+                </div>
+                <div class="row">
+                    <label>Order Total: R {{$ctrl.total}}</label>
+                </div>
+                <div class="row">
+                    <label>Shipment Reference: {{$ctrl.shipref}}</label>
+                </div>
+                <div class="row">
+                    <label>Shipment Date: {{$ctrl.shipdate}}</label>
                 </div>
 
-                <label for="tag2">Country of Residence:</label><input type="text" name="country" ng-model="$ctrl.country" data-role="tagsinput" id="tag2" class="form-control" required>
-                <div ng-messages="validate.country.$error" style="color:#e74c3c" role="alert">
-                    <div ng-if="validate.country.$error.required" ng-message="required">Country required</div>
+                    <label for="tag2">Delivery Status:</label><select name="status" ng-model="$ctrl.status" class="form-control" selected="{{$ctrl.status}}" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <div ng-if="validate.status.$error.required" class="error" style="color: #e74c3c">
+                        Status Required
+                    </div>
                 </div>
-                <label for="tag3">Tax Reference Number:</label><input name="tax" type="text" ng-model="$ctrl.tax" data-role="tagsinput" id="tag3" class="form-control" >
-              
-                <label for="tag2">Email Address</label><input type="email" name="email" ng-model="$ctrl.email" data-role="tagsinput" id="tag2" class="form-control" required>
-                <div ng-if="validate.email.$error.required" class="error" style="color:#e74c3c">
-                    Email required
-                </div>
-
-                <div ng-if="!validate.email.$error.required &amp;&amp;
-                validate.email.$error.email" class="error" style="color:#e74c3c">
-                   Not a valid email
-                </div>
-            </div>
             <div class="modal-footer">
                 <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="submit" ng-click="$ctrl.submit(validate.$valid)" class="btn btn-primary" data-dismiss="modal">Save</button>
