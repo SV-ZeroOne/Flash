@@ -26,13 +26,28 @@ namespace ComicStock.Data.Repositories
             return base.GetPage(supplierQuotes, page, pageSize);
         }
 
-        public IEnumerable<SupplierQuote> GetPage(string search, int page, int pageSize)
+        public IEnumerable<SupplierQuote> GetPage(int id, int page, int pageSize)
+        {
+            var supplierQuotes = this.context.SupplierQuotes.AsQueryable().OrderBy(x => x.ID).Where(x => x.Supplier.ID == id);
+            return base.GetPage(supplierQuotes, page, pageSize); 
+        }
+
+        public IEnumerable<SupplierQuote> GetPage(string search, int id, int page, int pageSize)
         {
             var suppliers = this.context.SupplierQuotes.AsQueryable()
                 .OrderByDescending(x => x.ID)
-                .Where(x => x.Issue.Title.Contains(search)); // || x.Issue.SeriesNumber == Int16.Parse(search)
+                .Where(x => x.Issue.Title.Contains(search) && x.Supplier.ID == id); // || x.Issue.SeriesNumber == Int16.Parse(search)
 
             return base.GetPage(suppliers, page, pageSize);
+        }
+
+        public int Count(int id)
+        {
+            var suppliers = this.context.SupplierQuotes.AsQueryable()
+                .OrderBy(x => x.ID)
+                .Where(x => x.Supplier.ID == id);
+
+            return base.Count(suppliers);
         }
 
         public override int Count()

@@ -27,11 +27,11 @@ namespace ComicStock.WebAPI.Controllers
             IEnumerable<SupplierQuoteDTO> supplierQuotes = null;
             if (supplier != null)
             {
-                    supplierQuotes = supplierQuoteRepository.GetPage(page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
+                    supplierQuotes = supplierQuoteRepository.GetPage(id, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
                     {
                         Issue = new IssueDTO(sq.Issue)
                         {
-                            Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                            //Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
                         }
 
                     });
@@ -48,11 +48,11 @@ namespace ComicStock.WebAPI.Controllers
             IEnumerable<SupplierQuoteDTO> supplierQuotes = null;
             if (supplier != null)
             {
-                supplierQuotes = supplierQuoteRepository.GetPage(search, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
+                supplierQuotes = supplierQuoteRepository.GetPage(search, id, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
                 {
                     Issue = new IssueDTO(sq.Issue)
                     {
-                        Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                        //Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
                     }
 
                 });
@@ -63,9 +63,9 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [Route("api/SupplierQuote/count")]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int id)
         {
-            return Ok(supplierQuoteRepository.Count());
+            return Ok(supplierQuoteRepository.Count(id));
         }
 
         

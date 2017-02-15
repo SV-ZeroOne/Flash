@@ -20,8 +20,8 @@ angular.module('placeOrderModule', [])
 
             $ctrl.pagination = {
 
-                pageSizeOptions: [10, 25, 50, 100],
-                pageSize: 25,
+                pageSizeOptions: [12, 24, 64, 128],
+                pageSize: 24,
 
                 pageOptions: [],
                 page: 1,
@@ -70,7 +70,7 @@ angular.module('placeOrderModule', [])
                         });
 
                 $http
-                    .get('/api/SupplierQuote/count')
+                    .get('/api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id)
                     .then(function (response) {
                         $ctrl.pagination.count = response.data;
 

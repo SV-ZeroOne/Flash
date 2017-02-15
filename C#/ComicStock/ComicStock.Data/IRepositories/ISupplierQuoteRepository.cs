@@ -9,6 +9,8 @@ namespace ComicStock.Data.IRepositories
 {
     public interface ISupplierQuoteRepository : IRepository<SupplierQuote>
     {
-        IEnumerable<SupplierQuote> GetPage(string search, int page, int pageSize);
+        IEnumerable<SupplierQuote> GetPage(string search, int id, int page, int pageSize);
+        IEnumerable<SupplierQuote> GetPage(int id, int page, int pageSize);
+        int Count(int id);
     }
 }

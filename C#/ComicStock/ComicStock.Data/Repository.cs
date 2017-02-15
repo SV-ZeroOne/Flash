@@ -29,7 +29,7 @@ namespace ComicStock.Data
 
         protected int Count(IQueryable<TEntity> entity)
         {
-            return context.Set<TEntity>().Count();
+            return entity.Count();
         }
 
         public virtual void Create(TEntity entity)
