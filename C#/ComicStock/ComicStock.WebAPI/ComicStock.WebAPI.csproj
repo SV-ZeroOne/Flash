@@ -264,6 +264,10 @@
     <Content Include="app\modules\dashboard\dashboard.module.js" />
     <Content Include="app\modules\dashboard\templates\dashboard.html" />
     <Content Include="app\modules\dashboard\templates\dashboard.tpl.html" />
+    <Content Include="app\modules\issue\issue.module.js" />
+    <Content Include="app\modules\issue\templates\modal.html" />
+    <Content Include="app\modules\issue\templates\modalEdit.html" />
+    <Content Include="app\modules\issue\templates\issue.html" />
     <Content Include="app\modules\stock\templates\modal.html" />
     <Content Include="app\modules\stock\templates\modalEdit.html" />
     <Content Include="app\modules\stock\templates\stock.html" />
