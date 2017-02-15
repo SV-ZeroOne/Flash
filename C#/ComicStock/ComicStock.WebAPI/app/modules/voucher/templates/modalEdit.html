@@ -7,16 +7,22 @@
                 <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
             </div>
             <div class="modal-body">
-                <label for="tag1">Code:</label><input name ="code" type="text" ng-model="$ctrl.code" data-role="tagsinput" id="tag1" class="form-control" required>
-                <div ng-messages="validate.code.$error" style="color:#e74c3c" role="alert">
-                    <div ng-if="validate.code.$error.required" ng-message="required">Code required</div>
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <label>Code:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.code}}</p>
+                    </div>
+
                 </div>
 
-                <label for="tag2">Redeem Date:</label><input type="date" name="date" ng-model="$ctrl.date" data-role="tagsinput" id="tag2" class="form-control" required>
+                <label for="tag2">Redeem Date:</label><input type="date" name="date" ng-model="{{$ctrl.date |  date:'yyyy-MM-dd'}}" data-role="tagsinput" id="tag2" class="form-control" required>
                 <div ng-messages="validate.date.$error" style="color:#e74c3c" role="alert">
-                    <div ng-if="validate.date.$error.date" ng-message="required">Redeem Date not valid</div>
+                    <div ng-if="validate.date.$error.date" ng-message="date">Redeem Date not valid</div>
                 </div>
-                <label for="tag3">Voucher Value:</label><input name="value" ng-min="0" type="number" ng-model="{{$ctrl.value | number:2}}" data-role="tagsinput" id="tag3" class="form-control" required>
+                <label for="tag3">Voucher Value: R</label><input name="value" ng-min="0" type="number" ng-model="{{$ctrl.value | number:2}}" data-role="tagsinput" id="tag3" class="form-control" required>
                 <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
                     <div ng-if="validate.value.$error.required" ng-message="required">Value required</div>
                 </div>
