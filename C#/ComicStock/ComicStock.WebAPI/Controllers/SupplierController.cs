@@ -26,6 +26,13 @@ namespace ComicStock.WebAPI.Controllers
             if (supplier != null)
             {
                 SupplierDTO dto = new SupplierDTO(supplier);
+                dto.SupplierQuotes = supplier.SupplierQuotes.Select(sq => new SupplierQuoteDTO(sq)
+                {
+                    Issue = new IssueDTO(sq.Issue)
+                    {
+                        Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                    }
+                });
                 return Ok(dto);
             }
 

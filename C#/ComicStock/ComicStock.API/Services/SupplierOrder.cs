@@ -48,6 +48,7 @@ namespace ComicStock.API
             order.Supplier = supplierRepository.GetById(order.Supplier.ID);
             if (order.Supplier == null) throw new SupplierNotFoundException();
             order.SupplierID = order.Supplier.ID;
+            order.OrderDate = DateTime.Now;
 
             if (order.IssueOrders != null || order.IssueOrders.Count() > 0)
             {
