@@ -47,7 +47,7 @@ namespace ComicStock.WebAPI.Controllers
         }
  
 
-        [Route("api/Creators/search")]
+        [Route("api/Creator/search")]
         public IHttpActionResult Get(string search, int page, int pageSize)
         {
             IEnumerable<CreatorDTO> creators = creatorRepository.GetPage(search, page, pageSize).Select(c => new CreatorDTO(c)

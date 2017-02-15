@@ -96,7 +96,7 @@ angular.module('viewOrdersModule', [])
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
-                $ctrl.modalTitle = 'Edit Creator';
+                $ctrl.modalTitle = 'Edit Order';
 
                 $http
                     .get('/api/Order/' + id)
@@ -144,7 +144,7 @@ angular.module('viewOrdersModule', [])
     .controller('modalViewOrdersController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newCreator = {};
+            $ctrl.newOrder = {};
 
             $ctrl.modalTitle = 'Edit an Order';
 
@@ -153,36 +153,37 @@ angular.module('viewOrdersModule', [])
             $http
                 .get('/api/Order/' + $sessionStorage.get('ID'))
                 .then(function (response) {
-                    $ctrl.name = response.data.Name;
-                    $ctrl.country = response.data.Country;
-                    $ctrl.tax = response.data.TaxRef;
-                    $ctrl.email = response.data.Email;
+                    $ctrl.total = response.data.Total;
+                    $ctrl.date = response.data.OrderDate;
+                    $ctrl.shipref = response.data.ShipmentRef;
+                    $ctrl.shipdate = response.data.ShipmentDate;
+                    $ctrl.status = response.data.DeliveryStatus;
                 }
                 )
                 .catch(function (errorResponse) {
-                    swal('Error', 'No such creator exists', 'error');
+                    swal('Error', 'No such order exists', 'error');
                 });
 
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Creator fields not valid - please try again', 'error');
+                    swal('Failed', 'Order fields not valid - please try again', 'error');
                     return;
                 }
-                $ctrl.newCreator.Id = $sessionStorage.get('ID');
-                $ctrl.newCreator.Name = $ctrl.name;
-                $ctrl.newCreator.Country = $ctrl.country;
-                $ctrl.newCreator.TaxRef = $ctrl.tax;
-                $ctrl.newCreator.Email = $ctrl.email;
-
+                $ctrl.newOrder.Id = $sessionStorage.get('ID');
+                $ctrl.newOrder.Total = $ctrl.total;
+                $ctrl.newOrder.ShipmentRef = $ctrl.shipref;
+                $ctrl.newOrder.ShipmentDate = $ctrl.shipdate;
+                $ctrl.newOrder.DeliveryStatus = $ctrl.status;
+                $ctrl.newOrder.OrderDate = $ctrl.date;
 
                 $http
-                    .put('/api/Creator/' + $sessionStorage.get('ID'), $ctrl.newCreator)
+                    .put('/api/Order/' + $sessionStorage.get('ID'), $ctrl.newOrder)
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
                             'Good job!',
-                            'Creator updated',
+                            'Order updated',
                             'success'
                         );
                     })
@@ -193,39 +194,7 @@ angular.module('viewOrdersModule', [])
             }
 
 
-        }).controller('modalViewOrdersAddController',
-        function ($http, $scope, $sessionStorage) {
-            var $ctrl = this;
-            $ctrl.newCreator = {};
-
-            $ctrl.modalTitle = 'Add a Creator';
-
-
-
-            $ctrl.submit = function (isFormValid) {
-                if (!isFormValid) {
-                    swal('Failed', 'Creator fields not valid - please try again.', 'error');
-                    return;
-                }
-                $ctrl.newCreator.Name = $ctrl.name;
-                $ctrl.newCreator.Country = $ctrl.country;
-                $ctrl.newCreator.TaxRef = $ctrl.tax;
-                $ctrl.newCreator.Email = $ctrl.email;
-                $http.post('/api/Creator', $ctrl.newCreator)
-                    .then(function (response) {
-                        swal('Success', 'Creator created', 'success');
-                        console.log("success1");
-                        $scope.$emit('updateTheTablePlease');
-                        console.log("success2");
-                    })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', 'error');
-                    });
-            }
-
-
-
-        });;
+        });
 
 
 

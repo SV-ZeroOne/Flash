@@ -75,7 +75,7 @@ angular.module('supplierModule', [])
 
             }
 
-            $ctrl.updateTable()
+            $ctrl.updateTable();
 
             $rootScope.$on('updateTheTablePlease', function(event) {
                 $ctrl.updateTable();
