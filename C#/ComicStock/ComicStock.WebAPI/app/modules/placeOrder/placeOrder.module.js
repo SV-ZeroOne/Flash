@@ -108,12 +108,10 @@ angular.module('placeOrderModule', [])
             $ctrl.removeFromOrder = function (issueOrder) {
                 for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
                     if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == issueOrder.SupplierQuote.Id)
-                        $ctrl.order.IssueOrders.splice(x, x + 1)
+                        $ctrl.order.IssueOrders.splice(x, 1)
                 }
                 $ctrl.updateOrderTotal();
             }
-
-
 
             $ctrl.pageTo = function (page) {
                 $ctrl.pagination.page = page;
