@@ -26,6 +26,36 @@ angular.module('issueModule', [])
                 nextDisable: "disable"
             }
 
+            $ctrl.deactivate = function (id) {
+
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, deactivate the issue!'
+                }).then(function () {
+                    $http
+
+                    .put('/api/Issues/deactivate?id=' + id)
+                        .then(function (response) {
+                            swal(
+                'Deactivated!',
+                'The issue was deactivated',
+                'success'
+              )
+                            $ctrl.updateTable();
+                        }
+                        );
+
+                })
+
+               .catch(function (errorResponse) {
+                   swal('Error', 'No such issue exists', 'error');
+               });
+            }
 
             $ctrl.updateTable = function () {
                 console.log("Update the table");
@@ -198,7 +228,7 @@ angular.module('issueModule', [])
                         $scope.$emit('updateTheTablePlease');
                         swal(
                             'Good job!',
-                            'Voucher updated',
+                            'Issue updated',
                             'success'
                         );
                     })

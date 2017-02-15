@@ -8,7 +8,7 @@
 <div class="ts-main-content" ng-controller="issueController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
-
+            <li class="ts-label">Home</li>
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
 
@@ -19,7 +19,9 @@
             <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li class="open"><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
             <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
-            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+            <li><a href="#!/stock"><i class="fa fa-tasks"></i>Stock</a></li>
+            <li class="ts-label">Ordering</li>
+            <li><a href="#!/placeOrder"><i class="fa fa-truck"></i>Place Order</a></li>
 
 
 
@@ -110,6 +112,7 @@
                                         <th>Available Quantity</th>
                                         <th>Price</th>-->
                                         <th>Edit</th>
+                                        <th>Deactivate</th>
                                         <th>Stock</th>
 
                                     </tr>
@@ -117,12 +120,13 @@
                                 <tbody>
                                     <tr ng-repeat="issue in $ctrl.issues">
                                         <td>{{issue.Title}}</td>
-                                        <td>{{issue.PublicationDate}}</td>
+                                        <td>{{issue.PublicationDate | date:'yyyy-MM-dd'}}</td>
                                         <td>{{issue.Publisher}}</td>
                                         <td>{{issue.SeriesNumber}}</td>
                                         <td>{{issue.Description}}</td>
                                         <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
-                                        <td><a style="cursor: pointer" ng-click='$ctrl.issueStock(issue.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.deactivate(issue.Id)' style="cursor: pointer;"><i class="fa fa-trash" /></a></td>
+                                         <td><a style="cursor: pointer" ng-click='$ctrl.issueStock(issue.Id)' style="cursor: pointer;"><i class="fa fa-tasks" /></a></td>
 
                                     </tr>
                                 </tbody>
