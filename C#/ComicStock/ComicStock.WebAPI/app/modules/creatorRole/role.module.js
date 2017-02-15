@@ -3,7 +3,7 @@ angular.module('creatorRoleModule', [])
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = 'Creator Roles';
+            $ctrl.message = "";
             $ctrl.newCreator = {};
             $ctrl.currentCreator = {};
             $ctrl.modalTitle = 'Add an Issue/Role';
@@ -32,6 +32,7 @@ angular.module('creatorRoleModule', [])
                     .get('/api/Creator/' + $sessionStorage.get('creatorId'))
                     .then(function(response) {
                         $ctrl.issues = response.data;
+                        $ctrl.message = response.data.Name;
 
                     })
                     .catch(function(errorResponse) {
