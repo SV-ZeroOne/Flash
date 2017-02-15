@@ -25,7 +25,7 @@ angular.module('placeOrderModule', [])
                     .get('/api/Supplier?page=1&pageSize=9999')
                     .then(function (response) {
                         $ctrl.suppliers = response.data;
-                        $ctrl.order.Supplier = $ctrl.suppliers[0];
+                        //$ctrl.order.Supplier = $ctrl.suppliers[0];
                         $ctrl.updateQuotes();
                         console.log($ctrl.suppliers);
                         console.log($ctrl.order);
