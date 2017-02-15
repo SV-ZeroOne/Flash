@@ -106,8 +106,6 @@ namespace ComicStock.WebAPI.Controllers
             Order order = orderRepository.GetById(id);
             if (order != null)
             {
-
-        
                 orderRepository.Update(orderDTO.CreateDomainObject(order));
                 return Ok(orderDTO);
                //
