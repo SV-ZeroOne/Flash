@@ -1,12 +1,11 @@
 ﻿<div class="brand clearfix" >
-    <a href="#!/" class="logo" ><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
+    <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
-      
-     
+    
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="viewOrdersController as $ctrl">
+<div class="ts-main-content" ng-controller ="orderIssueController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Home</li>
@@ -14,14 +13,13 @@
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
-
             <li >
                 <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
             <li><a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
-            <li class="open"><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
+            <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
-            <li ><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
+            <li class="open"><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
  
 
             <!-- Account from above -->
@@ -49,7 +47,7 @@
                             <h2>{{$ctrl.message}}</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Place an Order</button>
+                            <!--<button class="btn btn-primary" ng-click="$ctrl.show()">Add an Issue to Creator</button>-->
                        </div>
                       
                     </div>
@@ -57,14 +55,14 @@
                  
                    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Orders</div>
+                        <div class="panel-heading">Issues in Order</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
                             <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <!--<div class="col-sm-4">
                                         <label for="mySelect">
                                             Show
                                             <select name="mySelect" id="mySelect"
@@ -72,10 +70,10 @@
                                                     ng-click="$ctrl.updateTable()"
                                                     ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
                                                     ng-model="$ctrl.pagination.pageSize"></select>
-                                        </label>
+                                        </label>-->
                                     </div>
 
-                                    <div class="col-sm-4">
+                                    <!--<div class="col-sm-4">
                                         <div class="text-center">
                                             <ul class="pagination" ng-model="$ctrl.page">
                                                 <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
@@ -89,39 +87,40 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-sm-4 text-right">
-                                   
+                                        <!--<label class="text-left">
+                                            Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                        </label>-->
 
                                     </div>
 
                                 </div>
                                 <thead>
                                 <tr>
-                                    <th>Order Date</th>
-                                    <th>Order Total</th>
-                                    <th>Shipment Reference</th>
-                                    <th>Shipment Date</th>
-                                    <th>Order Status</th>
-                                    <th>Edit</th>
-                                    <th>Issues in Order</th>
+                                    <th>Issue Title</th>
+                                    <th>Series Number</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <!--<th>Edit</th>-->
                                 </tr>
                                 </thead>
                                 <tbody >
 
-                                <tr ng-repeat="order in $ctrl.orders">
-                                    <td>{{order.OrderDate | date:'yyyy-MM-dd'}}</td>
-                                    <td>R {{order.Total | number:2}}</td>
-                                    <td>{{order.ShipmentRef}}</td>
-                                    <td>{{order.ShipmentDate | date:'yyyy-MM-dd'}}</td>
-                                    <td>{{order.DeliveryStatus}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(order.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.issues(order.Id)' style="cursor: pointer;"><i class="fa fa-book" /></a></td>
+                                <tr ng-repeat="issue in $ctrl.issues">
+                                    <td>{{issue.Issue.Title}}</td>
+                                    <td>{{issue.Issue.SeriesNumber}}</td>
+                                    <td>{{issue.SupplierQuote.Price}}</td>
+                                    <td>{{issue.QuantityOrdered}}</td>
+                                  
+                                    <!--<td>{{issue.Role}}</td>-->
+                                <!--    <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>-->
+
                                 </tr>
                                 </tbody>
 
                             </table>
-                            <div class="col-sm-12 text-center">
+                            <!--<div class="col-sm-12 text-center">
                                 <div class="text-center">
                                     <ul class="pagination" ng-model="$ctrl.page">
                                         <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
@@ -135,7 +134,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>
