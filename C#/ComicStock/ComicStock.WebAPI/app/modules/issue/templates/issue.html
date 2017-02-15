@@ -2,25 +2,12 @@
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Settings</a></li>
-        <li class="ts-account">
-            <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-            <ul>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Edit Account</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </li>
+       
     </ul>
 </div>
 <div class="ts-main-content" ng-controller="issueController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
-            <li class="ts-label">Search</li>
-            <li>
-                <input type="text" class="ts-sidebar-search" placeholder="Search here...">
-            </li>
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
@@ -135,7 +122,7 @@
                                         <td>{{issue.SeriesNumber}}</td>
                                         <td>{{issue.Description}}</td>
                                         <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
-                                        <td><a style="cursor: pointer" ng-click='$ctrl.stock(issue.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.issueStock(issue.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
 
                                     </tr>
                                 </tbody>

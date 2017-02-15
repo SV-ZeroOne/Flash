@@ -91,6 +91,8 @@ angular.module('issueModule', [])
 
             $ctrl.updateTable()
 
+
+
             $rootScope.$on('updateTheTablePlease', function (event) {
                 $ctrl.updateTable();
             });
@@ -102,7 +104,10 @@ angular.module('issueModule', [])
             }
 
 
-
+            $ctrl.issueStock = function (id) {
+                $sessionStorage.put('issueId', id);
+                window.location = "#!/issueStock";
+            }
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
@@ -156,7 +161,7 @@ angular.module('issueModule', [])
             var $ctrl = this;
             $ctrl.newIssue = {};
 
-            $ctrl.modalTitle = 'Edit Stock';
+            $ctrl.modalTitle = 'Edit Issue';
 
 
 
@@ -164,8 +169,8 @@ angular.module('issueModule', [])
                 .get('/api/Issues/' + $sessionStorage.get('ID'))
                 .then(function (response) {
                     $ctrl.title = response.data.Title;
-                    $ctrl.publicationDate = response.PublicationDate;
-                    $ctrl.publisher = response.Publisher;
+                    $ctrl.publicationDate = response.data.PublicationDate;
+                    $ctrl.publisher = response.data.Publisher;
                     $ctrl.seriesNumber = response.data.SeriesNumber;
                     $ctrl.description = response.data.Description;
                 }
@@ -215,7 +220,7 @@ angular.module('issueModule', [])
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Stock fields not valid - please try again.', 'error');
+                    swal('Failed', 'Issue fields not valid - please try again.', 'error');
                     return;
                 }
                 $ctrl.newIssue.Id = $sessionStorage.get('ID');

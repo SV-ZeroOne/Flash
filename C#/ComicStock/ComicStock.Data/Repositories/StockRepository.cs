@@ -39,5 +39,22 @@ namespace ComicStock.Data
                 .Where((x => x.Condition.Contains(search) || x.Issue.Title.Contains(search)));
             return base.GetPage(stocks, page, pageSize);
         }
+        public override void Add(Stock entity)
+        {
+
+            var query = context.Stocks.Any(i => i.IssueID == entity.Issue.ID && i.Condition == entity.Condition);
+            if (query)
+            {
+                var stock = context.Stocks.FirstOrDefault(s => s.IssueID == entity.Issue.ID && s.Condition == entity.Condition);
+                stock.AvailableQty += entity.AvailableQty;
+                stock.Price = entity.Price;
+                Update(stock);
+            }
+            else
+            {
+                base.Add(entity);
+            }
+
+        }
     }
 }
