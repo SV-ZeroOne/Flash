@@ -1,0 +1,73 @@
+﻿using ComicStock.Data.IRepositories;
+using ComicStock.Domain;
+using ComicStock.WebAPI.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+
+namespace ComicStock.WebAPI.Controllers
+{
+    public class SupplierQuoteController : ApiController
+    {
+        private readonly ISupplierQuoteRepository supplierQuoteRepository;
+        private readonly ISupplierRepository supplierRepository;
+
+        public SupplierQuoteController(ISupplierQuoteRepository supplierQuoteRepository, ISupplierRepository supplierRepository)
+        {
+            this.supplierQuoteRepository = supplierQuoteRepository;
+            this.supplierRepository = supplierRepository;
+        }
+
+        [Route("api/SupplierQuote")]
+        public IHttpActionResult Get(int id, int page, int pageSize)
+        {
+            Supplier supplier = supplierRepository.GetById(id);
+            IEnumerable<SupplierQuoteDTO> supplierQuotes = null;
+            if (supplier != null)
+            {
+                    supplierQuotes = supplierQuoteRepository.GetPage(page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
+                    {
+                        Issue = new IssueDTO(sq.Issue)
+                        {
+                            Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                        }
+
+                    });
+            }
+            
+
+            return Ok(supplierQuotes);
+        }
+
+        [Route("api/SupplierQuote/search")]
+        public IHttpActionResult Get(string search, int id, int page, int pageSize)
+        {
+            Supplier supplier = supplierRepository.GetById(id);
+            IEnumerable<SupplierQuoteDTO> supplierQuotes = null;
+            if (supplier != null)
+            {
+                supplierQuotes = supplierQuoteRepository.GetPage(search, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
+                {
+                    Issue = new IssueDTO(sq.Issue)
+                    {
+                        Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                    }
+
+                });
+            }
+
+
+            return Ok(supplierQuotes);
+        }
+
+        [Route("api/SupplierQuote/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(supplierQuoteRepository.Count());
+        }
+
+        
+    }
+}
