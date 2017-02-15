@@ -96,7 +96,7 @@ input[type="number"] {
                                             <select name="suppliersSelect" id="suppliersSelect"
                                                     class="form-control input-sm"
                                                     ng-change="$ctrl.updateQuotes()"
-                                                    ng-options="option.Name for option in $ctrl.suppliers track by option"
+                                                    ng-options="option.Name for option in $ctrl.suppliers track by option.Id"
                                                     ng-model="$ctrl.order.Supplier"></select>
                                         </label>
                                     </div>
