@@ -51,6 +51,7 @@ namespace ComicStock.WebAPI.Controllers
         {
 
             Voucher voucher = voucherDTO.CreateDomainObject(new Voucher());
+            voucher.IsActivated = true;
 
             this.voucherRepository.Add(voucher);
 
