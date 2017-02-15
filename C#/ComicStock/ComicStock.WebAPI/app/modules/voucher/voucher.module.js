@@ -82,7 +82,9 @@ angular.module('voucherModule', [])
 
             }
 
-            $ctrl.updateTable()
+            $ctrl.updateTable();
+
+
 
             $rootScope.$on('updateTheTablePlease', function (event) {
                 $ctrl.updateTable();
@@ -94,7 +96,34 @@ angular.module('voucherModule', [])
                 $ctrl.updateTable();
             }
 
+            $ctrl.deactivate = function (id) {
 
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(function () {
+                    $http
+                        .put('/api/Voucher/' + id)
+                        .then(function (response) {
+                            swal(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+                        }
+                        );
+
+                })
+
+               .catch(function (errorResponse) {
+                   swal('Error', 'No such voucher exists', 'error');
+               });
+            }
 
 
             $ctrl.edit = function (id) {
@@ -249,6 +278,8 @@ angular.module('voucherModule', [])
                 .catch(function (errorResponse) {
                     swal('Error', 'No such voucher exists', 'error');
                 });
+
+            
 
 
             $ctrl.submit = function (isFormValid) {
