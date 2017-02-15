@@ -36,7 +36,8 @@ namespace ComicStock.WebAPI.Controllers
             if (creator != null)
             {
                 CreatorDTO dto = new CreatorDTO(creator);
-                dto.Issues = creator.ComicCreators.Select(cc => new IssueDTO(cc.Issue));
+                dto.Issues = creator.ComicCreators.Select(cc => new IssueDTO(cc.Issue,cc.CreatorRole));
+               
                 return Ok(dto);
             }
             return ResponseMessage(Request.CreateErrorResponse(
@@ -44,8 +45,9 @@ namespace ComicStock.WebAPI.Controllers
                 "Creator id: " + id + " not found")
                 );
         }
+ 
 
-        [Route("api/Creators/search")]
+        [Route("api/Creator/search")]
         public IHttpActionResult Get(string search, int page, int pageSize)
         {
             IEnumerable<CreatorDTO> creators = creatorRepository.GetPage(search, page, pageSize).Select(c => new CreatorDTO(c)
@@ -78,6 +80,12 @@ namespace ComicStock.WebAPI.Controllers
                 HttpStatusCode.NotFound,
                 "Creator id: " + id + " not found")
                 );
+        }
+
+        [Route("api/Creator/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(creatorRepository.Count());
         }
 
         public IHttpActionResult Delete(int id)

@@ -1,14 +1,14 @@
-angular.module('voucherModule', [])
-    .controller('voucherController',
+angular.module('stockModule', [])
+    .controller('stockController',
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = 'Voucher Management';
-            $ctrl.newVoucher = {};
-            $ctrl.currentVoucher = {};
-            $ctrl.modalTitle = 'Add a Voucher';
+            $ctrl.message = 'Stock Management';
+            $ctrl.newStock = {};
+            $ctrl.currentStock = {};
+            $ctrl.modalTitle = 'Add Stock';
 
-            $ctrl.vouchers = {};
+            $ctrl.stocks = {};
             $ctrl.search = "";
 
             $ctrl.pagination = {
@@ -30,50 +30,71 @@ angular.module('voucherModule', [])
             $ctrl.updateTable = function () {
                 console.log("Update the table");
                 if ($ctrl.search == "") $http
-                    .get('/api/Voucher?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .get('/api/Stock?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.vouchers = response.data;
-                        console.log($ctrl.vouchers);
+                        $ctrl.stocks = response.data;
+                        console.log($ctrl.stocks);
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse)
                     });
                 else $http
-                    .get('/api/Voucher/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .get('/api/Stock/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.vouchers = response.data;
-                        console.log($ctrl.vouchers);
+                        $ctrl.stocks = response.data;
+                        console.log($ctrl.stocks);
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
                     });
 
                 $http
-                    .get('/api/Voucher/count')
+                    .get('/api/Stock/count')
                     .then(function (response) {
                         $ctrl.pagination.count = response.data;
 
                         $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
                         $ctrl.pagination.pageOptions = [];
-                        if ($ctrl.pagination.page - 3 >= 1) {
+
+                        if($ctrl.pagination.page -3 >=1)
+                        {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 3);
                         }
-                        if ($ctrl.pagination.page - 2 >= 1) {
-                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 2);
+                        if( $ctrl.pagination.page -2 >=1)
+                        {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 2); 
                         }
-                        if ($ctrl.pagination.page - 1 >= 1) {
+                        if ($ctrl.pagination.page - 1 >= 1)
+                        {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 1);
                         }
                         $ctrl.pagination.pageOptions.push($ctrl.pagination.page);
-                        if ($ctrl.pagination.page + 1 <= $ctrl.pagination.numPages) {
-                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 1);
+                        if( $ctrl.pagination.page + 1 <= $ctrl.pagination.numPages)
+                        {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page+1);
                         }
-                        if ($ctrl.pagination.page + 2 <= $ctrl.pagination.numPages) {
+                        if ($ctrl.pagination.page + 2 <= $ctrl.pagination.numPages)
+                        {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 2);
                         }
-                        if ($ctrl.pagination.page + 3 <= $ctrl.pagination.numPages) {
+                        if ($ctrl.pagination.page + 3 <= $ctrl.pagination.numPages)
+                        {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 3);
                         }
+                        
+
+                        //for (var x = 1; x <= $ctrl.pagination.numPages; x++)
+                        //    $ctrl.pagination.pageOptions.push(x);
+
+                        //if ($ctrl.pagination.page == $ctrl.pagination.numPages)
+                        //    $ctrl.pagination.nextDisable = "disable";
+                        //else
+                        //    $ctrl.pagination.nextDisable = "";
+
+                        //if ($ctrl.pagination.page <= 1)
+                        //    $ctrl.pagination.prevDisable = "disable";
+                        //else
+                        //    $ctrl.pagination.prevDisable = "";
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
@@ -99,18 +120,21 @@ angular.module('voucherModule', [])
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
-                $ctrl.modalTitle = 'Edit Voucher';
+                $ctrl.modalTitle = 'Edit Stock';
 
                 $http
-                    .get('/api/Voucher/' + id)
+                    .get('/api/Stock/' + id)
                     .then(function (response) {
-                        $ctrl.code = response.data.Code;
-                        $ctrl.date = response.data.RedeemDate;
-                        $ctrl.value = response.data.Value;
+                        $ctrl.title = response.data.Issue.Title;
+                        $ctrl.seriesNumber = response.data.Issue.SeriesNumber;
+                        $ctrl.condition = response.data.Condition;
+                        $ctrl.availableQty = response.data.AvailableQuantity;
+                        $ctrl.price = response.data.Price;
+                        $ctrl.conditions = ["Very Fine", "Fine", "Average", "Poor"];
 
                         ModalService.showModal({
-                            templateUrl: "/app/modules/voucher/templates/modalEdit.html",
-                            controller: 'modalVoucherController'
+                            templateUrl: "/app/modules/stock/templates/modalEdit.html",
+                            controller: 'modalStockController'
 
                         }).then(function (modal) {
 
@@ -129,8 +153,8 @@ angular.module('voucherModule', [])
 
             $ctrl.show = function () {
                 ModalService.showModal({
-                    templateUrl: "/app/modules/voucher/templates/modal.html",
-                    controller: "modalVoucherAddController"
+                    templateUrl: "/app/modules/stock/templates/modal.html",
+                    controller: "modalStockAddController"
                 }).then(function (modal) {
                     console.log(modal);
                     modal.element.modal();
@@ -142,39 +166,44 @@ angular.module('voucherModule', [])
             };
 
         })
-    .controller('modalVoucherController',
+    .controller('modalStockController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newVoucher = {};
+            $ctrl.newStock = {};
 
-            $ctrl.modalTitle = 'Edit a Voucher';
+            $ctrl.modalTitle = 'Edit Stock';
+
+
 
             $http
-                .get('/api/Voucher/' + $sessionStorage.get('ID'))
+                .get('/api/Stock/' + $sessionStorage.get('ID'))
                 .then(function (response) {
-                    $ctrl.code = response.data.Code;
-                    $ctrl.date = response.data.RedeemDate;
-                    $ctrl.value = response.data.Value;
+                    $ctrl.title = response.data.Issue.Title;
+                    $ctrl.seriesNumber = response.data.Issue.SeriesNumber;
+                    $ctrl.condition = response.data.Condition;
+                    $ctrl.availableQty = response.data.AvailableQuantity;
+                    $ctrl.price = response.data.Price;
+                    $ctrl.conditions = ["Very Fine", "Fine", "Average", "Poor"];
                 }
                 )
                 .catch(function (errorResponse) {
-                    swal('Error', 'No such voucher exists', 'error');
+                    swal('Error', 'No such stock exists', 'error');
                 });
 
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Voucher fields not valid - please try again', 'error');
+                    swal('Failed', 'Stock fields not valid - please try again', 'error');
                     return;
                 }
-                $ctrl.newVoucher.Id = $sessionStorage.get('ID');
-                $ctrl.newVoucher.Code = $ctrl.code;
-                $ctrl.newVoucher.RedeemDate = $ctrl.date;
-                $ctrl.newVoucher.Value = $ctrl.value;
+                $ctrl.newStock.Id = $sessionStorage.get('ID');
+                $ctrl.newStock.Condition = $ctrl.condition;
+                $ctrl.newStock.AvailableQuantity = $ctrl.availableQty;
+                $ctrl.newStock.Price = $ctrl.price;
 
 
                 $http
-                    .put('/api/Voucher/' + $sessionStorage.get('ID'), $ctrl.newVoucher)
+                    .put('/api/Stock/' + $sessionStorage.get('ID'), $ctrl.newStock)
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
@@ -190,26 +219,26 @@ angular.module('voucherModule', [])
             }
 
 
-        }).controller('modalVoucherAddController',
+        }).controller('modalStockAddController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newVoucher = {};
+            $ctrl.newStock = {};
 
-            $ctrl.modalTitle = 'Add a Voucher';
+            $ctrl.modalTitle = 'Add Stock';
 
 
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Voucher fields not valid - please try again.', 'error');
+                    swal('Failed', 'Stock fields not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newVoucher.Code = $ctrl.code;
-                $ctrl.newVoucher.RedeemDate = $ctrl.date;
-                $ctrl.newVoucher.Value = $ctrl.value;
-                $http.post('/api/Voucher', $ctrl.newVoucher)
+                $ctrl.newStock.Condition = $ctrl.condition;
+                $ctrl.newStock.AvailableQuantity = $ctrl.availableQty;
+                $ctrl.newStock.Price = $ctrl.price;
+                $http.post('/api/Stock', $ctrl.newStock)
                     .then(function (response) {
-                        swal('Success', 'Voucher created', 'success');
+                        swal('Success', 'Stock created', 'success');
                         console.log("success1");
                         $scope.$emit('updateTheTablePlease');
                         console.log("success2");
@@ -218,21 +247,4 @@ angular.module('voucherModule', [])
                         swal('Oops...', 'Something went wrong!', 'error');
                     });
             }
-
-
-
         });;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

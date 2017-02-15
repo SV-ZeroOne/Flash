@@ -72,6 +72,12 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
+        [Route("api/Voucher/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(voucherRepository.Count());
+        }
+
 
         public IHttpActionResult Delete(int id)
         {

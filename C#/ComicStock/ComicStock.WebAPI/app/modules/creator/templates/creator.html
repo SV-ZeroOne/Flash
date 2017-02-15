@@ -1,36 +1,28 @@
 ﻿<div class="brand clearfix" >
-    <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
+    <a href="#!/" class="logo" ><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
-        <li><a href="#">Help</a></li>
-        <li><a href="#">Settings</a></li>
-        <li class="ts-account">
-            <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
-            <ul>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Edit Account</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </li>
+      
+     
     </ul>
 </div>
 <div class="ts-main-content" ng-controller ="creatorController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
-            <li class="ts-label">Search</li>
-            <li>
-                <input type="text" class="ts-sidebar-search" placeholder="Search here...">
-            </li>
+            <li class="ts-label">Home</li>
+            
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li class="ts-label">Management</li>
+
             <li >
-                <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
+                <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
-            <li><a  href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
-            <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
-            <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
-            <li class="open"><a  href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></liclass="open">
- 
+            <li><a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
+            <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
+            <li class="open"><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
+            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
 
             <!-- Account from above -->
             <ul class="ts-profile-nav">
@@ -89,7 +81,7 @@
                                                 <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-left "></i></a>
                                                 </li>
-                                                <li class="waves-effect" ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
+                                                <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
                                                     <a>{{n}}</a>
                                                 </li>
                                                 <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
@@ -113,21 +105,37 @@
                                     <th>Tax Reference Number</th>
                                     <th>Email Address</th>
                                     <th>Edit</th>
+                                    <th>Roles</th>
                                 </tr>
                                 </thead>
                                 <tbody >
 
                                 <tr ng-repeat="creator in $ctrl.creators">
                                     <td>{{creator.Name}}</td>
-                                    <td>{{creator.CountryOfResidence}}</td>
-                                    <td>{{creator.TaxReferenceNumber}}</td>
-                                    <td>{{creator.EmailAddress}}</td>
+                                    <td>{{creator.Country}}</td>
+                                    <td>{{creator.TaxRef}}</td>
+                                    <td>{{creator.Email}}</td>
                                     <td><a style="cursor: pointer" ng-click='$ctrl.edit(creator.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
-
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.role(creator.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
                                 </tr>
                                 </tbody>
 
                             </table>
+                            <div class="col-sm-12 text-center">
+                                <div class="text-center">
+                                    <ul class="pagination" ng-model="$ctrl.page">
+                                        <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
+                                            <a><i class="fa fa-angle-left "></i></a>
+                                        </li>
+                                        <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
+                                            <a>{{n}}</a>
+                                        </li>
+                                        <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
+                                            <a><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

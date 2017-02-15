@@ -36,7 +36,7 @@ namespace ComicStock.Data
         {
             var stocks = this.context.Stocks.AsQueryable()
                 .OrderBy(x => x.ID)
-                .Where((x => x.Condition.Contains(search)));
+                .Where((x => x.Condition.Contains(search) || x.Issue.Title.Contains(search)));
             return base.GetPage(stocks, page, pageSize);
         }
     }

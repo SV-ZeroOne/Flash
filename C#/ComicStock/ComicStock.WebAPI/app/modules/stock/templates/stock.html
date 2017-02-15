@@ -1,32 +1,52 @@
-﻿<div class="brand clearfix" >
+﻿<div class="brand clearfix">
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
-        
-       
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Settings</a></li>
+        <li class="ts-account">
+            <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+            <ul>
+                <li><a href="#">My Account</a></li>
+                <li><a href="#">Edit Account</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="voucherController as $ctrl">
+<div class="ts-main-content" ng-controller="stockController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
-            <li class="ts-label">Home</li>
-            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>    
+            <li class="ts-label">Search</li>
+            <li>
+                <input type="text" class="ts-sidebar-search" placeholder="Search here...">
+            </li>
+
+            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
-            <li >
+
+            <li>
                 <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
-            <li class="open"> <a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li><a href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
             <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
             <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
-            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
- 
+            <li class="open"><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+
+
+
             <!-- Account from above -->
             <ul class="ts-profile-nav">
-          
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Settings</a></li>
                 <li class="ts-account">
-                    <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Admin <i class="fa fa-angle-down hidden-side"></i></a>
-   
+                    <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Edit Account</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </ul>
@@ -35,21 +55,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                   
+
                     <div class="row">
                         <div class="col-sm-4">
                             <h2>{{$ctrl.message}}</h2>
                         </div>
-                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Voucher</button>
-                       </div>
-                      
+                        <!--<div class="col-sm-8 text-right" style="margin-top: 20px;">
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add Stock</button>
+                        </div>-->
+
                     </div>
                     <hr />
-                 
-                   
+
+
                     <div class="panel panel-default">
-                        <div class="panel-heading">Vouchers</div>
+                        <div class="panel-heading">Stocks</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -73,8 +93,8 @@
                                                 <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-left "></i></a>
                                                 </li>
-                                                <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
-                                                    <a>{{n}}</a>
+                                                <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}" >
+                                                    <a >{{n}}</a>
                                                 </li>
                                                 <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-right"></i></a>
@@ -83,7 +103,9 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4 text-right">
-                                        
+                                        <label class="text-left">
+                                            Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                        </label>
 
 
                                     </div>
@@ -91,26 +113,29 @@
 
                                 </div>
                                 <thead>
-                                <tr>
-                                    <th>Voucher Code</th>
-                                    <th>Redeem Date</th>
-                                    <th>Voucher Value</th>
-                                    <th>Edit</th>
-                                </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Series #</th>
+                                        <th>Condition</th>
+                                        <th>Available Quantity</th>
+                                        <th>Price</th>
+
+                                    </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
+                                    <tr ng-repeat="stock in $ctrl.stocks">
+                                        <td>{{stock.Issue.Title}}</td>
+                                        <td>{{stock.Issue.SeriesNumber}}</td>
+                                        <td>{{stock.Condition}}</td>
+                                        <td>{{stock.AvailableQuantity}}</td>
+                                        <td>R{{stock.Price | number:2}}</td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.edit(stock.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
 
-                                <tr ng-repeat="voucher in $ctrl.vouchers">
-                                    <td>{{voucher.Code}}</td>
-                                    <td>{{voucher.RedeemDate}}</td>
-                                    <td>{{voucher.Value}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(voucher.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
-
-                                </tr>
+                                    </tr>
                                 </tbody>
 
                             </table>
-                            <div class="col-sm-12 text-center">
+                            <div class="col-sm-12 text-center" >
                                 <div class="text-center">
                                     <ul class="pagination" ng-model="$ctrl.page">
                                         <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
@@ -129,11 +154,11 @@
                         </div>
                     </div>
                 </div>
-                        
-                    </div>
 
-                </div>
             </div>
 
-
         </div>
+    </div>
+
+
+</div>

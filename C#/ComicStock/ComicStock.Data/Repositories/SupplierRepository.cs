@@ -24,7 +24,7 @@ namespace ComicStock.Data
         {
             var suppliers = this.context.Suppliers.AsQueryable()
                 .OrderBy(x => x.Name)
-                .Where(x => x.Name.Contains(search));
+                .Where(x => x.Name.Contains(search)||x.City.Contains(search));
 
             return base.GetPage(suppliers, page, pageSize);
         }

@@ -1,32 +1,40 @@
 ﻿<div class="brand clearfix" >
-    <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
+    <a href="#!/" class="logo" ><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
-        
-       
+      
+     
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="voucherController as $ctrl">
+<div class="ts-main-content" ng-controller ="viewOrdersController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Home</li>
-            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>    
+            
+
+            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
+
             <li >
                 <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
-            <li class="open"> <a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
-            <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
+            <li><a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li class="open"><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
-            <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
-            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+            <li ><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
  
+
             <!-- Account from above -->
             <ul class="ts-profile-nav">
-          
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Settings</a></li>
                 <li class="ts-account">
-                    <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Admin <i class="fa fa-angle-down hidden-side"></i></a>
-   
+                    <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Edit Account</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
                 </li>
             </ul>
         </ul>
@@ -41,7 +49,7 @@
                             <h2>{{$ctrl.message}}</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Voucher</button>
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Place an Order</button>
                        </div>
                       
                     </div>
@@ -49,7 +57,7 @@
                  
                    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Vouchers</div>
+                        <div class="panel-heading">Orders</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -83,29 +91,32 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4 text-right">
-                                        
-
+                                   
 
                                     </div>
-
 
                                 </div>
                                 <thead>
                                 <tr>
-                                    <th>Voucher Code</th>
-                                    <th>Redeem Date</th>
-                                    <th>Voucher Value</th>
+                                    <th>Order Date</th>
+                                    <th>Order Total</th>
+                                    <th>Shipment Reference</th>
+                                    <th>Shipment Date</th>
+                                    <th>Order Status</th>
                                     <th>Edit</th>
+                                    <th>Issues in Order</th>
                                 </tr>
                                 </thead>
                                 <tbody >
 
-                                <tr ng-repeat="voucher in $ctrl.vouchers">
-                                    <td>{{voucher.Code}}</td>
-                                    <td>{{voucher.RedeemDate}}</td>
-                                    <td>{{voucher.Value}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(voucher.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
-
+                                <tr ng-repeat="order in $ctrl.orders">
+                                    <td>{{order.OrderDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>R {{order.Total | number:2}}</td>
+                                    <td>{{order.ShipmentRef}}</td>
+                                    <td>{{order.ShipmentDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>{{order.DeliveryStatus}}</td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(order.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.issues(order.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
                                 </tr>
                                 </tbody>
 

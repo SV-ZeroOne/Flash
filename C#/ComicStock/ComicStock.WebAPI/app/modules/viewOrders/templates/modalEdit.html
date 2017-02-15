@@ -1,0 +1,68 @@
+﻿<div class="modal fade" ng-controller="modalViewOrdersController as $ctrl">
+    <div class="modal-dialog" style="left: 0%;">
+        <form name="validate">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" ng-model="modalTitle">{{$ctrl.modalTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label type="date">Order Date: </label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.date | date:'yyyy-MM-dd'}}</p>
+                    </div>
+                   
+                    </div>
+                <div class="row">
+                    
+                    <div class="col-xs-6">
+                        <label>Order Total:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>R {{$ctrl.total | number:2}}</p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>Shipment Reference: </label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>{{$ctrl.shipref}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>Shipment Date:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.shipdate | date:'yyyy-MM-dd'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="tag2">Delivery Status:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <select name="status" ng-model="$ctrl.status" class="form-control" selected="{{$ctrl.status}}" required>
+                            <option value="Pending">Pending</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <div ng-if="validate.status.$error.required" class="error" style="color: #e74c3c">
+                            Status Required
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" ng-click="$ctrl.submit(validate.$valid)" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+            </form>
+    </div>
+</div>
