@@ -172,15 +172,7 @@ angular.module('voucherModule', [])
                 $ctrl.newVoucher.RedeemDate = $ctrl.date;
                 $ctrl.newVoucher.Value = $ctrl.value;
 
-                function generateCode() {
-                    var text = "";
-                    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-                    for (var i = 0; i < 10; i++)
-                        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-                    return text;
-                }
+              
 
                 $http
                     .put('/api/Voucher/' + $sessionStorage.get('ID'), $ctrl.newVoucher)
@@ -206,15 +198,13 @@ angular.module('voucherModule', [])
 
             $ctrl.modalTitle = 'Add a Voucher';
 
-
-
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
                     swal('Failed', 'Voucher fields not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newVoucher.Code = $ctrl.code;
-                $ctrl.newVoucher.RedeemDate = $ctrl.date;
+                $ctrl.newVoucher.Code = generateCode();
+                $ctrl.newVoucher.RedeemDate = null;
                 $ctrl.newVoucher.Value = $ctrl.value;
                 $http.post('/api/Voucher', $ctrl.newVoucher)
                     .then(function (response) {
@@ -227,7 +217,15 @@ angular.module('voucherModule', [])
                         swal('Oops...', 'Something went wrong!', 'error');
                     });
             }
+            function generateCode() {
+                var text = "";
+                var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+                for (var i = 0; i < 10; i++)
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+                return text;
+            }
 
 
         }).controller('modalVoucherController',
