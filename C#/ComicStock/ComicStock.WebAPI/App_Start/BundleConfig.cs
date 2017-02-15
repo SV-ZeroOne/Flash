@@ -10,6 +10,7 @@ namespace ComicStock.WebAPI
         public static void RegisterBundles(BundleCollection bundles)
         {
 
+
             bundles.Add(new ScriptBundle("~/assets/js").Include(
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/bootstrap.min.js",
@@ -59,6 +60,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/css/vars.less",
                       "~/app/assets/css/components.less"
                 ));
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
