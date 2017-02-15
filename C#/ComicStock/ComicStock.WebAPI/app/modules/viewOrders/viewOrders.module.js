@@ -99,7 +99,10 @@ angular.module('viewOrdersModule', [])
             }
 
 
-
+            $ctrl.issues = function(id) {
+                $sessionStorage.put('orderId', id);
+                window.location = "#!/orderIssue";
+            }
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
