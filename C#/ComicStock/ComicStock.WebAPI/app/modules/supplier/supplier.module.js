@@ -26,6 +26,36 @@ angular.module('supplierModule', [])
                 nextDisable : "disable"
             }
 
+            $ctrl.deactivate = function (id) {
+
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, deactivate the supplier!'
+                }).then(function () {
+                    $http
+
+                    .put('/api/Supplier/deactivate?id=' + id)
+                        .then(function (response) {
+                            swal(
+                'Deactivated!',
+                'The supplier was deactivated',
+                'success'
+              )
+                            $ctrl.updateTable();
+                        }
+                        );
+
+                })
+
+               .catch(function (errorResponse) {
+                   swal('Error', 'No such voucher exists', 'error');
+               });
+            }
 
             $ctrl.updateTable = function () {
                 console.log("Update the table");

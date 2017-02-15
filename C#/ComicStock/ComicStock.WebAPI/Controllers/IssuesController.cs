@@ -85,6 +85,22 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
+        [Route("api/Issues/deactivate")]
+        public IHttpActionResult Put(int id)
+        {
+            Issue issue = issueRepository.GetById(id);
+            if (issue != null)
+            {
+                issue.IsActivated = false;
+                issueRepository.Update(issue);
+                return Ok();
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Issue id: " + id + " not found")
+                );
+        }
+
         public IHttpActionResult Delete(int id)
         {
             Issue issue = issueRepository.GetById(id);

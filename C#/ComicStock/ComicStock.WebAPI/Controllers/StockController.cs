@@ -19,10 +19,12 @@ namespace ComicStock.WebAPI.Controllers
     public class StockController : ApiController
     {
         private readonly IStockRepository stockRepository;
+        private readonly IIssueRepository issueRepository;
 
-        public StockController(IStockRepository stockRepository)
+        public StockController(IStockRepository stockRepository, IIssueRepository issueRepository)
         {
             this.stockRepository = stockRepository;
+            this.issueRepository = issueRepository;
         }
 
         [ResponseType(typeof(IQueryable<StockDTO>))]
@@ -74,6 +76,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
             Stock stock = stockDTO.CreateDomainObject(new Stock());
+            stock.Issue = issueRepository.GetById(stockDTO.Issue.Id);
 
             this.stockRepository.Add(stock);
 

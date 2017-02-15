@@ -95,16 +95,16 @@
                                     <th>Voucher Code</th>
                                     <th>Redeem Date</th>
                                     <th>Voucher Value</th>
-                                    <th>Edit</th>
+                                    <th>Deactivate</th>
                                 </tr>
                                 </thead>
                                 <tbody >
 
                                 <tr ng-repeat="voucher in $ctrl.vouchers">
                                     <td>{{voucher.Code}}</td>
-                                    <td>{{voucher.RedeemDate}}</td>
-                                    <td>{{voucher.Value}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(voucher.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+                                    <td>{{voucher.RedeemDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>R {{voucher.Value | number:2}}</td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.deactivate(voucher.Id)' style="cursor: pointer;"><i class="fa fa-trash"/></a></td>
 
                                 </tr>
                                 </tbody>

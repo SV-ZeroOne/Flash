@@ -29,5 +29,7 @@ namespace ComicStock.Domain
         public virtual ICollection<Order> Orders { get;  }
 
         public virtual ICollection<SupplierQuote> SupplierQuotes { get;  }
+
+        public bool IsActivated { get; set; }
     }
 }

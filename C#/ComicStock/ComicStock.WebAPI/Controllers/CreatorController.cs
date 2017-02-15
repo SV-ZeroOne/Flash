@@ -15,10 +15,12 @@ namespace ComicStock.WebAPI.Controllers
     {
 
         private readonly ICreatorRepository creatorRepository;
+        private readonly IIssueRepository issueRepository;
 
-        public CreatorController(ICreatorRepository creatorRepository)
+        public CreatorController(ICreatorRepository creatorRepository, IIssueRepository issueRepository)
         {
             this.creatorRepository = creatorRepository;
+            this.issueRepository = issueRepository;
         }
 
         public IHttpActionResult Get(int page, int pageSize)

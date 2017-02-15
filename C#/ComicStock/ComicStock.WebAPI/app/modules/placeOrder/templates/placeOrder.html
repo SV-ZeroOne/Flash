@@ -12,6 +12,13 @@
     .spinner {
         animation: rotating 2s linear infinite;
     }
+    input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 </style>
 <div class="brand clearfix">
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
@@ -71,9 +78,7 @@
                         <div class="col-sm-4">
                             <h2>{{$ctrl.message}}</h2>
                         </div>
-                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Order</button>
-                        </div>
+                      
 
                     </div>
                     <hr />
@@ -115,7 +120,7 @@
                                                 <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                     <i class="fa fa-chevron-up" />
                                                 </a>
-                                                <input class="form-horizontal form-inline" style="width:35px" type="text" ng-model="issueOrders.QuantityOrdered"></input>
+                                                <input class="form-horizontal form-inline" style="width:35px" type="number" ng-change="$ctrl.validateQty(issueOrders)" ng-model="issueOrders.QuantityOrdered"></input>
                                                 <a ng-click="$ctrl.decreaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                     <i class="fa fa-chevron-down" />
                                                 </a>

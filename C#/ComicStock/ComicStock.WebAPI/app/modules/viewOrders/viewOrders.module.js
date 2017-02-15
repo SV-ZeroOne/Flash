@@ -99,7 +99,10 @@ angular.module('viewOrdersModule', [])
             }
 
 
-
+            $ctrl.issues = function(id) {
+                $sessionStorage.put('orderId', id);
+                window.location = "#!/orderIssue";
+            }
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
@@ -134,17 +137,7 @@ angular.module('viewOrdersModule', [])
             }
 
             $ctrl.show = function () {
-                ModalService.showModal({
-                    templateUrl: "/app/modules/viewOrders/templates/modal.html",
-                    controller: "modalViewOrdersAddController"
-                }).then(function (modal) {
-                    console.log(modal);
-                    modal.element.modal();
-                    modal.close.then(function (result) {
-                        console.log(result);
-                    });
-
-                });
+                window.location.replace('#!/placeOrder');
             };
 
         })

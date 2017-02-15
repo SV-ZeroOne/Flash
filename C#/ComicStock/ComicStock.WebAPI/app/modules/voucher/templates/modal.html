@@ -7,14 +7,9 @@
                 </div>
                 <form name="validate">
                     <div class="modal-body">
-                        <label for="tag1">Code:</label><input ng-maxlength="50" name="code" type="text" ng-model="$ctrl.code" data-role="tagsinput" id="tag1" class="form-control" required>
-                        <div style="color:#e74c3c"role="alert">
-                            <span class ="error" ng-show="validate.code.$error.required" >Code required</span>
-                        </div>
-                        <label for="tag2">Redeem Date:</label><input name="date" type="date" ng-model="$ctrl.date" data-role="tagsinput" id="tag2" class="form-control" required>
-                        <div ng-messages="validate.date.$error" style="color:#e74c3c" role="alert">
-                            <div ng-if="validate.date.$error.date" ng-message="date">Redeem Date not valid</div>
-                        </div>
+                      
+                        
+                                               
                         <label for="tag3">Voucher value:</label><input name="value" ng-min="0" type="text" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
                         <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
                             <div ng-if="validate.value.$error.required" ng-message="required">Value required</div>
