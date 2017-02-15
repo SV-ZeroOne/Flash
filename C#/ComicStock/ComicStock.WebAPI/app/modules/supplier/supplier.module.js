@@ -170,8 +170,6 @@ angular.module('supplierModule', [])
 
             $ctrl.modalTitle = 'Edit a Supplier';
 
-
-
             $http
                 .get('/api/Supplier/' + $sessionStorage.get('supplierID'))
                 .then(function (response) {
