@@ -17,7 +17,7 @@ namespace ComicStock.Data.Repositories
         }
         public IEnumerable<Order> GetPage(int page, int pageSize)
         {
-            var orders = this.context.Orders.AsQueryable().OrderBy(x => x.ID);
+            var orders = this.context.Orders.AsQueryable().OrderByDescending(x => x.OrderDate);
             return base.GetPage(orders, page, pageSize);
         }
         public Order GetById(int orderID)

@@ -13,6 +13,8 @@ namespace ComicStock.WebAPI.Models
         public string City { get; set; }
         public string RefNum { get; set; }
 
+        public IEnumerable<SupplierQuoteDTO> SupplierQuotes { get; set; }
+
         public SupplierDTO() { }
 
         public SupplierDTO(Supplier supplier)
