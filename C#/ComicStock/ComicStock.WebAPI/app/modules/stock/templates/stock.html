@@ -1,4 +1,4 @@
-﻿<div class="brand clearfix" >
+﻿<div class="brand clearfix">
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
     <ul class="ts-profile-nav">
@@ -14,7 +14,7 @@
         </li>
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="creatorController as $ctrl">
+<div class="ts-main-content" ng-controller="stockController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Search</li>
@@ -23,15 +23,15 @@
             </li>
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li >
+            <li>
                 <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
             </li>
-            <li><a  href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
+            <li><a href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
             <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
             <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
-            <li><a class="open" href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
-            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock Management</a></li>
- 
+            <li><a href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
+            <li class="open"><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock Management</a></li>
+
 
             <!-- Account from above -->
             <ul class="ts-profile-nav">
@@ -52,21 +52,21 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                   
+
                     <div class="row">
                         <div class="col-sm-4">
                             <h2>{{$ctrl.message}}</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Creator</button>
-                       </div>
-                      
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add Stock</button>
+                        </div>
+
                     </div>
                     <hr />
-                 
-                   
+
+
                     <div class="panel panel-default">
-                        <div class="panel-heading">Creators</div>
+                        <div class="panel-heading">Stocks</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -110,24 +110,26 @@
 
                                 </div>
                                 <thead>
-                                <tr>
-                                    <th>Creator Name</th>
-                                    <th>Country of Residence</th>
-                                    <th>Tax Reference Number</th>
-                                    <th>Email Address</th>
-                                    <th>Edit</th>
-                                </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Series #</th>
+                                        <th>Condition</th>
+                                        <th>Available Quantity</th>
+                                        <th>Price</th>
+
+                                    </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
 
-                                <tr ng-repeat="creator in $ctrl.creators">
-                                    <td>{{creator.Name}}</td>
-                                    <td>{{creator.CountryOfResidence}}</td>
-                                    <td>{{creator.TaxReferenceNumber}}</td>
-                                    <td>{{creator.EmailAddress}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(creator.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+                                    <tr ng-repeat="stock in $ctrl.stocks">
+                                        <td>{{stock.Issue.Title}}</td>
+                                        <td>{{stock.Issue.SeriesNumber}}</td>
+                                        <td>{{stock.Condition}}</td>
+                                        <td>{{stock.AvailableQuantity}}</td>
+                                        <td>R{{stock.Price | number:2}}</td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.edit(stock.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
 
-                                </tr>
+                                    </tr>
                                 </tbody>
 
                             </table>
@@ -135,11 +137,11 @@
                         </div>
                     </div>
                 </div>
-                        
-                    </div>
 
-                </div>
             </div>
 
-
         </div>
+    </div>
+
+
+</div>

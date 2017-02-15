@@ -60,6 +60,12 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(stocks);
         }
 
+        /*[Route("api/Stock/count")]
+        public IHttpActionResult Get()
+        {
+            return Ok(stockRepository.Count());
+        }*/
+
         [HttpPost]
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
