@@ -10,6 +10,7 @@ namespace ComicStock.WebAPI
         public static void RegisterBundles(BundleCollection bundles)
         {
 
+
             bundles.Add(new ScriptBundle("~/assets/js").Include(
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/bootstrap.min.js",

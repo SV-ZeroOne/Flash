@@ -32,7 +32,7 @@ namespace ComicStock.Tests.ControllerTests
         [Test]
         public void GetReturnsVoucherWithSameId()
         {
-            int testID = 1;
+            int testID = 2;
             IHttpActionResult actionResult = voucherController.Get(testID);
             var contentResult = actionResult as OkNegotiatedContentResult<VoucherDTO>;
 
@@ -64,12 +64,10 @@ namespace ComicStock.Tests.ControllerTests
             testVoucherDTO.Code = "new code put";
             testVoucherDTO.Value = 150;
 
-            IHttpActionResult actionResultPut = voucherController.Put(testID, testVoucherDTO);
-            var contentResultPut = actionResultPut as OkNegotiatedContentResult<VoucherDTO>;
+            IHttpActionResult actionResultPut = voucherController.Put(testID);
+            var contentResultPut = actionResultPut as OkNegotiatedContentResult<int>;
 
             Assert.IsNotNull(contentResultPut.Content);
-            Assert.AreEqual("new code put", contentResultPut.Content.Code);
-            Assert.AreEqual(150, contentResultPut.Content.Value);
 
 
             actionResult = voucherController.Delete(testID);

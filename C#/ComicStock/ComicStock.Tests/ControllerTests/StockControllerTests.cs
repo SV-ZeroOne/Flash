@@ -17,6 +17,7 @@ namespace ComicStock.Tests.ControllerTests
     using Data;
     using System.Collections.Generic;
     using System.Linq;
+    using Data.Repositories;
 
     [TestFixture]
     public class StockControllerTests
@@ -24,12 +25,15 @@ namespace ComicStock.Tests.ControllerTests
 
         private IStockRepository stockRepository;
         private StockController stockController;
+        private IIssueRepository issueRepository;
+
 
         [SetUp]
         public void init()
         {
             stockRepository = new StockRepository(new Data.ComicContext());
-            stockController = new StockController(stockRepository);
+            issueRepository = new IssueRepository(new Data.ComicContext());
+            stockController = new StockController(stockRepository, issueRepository);
         }
 
 

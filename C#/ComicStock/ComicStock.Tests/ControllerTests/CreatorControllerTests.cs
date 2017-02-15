@@ -21,12 +21,14 @@ namespace ComicStock.Tests.ControllerTests
     {
         private ICreatorRepository creatorRepository;
         private CreatorController creatorController;
+        private IIssueRepository issueRepository;
 
         [SetUp]
         public void init()
         {
             creatorRepository = new CreatorRepository(new Data.ComicContext());
-            creatorController = new CreatorController(creatorRepository);
+            issueRepository = new IssueRepository(new Data.ComicContext());
+            creatorController = new CreatorController(creatorRepository, issueRepository);
         }
 
 
