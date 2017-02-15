@@ -1,6 +1,6 @@
 angular.module('supplierModule', [])
     .controller('supplierController',
-        function($http, $rootScope, ModalService, $sessionStorage) {
+        function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
             $ctrl.message = 'Supplier Management';
@@ -13,17 +13,17 @@ angular.module('supplierModule', [])
 
             $ctrl.pagination = {
 
-                pageSizeOptions : [10,25,50,100],
-                pageSize : 25,
+                pageSizeOptions: [10, 25, 50, 100],
+                pageSize: 25,
 
-                pageOptions : [],
-                page : 1,
+                pageOptions: [],
+                page: 1,
 
-                count : 0,
-                numPages : 0,
+                count: 0,
+                numPages: 0,
 
-                prevDisable : "disable",
-                nextDisable : "disable"
+                prevDisable: "disable",
+                nextDisable: "disable"
             }
 
             $ctrl.deactivate = function (id) {
@@ -70,7 +70,7 @@ angular.module('supplierModule', [])
                     });
                 else $http
                     .get('/api/Supplier/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function(response) {
+                    .then(function (response) {
                         $ctrl.suppliers = response.data;
                         console.log($ctrl.suppliers);
                     })
@@ -114,54 +114,48 @@ angular.module('supplierModule', [])
 
             $ctrl.updateTable();
 
-            $rootScope.$on('updateTheTablePlease', function(event) {
+            $rootScope.$on('updateTheTablePlease', function (event) {
                 $ctrl.updateTable();
             });
 
 
-            $ctrl.pageTo = function(page) {
+            $ctrl.pageTo = function (page) {
                 $ctrl.pagination.page = page;
                 $ctrl.updateTable();
             };
 
-            $ctrl.edit = function(id) {
-                $sessionStorage.put("ID", id);
+            $ctrl.edit = function (id) {
+                $sessionStorage.put("supplierID", id);
                 $ctrl.modalTitle = 'Edit Supplier';
-
                 $http
-                    .get('/api/Supplier/' +id)
+                    .get('/api/Supplier/' + id)
                     .then(function(response) {
                         $ctrl.name = response.data.Name;
                         $ctrl.city = response.data.City;
                         $ctrl.refNum = response.data.RefNum;
-
-                        ModalService.showModal({
-                            templateUrl: "/app/modules/supplier/templates/modalEdit.html",
-                            controller: 'modalController'
-           
-                        }).then(function(modal) {
-
-                            modal.element.modal();
-                            modal.close.then(function(result) {
-                                console.log(result);
-                            });
-                        });
-                    })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', 'error')
-                        
                     });
+                ModalService.showModal({
+                    templateUrl: "/app/modules/supplier/templates/modalEdit.html",
+                    controller: 'modalController'
+
+                }).then(function (modal) {
+
+                    modal.element.modal();
+                    modal.close.then(function (result) {
+                        console.log(result);
+                    });
+                });
 
             }
 
-            $ctrl.show = function() {
+            $ctrl.show = function () {
                 ModalService.showModal({
                     templateUrl: "/app/modules/supplier/templates/modal.html",
                     controller: "modalAddController"
-                }).then(function(modal) {
+                }).then(function (modal) {
                     console.log(modal);
                     modal.element.modal();
-                    modal.close.then(function(result) {
+                    modal.close.then(function (result) {
                         console.log(result);
                     });
 
@@ -170,24 +164,24 @@ angular.module('supplierModule', [])
 
         })
     .controller('modalController',
-        function($http, $scope, $sessionStorage) {
+        function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
             $ctrl.newSupplier = {};
-          
+
             $ctrl.modalTitle = 'Edit a Supplier';
 
 
 
             $http
-                .get('/api/Supplier/' + $sessionStorage.get('ID'))
-                .then(function(response) {
-                        $ctrl.name = response.data.Name;
-                        $ctrl.city = response.data.City;
-                        $ctrl.refNum = response.data.RefNum;
-                    }
+                .get('/api/Supplier/' + $sessionStorage.get('supplierID'))
+                .then(function (response) {
+                    $ctrl.name = response.data.Name;
+                    $ctrl.city = response.data.City;
+                    $ctrl.refNum = response.data.RefNum;
+                }
                 )
-                .catch(function(errorResponse) {
-                    swal('Error','No such supplier exists','error');
+                .catch(function (errorResponse) {
+                    swal('Error', 'No such supplier exists', 'error');
                 });
 
 
@@ -196,31 +190,30 @@ angular.module('supplierModule', [])
                     swal('Failed', 'Supplier fields not valid - please try again', 'error');
                     return;
                 }
-                $ctrl.newSupplier.Id = $sessionStorage.get('ID');
+                $ctrl.newSupplier.Id = $sessionStorage.get('supplierID');
                 $ctrl.newSupplier.Name = $ctrl.name;
                 $ctrl.newSupplier.City = $ctrl.city;
                 $ctrl.newSupplier.RefNum = $ctrl.refNum;
 
 
                 $http
-                    .put('/api/Supplier/' + $sessionStorage.get('ID'), $ctrl.newSupplier)
+                    .put('/api/Supplier/' + $sessionStorage.get('supplierID'), $ctrl.newSupplier)
                     .then(function (response) {
-                        $scope.$emit('updateTheTablePlease');
                         swal(
                             'Good job!',
-                            'User updated',
+                            'Supplier updated',
                             'success'
                         );
+                        $scope.$emit('updateTheTablePlease');
                     })
                     .catch(function (errorResponse) {
-                        swal('Error','Update failed ','error');
+                        swal('Error', 'Update failed ', 'error');
                     });
 
             }
 
-
         }).controller('modalAddController',
-        function($http, $scope, $sessionStorage) {
+        function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
             $ctrl.newSupplier = {};
 
@@ -237,13 +230,13 @@ angular.module('supplierModule', [])
                 $ctrl.newSupplier.City = $ctrl.city;
                 $ctrl.newSupplier.RefNum = $ctrl.refNum;
                 $http.post('/api/Supplier', $ctrl.newSupplier)
-                    .then(function(response) {
-                        swal('Success','Supplier created','success');
+                    .then(function (response) {
+                        swal('Success', 'Supplier created', 'success');
                         console.log("success1");
                         $scope.$emit('updateTheTablePlease');
                         console.log("success2");
                     })
-                    .catch(function(errorResponse) {
+                    .catch(function (errorResponse) {
                         swal('Oops...', 'Something went wrong!', 'error');
                     });
             }
@@ -256,10 +249,10 @@ angular.module('supplierModule', [])
 
 
 
-   
 
-           
-     
+
+
+
 
 
 
