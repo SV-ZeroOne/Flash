@@ -55,18 +55,25 @@ angular.module('creatorModule', [])
 
                         $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
                         $ctrl.pagination.pageOptions = [];
-                        for (var x = 1; x <= $ctrl.pagination.numPages; x++)
-                            $ctrl.pagination.pageOptions.push(x);
-
-                        if ($ctrl.pagination.page == $ctrl.pagination.numPages)
-                            $ctrl.pagination.nextDisable = "disable";
-                        else
-                            $ctrl.pagination.nextDisable = "";
-
-                        if ($ctrl.pagination.page <= 1)
-                            $ctrl.pagination.prevDisable = "disable";
-                        else
-                            $ctrl.pagination.prevDisable = "";
+                        if ($ctrl.pagination.page - 3 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 3);
+                        }
+                        if ($ctrl.pagination.page - 2 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 2);
+                        }
+                        if ($ctrl.pagination.page - 1 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 1);
+                        }
+                        $ctrl.pagination.pageOptions.push($ctrl.pagination.page);
+                        if ($ctrl.pagination.page + 1 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 1);
+                        }
+                        if ($ctrl.pagination.page + 2 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 2);
+                        }
+                        if ($ctrl.pagination.page + 3 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 3);
+                        }
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
