@@ -53,7 +53,7 @@ angular.module('supplierModule', [])
                 })
 
                .catch(function (errorResponse) {
-                   swal('Error', 'No such voucher exists', 'error');
+                   swal('Error', 'No such supplier exists', 'error');
                });
             }
 
@@ -117,15 +117,12 @@ angular.module('supplierModule', [])
             $rootScope.$on('updateTheTablePlease', function(event) {
                 $ctrl.updateTable();
             });
-            
 
-            $ctrl.pageTo = function(page){
+
+            $ctrl.pageTo = function(page) {
                 $ctrl.pagination.page = page;
                 $ctrl.updateTable();
-            }
-
-
-
+            };
 
             $ctrl.edit = function(id) {
                 $sessionStorage.put("ID", id);
@@ -196,7 +193,7 @@ angular.module('supplierModule', [])
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'User fields not valid - please try again', 'error');
+                    swal('Failed', 'Supplier fields not valid - please try again', 'error');
                     return;
                 }
                 $ctrl.newSupplier.Id = $sessionStorage.get('ID');
@@ -233,7 +230,7 @@ angular.module('supplierModule', [])
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'User fields not valid - please try again.', 'error');
+                    swal('Failed', 'Supplier fields not valid - please try again.', 'error');
                     return;
                 }
                 $ctrl.newSupplier.Name = $ctrl.name;

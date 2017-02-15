@@ -51,6 +51,7 @@ var squareEyes = angular.module('squareEyes', ['ngMessages', 'swxSessionStorage'
 		.when('/placeOrder',
         {
             templateUrl: '/app/modules/placeOrder/templates/placeOrder.html'
-        });
+        })
+        .otherwise({ redirectTo: '/' });
 
     });

@@ -228,6 +228,7 @@
     <Content Include="app\assets\css\style.css" />
     <Content Include="app\assets\css\vars.css" />
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="favicon.ico" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />
     <Content Include="app\assets\img\logo1.jpg" />
@@ -301,7 +302,6 @@
     <Content Include="app\modules\voucher\templates\voucher.html" />
     <Content Include="app\modules\creator\creator.module.js" />
     <Content Include="app\modules\voucher\voucher.module.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -3,7 +3,7 @@ angular.module('issueStockModule', [])
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = "";
+            $ctrl.message = '';
             $ctrl.newStock = {};
             $ctrl.currentCreator = {};
             $ctrl.modalTitle = 'Add an Issue Stock';
@@ -33,27 +33,30 @@ angular.module('issueStockModule', [])
                     .get('/api/Issues/' + $sessionStorage.get('issueId'))
                     .then(function(response) {
                         $ctrl.issue = response.data;
-                        $ctrl.message = response.data.Name;
+                        $ctrl.message = $ctrl.issue.Title + " stock items";
 
                     })
                     .catch(function(errorResponse) {
-                        console.log(errorResponse)
+                        console.log(errorResponse);
 
                     });
             }
 
             $ctrl.updateTable();
+            $rootScope.$on('updateTheTablePlease', function (event) {
+                $ctrl.updateTable();
+            });
+
+
 
             $ctrl.edit = function (id) {
-                $sessionStorage.put("ID", id);
+                $sessionStorage.put("stockID", id);
                 $ctrl.modalTitle = 'Edit Issue Stock';
 
                 $http
                     .get('/api/Stock/' + id)
                     .then(function (response) {
-                        $ctrl.condition = response.data.Condition;
-                        $ctrl.availableQty = response.data.AvailableQuantity;
-                        $ctrl.price = response.data.Price;
+                       
 
                         ModalService.showModal({
                             templateUrl: "/app/modules/issueStock/templates/modalEdit.html",
@@ -92,14 +95,14 @@ angular.module('issueStockModule', [])
     .controller('modalIssueStockController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newIssue = {};
+            $ctrl.newStock = {};
 
-            $ctrl.modalTitle = 'Edit Issue Stock';
+            $ctrl.modalTitle = 'Edit Stock';
 
 
 
             $http
-                .get('/api/Stock/' + $sessionStorage.get('ID'))
+                .get('/api/Stock/' + $sessionStorage.get('stockID'))
                 .then(function (response) {
                     $ctrl.condition = response.data.Condition;
                     $ctrl.availableQty = response.data.AvailableQuantity;
@@ -116,19 +119,19 @@ angular.module('issueStockModule', [])
                     swal('Failed', 'Stock fields not valid - please try again', 'error');
                     return;
                 }
-                $ctrl.newStock.Id = $sessionStorage.get('ID');
+                $ctrl.newStock.Id = $sessionStorage.get('stockID');
                 $ctrl.newStock.Condition = $ctrl.condition;
-                $ctrl.newStock.AvailableQuantity = $ctrl.avaliableQty;
+                $ctrl.newStock.AvailableQuantity = $ctrl.availableQty;
                 $ctrl.newStock.Price = $ctrl.price;
 
 
                 $http
-                    .put('/api/Stock/' + $sessionStorage.get('ID'), $ctrl.newStock)
+                    .put('/api/Stock/' + $sessionStorage.get('stockID'), $ctrl.newStock)
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
                             'Good job!',
-                            'Creator updated',
+                            'Stock updated',
                             'success'
                         );
                     })
@@ -138,21 +141,21 @@ angular.module('issueStockModule', [])
             }
 
 
-        }).controller('modalIssueAddController',
+        }).controller('modalIssueStockAddController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
             $ctrl.newStock = {};
 
-            $ctrl.modalTitle = 'Add an Stock to Issue';
+            $ctrl.modalTitle = 'Add a Stock item to Issue';
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
                     swal('Failed', 'Issue Stock not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newStock.Id = $sessionStorage.get('ID');
+                $ctrl.newStock.Id = $sessionStorage.get('stockID');
                 $ctrl.newStock.Condition = $ctrl.condition;
-                $ctrl.newStock.AvailableQuantity = $ctrl.avaliableQty;
+                $ctrl.newStock.AvailableQuantity = $ctrl.availableQty;
                 $ctrl.newStock.Price = $ctrl.price;
                 $http.post('/api/Stock', $ctrl.newStock)
                     .then(function (response) {

@@ -61,6 +61,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/css/vars.less",
                       "~/app/assets/css/components.less"
                 ));
+
             BundleTable.EnableOptimizations = false;
         }
     }

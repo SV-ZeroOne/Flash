@@ -24,7 +24,8 @@
                 <div style="color:#e74c3c" role="alert">
                     <span class="error" ng-show="validate.title.$error.required">Title required</span>
                 </div>
-                <label for="tag2">Publication Date:</label><input name="publicationDate" type="datetime" ng-model="$ctrl.publicationDate" data-role="tagsinput" id="tag2" class="form-control" required>
+             
+                <label for="tag2">Publication Date:</label><input name="publicationDate" type="date" ng-model="$ctrl.publicationDate" data-role="tagsinput" id="tag2" class="form-control" required>
                 <div ng-messages="validate.publicationDate.$error" style="color:#e74c3c" role="alert">
                     <div ng-if="validate.publicationDate.$error.publicationDate" ng-message="date">Publication date not valid</div>
                 </div>
