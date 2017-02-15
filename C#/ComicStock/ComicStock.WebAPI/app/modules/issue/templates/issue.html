@@ -14,7 +14,7 @@
         </li>
     </ul>
 </div>
-<div class="ts-main-content" ng-controller="stockController as $ctrl">
+<div class="ts-main-content" ng-controller="issueController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Search</li>
@@ -30,9 +30,9 @@
             </li>
             <li><a href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
             <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
-            <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
+            <li class="open"><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
             <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
-            <li class="open"><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
 
 
 
@@ -60,16 +60,16 @@
                         <div class="col-sm-4">
                             <h2>{{$ctrl.message}}</h2>
                         </div>
-                        <!--<div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add Stock</button>
-                        </div>-->
+                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add an Issue</button>
+                        </div>
 
                     </div>
                     <hr />
 
 
                     <div class="panel panel-default">
-                        <div class="panel-heading">Stocks</div>
+                        <div class="panel-heading">Issues</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -115,22 +115,27 @@
                                 <thead>
                                     <tr>
                                         <th>Title</th>
+                                        <th>Publication Date</th>
+                                        <th>Publisher</th>
                                         <th>Series #</th>
-                                        <th>Condition</th>
+                                        <th>Description</th>
+                                        <!--<th>Condition</th>
                                         <th>Available Quantity</th>
-                                        <th>Price</th>
+                                        <th>Price</th>-->
                                         <th>Edit</th>
+                                        <th>Stock</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="stock in $ctrl.stocks">
-                                        <td>{{stock.Issue.Title}}</td>
-                                        <td>{{stock.Issue.SeriesNumber}}</td>
-                                        <td>{{stock.Condition}}</td>
-                                        <td>{{stock.AvailableQuantity}}</td>
-                                        <td>R{{stock.Price | number:2}}</td>
-                                        <td><a style="cursor: pointer" ng-click='$ctrl.edit(stock.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
+                                    <tr ng-repeat="issue in $ctrl.issues">
+                                        <td>{{issue.Title}}</td>
+                                        <td>{{issue.PublicationDate}}</td>
+                                        <td>{{issue.Publisher}}</td>
+                                        <td>{{issue.SeriesNumber}}</td>
+                                        <td>{{issue.Description}}</td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil" /></a></td>
+                                        <td><a style="cursor: pointer" ng-click='$ctrl.stock(issue.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
 
                                     </tr>
                                 </tbody>

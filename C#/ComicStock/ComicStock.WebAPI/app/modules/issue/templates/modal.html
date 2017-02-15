@@ -1,0 +1,40 @@
+﻿<div class="modal fade" ng-controller="modalIssueAddController as $ctrl">
+        <div class="modal-dialog" style="left: 0%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-model="modalTitle" >{{$ctrl.modalTitle}}</h4>
+                </div>
+                <form name="validate">
+                    <div class="modal-body">
+                        <label for="tag1">Title:</label><input ng-maxlength="50" name="title" type="text" ng-model="$ctrl.title" data-role="tagsinput" id="tag1" class="form-control" required>
+                        <div style="color:#e74c3c"role="alert">
+                            <span class ="error" ng-show="validate.title.$error.required" >Title required</span>
+                        </div>
+                        <label for="tag2">Publication Date:</label><input name="publicationDate" type="date" ng-model="$ctrl.publicationDate" data-role="tagsinput" id="tag2" class="form-control" required>
+                        <div ng-messages="validate.publicationDate.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="validate.publicationDate.$error.publicationDate" ng-message="date">Publication date not valid</div>
+                        </div>
+                        <label for="tag3">Publisher:</label><input name="publisher" type="text" ng-model="$ctrl.publisher" data-role="tagsinput" id="tag3" class="form-control" required>
+                        <div ng-messages="validate.publisher.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="validate.publisher.$error.required" ng-message="required">Publisher required</div>
+                        </div>
+                        <label for="tag4">Series Number:</label><input min="0" name="seriesNumber" type="number" ng-model="$ctrl.seriesNumber" data-role="tagsinput" id="tag4" class="form-control" required>
+                        <div ng-messages="validate.seriesNumber.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="validate.seriesNumber.$error.publicationDate" ng-message="min">Series number cannot be negative</div>
+                            <div ng-if="validate.seriesNumber.$error.required" ng-message="required">Series Number required</div>
+                        </div>
+                        <label for="tag5">Description:</label><input ng-maxlength="500" name="condition" type="text" ng-model="$ctrl.description" data-role="tagsinput" id="tag5" class="form-control" required>
+                        <div style="color:#e74c3c" role="alert">
+                            <span class="error" ng-show="validate.condition.$error.required">Description required</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" ng-click="$ctrl.submit(validate.$valid)" class="btn btn-primary" data-dismiss="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
