@@ -268,6 +268,12 @@
     <Content Include="app\modules\issue\templates\modal.html" />
     <Content Include="app\modules\issue\templates\modalEdit.html" />
     <Content Include="app\modules\issue\templates\issue.html" />
+    <Content Include="app\modules\placeOrder\placeOrder.css" />
+    <Content Include="app\modules\placeOrder\placeOrder.module.js" />
+    <Content Include="app\modules\placeOrder\templates\modal.html" />
+    <Content Include="app\modules\placeOrder\templates\modalEdit.html" />
+    <Content Include="app\modules\placeOrder\templates\placeOrder.html" />
+    <Content Include="app\modules\placeOrder\templates\placeOrder.tpl.html" />
     <Content Include="app\modules\stock\templates\modal.html" />
     <Content Include="app\modules\stock\templates\modalEdit.html" />
     <Content Include="app\modules\stock\templates\stock.html" />
@@ -327,6 +333,7 @@
     <None Include="Project_Readme.html" />
     <None Include="Properties\PublishProfiles\squareeyes.pubxml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
