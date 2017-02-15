@@ -66,7 +66,7 @@ namespace ComicStock.WebAPI.Controllers
             {
                 voucher.IsActivated = false;
                 voucherRepository.Update(voucher);
-                return Ok();
+                return Ok(id);
             }
             return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
@@ -78,6 +78,21 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             return Ok(voucherRepository.Count());
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            Voucher voucher = voucherRepository.GetById(id);
+            if (voucher != null)
+            {
+                voucherRepository.Delete(id);
+                return Ok(id);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
         }
     }
 }
