@@ -23,14 +23,17 @@
             </li>
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li class="ts-label">Management</li>
+
             <li>
-                <a href="#!/supplier"><i class="fa fa-desktop"></i>Supplier Management</a>
+                <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
-            <li><a href="#!/voucher"><i class="fa fa-table"></i>Voucher Management</a></li>
-            <li><a href="#!/order"><i class="fa fa-edit"></i>Order Management</a></li>
-            <li><a href="#!/issue"><i class="fa fa-pie-chart"></i>Issue Management</a></li>
-            <li><a href="#!/creator"><i class="fa fa-pie-chart"></i>Creator Management</a></li>
-            <li class="open"><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock Management</a></li>
+            <li><a href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
+            <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
+            <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
+            <li class="open"><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+
 
 
             <!-- Account from above -->
@@ -57,9 +60,9 @@
                         <div class="col-sm-4">
                             <h2>{{$ctrl.message}}</h2>
                         </div>
-                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
+                        <!--<div class="col-sm-8 text-right" style="margin-top: 20px;">
                             <button class="btn btn-primary" ng-click="$ctrl.show()">Add Stock</button>
-                        </div>
+                        </div>-->
 
                     </div>
                     <hr />
@@ -90,8 +93,8 @@
                                                 <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-left "></i></a>
                                                 </li>
-                                                <li class="waves-effect" ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)">
-                                                    <a>{{n}}</a>
+                                                <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}" >
+                                                    <a >{{n}}</a>
                                                 </li>
                                                 <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
                                                     <a><i class="fa fa-angle-right"></i></a>
@@ -120,7 +123,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <tr ng-repeat="stock in $ctrl.stocks">
                                         <td>{{stock.Issue.Title}}</td>
                                         <td>{{stock.Issue.SeriesNumber}}</td>
@@ -133,6 +135,21 @@
                                 </tbody>
 
                             </table>
+                            <div class="col-sm-12 text-center" >
+                                <div class="text-center">
+                                    <ul class="pagination" ng-model="$ctrl.page">
+                                        <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
+                                            <a><i class="fa fa-angle-left "></i></a>
+                                        </li>
+                                        <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
+                                            <a>{{n}}</a>
+                                        </li>
+                                        <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
+                                            <a><i class="fa fa-angle-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
