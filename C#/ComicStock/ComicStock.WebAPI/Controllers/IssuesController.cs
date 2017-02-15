@@ -64,6 +64,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Post([FromBody]IssueDTO issueDTO)
         {
             Issue issue = issueDTO.CreateDomainObject(new Issue());
+            issue.IsActivated = true;
 
             this.issueRepository.Add(issue);
 
