@@ -71,6 +71,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Post([FromBody]SupplierDTO supplierDTO)
         {
             Supplier supplier = supplierDTO.CreateDomainObject(new Supplier());
+            supplier.IsActivated = true;
 
             this.supplierRepository.Add(supplier);
 
