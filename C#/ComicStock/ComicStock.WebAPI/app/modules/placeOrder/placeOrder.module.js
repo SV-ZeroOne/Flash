@@ -11,10 +11,7 @@ angular.module('placeOrderModule', [])
 
             $ctrl.order = {
                 Total: 0,
-                Supplier: {
-                    Id: -1,
-                    Name: "Choose supplier"
-                },
+                Supplier: null,
                 IssueOrders: [
                 ]
             }
@@ -27,9 +24,6 @@ angular.module('placeOrderModule', [])
                         $ctrl.suppliers = response.data;
                         $ctrl.order.Supplier = $ctrl.suppliers[0];
                         $ctrl.updateQuotes();
-                        console.log($ctrl.suppliers);
-                        console.log($ctrl.order);
-                        console.log("success");
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse)
@@ -38,13 +32,12 @@ angular.module('placeOrderModule', [])
 
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
+                $ctrl.supplierQuotes = []
                 $http
                     .get('/api/Supplier/'+ $ctrl.order.Supplier.Id)
                     .then(function (response) {
                         $ctrl.supplierQuotes = response.data.SupplierQuotes;
                         $ctrl.issueMessage = "Add Issues to your Order:";
-                        console.log($ctrl.supplierQuotes);
-                        console.log("success");
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse)
