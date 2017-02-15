@@ -153,10 +153,12 @@ angular.module('issueStockModule', [])
                     swal('Failed', 'Issue Stock not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newStock.Id = $sessionStorage.get('stockID');
+          
                 $ctrl.newStock.Condition = $ctrl.condition;
                 $ctrl.newStock.AvailableQuantity = $ctrl.availableQty;
                 $ctrl.newStock.Price = $ctrl.price;
+                $ctrl.newStock.Issue = {};
+                $ctrl.newStock.Issue.Id = $sessionStorage.get('issueId');
                 $http.post('/api/Stock', $ctrl.newStock)
                     .then(function (response) {
                         swal('Success', 'Stock created', 'success');

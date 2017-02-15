@@ -7,25 +7,32 @@
                 </div>
                 <form name="validate">
                     <div class="modal-body">
-                        <label for="tag1">Name:</label><input name="name" type="text" ng-model="$ctrl.name" data-role="tagsinput" id="tag1" class="form-control" required>
-                        <div ng-messages="validate.name.$error" style="color:#e74c3c" role="alert">
-                            <div ng-if="validate.name.$error.required" ng-message="required">Name required</div>
+                        
+                        <label for="tag1">Condition:</label><input ng-maxlength="50" name="condition" type="text" ng-model="$ctrl.condition" data-role="tagsinput" id="tag1" class="form-control" required>
+                        <div style="color:#e74c3c" role="alert">
+                            <span class="error" ng-show="validate.condition.$error.required">Condition required</span>
+                        </div>
+                    
+                        <label>Available Quantity:</label><input type="number" value="0" name="availableQty" ng-model="$ctrl.availableQty" data-role="tagsinput" id="tag2" class="form-control" min="0" required>
+                        <div ng-messages="validate.availableQty.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="validate.availableQty.$error.required" ng-message="required">Quantity required</div>
+                        </div>
+                        <div ng-messages="validate.availableQty.$error" style="color: #e74c3c" role="alert">
+                            <div ng-if="validate.availableQty.$error" ng-message="min">Available quantity cannot be negative</div>
                         </div>
 
-                        <label for="tag2">Country of Residence:</label><input type="text" name="country" ng-model="$ctrl.country" data-role="tagsinput" id="tag2" class="form-control" required>
-                        <div ng-messages="validate.country.$error" style="color:#e74c3c" role="alert">
-                            <div ng-if="validate.country.$error.required" ng-message="required">Country required</div>
-                        </div>
-                        <label for="tag3">Tax Reference Number:</label><input name="tax" type="text" ng-model="$ctrl.tax" data-role="tagsinput" id="tag3" class="form-control">
+                        <label>Price:</label><input name="price" type="number" step="0.01" ng-model="$ctrl.price" data-role="tagsinput" id="tag3" class="form-control" ng-min="0.05" required>
 
-                        <label for="tag2">Email Address</label><input type="email" name="email" ng-model="$ctrl.email" data-role="tagsinput" id="tag2" class="form-control" required>
-                        <div ng-if="validate.email.$error.required" class="error" style="color:#e74c3c">
-                            Email required
+                        <div ng-messages="validate.price.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="validate.price.$error.required" ng-message="required">Price required</div>
+                        </div>
+                        <div ng-messages="validate.price.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="!validate.price.$error.required &amp;&amp;validate.price.$error.number" ng-message="number">Price must be number</div>
+                        </div>
+                        <div ng-messages="validate.price.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="!validate.price.$error.required &amp;&amp; !validate.price.$error.number &amp;&amp; validate.price.$error.min" ng-message="min">Price must be larger than R 0.05</div>
                         </div>
 
-                        <div ng-if="!validate.email.$error.required &amp;&amp; validate.email.$error.email" class="error" style="color:#e74c3c">
-                            Not a valid email
-                        </div>
                     </div>
 
                     <div class="modal-footer">
