@@ -23,7 +23,7 @@ namespace ComicStock.Data.Repositories
         {
             var creators = this.context.Creators.AsQueryable()
              .OrderBy(x => x.Name)
-             .Where((x => x.Name.Contains(search)));
+             .Where((x => x.Name.Contains(search) || x.CountryOfResidence.Contains(search)));
             return base.GetPage(creators, page, pageSize);
         }
 

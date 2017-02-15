@@ -149,8 +149,6 @@ angular.module('voucherModule', [])
 
             $ctrl.modalTitle = 'Edit a Voucher';
 
-
-
             $http
                 .get('/api/Voucher/' + $sessionStorage.get('ID'))
                 .then(function (response) {

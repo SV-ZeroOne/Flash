@@ -52,10 +52,14 @@ namespace ComicStock.WebAPI.Controllers
                 );
         }
 
-        [Route("api/Stocks/search")]
+        [Route("api/Stock/search")]
         public IHttpActionResult Get(string search, int page, int pageSize)
         {
-            IEnumerable<StockDTO> stocks = stockRepository.GetPage(search, page, pageSize).Select(s => new StockDTO(s));
+
+            IEnumerable<StockDTO> stocks = stockRepository.GetPage(search, page, pageSize).Select(s => new StockDTO(s)
+            {
+                Issue = new IssueDTO(s.Issue)
+            });
             
             return Ok(stocks);
         }
