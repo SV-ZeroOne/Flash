@@ -51,6 +51,11 @@ angular.module('placeOrderModule', [])
                     });
             }
 
+            $ctrl.validateQty = function (issueOrders) {
+                if (issueOrders.QuantityOrdered < 1)
+                    issueOrders.QuantityOrdered = 1;
+            }
+
             $ctrl.addToOrder = function (supplierQuote) {
                 console.log("Added to order")
                 $ctrl.order.IssueOrders.push({

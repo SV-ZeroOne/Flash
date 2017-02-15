@@ -77,7 +77,21 @@ namespace ComicStock.WebAPI.Controllers
             return Ok(supplier.ID);
         }
 
-
+        [Route("api/Supplier/deactivate")]
+        public IHttpActionResult Put(int id)
+        {
+            Supplier supplier = supplierRepository.GetById(id);
+            if (supplier != null)
+            {
+                supplier.IsActivated = false;
+                supplierRepository.Update(supplier);
+                return Ok();
+            }
+            return ResponseMessage(Request.CreateErrorResponse(
+                HttpStatusCode.NotFound,
+                "Issue id: " + id + " not found")
+                );
+        }
 
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody]SupplierDTO supplierDTO)

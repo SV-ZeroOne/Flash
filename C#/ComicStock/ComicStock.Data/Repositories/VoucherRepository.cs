@@ -27,6 +27,15 @@ namespace ComicStock.Data.Repositories
             return query;
         }
 
+        public override int Count()
+        {
+            var vouchers = this.context.Vouchers.AsQueryable()
+                .OrderBy(x => x.Code)
+                .Where(x => x.IsActivated == true);
+
+            return base.Count(vouchers);
+        }
+
         public IEnumerable<Voucher> GetPage(int page, int pageSize)
         {
             var vouchers = this.context.Vouchers.AsQueryable().OrderBy(x => x.Code).Where(v => v.IsActivated == true);

@@ -30,6 +30,24 @@ namespace ComicStock.Data.Repositories
             return base.GetPage(issues, page, pageSize);
         }
 
+        public override int Count()
+        {
+            var suppliers = this.context.Issues.AsQueryable()
+                .OrderBy(x => x.Title)
+                .Where(x => x.IsActivated == true);
+
+            return base.Count(suppliers);
+        }
+
+        public int Count(string search)
+        {
+            var issues = this.context.Issues.AsQueryable()
+                .OrderBy(x => x.Title)
+                .Where(x => (x.Title.Contains(search) || x.Publisher.Contains(search)) && x.IsActivated == true);
+
+            return base.Count(issues);
+        }
+
         public Issue GetById(int issueID)
         {
             var query = context.Issues.FirstOrDefault(i => i.ID == issueID);
