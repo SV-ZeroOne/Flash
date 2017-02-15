@@ -10,7 +10,7 @@
                       
                         
                                                
-                        <label for="tag3">Voucher value:</label><input name="value" ng-min="0" type="text" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
+                        <label for="tag3">Voucher value:</label><input name="value" ng-min="1" ng-max="1500" type="number" ng-model="$ctrl.value" data-role="tagsinput" id="tag3" class="form-control" required>
                         <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
                             <div ng-if="validate.value.$error.required" ng-message="required">Value required</div>
                         </div>
@@ -20,6 +20,9 @@
                         </div>
                         <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
                             <div ng-if="!validate.value.$error.required &amp;&amp; !validate.value.$error.number &amp;&amp; validate.value.$error.min" ng-message="min">Value must be larger than zero</div>
+                        </div>
+                        <div ng-messages="validate.value.$error" style="color:#e74c3c" role="alert">
+                            <div ng-if="!validate.value.$error.required &amp;&amp; !validate.value.$error.number &amp;&amp; validate.value.$error.max" ng-message="max">Value must be R1500 or less</div>
                         </div>
                     </div>
 
