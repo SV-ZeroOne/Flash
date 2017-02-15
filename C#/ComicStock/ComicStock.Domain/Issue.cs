@@ -30,6 +30,8 @@ namespace ComicStock.Domain
 
         public string Description { get; set; }
 
+        public bool IsActivated { get; set; }
+
         public virtual ICollection<ComicCreator> ComicCreators { get; set;  }
 
         public virtual ICollection<Stock> Stocks { get; set; }

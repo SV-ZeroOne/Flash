@@ -16,7 +16,7 @@ namespace ComicStock.Data
         }
         public IEnumerable<Supplier> GetPage(int page, int pageSize)
         {
-            var suppliers = this.context.Suppliers.AsQueryable().OrderBy(x => x.Name);
+            var suppliers = this.context.Suppliers.AsQueryable().OrderBy(x => x.Name).Where(x => x.IsActivated == true);
             return base.GetPage(suppliers, page, pageSize);
         }
 
@@ -24,7 +24,7 @@ namespace ComicStock.Data
         {
             var suppliers = this.context.Suppliers.AsQueryable()
                 .OrderBy(x => x.Name)
-                .Where(x => x.Name.Contains(search)||x.City.Contains(search));
+                .Where(x => (x.Name.Contains(search)||x.City.Contains(search)) && x.IsActivated == true);
 
             return base.GetPage(suppliers, page, pageSize);
         }

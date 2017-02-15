@@ -19,6 +19,8 @@ namespace ComicStock.Domain
 
         [Column(TypeName = "numeric")]
         public decimal Value { get; set; }
+        
+        public bool IsActivated { get; set; }
 
 
     }

@@ -76,7 +76,7 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Post([FromBody]StockDTO stockDTO)
         {
             Stock stock = stockDTO.CreateDomainObject(new Stock());
-            stock.Issue = issueRepository.GetById(stock.Issue.ID);
+            stock.Issue = issueRepository.GetById(stockDTO.Issue.Id);
 
             this.stockRepository.Add(stock);
 
