@@ -47,6 +47,7 @@ angular.module('placeOrderModule', [])
             $ctrl.validateQty = function (issueOrders) {
                 if (issueOrders.QuantityOrdered < 1)
                     issueOrders.QuantityOrdered = 1;
+                $ctrl.updateOrderTotal();
             }
 
             $ctrl.addToOrder = function (supplierQuote) {
