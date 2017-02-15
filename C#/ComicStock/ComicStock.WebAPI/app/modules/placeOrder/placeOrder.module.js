@@ -50,6 +50,7 @@ angular.module('placeOrderModule', [])
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
+                $ctrl.order.IssueOrders = []
                 if ($ctrl.search == "") $http
                     .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {

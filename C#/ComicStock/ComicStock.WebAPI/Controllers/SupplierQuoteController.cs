@@ -31,7 +31,7 @@ namespace ComicStock.WebAPI.Controllers
                     {
                         Issue = new IssueDTO(sq.Issue)
                         {
-                            //Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                            Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
                         }
 
                     });
@@ -52,7 +52,7 @@ namespace ComicStock.WebAPI.Controllers
                 {
                     Issue = new IssueDTO(sq.Issue)
                     {
-                        //Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
+                        Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
                     }
 
                 });
