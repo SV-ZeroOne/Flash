@@ -33,7 +33,8 @@ namespace ComicStock.Data.Repositories
             return base.GetPage(vouchers, page, pageSize);
         }
 
-   
+
+
 
 
     }

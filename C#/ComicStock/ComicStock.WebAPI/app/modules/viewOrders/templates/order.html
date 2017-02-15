@@ -6,7 +6,7 @@
      
     </ul>
 </div>
-<div class="ts-main-content" ng-controller ="creatorController as $ctrl">
+<div class="ts-main-content" ng-controller ="viewOrdersController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Home</li>
@@ -22,7 +22,7 @@
             <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
             <li class="open"><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
-            <li><a href="#!/stock"><i class="fa fa-pie-chart"></i>Stock</a></li>
+ 
 
             <!-- Account from above -->
             <ul class="ts-profile-nav">
@@ -49,7 +49,7 @@
                             <h2>{{$ctrl.message}}</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
-                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add a Creator</button>
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Place an Order</button>
                        </div>
                       
                     </div>
@@ -57,7 +57,7 @@
                  
                    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Creators</div>
+                        <div class="panel-heading">Orders</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 
@@ -100,23 +100,25 @@
                                 </div>
                                 <thead>
                                 <tr>
-                                    <th>Creator Name</th>
-                                    <th>Country of Residence</th>
-                                    <th>Tax Reference Number</th>
-                                    <th>Email Address</th>
+                                    <th>Order Date</th>
+                                    <th>Order Total (R)</th>
+                                    <th>Shipment Reference</th>
+                                    <th>Shipment Date</th>
+                                    <th>Order Status</th>
                                     <th>Edit</th>
-                                    <th>Roles</th>
+                                    <th>Issues in Order</th>
                                 </tr>
                                 </thead>
                                 <tbody >
 
-                                <tr ng-repeat="creator in $ctrl.creators">
-                                    <td>{{creator.Name}}</td>
-                                    <td>{{creator.Country}}</td>
-                                    <td>{{creator.TaxRef}}</td>
-                                    <td>{{creator.Email}}</td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(creator.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
-                                    <td><a style="cursor: pointer" ng-click='$ctrl.role(creator.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
+                                <tr ng-repeat="order in $ctrl.orders">
+                                    <td>{{order.OrderDate}}</td>
+                                    <td>{{order.Total}}</td>
+                                    <td>{{order.ShipmentRef}}</td>
+                                    <td>{{order.ShipmentDate}}</td>
+                                    <td>{{order.DeliveryStatus}}</td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(order.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.issues(order.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>
                                 </tr>
                                 </tbody>
 

@@ -230,6 +230,7 @@
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />
+    <Content Include="app\assets\img\logo1.jpg" />
     <Content Include="app\assets\img\plus.png" />
     <Content Include="app\assets\img\ts-avatar.jpg" />
     <Content Include="app\assets\js\angular-messages.js" />
@@ -250,6 +251,10 @@
     <Content Include="app\assets\js\sweetalert2.min.js" />
     <Content Include="app\assets\js\swx-session-storage.min.js" />
     <Content Include="app\index.html" />
+    <Content Include="app\modules\creatorRole\role.module.js" />
+    <Content Include="app\modules\creatorRole\templates\role.html" />
+    <Content Include="app\modules\creatorRole\templates\modal.html" />
+    <Content Include="app\modules\creatorRole\templates\modalEdit.html" />
     <Content Include="app\modules\creator\templates\modal.html" />
     <Content Include="app\modules\creator\templates\modalEdit.html" />
     <Content Include="app\modules\creator\templates\creator.html" />
@@ -272,6 +277,10 @@
     <Content Include="app\modules\supplier\templates\modalEdit.html" />
     <Content Include="app\modules\supplier\templates\supplier.html" />
     <Content Include="app\modules\supplier\templates\supplier.tpl.html" />
+    <Content Include="app\modules\viewOrders\templates\order.html" />
+    <Content Include="app\modules\viewOrders\templates\modal.html" />
+    <Content Include="app\modules\viewOrders\templates\modalEdit.html" />
+    <Content Include="app\modules\viewOrders\viewOrders.module.js" />
     <Content Include="app\modules\voucher\templates\modal.html" />
     <Content Include="app\modules\voucher\templates\modalEdit.html" />
     <Content Include="app\modules\voucher\templates\voucher.html" />

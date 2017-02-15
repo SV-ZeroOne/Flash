@@ -1,18 +1,18 @@
-angular.module('creatorModule', [])
-    .controller('creatorController',
+angular.module('creatorRoleModule', [])
+    .controller('creatorRoleController',
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = 'Creator Management';
+            $ctrl.message = 'Creator Roles';
             $ctrl.newCreator = {};
             $ctrl.currentCreator = {};
-            $ctrl.modalTitle = 'Add a Creator';
+            $ctrl.modalTitle = 'Add an Issue/Role';
 
-            $ctrl.creators = {};
+            $ctrl.issues = {};
             $ctrl.search = "";
 
             $ctrl.pagination = {
-
+                
                 pageSizeOptions: [10, 25, 50, 100],
                 pageSize: 25,
 
@@ -26,77 +26,25 @@ angular.module('creatorModule', [])
                 nextDisable: "disable"
             }
 
-
-            $ctrl.updateTable = function () {
-                console.log("Update the table");
-                if ($ctrl.search == "") $http
-                    .get('/api/Creator?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function (response) {
-                        $ctrl.creators = response.data;
-                        console.log($ctrl.creators);
-                    })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse)
-                    });
-                else $http
-                    .get('/api/Creator/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function (response) {
-                        $ctrl.creators = response.data;
-                        console.log($ctrl.creators);
-                    })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse);
-                    });
+            $ctrl.updateTable = function() {
 
                 $http
-                    .get('/api/Creator/count')
-                    .then(function (response) {
-                        $ctrl.pagination.count = response.data;
+                    .get('/api/Creator/' + $sessionStorage.get('creatorId'))
+                    .then(function(response) {
+                        $ctrl.issues = response.data;
 
-                        $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
-                        $ctrl.pagination.pageOptions = [];
-                        for (var x = 1; x <= $ctrl.pagination.numPages; x++)
-                            $ctrl.pagination.pageOptions.push(x);
-
-                        if ($ctrl.pagination.page == $ctrl.pagination.numPages)
-                            $ctrl.pagination.nextDisable = "disable";
-                        else
-                            $ctrl.pagination.nextDisable = "";
-
-                        if ($ctrl.pagination.page <= 1)
-                            $ctrl.pagination.prevDisable = "disable";
-                        else
-                            $ctrl.pagination.prevDisable = "";
                     })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse);
+                    .catch(function(errorResponse) {
+                        console.log(errorResponse)
+
                     });
-                console.log($ctrl.pagination);
-
             }
 
-            $ctrl.updateTable()
-
-            $rootScope.$on('updateTheTablePlease', function (event) {
-                $ctrl.updateTable();
-            });
-
-            $ctrl.role =function(id) {
-                $sessionStorage.put('creatorId', id);
-                window.location = "#!/role";
-            }
-
-            $ctrl.pageTo = function (page) {
-                $ctrl.pagination.page = page;
-                $ctrl.updateTable();
-            }
-
-
-
+            $ctrl.updateTable();
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
-                $ctrl.modalTitle = 'Edit Creator';
+                $ctrl.modalTitle = 'Edit Issue/Role';
 
                 $http
                     .get('/api/Creator/' + id)
@@ -107,8 +55,8 @@ angular.module('creatorModule', [])
                         $ctrl.email = response.data.Email;
 
                         ModalService.showModal({
-                            templateUrl: "/app/modules/creator/templates/modalEdit.html",
-                            controller: 'modalCreatorController'
+                            templateUrl: "/app/modules/creatorRole/templates/modalEdit.html",
+                            controller: 'modalCreatorRoleController'
 
                         }).then(function (modal) {
 
@@ -127,8 +75,8 @@ angular.module('creatorModule', [])
 
             $ctrl.show = function () {
                 ModalService.showModal({
-                    templateUrl: "/app/modules/creator/templates/modal.html",
-                    controller: "modalCreatorAddController"
+                    templateUrl: "/app/modules/creatorRole/templates/modal.html",
+                    controller: "modalCreatorRoleAddController"
                 }).then(function (modal) {
                     console.log(modal);
                     modal.element.modal();
@@ -140,17 +88,17 @@ angular.module('creatorModule', [])
             };
 
         })
-    .controller('modalCreatorController',
+    .controller('modalCreatorRoleController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newCreator = {};
+            $ctrl.newIssue = {};
 
-            $ctrl.modalTitle = 'Edit a Creator';
+            $ctrl.modalTitle = 'Edit Issue/Role';
 
 
 
             $http
-                .get('/api/Creator/' + $sessionStorage.get('ID'))
+                .get('/api/Creator/' + $sessionStorage.get(''))
                 .then(function (response) {
                     $ctrl.name = response.data.Name;
                     $ctrl.country = response.data.Country;
@@ -188,25 +136,22 @@ angular.module('creatorModule', [])
                     .catch(function (errorResponse) {
                         swal('Error', 'Update failed ', 'error');
                     });
-
             }
 
 
         }).controller('modalCreatorAddController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newCreator = {};
+            $ctrl.newIssueRole = {};
 
-            $ctrl.modalTitle = 'Add a Creator';
-
-
+            $ctrl.modalTitle = 'Add an Issue/Role';
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Creator fields not valid - please try again.', 'error');
+                    swal('Failed', 'Issue Role not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newCreator.Name = $ctrl.name;
+                $ctrl.IssueCreator.Name = $ctrl.name;
                 $ctrl.newCreator.Country = $ctrl.country;
                 $ctrl.newCreator.TaxRef = $ctrl.tax;
                 $ctrl.newCreator.Email = $ctrl.email;

@@ -1,14 +1,14 @@
-angular.module('voucherModule', [])
-    .controller('voucherController',
+angular.module('viewOrdersModule', [])
+    .controller('viewOrdersController',
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = 'Voucher Management';
-            $ctrl.newVoucher = {};
-            $ctrl.currentVoucher = {};
-            $ctrl.modalTitle = 'Add a Voucher';
+            $ctrl.message = 'Order Management';
+            $ctrl.newviewOrder = {};
+            $ctrl.currentviewOrder = {};
+            $ctrl.modalTitle = 'Place an Order';
 
-            $ctrl.vouchers = {};
+            $ctrl.orders = {};
             $ctrl.search = "";
 
             $ctrl.pagination = {
@@ -30,26 +30,26 @@ angular.module('voucherModule', [])
             $ctrl.updateTable = function () {
                 console.log("Update the table");
                 if ($ctrl.search == "") $http
-                    .get('/api/Voucher?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .get('/api/Order?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.vouchers = response.data;
-                        console.log($ctrl.vouchers);
+                        $ctrl.orders = response.data;
+                        console.log($ctrl.orders);
                     })
                     .catch(function (errorResponse) {
-                        console.log(errorResponse)
+                        console.log(errorResponse);
                     });
                 else $http
-                    .get('/api/Voucher/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                    .get('/api/Order/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.vouchers = response.data;
-                        console.log($ctrl.vouchers);
+                        $ctrl.orders = response.data;
+                        console.log($ctrl.orders);
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
                     });
 
                 $http
-                    .get('/api/Voucher/count')
+                    .get('/api/Order/count')
                     .then(function (response) {
                         $ctrl.pagination.count = response.data;
 
@@ -75,12 +75,16 @@ angular.module('voucherModule', [])
 
             }
 
-            $ctrl.updateTable()
+            $ctrl.updateTable();
 
             $rootScope.$on('updateTheTablePlease', function (event) {
                 $ctrl.updateTable();
             });
 
+            $ctrl.role = function (id) {
+                $sessionStorage.put('orderId', id);
+                window.location = "#!/role";
+            }
 
             $ctrl.pageTo = function (page) {
                 $ctrl.pagination.page = page;
@@ -92,18 +96,20 @@ angular.module('voucherModule', [])
 
             $ctrl.edit = function (id) {
                 $sessionStorage.put("ID", id);
-                $ctrl.modalTitle = 'Edit Voucher';
+                $ctrl.modalTitle = 'Edit Creator';
 
                 $http
-                    .get('/api/Voucher/' + id)
+                    .get('/api/Order/' + id)
                     .then(function (response) {
-                        $ctrl.code = response.data.Code;
-                        $ctrl.date = response.data.RedeemDate;
-                        $ctrl.value = response.data.Value;
+                        $ctrl.total = response.data.Total;
+                        $ctrl.shipref = response.data.ShipmentRef;
+                        $ctrl.shipdate = response.data.ShipmentDate;
+                        $ctrl.status = response.data.DeliveryStatus;
+                        $ctrl.date = response.data.OrderDate;
 
                         ModalService.showModal({
-                            templateUrl: "/app/modules/voucher/templates/modalEdit.html",
-                            controller: 'modalVoucherController'
+                            templateUrl: "/app/modules/viewOrders/templates/modalEdit.html",
+                            controller: 'modalViewOrdersController'
 
                         }).then(function (modal) {
 
@@ -122,8 +128,8 @@ angular.module('voucherModule', [])
 
             $ctrl.show = function () {
                 ModalService.showModal({
-                    templateUrl: "/app/modules/voucher/templates/modal.html",
-                    controller: "modalVoucherAddController"
+                    templateUrl: "/app/modules/viewOrders/templates/modal.html",
+                    controller: "modalViewOrdersAddController"
                 }).then(function (modal) {
                     console.log(modal);
                     modal.element.modal();
@@ -135,46 +141,48 @@ angular.module('voucherModule', [])
             };
 
         })
-    .controller('modalVoucherController',
+    .controller('modalViewOrdersController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newVoucher = {};
+            $ctrl.newCreator = {};
 
-            $ctrl.modalTitle = 'Edit a Voucher';
+            $ctrl.modalTitle = 'Edit an Order';
 
 
 
             $http
-                .get('/api/Voucher/' + $sessionStorage.get('ID'))
+                .get('/api/Order/' + $sessionStorage.get('ID'))
                 .then(function (response) {
-                    $ctrl.code = response.data.Code;
-                    $ctrl.date = response.data.RedeemDate;
-                    $ctrl.value = response.data.Value;
+                    $ctrl.name = response.data.Name;
+                    $ctrl.country = response.data.Country;
+                    $ctrl.tax = response.data.TaxRef;
+                    $ctrl.email = response.data.Email;
                 }
                 )
                 .catch(function (errorResponse) {
-                    swal('Error', 'No such voucher exists', 'error');
+                    swal('Error', 'No such creator exists', 'error');
                 });
 
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Voucher fields not valid - please try again', 'error');
+                    swal('Failed', 'Creator fields not valid - please try again', 'error');
                     return;
                 }
-                $ctrl.newVoucher.Id = $sessionStorage.get('ID');
-                $ctrl.newVoucher.Code = $ctrl.code;
-                $ctrl.newVoucher.RedeemDate = $ctrl.date;
-                $ctrl.newVoucher.Value = $ctrl.value;
+                $ctrl.newCreator.Id = $sessionStorage.get('ID');
+                $ctrl.newCreator.Name = $ctrl.name;
+                $ctrl.newCreator.Country = $ctrl.country;
+                $ctrl.newCreator.TaxRef = $ctrl.tax;
+                $ctrl.newCreator.Email = $ctrl.email;
 
 
                 $http
-                    .put('/api/Voucher/' + $sessionStorage.get('ID'), $ctrl.newVoucher)
+                    .put('/api/Creator/' + $sessionStorage.get('ID'), $ctrl.newCreator)
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
                             'Good job!',
-                            'Voucher updated',
+                            'Creator updated',
                             'success'
                         );
                     })
@@ -185,26 +193,27 @@ angular.module('voucherModule', [])
             }
 
 
-        }).controller('modalVoucherAddController',
+        }).controller('modalViewOrdersAddController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newVoucher = {};
+            $ctrl.newCreator = {};
 
-            $ctrl.modalTitle = 'Add a Voucher';
+            $ctrl.modalTitle = 'Add a Creator';
 
 
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
-                    swal('Failed', 'Voucher fields not valid - please try again.', 'error');
+                    swal('Failed', 'Creator fields not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.newVoucher.Code = $ctrl.code;
-                $ctrl.newVoucher.RedeemDate = $ctrl.date;
-                $ctrl.newVoucher.Value = $ctrl.value;
-                $http.post('/api/Voucher', $ctrl.newVoucher)
+                $ctrl.newCreator.Name = $ctrl.name;
+                $ctrl.newCreator.Country = $ctrl.country;
+                $ctrl.newCreator.TaxRef = $ctrl.tax;
+                $ctrl.newCreator.Email = $ctrl.email;
+                $http.post('/api/Creator', $ctrl.newCreator)
                     .then(function (response) {
-                        swal('Success', 'Voucher created', 'success');
+                        swal('Success', 'Creator created', 'success');
                         console.log("success1");
                         $scope.$emit('updateTheTablePlease');
                         console.log("success2");
