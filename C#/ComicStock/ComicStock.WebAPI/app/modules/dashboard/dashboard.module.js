@@ -4,6 +4,7 @@ angular.module('dashboardModule',[])
         $ctrl.message = 'Dashboard';
         $ctrl.issueCount;
         $ctrl.stockCount;
+        $ctrl.creatorCount;
         $ctrl.stocks = {};
         $ctrl.availableStock;
         $ctrl.vouchersUsed = 0;
@@ -49,7 +50,7 @@ angular.module('dashboardModule',[])
         .catch(function (errorResponse) {
             console.log(errorResponse);
         });
-        $ctrl.vouchersUsed;
+        //$ctrl.vouchersUsed=0;
         //$http
         //.get('/api/Voucher?page=1&pageSize=30')
         //.then(function (response) {
