@@ -51,20 +51,22 @@ namespace ComicStock.WebAPI.Controllers
         {
 
             Voucher voucher = voucherDTO.CreateDomainObject(new Voucher());
+            voucher.IsActivated = true;
 
             this.voucherRepository.Add(voucher);
 
             return Ok(voucher.ID);
         }
 
-        [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]VoucherDTO voucherDTO)
+        [Route("api/Voucher/deactivate")]
+        public IHttpActionResult Put(int id)
         {
             Voucher voucher = voucherRepository.GetById(id);
             if (voucher != null)
             {
-                voucherRepository.Update(voucherDTO.CreateDomainObject(voucher));
-                return Ok(voucherDTO);
+                voucher.IsActivated = false;
+                voucherRepository.Update(voucher);
+                return Ok();
             }
             return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
@@ -76,13 +78,6 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             return Ok(voucherRepository.Count());
-        }
-
-
-        public IHttpActionResult Delete(int id)
-        {
-            voucherRepository.Delete(id);
-            return Ok();
         }
     }
 }

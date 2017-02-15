@@ -20,6 +20,10 @@ namespace ComicStock.API.Services
             order.SupplierPayments.Add(supplierPayment);
             order.DeliveryStatus = "Pending";
             order.ShipmentRef = "MockRefNo";
+            order.ShipmentDate = DateTime.Now;
+            var r = new Random();
+            int A = r.Next(1, 500000000);
+            order.ShipmentRef = A.ToString("X"); ;
             return order;
         }
     }

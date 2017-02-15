@@ -27,7 +27,7 @@ namespace ComicStock.Data
             return context.Set<TEntity>().Count();
         }
 
-        public virtual int Count(IQueryable<TEntity> entity)
+        protected int Count(IQueryable<TEntity> entity)
         {
             return context.Set<TEntity>().Count();
         }

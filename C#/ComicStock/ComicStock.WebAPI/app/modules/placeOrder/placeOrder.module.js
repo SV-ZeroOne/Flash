@@ -51,6 +51,11 @@ angular.module('placeOrderModule', [])
                     });
             }
 
+            $ctrl.validateQty = function (issueOrders) {
+                if (issueOrders.QuantityOrdered < 1)
+                    issueOrders.QuantityOrdered = 1;
+            }
+
             $ctrl.addToOrder = function (supplierQuote) {
                 console.log("Added to order")
                 $ctrl.order.IssueOrders.push({
@@ -90,10 +95,20 @@ angular.module('placeOrderModule', [])
                     .post('/api/Order', $ctrl.order)
                     .then(function (response) {
                         swal('Success', 'Order placed', 'success');
+                        $ctrl.order = {
+                            Total: 0,
+                            Supplier: {
+                                Id: -1,
+                                Name: "Choose supplier"
+                            },
+                            IssueOrders: [
+                            ]
+                        }
                     })
                     .catch(function (errorResponse) {
                         swal('Oops...', 'Something went wrong!', errorResponse);
                     });
+
             }
 
             $ctrl.removeFromOrder = function(issueOrder) {
@@ -232,21 +247,4 @@ angular.module('placeOrderModule', [])
                         swal('Oops...', 'Something went wrong!', 'error');
                     });
             }
-
-
-
         });;
-
-
-
-
-
-   
-
-           
-     
-
-
-
-
-
