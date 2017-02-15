@@ -9,11 +9,28 @@ angular.module('placeOrderModule', [])
             $ctrl.suppliers = [];
             $ctrl.supplierQuotes = [];
 
+            $ctrl.search = "";
+
             $ctrl.order = {
                 Total: 0,
                 Supplier: null,
                 IssueOrders: [
                 ]
+            }
+
+            $ctrl.pagination = {
+
+                pageSizeOptions: [10, 25, 50, 100],
+                pageSize: 25,
+
+                pageOptions: [],
+                page: 1,
+
+                count: 0,
+                numPages: 0,
+
+                prevDisable: "disable",
+                nextDisable: "disable"
             }
 
             $ctrl.updateSuppliers = function () {
@@ -33,15 +50,56 @@ angular.module('placeOrderModule', [])
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
-                $http
-                    .get('/api/Supplier/' + $ctrl.order.Supplier.Id)
+                if ($ctrl.search == "") $http
+                    .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.supplierQuotes = response.data.SupplierQuotes;
+                        $ctrl.supplierQuotes = response.data;
                         $ctrl.issueMessage = "Add Issues to your Order:";
                     })
                     .catch(function (errorResponse) {
                         console.log(errorResponse)
                     });
+                else $http
+                        .get('/api/SupplierQuote/search?search='+$ctrl.search+'&id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
+                        .then(function (response) {
+                            $ctrl.supplierQuotes = response.data;
+                            $ctrl.issueMessage = "Add Issues to your Order:";
+                        })
+                        .catch(function (errorResponse) {
+                            console.log(errorResponse)
+                        });
+
+                $http
+                    .get('/api/SupplierQuote/count')
+                    .then(function (response) {
+                        $ctrl.pagination.count = response.data;
+
+                        $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
+                        $ctrl.pagination.pageOptions = [];
+                        if ($ctrl.pagination.page - 3 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 3);
+                        }
+                        if ($ctrl.pagination.page - 2 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 2);
+                        }
+                        if ($ctrl.pagination.page - 1 >= 1) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 1);
+                        }
+                        $ctrl.pagination.pageOptions.push($ctrl.pagination.page);
+                        if ($ctrl.pagination.page + 1 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 1);
+                        }
+                        if ($ctrl.pagination.page + 2 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 2);
+                        }
+                        if ($ctrl.pagination.page + 3 <= $ctrl.pagination.numPages) {
+                            $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 3);
+                        }
+                    })
+                    .catch(function (errorResponse) {
+                        console.log(errorResponse);
+                    });
+                console.log($ctrl.pagination);
             }
 
             $ctrl.validateQty = function (issueOrders) {
@@ -115,7 +173,7 @@ angular.module('placeOrderModule', [])
 
             $ctrl.pageTo = function (page) {
                 $ctrl.pagination.page = page;
-                $ctrl.updateTable();
+                $ctrl.updateQuotes();
             }
 
 

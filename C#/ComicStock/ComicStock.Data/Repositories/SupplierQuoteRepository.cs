@@ -22,15 +22,15 @@ namespace ComicStock.Data.Repositories
 
         public IEnumerable<SupplierQuote> GetPage(int page, int pageSize)
         {
-            var supplierQuotes = this.context.SupplierQuotes.AsQueryable().OrderBy(x => x.Issue.Title);
+            var supplierQuotes = this.context.SupplierQuotes.AsQueryable().OrderBy(x => x.ID);
             return base.GetPage(supplierQuotes, page, pageSize);
         }
 
         public IEnumerable<SupplierQuote> GetPage(string search, int page, int pageSize)
         {
             var suppliers = this.context.SupplierQuotes.AsQueryable()
-                .OrderByDescending(x => x.Issue.Title)
-                .Where(x => x.Issue.Title.Contains(search) || x.Issue.SeriesNumber == Int16.Parse(search));
+                .OrderByDescending(x => x.ID)
+                .Where(x => x.Issue.Title.Contains(search)); // || x.Issue.SeriesNumber == Int16.Parse(search)
 
             return base.GetPage(suppliers, page, pageSize);
         }

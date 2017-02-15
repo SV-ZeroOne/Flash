@@ -20,6 +20,7 @@ namespace ComicStock.Data
             this.Container.RegisterType<IIssueRepository, IssueRepository>(new HierarchicalLifetimeManager());
             this.Container.RegisterType<IStockRepository, StockRepository>(new HierarchicalLifetimeManager());
             this.Container.RegisterType<IOrderRepository, OrderRepository>(new HierarchicalLifetimeManager());
+            this.Container.RegisterType<ISupplierQuoteRepository, SupplierQuoteRepository>(new HierarchicalLifetimeManager());
         }
 
     }
