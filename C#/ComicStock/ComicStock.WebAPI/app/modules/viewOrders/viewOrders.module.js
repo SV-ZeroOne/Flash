@@ -194,39 +194,7 @@ angular.module('viewOrdersModule', [])
             }
 
 
-        }).controller('modalViewOrdersAddController',
-        function ($http, $scope, $sessionStorage) {
-            var $ctrl = this;
-            $ctrl.newCreator = {};
-
-            $ctrl.modalTitle = 'Add a Creator';
-
-
-
-            $ctrl.submit = function (isFormValid) {
-                if (!isFormValid) {
-                    swal('Failed', 'Creator fields not valid - please try again.', 'error');
-                    return;
-                }
-                $ctrl.newCreator.Name = $ctrl.name;
-                $ctrl.newCreator.Country = $ctrl.country;
-                $ctrl.newCreator.TaxRef = $ctrl.tax;
-                $ctrl.newCreator.Email = $ctrl.email;
-                $http.post('/api/Creator', $ctrl.newCreator)
-                    .then(function (response) {
-                        swal('Success', 'Creator created', 'success');
-                        console.log("success1");
-                        $scope.$emit('updateTheTablePlease');
-                        console.log("success2");
-                    })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', 'error');
-                    });
-            }
-
-
-
-        });;
+        });
 
 
 

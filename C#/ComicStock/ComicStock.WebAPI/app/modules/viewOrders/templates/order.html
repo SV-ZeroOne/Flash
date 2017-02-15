@@ -99,7 +99,7 @@
                                 <thead>
                                 <tr>
                                     <th>Order Date</th>
-                                    <th>Order Total (R)</th>
+                                    <th>Order Total</th>
                                     <th>Shipment Reference</th>
                                     <th>Shipment Date</th>
                                     <th>Order Status</th>
@@ -110,10 +110,10 @@
                                 <tbody >
 
                                 <tr ng-repeat="order in $ctrl.orders">
-                                    <td>{{order.OrderDate}}</td>
-                                    <td>{{order.Total}}</td>
+                                    <td>{{order.OrderDate | date:'yyyy-MM-dd'}}</td>
+                                    <td>R {{order.Total | number:2}}</td>
                                     <td>{{order.ShipmentRef}}</td>
-                                    <td>{{order.ShipmentDate}}</td>
+                                    <td>{{order.ShipmentDate | date:'yyyy-MM-dd'}}</td>
                                     <td>{{order.DeliveryStatus}}</td>
                                     <td><a style="cursor: pointer" ng-click='$ctrl.edit(order.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
                                     <td><a style="cursor: pointer" ng-click='$ctrl.issues(order.Id)' style="cursor: pointer;"><i class="fa fa-eye" /></a></td>

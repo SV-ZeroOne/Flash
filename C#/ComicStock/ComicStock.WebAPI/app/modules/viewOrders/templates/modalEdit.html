@@ -8,25 +8,54 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <label type="date">Order Date: {{$ctrl.date}}</label>
-                </div>
+                    <div class="col-xs-6">
+                        <label type="date">Order Date: </label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.date | date:'yyyy-MM-dd'}}</p>
+                    </div>
+                   
+                    </div>
                 <div class="row">
-                    <label>Order Total: R {{$ctrl.total}}</label>
-                </div>
-                <div class="row">
-                    <label>Shipment Reference: {{$ctrl.shipref}}</label>
-                </div>
-                <div class="row">
-                    <label>Shipment Date: {{$ctrl.shipdate}}</label>
-                </div>
+                    
+                    <div class="col-xs-6">
+                        <label>Order Total:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>R {{$ctrl.total | number:2}}</p>
+                    </div>
 
-                    <label for="tag2">Delivery Status:</label><select name="status" ng-model="$ctrl.status" class="form-control" selected="{{$ctrl.status}}" required>
-                        <option value="Pending">Pending</option>
-                        <option value="Delivered">Delivered</option>
-                        <option value="Cancelled">Cancelled</option>
-                    </select>
-                    <div ng-if="validate.status.$error.required" class="error" style="color: #e74c3c">
-                        Status Required
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>Shipment Reference: </label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p>{{$ctrl.shipref}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label>Shipment Date:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <p> {{$ctrl.shipdate | date:'yyyy-MM-dd'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="tag2">Delivery Status:</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <select name="status" ng-model="$ctrl.status" class="form-control" selected="{{$ctrl.status}}" required>
+                            <option value="Pending">Pending</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <div ng-if="validate.status.$error.required" class="error" style="color: #e74c3c">
+                            Status Required
+                        </div>
+                        </div>
                     </div>
                 </div>
             <div class="modal-footer">

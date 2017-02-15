@@ -26,9 +26,9 @@ var squareEyes = angular.module('squareEyes', ['ngMessages','swxSessionStorage',
         {
             templateUrl: '/app/modules/creatorRole/templates/role.html'
         })
-         .when('/vieworder',
+         .when('/order',
         {
-            templateUrl: '/app/modules/viewOrders/templates/vieworder.html'
+            templateUrl: '/app/modules/viewOrders/templates/order.html'
         })
         .when('/creator',
         {
