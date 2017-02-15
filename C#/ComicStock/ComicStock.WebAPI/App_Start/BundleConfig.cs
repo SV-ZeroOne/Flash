@@ -31,6 +31,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/angular-modal-service.min.js",
                       "~/app/modules/supplier/supplier.module.js",
                       "~/app/modules/creatorRole/role.module.js",
+                      "~/app/modules/issueStock/issueStock.module.js",
                       "~/app/modules/creator/creator.module.js",
                       "~/app/modules/stock/stock.module.js",
                       "~/app/modules/orderIssue/orderIssue.module.js",

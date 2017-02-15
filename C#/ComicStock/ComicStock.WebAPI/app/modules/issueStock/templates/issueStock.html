@@ -1,0 +1,103 @@
+﻿<div class="brand clearfix" >
+    <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
+    <span class="menu-btn"><i class="fa fa-bars"></i></span>
+    <ul class="ts-profile-nav">
+    
+    </ul>
+</div>
+<div class="ts-main-content" ng-controller ="issueStockController as $ctrl">
+    <nav class="ts-sidebar">
+        <ul class="ts-sidebar-menu">
+            <li class="ts-label">Home</li>
+            
+
+            <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li class="ts-label">Management</li>
+            <li >
+                <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
+            </li>
+            <li><a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
+            <li class="open"><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
+            <li ><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
+ 
+
+            <!-- Account from above -->
+            <ul class="ts-profile-nav">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Settings</a></li>
+                <li class="ts-account">
+                    <a href="#"><img src="app/assets/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt=""> Account <i class="fa fa-angle-down hidden-side"></i></a>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Edit Account</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                   
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h2>{{$ctrl.message}}</h2>
+                        </div>
+                        <div class="col-sm-8 text-right" style="margin-top: 20px;">
+                            <button class="btn btn-primary" ng-click="$ctrl.show()">Add Stock to Issue</button>
+                       </div>
+                      
+                    </div>
+                    <hr />
+                 
+                   
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Issue Stock</div>
+                        <div class="panel-body">
+                            <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+
+                            <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+
+                                <div class="row">
+
+
+                                </div>
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Series #</th>
+                                    <th>Condition</th>
+                                    <th>AvailableQuantity</th>
+                                    <th>Price</th>
+                                    <th>Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+
+                                <tr ng-repeat="stock in $ctrl.issue.Stock">
+                                    <td>{{$ctrl.issue.Title}}</td>
+                                    <td>{{$ctrl.issue.SeriesNumber}}</td>
+                                    <td>{{stock.Condition}}</td>
+                                    <td>{{stock.AvailableQuantity}}</td>
+                                    <td>{{stock.Price}}</td>
+                                    <td><a style="cursor: pointer" ng-click='$ctrl.edit(stock.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>

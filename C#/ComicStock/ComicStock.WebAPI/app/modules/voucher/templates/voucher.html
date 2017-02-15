@@ -101,7 +101,7 @@
                                 <tbody >
 
                                 <tr ng-repeat="voucher in $ctrl.vouchers">
-                                    <td>{{voucher.Id}}</td>
+                                    <td>{{voucher.Code}}</td>
                                     <td>{{voucher.RedeemDate | date:'yyyy-MM-dd'}}</td>
                                     <td>R {{voucher.Value | number:2}}</td>
                                     <td><a style="cursor: pointer" ng-click='$ctrl.deactivate(voucher.Id)' style="cursor: pointer;"><i class="fa fa-trash"/></a></td>
