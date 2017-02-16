@@ -155,6 +155,7 @@ angular.module('placeOrderModule', [])
                     .post('/api/Order', $ctrl.order)
                     .then(function (response) {
                         swal('Success', 'Order placed', 'success');
+                        console.log(response);
                         $ctrl.order = {
                             Total: 0,
                             Supplier: {
@@ -166,7 +167,7 @@ angular.module('placeOrderModule', [])
                         }
                     })
                     .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', errorResponse);
+                        swal('Oops...', 'Something went wrong!', "error");
                     });
 
             }
