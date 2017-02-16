@@ -143,16 +143,16 @@ angular.module('creatorRoleModule', [])
         }).controller('modalCreatorAddController',
         function ($http, $scope, $sessionStorage) {
             var $ctrl = this;
-            $ctrl.newIssueRole = {};
+            $ctrl.newCreator = {};
 
-            $ctrl.modalTitle = 'Add an Issue/Role';
+            $ctrl.modalTitle = 'Add Creator';
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {
                     swal('Failed', 'Issue Role not valid - please try again.', 'error');
                     return;
                 }
-                $ctrl.IssueCreator.Name = $ctrl.name;
+                $ctrl.newCreator.Name = $ctrl.name;
                 $ctrl.newCreator.Country = $ctrl.country;
                 $ctrl.newCreator.TaxRef = $ctrl.tax;
                 $ctrl.newCreator.Email = $ctrl.email;
