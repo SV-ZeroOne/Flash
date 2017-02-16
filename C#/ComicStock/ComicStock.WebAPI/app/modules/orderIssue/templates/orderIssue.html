@@ -67,7 +67,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Order Date</p></strong>
+                                            <strong><p>Order Date:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>{{$ctrl.order.OrderDate | date:'yyyy-MM-dd'}}</p>
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Order Total</p></strong>
+                                            <strong><p>Order Total:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>R {{$ctrl.order.Total | number:2}}</p>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Supplier</p></strong>
+                                            <strong><p>Supplier:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>{{$ctrl.order.Supplier.Name}}</p>
@@ -100,7 +100,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Shipment Reference</p></strong>
+                                            <strong><p>Shipment Reference:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>{{$ctrl.order.ShipmentRef}}</p>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Shipment Date</p></strong>
+                                            <strong><p>Shipment Date:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>{{$ctrl.order.ShipmentDate | date:'yyyy-MM-dd'}}</p>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-6">
-                                            <strong><p>Delivery Status</p></strong>
+                                            <strong><p>Delivery Status:</p></strong>
                                         </div>
                                         <div class="col-xs-6">
                                             <p>{{$ctrl.order.DeliveryStatus}}</p>
@@ -174,8 +174,9 @@
                                 <tr>
                                     <th>Issue Title</th>
                                     <th>Series Number</th>
-                                    <th>Price (incl. VAT)</th>
                                     <th>Quantity Ordered</th>
+                                    <th>Order Price (incl. VAT)</th>
+                                    <th>Selling Price(incl. VAT)</th>
                                     <th>New Stock Quantity</th>
                                     <!--<th>Edit</th>-->
                                 </tr>
@@ -185,8 +186,9 @@
                                 <tr ng-repeat="issue in $ctrl.issues">
                                     <td>{{issue.Issue.Title}}</td>
                                     <td>{{issue.Issue.SeriesNumber}}</td>
-                                    <td>R {{issue.SupplierQuote.Price | number:2}}</td>
                                     <td>{{issue.QuantityOrdered}}</td>
+                                    <td>R {{issue.SupplierQuote.Price | number:2}}</td>
+                                    <td>R {{issue.Issue.Stock[0].Price | number:2}}</td>
                                     <td>{{issue.Issue.Stock[0].AvailableQuantity}}</td>
 
                                     <!--<td>{{issue.Role}}</td>-->
