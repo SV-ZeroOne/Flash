@@ -1,29 +1,27 @@
-﻿<div class="brand clearfix" >
+﻿<div class="brand clearfix">
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
-    <ul class="ts-profile-nav">
-    
-    </ul>
+    <ul class="ts-profile-nav"></ul>
 </div>
-<div class="ts-main-content" ng-controller ="orderIssueController as $ctrl">
+<div class="ts-main-content" ng-controller="orderIssueController as $ctrl">
     <nav class="ts-sidebar">
         <ul class="ts-sidebar-menu">
             <li class="ts-label">Home</li>
-            
+
 
             <li> <a href="#!/"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             <li class="ts-label">Management</li>
-            <li >
+            <li>
                 <a href="#!/supplier"><i class="fa fa-users"></i>Suppliers</a>
             </li>
-            <li><a  href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
+            <li><a href="#!/voucher"><i class="fa fa-ticket"></i>Vouchers</a></li>
             <li class="open"><a href="#!/order"><i class="fa fa-edit"></i>Orders</a></li>
             <li><a href="#!/issue"><i class="fa fa-book"></i>Issues</a></li>
-            <li ><a  href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
+            <li><a href="#!/creator"><i class="fa fa-user"></i>Creators</a></li>
             <li><a href="#!/stock"><i class="fa fa-tasks"></i>Stocks</a></li>
             <li class="ts-label">Ordering</li>
             <li><a href="#!/placeOrder"><i class="fa fa-truck"></i>Place Order</a></li>
- 
+
 
             <!-- Account from above -->
             <ul class="ts-profile-nav">
@@ -44,96 +42,98 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                   
+
                     <div class="row">
                         <div class="col-sm-4">
-                            <h2>{{$ctrl.message}}</h2>
+                            <h2>Order Summary</h2>
                         </div>
                         <div class="col-sm-8 text-right" style="margin-top: 20px;">
                             <!--<button class="btn btn-primary" ng-click="$ctrl.show()">Add an Issue to Creator</button>-->
-                       </div>
-                      
+                        </div>
+
                     </div>
                     <hr />
-                 
-                   
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Order Summary</div>
-                        <div class="panel-body">
-                            <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
-                            
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title" style="color:white">Order Details</h3>
+
+
+
+                    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="color:white">Order Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Order Date</p></strong>
                                         </div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Order Date</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>{{$ctrl.OrderDate | date:'yyyy-MM-dd'}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Order Price</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>R {{$ctrl.price | number:2}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Supplier</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>{{$ctrl.supplier}}</p>
-                                                </div>
-                                            </div>
+                                        <div class="col-xs-6">
+                                            <p>{{$ctrl.order.OrderDate | date:'yyyy-MM-dd'}}</p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title" style="color:white">Shipping Details</h3>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Order Total</p></strong>
                                         </div>
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Shipment Reference</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>{{$ctrl.shipmentRef}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Shipment Date</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>{{$ctrl.shipDate | date:'yyyy-MM-dd'}}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <strong><p>Delivery Status</p></strong>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <p>{{$ctrl.status}}</p>
-                                                </div>
-                                            </div>
+                                        <div class="col-xs-6">
+                                            <p>R {{$ctrl.order.Total | number:2}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Supplier</p></strong>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p>{{$ctrl.order.Supplier.Name}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel panel-primary" color='#2c3136'>
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="color:white">Shipping Details</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Shipment Reference</p></strong>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p>{{$ctrl.order.ShipmentRef}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Shipment Date</p></strong>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p>{{$ctrl.order.ShipmentDate | date:'yyyy-MM-dd'}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong><p>Delivery Status</p></strong>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p>{{$ctrl.order.DeliveryStatus}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-
-                                <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" style="color:white">Issue Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
                                 <div class="row">
                                     <!--<div class="col-sm-4">
@@ -169,7 +169,7 @@
 
                                 </div>
 
-                            </div>
+
                                 <thead>
                                 <tr>
                                     <th>Issue Title</th>
@@ -180,50 +180,50 @@
                                     <!--<th>Edit</th>-->
                                 </tr>
                                 </thead>
-                                <tbody >
+                                <tbody>
 
                                 <tr ng-repeat="issue in $ctrl.issues">
                                     <td>{{issue.Issue.Title}}</td>
                                     <td>{{issue.Issue.SeriesNumber}}</td>
                                     <td>R {{issue.SupplierQuote.Price | number:2}}</td>
                                     <td>{{issue.QuantityOrdered}}</td>
-                                    <td><!--add stock quantity here--></td>
-                                  
+                                    <td>{{issue.Issue.Stock[0].AvailableQuantity}}</td>
+
                                     <!--<td>{{issue.Role}}</td>-->
-                                <!--    <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>-->
+                                    <!--    <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>-->
 
                                 </tr>
+                                 
                                 </tbody>
-
+                               
                             </table>
-                        <!--<div class="col-sm-12 text-center">
-                            <div class="text-center">
-                                <ul class="pagination" ng-model="$ctrl.page">
-                                    <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
-                                        <a><i class="fa fa-angle-left "></i></a>
-                                    </li>
-                                    <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
-                                        <a>{{n}}</a>
-                                    </li>
-                                    <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
-                                        <a><i class="fa fa-angle-right"></i></a>
-                                    </li>
-                                </ul>
+                            <div class="row">
+                                <div class="col-sm-7"></div>
+                                <div class="col-sm-5">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Projected Profit (excl. overheads)</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Projected Profit</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <strong><p>R {{$ctrl.profit | number:2}}</p></strong>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>-->
-                        </hr>
-                        <div class="row">
-                            
-                        </div>
-
-                        </div>
+                            </div>
                     </div>
                 </div>
-                        
-                    </div>
-
-                </div>
-            </div>
-
-
+              
         </div>
+
+    </div>
+
+

@@ -5,6 +5,8 @@ angular.module('orderIssueModule', [])
             var $ctrl = this;
             $ctrl.message = "";
             $ctrl.newOrderIssue = {};
+            $ctrl.order = {};
+            $ctrl.totalStockPrice = null;
             $ctrl.currentOrderIssue = {};
 
             $ctrl.issues = {};
@@ -29,8 +31,10 @@ angular.module('orderIssueModule', [])
                 $http
                     .get('/api/Order/' + $sessionStorage.get('orderId'))
                     .then(function(response) {
+                        $ctrl.order = response.data;
                         $ctrl.issues = response.data.IssueOrders;
                         $ctrl.message = "Issues in Order";
+                        calculate(response.data.IssueOrders);
 
                     })
                     .catch(function(errorResponse) {
@@ -40,7 +44,17 @@ angular.module('orderIssueModule', [])
 
               
             }
-
+            calculate = function (issues) {
+                
+              for (var i = 0; i < issues.length; i++) {
+  
+                    var Quantity = issues[i].QuantityOrdered;
+                   var StockPrice = issues[i].Issue.Stock[0].Price;
+                    $ctrl.totalStockPrice += Quantity * StockPrice;
+                }
+                $ctrl.profit = $ctrl.totalStockPrice - $ctrl.order.Total;
+            }
+         
             $ctrl.updateTable();
 
 

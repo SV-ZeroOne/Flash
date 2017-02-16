@@ -43,14 +43,20 @@ namespace ComicStock.WebAPI.Controllers
             {
                 OrderDTO dto = new OrderDTO(order);
                 dto.IssueOrders = order.IssueOrders.Select(io => new IssueOrderDTO(io) {
-                    Issue = new IssueDTO(io.Issue),
+                    Issue = new IssueDTO(io.Issue)
+                    {
+                        Stock = io.Issue.Stocks.Where(s => s.Condition == "Very Fine").Select(s => new StockDTO(s))
+                    },
+                  
                     SupplierQuote = new SupplierQuoteDTO(io.SupplierQuote)
                 });
+                
                 dto.Supplier = new SupplierDTO(order.Supplier);
                 dto.SupplierPayments = order.SupplierPayments.Select(sp => new SupplierPaymentDTO(sp));
 
                 return Ok(dto);
             }
+
 
             return ResponseMessage(Request.CreateErrorResponse(
                 HttpStatusCode.NotFound,
