@@ -28,15 +28,16 @@ namespace ComicStock.Data.Repositories
 
         public IEnumerable<SupplierQuote> GetPage(int id, int page, int pageSize)
         {
-            var supplierQuotes = this.context.SupplierQuotes.AsQueryable().OrderBy(x => x.ID).Where(x => x.Supplier.ID == id);
+            var supplierQuotes = this.context.SupplierQuotes.AsQueryable()
+                .OrderBy(x => x.Issue.Title).Where(x => x.Supplier.ID == id);
             return base.GetPage(supplierQuotes, page, pageSize); 
         }
 
         public IEnumerable<SupplierQuote> GetPage(string search, int id, int page, int pageSize)
         {
             var suppliers = this.context.SupplierQuotes.AsQueryable()
-                .OrderByDescending(x => x.ID)
-                .Where(x => x.Issue.Title.Contains(search) && x.Supplier.ID == id); // || x.Issue.SeriesNumber == Int16.Parse(search)
+                .OrderBy(x => x.Issue.Title)
+                .Where(x => (x.Issue.Title.Contains(search) || x.Issue.Publisher.Contains(search)) && x.Supplier.ID == id); // || x.Issue.SeriesNumber == Int16.Parse(search)
 
             return base.GetPage(suppliers, page, pageSize);
         }
@@ -50,19 +51,11 @@ namespace ComicStock.Data.Repositories
             return base.Count(suppliers);
         }
 
-        public override int Count()
-        {
-            var suppliers = this.context.SupplierQuotes.AsQueryable()
-                .OrderBy(x => x.ID);
-
-            return base.Count(suppliers);
-        }
-
-        public int Count(string search)
+        public int Count(int id, string search)
         {
             var issues = this.context.SupplierQuotes.AsQueryable()
                 .OrderBy(x => x.ID)
-                .Where(x => x.Issue.Title.Contains(search) || x.Issue.SeriesNumber == Int16.Parse(search));
+                .Where(x => (x.Issue.Title.Contains(search) || x.Issue.Publisher.Contains(search)) && x.Supplier.ID == id);
 
             return base.Count(issues);
         }
