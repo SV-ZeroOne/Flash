@@ -81,13 +81,6 @@ namespace ComicStock.WebAPI.Controllers
                 "Error placing the order: " + httpEx.Message)
                 );
             }
-            catch (Exception ex)
-            {
-                return ResponseMessage(Request.CreateErrorResponse(
-                HttpStatusCode.NotFound,
-                "Error placing the order: " + ex.Message)
-                );
-            }
 
             OrderDTO dto = new OrderDTO(order);
             dto.IssueOrders = order.IssueOrders.Select(io => new IssueOrderDTO(io)
