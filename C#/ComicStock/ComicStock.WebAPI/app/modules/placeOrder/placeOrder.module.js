@@ -157,10 +157,11 @@ angular.module('placeOrderModule', [])
             }
 
             $ctrl.placeOrder = function () {
+
                 $http
                     .post('/api/Order', $ctrl.order)
                     .then(function (response) {
-                        swal('Success', 'Order placed', 'success');
+                        $ctrl.supplierQuotes = [];
                         console.log(response);
                         $ctrl.order = {
                             Total: 0,
@@ -171,10 +172,20 @@ angular.module('placeOrderModule', [])
                             IssueOrders: [
                             ]
                         }
+                        swal({
+                            title: 'Order placed',
+                            text: "View this order?",
+                            type: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d5',
+                            cancelButtonColor: '#2c3136',
+                            cancelButtonText: 'Stay on this page',
+                            confirmButtonText: 'Yes'
+                        }).then(function () {
+                            $sessionStorage.put('orderId', response.data.Id)
+                            window.location = "#!/orderIssue";
+                        })
                     })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!' + JSON.stringify(errorResponse), "error");
-                    });
 
             }
 
