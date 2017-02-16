@@ -54,7 +54,7 @@ namespace ComicStock.WebAPI.Controllers
         {
             IEnumerable<CreatorDTO> creators = creatorRepository.GetPage(search, page, pageSize).Select(c => new CreatorDTO(c)
             {
-                Issues = c.ComicCreators.Select(cc => new IssueDTO(cc.Issue))
+                //Issues = c.ComicCreators.Select(cc => new IssueDTO(cc.Issue))
             });
 
             return Ok(creators);
