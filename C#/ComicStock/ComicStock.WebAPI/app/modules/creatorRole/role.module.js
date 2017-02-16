@@ -145,7 +145,11 @@ angular.module('creatorRoleModule', [])
             var $ctrl = this;
             $ctrl.newCreator = {};
 
+<<<<<<< HEAD
             $ctrl.modalTitle = 'Add Creator';
+=======
+            $ctrl.modalTitle = 'Add a Creator';
+>>>>>>> adc1392985e4c24927c632d45e86c65dff854464
 
             $ctrl.submit = function (isFormValid) {
                 if (!isFormValid) {

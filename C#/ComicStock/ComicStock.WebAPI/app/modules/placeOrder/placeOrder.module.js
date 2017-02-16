@@ -167,7 +167,7 @@ angular.module('placeOrderModule', [])
                         }
                     })
                     .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!', "error");
+                        swal('Oops...', 'Something went wrong!' + JSON.stringify(errorResponse), "error");
                     });
 
             }
