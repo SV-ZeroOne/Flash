@@ -111,6 +111,13 @@ angular.module('placeOrderModule', [])
 
             $ctrl.addToOrder = function (supplierQuote) {
                 console.log("Added to order")
+                for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
+                    if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id)
+                    {
+                        $ctrl.order.IssueOrders[x].QuantityOrdered += 1;
+                        return;
+                    }
+                }
                 $ctrl.order.IssueOrders.push({
                     QuantityOrdered: 1,
                     SupplierQuote: supplierQuote,
