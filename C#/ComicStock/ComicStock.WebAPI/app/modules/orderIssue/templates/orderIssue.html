@@ -58,53 +58,125 @@
                  
                    
                     <div class="panel panel-default">
-                        <div class="panel-heading">Issues in Order</div>
+                        <div class="panel-heading">Order Summary</div>
                         <div class="panel-body">
                             <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title" style="color:white">Order Details</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Order Date</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>{{$ctrl.OrderDate | date:'yyyy-MM-dd'}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Order Price</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>R {{$ctrl.price | number:2}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Supplier</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>{{$ctrl.supplier}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title" style="color:white">Shipping Details</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Shipment Reference</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>{{$ctrl.shipmentRef}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Shipment Date</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>{{$ctrl.shipDate | date:'yyyy-MM-dd'}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-6">
+                                                    <strong><p>Delivery Status</p></strong>
+                                                </div>
+                                                <div class="col-xs-6">
+                                                    <p>{{$ctrl.status}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+
+
+                                <table id="table" datatable="ng" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 
                                 <div class="row">
                                     <!--<div class="col-sm-4">
-                                        <label for="mySelect">
-                                            Show
-                                            <select name="mySelect" id="mySelect"
-                                                    class="form-control input-sm"
-                                                    ng-click="$ctrl.updateTable()"
-                                                    ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
-                                                    ng-model="$ctrl.pagination.pageSize"></select>
-                                        </label>-->
-                                    </div>
+                                    <label for="mySelect">
+                                        Show
+                                        <select name="mySelect" id="mySelect"
+                                                class="form-control input-sm"
+                                                ng-click="$ctrl.updateTable()"
+                                                ng-options="option for option in $ctrl.pagination.pageSizeOptions track by option"
+                                                ng-model="$ctrl.pagination.pageSize"></select>
+                                    </label>-->
+                                </div>
 
-                                    <!--<div class="col-sm-4">
-                                        <div class="text-center">
-                                            <ul class="pagination" ng-model="$ctrl.page">
-                                                <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
-                                                    <a><i class="fa fa-angle-left "></i></a>
-                                                </li>
-                                                <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
-                                                    <a>{{n}}</a>
-                                                </li>
-                                                <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
-                                                    <a><i class="fa fa-angle-right"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>-->
-                                    <div class="col-sm-4 text-right">
-                                        <!--<label class="text-left">
-                                            Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
-                                        </label>-->
-
+                                <!--<div class="col-sm-4">
+                                    <div class="text-center">
+                                        <ul class="pagination" ng-model="$ctrl.page">
+                                            <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
+                                                <a><i class="fa fa-angle-left "></i></a>
+                                            </li>
+                                            <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
+                                                <a>{{n}}</a>
+                                            </li>
+                                            <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
+                                                <a><i class="fa fa-angle-right"></i></a>
+                                            </li>
+                                        </ul>
                                     </div>
+                                </div>-->
+                                <div class="col-sm-4 text-right">
+                                    <!--<label class="text-left">
+                                        Search:<input type="search" ng-model="$ctrl.search" ng-change="$ctrl.updateTable()" class="form-control input-sm" placeholder="" aria-controls="zctb">
+                                    </label>-->
 
                                 </div>
+
+                            </div>
                                 <thead>
                                 <tr>
                                     <th>Issue Title</th>
                                     <th>Series Number</th>
                                     <th>Price (incl. VAT)</th>
-                                    <th>Quantity</th>
+                                    <th>Quantity Ordered</th>
+                                    <th>New Stock Quantity</th>
                                     <!--<th>Edit</th>-->
                                 </tr>
                                 </thead>
@@ -115,6 +187,7 @@
                                     <td>{{issue.Issue.SeriesNumber}}</td>
                                     <td>R {{issue.SupplierQuote.Price | number:2}}</td>
                                     <td>{{issue.QuantityOrdered}}</td>
+                                    <td><!--add stock quantity here--></td>
                                   
                                     <!--<td>{{issue.Role}}</td>-->
                                 <!--    <td><a style="cursor: pointer" ng-click='$ctrl.edit(issue.Id)' style="cursor: pointer;"><i class="fa fa-pencil"/></a></td>-->
@@ -123,21 +196,25 @@
                                 </tbody>
 
                             </table>
-                            <!--<div class="col-sm-12 text-center">
-                                <div class="text-center">
-                                    <ul class="pagination" ng-model="$ctrl.page">
-                                        <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
-                                            <a><i class="fa fa-angle-left "></i></a>
-                                        </li>
-                                        <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
-                                            <a>{{n}}</a>
-                                        </li>
-                                        <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
-                                            <a><i class="fa fa-angle-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>-->
+                        <!--<div class="col-sm-12 text-center">
+                            <div class="text-center">
+                                <ul class="pagination" ng-model="$ctrl.page">
+                                    <li ng-class="$ctrl.pagination.prevDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page > 1) ? ($ctrl.pagination.page - 1) : $ctrl.pagination.page)">
+                                        <a><i class="fa fa-angle-left "></i></a>
+                                    </li>
+                                    <li ng-repeat="n in $ctrl.pagination.pageOptions track by $index" ng-click="$ctrl.pageTo(n)" class="{{(n==$ctrl.pagination.page) ? 'waves-effect active': 'waves-effect'}}">
+                                        <a>{{n}}</a>
+                                    </li>
+                                    <li ng-class="$ctrl.pagination.nextDisable" ng-click="$ctrl.pageTo(($ctrl.pagination.page < $ctrl.pagination.numPages) ? ($ctrl.pagination.page + 1) : $ctrl.pagination.page)">
+                                        <a><i class="fa fa-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>-->
+                        </hr>
+                        <div class="row">
+                            
+                        </div>
 
                         </div>
                     </div>

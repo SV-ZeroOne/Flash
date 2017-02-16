@@ -37,6 +37,8 @@ angular.module('orderIssueModule', [])
                         console.log(errorResponse);
 
                     });
+
+              
             }
 
             $ctrl.updateTable();
