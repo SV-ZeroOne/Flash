@@ -48,9 +48,16 @@ angular.module('placeOrderModule', [])
                     });
             }
 
+            $ctrl.showSnackbar = function () {
+                var x = document.getElementById("snackbar")
+                x.className = "show";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1300);
+            }
+
             $ctrl.clearOrderAndUpdateQuote = function () {
                 $ctrl.order.IssueOrders = []
                 $ctrl.updateQuotes();
+
             }
 
             $ctrl.updateQuotes = function () {
@@ -116,7 +123,10 @@ angular.module('placeOrderModule', [])
             }
 
             $ctrl.addToOrder = function (supplierQuote) {
-                console.log("Added to order")
+                console.log("Added to order");
+
+               
+
                 for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
                     if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id)
                     {
@@ -124,6 +134,7 @@ angular.module('placeOrderModule', [])
                         return;
                     }
                 }
+
                 $ctrl.order.IssueOrders.push({
                     QuantityOrdered: 1,
                     SupplierQuote: supplierQuote,
