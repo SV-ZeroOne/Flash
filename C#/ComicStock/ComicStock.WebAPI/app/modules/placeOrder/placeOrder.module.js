@@ -35,6 +35,7 @@ angular.module('placeOrderModule', [])
 
             $ctrl.updateSuppliers = function () {
                 console.log("Update the suppliers");
+                $ctrl.order.IssueOrders = []
                 $http
                     .get('/api/Supplier?page=1&pageSize=9999')
                     .then(function (response) {
@@ -47,16 +48,22 @@ angular.module('placeOrderModule', [])
                     });
             }
 
-            $ctrl.showSnackbar = function() {
+            $ctrl.showSnackbar = function () {
                 var x = document.getElementById("snackbar")
                 x.className = "show";
                 setTimeout(function () { x.className = x.className.replace("show", ""); }, 1300);
             }
 
+            $ctrl.clearOrderAndUpdateQuote = function () {
+                $ctrl.order.IssueOrders = []
+                $ctrl.updateQuotes();
+
+            }
+
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
-                $ctrl.order.IssueOrders = []
+                
                 if ($ctrl.search == "") $http
                     .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
@@ -77,7 +84,7 @@ angular.module('placeOrderModule', [])
                         });
 
                 $http
-                    .get('/api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id)
+                    .get('api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id + (($ctrl.search == "") ? "" : "&search=" + $ctrl.search))
                     .then(function (response) {
                         $ctrl.pagination.count = response.data;
 
