@@ -35,6 +35,7 @@ angular.module('placeOrderModule', [])
 
             $ctrl.updateSuppliers = function () {
                 console.log("Update the suppliers");
+                $ctrl.order.IssueOrders = []
                 $http
                     .get('/api/Supplier?page=1&pageSize=9999')
                     .then(function (response) {
@@ -47,10 +48,22 @@ angular.module('placeOrderModule', [])
                     });
             }
 
+            $ctrl.showSnackbar = function () {
+                var x = document.getElementById("snackbar")
+                x.className = "show";
+                setTimeout(function () { x.className = x.className.replace("show", ""); }, 1300);
+            }
+
+            $ctrl.clearOrderAndUpdateQuote = function () {
+                $ctrl.order.IssueOrders = []
+                $ctrl.updateQuotes();
+
+            }
+
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
-                $ctrl.order.IssueOrders = []
+                
                 if ($ctrl.search == "") $http
                     .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
@@ -71,7 +84,7 @@ angular.module('placeOrderModule', [])
                         });
 
                 $http
-                    .get('/api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id)
+                    .get('api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id + (($ctrl.search == "") ? "" : "&search=" + $ctrl.search))
                     .then(function (response) {
                         $ctrl.pagination.count = response.data;
 
@@ -110,7 +123,10 @@ angular.module('placeOrderModule', [])
             }
 
             $ctrl.addToOrder = function (supplierQuote) {
-                console.log("Added to order")
+                console.log("Added to order");
+
+               
+
                 for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
                     if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id)
                     {
@@ -118,6 +134,7 @@ angular.module('placeOrderModule', [])
                         return;
                     }
                 }
+
                 $ctrl.order.IssueOrders.push({
                     QuantityOrdered: 1,
                     SupplierQuote: supplierQuote,
@@ -151,10 +168,11 @@ angular.module('placeOrderModule', [])
             }
 
             $ctrl.placeOrder = function () {
+
                 $http
                     .post('/api/Order', $ctrl.order)
                     .then(function (response) {
-                        swal('Success', 'Order placed', 'success');
+                        $ctrl.supplierQuotes = [];
                         console.log(response);
                         $ctrl.order = {
                             Total: 0,
@@ -165,10 +183,20 @@ angular.module('placeOrderModule', [])
                             IssueOrders: [
                             ]
                         }
+                        swal({
+                            title: 'Order placed',
+                            text: "View this order?",
+                            type: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d5',
+                            cancelButtonColor: '#2c3136',
+                            cancelButtonText: 'Stay on this page',
+                            confirmButtonText: 'Yes'
+                        }).then(function () {
+                            $sessionStorage.put('orderId', response.data.Id)
+                            window.location = "#!/orderIssue";
+                        })
                     })
-                    .catch(function (errorResponse) {
-                        swal('Oops...', 'Something went wrong!' + JSON.stringify(errorResponse), "error");
-                    });
 
             }
 
