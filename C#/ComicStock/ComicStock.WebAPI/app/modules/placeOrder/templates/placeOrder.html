@@ -220,21 +220,25 @@ input[type="number"] {
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 35%; transform: translate(-50%, 0); bottom: 20%; color:white;">
                                                 {{(supplierQuote.Issue.Stock[0].AvailableQuantity == 0)?"Out of Stock":"Current Stock: "+supplierQuote.Issue.Stock[0].AvailableQuantity }}
                                             </div>
-                                            <div class="btn" style="background-color: rgba(36, 36, 36, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 80%; color:white;">
-                                                {{supplierQuote.Issue.Title}}
-                                            </div>
-                                            
-                                            <div class="btn btn-warning" style="position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 80%;">
-                                                <div class="row">
-                                                   
-                                                    Cheaper Option Available
+                                            <center>
+                                                <div class="btn" style="background-color: rgba(36, 36, 36, 1); position: absolute; left: 50%; transform: translate(-50%, 0); width:85%; bottom: 80%; color:white;">
+                                                    {{supplierQuote.Issue.Title}}
                                                 </div>
-                                                <div class="row">
-                                                 
-                                                        {{supplierQuote.Cheapest.Supplier.Name}}: R{{supplierQuote.Cheapest.Price | number:2}}
-                       
+                                            </center>
+                                        
+                                            <center>
+                                                <div class="btn" style=" background-color: rgb(7, 58, 101); position: absolute; left: 50%; transform: translate(-50%, 0); width: 80%;bottom: 30%; color: white;">
+                                                    <div class="row">
+
+                                                        Cheaper Option Available
                                                     </div>
-                                            </div>
+                                                    <div class="row">
+
+                                                        {{supplierQuote.Cheapest.Supplier.Name}}: R{{supplierQuote.Cheapest.Price | number:2}}
+
+                                                    </div>
+                                                </div>
+                                            </center>
                                            </div>
 
                                             <!--<div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 35%; color:white;">
@@ -243,7 +247,7 @@ input[type="number"] {
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
                                                 R {{supplierQuote.Price |number:2}}
                                             </div>
-                                            <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
+                                            <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 30%; transform: translate(-50%, 0); bottom: 5%; color:white;">
                                                     <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-up" />
                                                     </a>
@@ -253,7 +257,7 @@ input[type="number"] {
                                                     </a>
                                              </div>
                                             
-                                            <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 30%; transform: translate(-50%, 0); bottom: 5%; color:white;">
+                                            <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
                                                 Add to Order
                                             </div>
                                             <div id="snackbar">Added to Order</div>
