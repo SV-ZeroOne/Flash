@@ -232,8 +232,7 @@ input[type="number"] {
                                                 <div class="row">
                                                  
                                                         {{supplierQuote.Cheapest.Supplier.Name}}: R{{supplierQuote.Cheapest.Price | number:2}}
-                                                   
-                                                    
+                       
                                                     </div>
                                             </div>
                                            </div>
@@ -242,7 +241,7 @@ input[type="number"] {
                                                 R {{supplierQuote.Cheapest.Price}}
                                             </div>-->
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
-                                                R {{supplierQuote.Price}}
+                                                R {{supplierQuote.Price |number:2}}
                                             </div>
                                             <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
                                                     <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
