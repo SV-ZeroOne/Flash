@@ -141,7 +141,7 @@ input[type="number"] {
                                         <tr ng-repeat="issueOrders in $ctrl.order.IssueOrders">
                                             <td>{{issueOrders.Issue.Title}}</td>
                                             <td>{{issueOrders.Issue.SeriesNumber}}</td>
-                                            <td>R {{issueOrders.SupplierQuote.Price}}</td>
+                                            <td>R {{issueOrders.SupplierQuote.Price |number:2}}</td>
                                             <td>
                                                 <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                     <i class="fa fa-chevron-up" />
@@ -223,9 +223,24 @@ input[type="number"] {
                                             <div class="btn" style="background-color: rgba(36, 36, 36, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 80%; color:white;">
                                                 {{supplierQuote.Issue.Title}}
                                             </div>
-                                            <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 35%; color:white;">
-                                                R {{supplierQuote.Cheapest.Price}}
+                                            
+                                            <div class="btn btn-warning" style="position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 80%;">
+                                                <div class="row">
+                                                   
+                                                    Cheaper Option Available
+                                                </div>
+                                                <div class="row">
+                                                 
+                                                        {{supplierQuote.Cheapest.Supplier.Name}}: R{{supplierQuote.Cheapest.Price | number:2}}
+                                                   
+                                                    
+                                                    </div>
                                             </div>
+                                           </div>
+
+                                            <!--<div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 35%; color:white;">
+                                                R {{supplierQuote.Cheapest.Price}}
+                                            </div>-->
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
                                                 R {{supplierQuote.Price}}
                                             </div>
