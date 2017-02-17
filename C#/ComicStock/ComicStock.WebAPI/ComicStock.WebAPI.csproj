@@ -229,6 +229,7 @@
     <Content Include="app\assets\css\style.css" />
     <Content Include="app\assets\css\vars.css" />
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\assets\js\popOver.js" />
     <Content Include="favicon.ico" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />

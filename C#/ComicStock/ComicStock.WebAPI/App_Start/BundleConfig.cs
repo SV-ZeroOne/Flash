@@ -19,7 +19,8 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/jquery.min.js",
                       "~/app/assets/js/jquery.dataTables.min.js",
                       "~/app/assets/js/fileinput.js",
-                      "~/app/assets/js/main.js"
+                      "~/app/assets/js/main.js",
+                      "~/app/assets/js/popOver.js"
                 ));
 
 
