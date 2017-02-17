@@ -229,10 +229,7 @@ input[type="number"] {
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
                                                 R {{supplierQuote.Price}}
                                             </div>
-                                            
-                                            
-                                            <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 5%; color:white;">
-                                                Add to Order
+                                            <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
                                                     <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-up" />
                                                     </a>
@@ -240,6 +237,10 @@ input[type="number"] {
                                                     <a ng-click="$ctrl.decreaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-down" />
                                                     </a>
+                                             </div>
+                                            
+                                            <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 30%; transform: translate(-50%, 0); bottom: 5%; color:white;">
+                                                Add to Order
                                             </div>
                                             <div id="snackbar">Added to Order</div>
                                         </div>
