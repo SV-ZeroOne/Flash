@@ -29,6 +29,7 @@ namespace ComicStock.WebAPI.Controllers
             {
                     supplierQuotes = supplierQuoteRepository.GetPage(id, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
                     {
+                        Cheapest = new SupplierQuoteDTO(supplierQuoteRepository.GetCheapest(sq.Issue.ID)),
                         Issue = new IssueDTO(sq.Issue)
                         {
                             Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")

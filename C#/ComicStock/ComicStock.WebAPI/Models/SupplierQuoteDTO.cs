@@ -18,6 +18,8 @@ namespace ComicStock.WebAPI.Models
 
         public virtual SupplierDTO Supplier { get; set; }
 
+        public virtual SupplierQuoteDTO Cheapest { get; set; }
+
         public virtual ICollection<IssueOrderDTO> IssueOrders { get; set; }
 
         public SupplierQuoteDTO() { }

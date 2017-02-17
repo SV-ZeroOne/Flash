@@ -3,7 +3,7 @@ angular.module('placeOrderModule', [])
         function ($http, $rootScope, ModalService, $sessionStorage) {
 
             var $ctrl = this;
-            $ctrl.message = 'Order Management';
+            $ctrl.message = 'Place an Order';
             $ctrl.issueMessage = "";
 
             $ctrl.suppliers = [];

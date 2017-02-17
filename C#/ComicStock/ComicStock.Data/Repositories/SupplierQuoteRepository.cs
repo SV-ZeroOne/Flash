@@ -59,5 +59,14 @@ namespace ComicStock.Data.Repositories
 
             return base.Count(issues);
         }
+
+        public SupplierQuote GetCheapest(int id)
+        {
+            SupplierQuote supplierQuote = this.context.SupplierQuotes.AsQueryable()
+                .OrderBy(x => x.Price)
+                .Where(x => x.Issue.ID == id).FirstOrDefault();
+
+            return supplierQuote;
+        }
     }
 }
