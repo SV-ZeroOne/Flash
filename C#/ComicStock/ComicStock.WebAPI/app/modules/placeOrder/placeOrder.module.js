@@ -236,6 +236,7 @@ angular.module('placeOrderModule', [])
                     .then(function (response) {
                         $ctrl.supplierQuotes = [];
                         console.log(response);
+                        $ctrl.updateSuppliers();
                         $ctrl.order = {
                             Total: 0,
                             Supplier: {
