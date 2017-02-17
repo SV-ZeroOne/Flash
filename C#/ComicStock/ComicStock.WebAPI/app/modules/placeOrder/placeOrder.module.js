@@ -60,14 +60,30 @@ angular.module('placeOrderModule', [])
 
             }
 
+            $ctrl.addQty = function () {
+                console.log($ctrl.supplierQuotes)
+                for (var x = 0; x < $ctrl.supplierQuotes.length; x++)
+                {
+                    for(var y = 0; y < $ctrl.order.IssueOrders.length; y++)
+                    {
+                        if ($ctrl.order.IssueOrders[y].SupplierQuote.Id == $ctrl.supplierQuotes[x].Id) {
+                            $ctrl.supplierQuotes[x].Qty = $ctrl.order.IssueOrders[y].QuantityOrdered
+                            $ctrl.order.IssueOrders.QuantityOrdered = $ctrl.supplierQuotes[x].Qty;
+                        }
+                    }
+                }
+            }
+
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
-                
                 if ($ctrl.search == "") $http
                     .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                     .then(function (response) {
-                        $ctrl.supplierQuotes = response.data;
+                        console.log(response.data)
+                        $ctrl.supplierQuotes = response.data
+                        $ctrl.addQty();
+                        
                         $ctrl.issueMessage = "Add Issues to your Order:";
                     })
                     .catch(function (errorResponse) {
@@ -76,7 +92,9 @@ angular.module('placeOrderModule', [])
                 else $http
                         .get('/api/SupplierQuote/search?search='+$ctrl.search+'&id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
                         .then(function (response) {
-                            $ctrl.supplierQuotes = response.data;
+                            $ctrl.supplierQuotes = response.data
+                            $ctrl.addQty();
+
                             $ctrl.issueMessage = "Add Issues to your Order:";
                         })
                         .catch(function (errorResponse) {
@@ -120,12 +138,19 @@ angular.module('placeOrderModule', [])
                 if (issueOrders.QuantityOrdered < 1)
                     issueOrders.QuantityOrdered = 1;
                 $ctrl.updateOrderTotal();
+                $ctrl.addQty();
+            }
+
+            $ctrl.validateQuoteQty = function (supplierQuote) {
+                console.log("Validate Quote Qty")
+                if (supplierQuote.Qty < 0)
+                    supplierQuote.Qty = 0;
+                $ctrl.updateOrderTotal();
+                $ctrl.addQty();
             }
 
             $ctrl.addToOrder = function (supplierQuote) {
                 console.log("Added to order");
-
-               
 
                 for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
                     if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id)
@@ -140,6 +165,7 @@ angular.module('placeOrderModule', [])
                     SupplierQuote: supplierQuote,
                     Issue: supplierQuote.Issue
                 });
+                $ctrl.addQty();
                 $ctrl.updateOrderTotal();
             }
 
@@ -154,11 +180,29 @@ angular.module('placeOrderModule', [])
                     return;
                 issueOrder.QuantityOrdered = issueOrder.QuantityOrdered - 1;
                 $ctrl.updateOrderTotal();
+                $ctrl.addQty();
             }
 
             $ctrl.increaseQty = function (issueOrder) {
                 issueOrder.QuantityOrdered = issueOrder.QuantityOrdered + 1;
                 $ctrl.updateOrderTotal();
+                $ctrl.addQty();
+            }
+
+            $ctrl.decreaseQuoteQty = function (issueOrder) {
+                console.log("Decrease Quote Qty")
+                if (issueOrder.Qty == 1)
+                    return;
+                issueOrder.Qty = issueOrder.Qty - 1;
+                $ctrl.updateOrderTotal();
+                $ctrl.addQty();
+            }
+
+            $ctrl.increaseQuoteQty = function (issueOrder) {
+                console.log("Decrease Quote Qty")
+                issueOrder.Qty = issueOrder.Qty + 1;
+                $ctrl.updateOrderTotal();
+                $ctrl.addQty();
             }
 
             $ctrl.updateOrderTotal = function () {

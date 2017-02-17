@@ -230,11 +230,11 @@ input[type="number"] {
                                                 R {{supplierQuote.Price}}
                                             </div>
                                             <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
-                                                    <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
+                                                    <a ng-click="$ctrl.increaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-up" />
                                                     </a>
-                                                    <input class="form-horizontal form-inline" style="width:35px; height:auto" type="number" ng-change="$ctrl.validateQty(issueOrders)" ng-model="issueOrders.QuantityOrdered"></input>
-                                                    <a ng-click="$ctrl.decreaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
+                                                    <input class="form-horizontal form-inline" style="width:35px; height:auto" type="number"  ng-model="supplierQuote.Qty"></input>
+                                                    <a ng-click="$ctrl.decreaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-down" />
                                                     </a>
                                              </div>
