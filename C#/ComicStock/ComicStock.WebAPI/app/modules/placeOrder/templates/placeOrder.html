@@ -233,7 +233,8 @@ input[type="number"] {
                                                     <a ng-click="$ctrl.increaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-up" />
                                                     </a>
-                                                    <input class="form-horizontal form-inline" style="width:35px; height:auto" type="number"  ng-model="supplierQuote.Qty"></input>
+                                                    <!--<input class="form-horizontal form-inline" style="width:35px; height:auto" type="number" value="supplierQuote.Qty" ng-model="supplierQuote.Qty"></input>-->
+                                                {{supplierQuote.Qty}}
                                                     <a ng-click="$ctrl.decreaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
                                                         <i class="fa fa-chevron-down" />
                                                     </a>

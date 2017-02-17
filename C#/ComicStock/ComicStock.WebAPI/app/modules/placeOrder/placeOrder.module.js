@@ -67,7 +67,7 @@ angular.module('placeOrderModule', [])
                     for(var y = 0; y < $ctrl.order.IssueOrders.length; y++)
                     {
                         if ($ctrl.order.IssueOrders[y].SupplierQuote.Id == $ctrl.supplierQuotes[x].Id) {
-                            $ctrl.supplierQuotes[x].Qty = $ctrl.order.IssueOrders[y].QuantityOrdered
+                            $ctrl.supplierQuotes[x].Qty = $ctrl.order.IssueOrders[y].QuantityOrdered*1
                             $ctrl.order.IssueOrders.QuantityOrdered = $ctrl.supplierQuotes[x].Qty;
                         }
                     }
@@ -143,8 +143,6 @@ angular.module('placeOrderModule', [])
 
             $ctrl.validateQuoteQty = function (supplierQuote) {
                 console.log("Validate Quote Qty")
-                if (supplierQuote.Qty < 0)
-                    supplierQuote.Qty = 0;
                 $ctrl.updateOrderTotal();
                 $ctrl.addQty();
             }
@@ -191,8 +189,6 @@ angular.module('placeOrderModule', [])
 
             $ctrl.decreaseQuoteQty = function (issueOrder) {
                 console.log("Decrease Quote Qty")
-                if (issueOrder.Qty == 1)
-                    return;
                 issueOrder.Qty = issueOrder.Qty - 1;
                 $ctrl.updateOrderTotal();
                 $ctrl.addQty();
