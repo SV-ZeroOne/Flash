@@ -187,18 +187,40 @@ angular.module('placeOrderModule', [])
                 $ctrl.addQty();
             }
 
-            $ctrl.decreaseQuoteQty = function (issueOrder) {
-                console.log("Decrease Quote Qty")
-                issueOrder.Qty = issueOrder.Qty - 1;
-                $ctrl.updateOrderTotal();
+            $ctrl.decreaseQuoteQty = function (supplierQuote) {
+                console.log("Added to order");
+
+                for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
+                    if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id) {
+                        $ctrl.order.IssueOrders[x].QuantityOrdered -= 1;
+                        $ctrl.addQty();
+                        $ctrl.updateOrderTotal();
+                        return;
+                    }
+                }
                 $ctrl.addQty();
+                $ctrl.updateOrderTotal();
             }
 
-            $ctrl.increaseQuoteQty = function (issueOrder) {
-                console.log("Decrease Quote Qty")
-                issueOrder.Qty = issueOrder.Qty + 1;
-                $ctrl.updateOrderTotal();
+            $ctrl.increaseQuoteQty = function (supplierQuote) {
+                console.log("Added to order");
+
+                for (var x = 0; x < $ctrl.order.IssueOrders.length; x++) {
+                    if ($ctrl.order.IssueOrders[x].SupplierQuote.Id == supplierQuote.Id) {
+                        $ctrl.order.IssueOrders[x].QuantityOrdered += 1;
+                        $ctrl.addQty();
+                        $ctrl.updateOrderTotal();
+                        return;
+                    }
+                }
+
+                $ctrl.order.IssueOrders.push({
+                    QuantityOrdered: 1,
+                    SupplierQuote: supplierQuote,
+                    Issue: supplierQuote.Issue
+                });
                 $ctrl.addQty();
+                $ctrl.updateOrderTotal();
             }
 
             $ctrl.updateOrderTotal = function () {

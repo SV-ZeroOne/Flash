@@ -1,45 +1,98 @@
 ﻿<style>
     #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #428bca;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        bottom: 30px;
+        font-size: 17px;
+    }
+    .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
     visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #428bca;
+    width: 120px;
+    background-color: #555;
     color: #fff;
     text-align: center;
-    border-radius: 5px;
-    padding: 16px;
-    position: fixed;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
     z-index: 1;
+    bottom: 125%;
     left: 50%;
-    bottom: 30px;
-    font-size: 17px;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
 }
 
-#snackbar.show {
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    opacity: 1;
 }
 
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-}
 
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-}
+    .bs-hover{
+        margin: 150px 50px;
+    }
 
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-}
 
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-}
+ 
+
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;} 
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;} 
+        to {bottom: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
 
     @keyframes rotating {
         from {
@@ -55,13 +108,15 @@
         animation: rotating 2s linear infinite;
     }
     input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-input[type="number"] {
-    -moz-appearance: textfield;
-}
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
 </style>
+
+
 <div class="brand clearfix">
     <a href="#!/" class="logo"><img src="/app/assets/img/logo.jpg" class="img-responsive" alt=""></a>
     <span class="menu-btn"><i class="fa fa-bars"></i></span>
@@ -141,7 +196,7 @@ input[type="number"] {
                                         <tr ng-repeat="issueOrders in $ctrl.order.IssueOrders">
                                             <td>{{issueOrders.Issue.Title}}</td>
                                             <td>{{issueOrders.Issue.SeriesNumber}}</td>
-                                            <td>R {{issueOrders.SupplierQuote.Price}}</td>
+                                            <td>R {{issueOrders.SupplierQuote.Price |number:2}}</td>
                                             <td>
                                                 <a ng-click="$ctrl.increaseQty(issueOrders)" style="cursor: pointer" style="cursor: pointer;">
                                                     <i class="fa fa-chevron-up" />
@@ -220,33 +275,56 @@ input[type="number"] {
                                             <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 35%; transform: translate(-50%, 0); bottom: 20%; color:white;">
                                                 {{(supplierQuote.Issue.Stock[0].AvailableQuantity == 0)?"Out of Stock":"Current Stock: "+supplierQuote.Issue.Stock[0].AvailableQuantity }}
                                             </div>
-                                            <div class="btn" style="background-color: rgba(36, 36, 36, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 80%; color:white;">
-                                                {{supplierQuote.Issue.Title}}
-                                            </div>
-                                            <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 35%; color:white;">
-                                                R {{supplierQuote.Cheapest.Price}}
-                                            </div>
-                                            <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
-                                                R {{supplierQuote.Price}}
-                                            </div>
-                                            <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">
-                                                    <a ng-click="$ctrl.increaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
-                                                        <i class="fa fa-chevron-up" />
-                                                    </a>
-                                                    <!--<input class="form-horizontal form-inline" style="width:35px; height:auto" type="number" value="supplierQuote.Qty" ng-model="supplierQuote.Qty"></input>-->
-                                                {{supplierQuote.Qty}}
-                                                    <a ng-click="$ctrl.decreaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
-                                                        <i class="fa fa-chevron-down" />
-                                                    </a>
-                                             </div>
-                                            
-                                            <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 30%; transform: translate(-50%, 0); bottom: 5%; color:white;">
-                                                Add to Order
-                                            </div>
-                                            <div id="snackbar">Added to Order</div>
+                                            <center>
+                                                <div class="btn" style="background-color: rgba(36, 36, 36, 1); position: absolute; left: 50%; transform: translate(-50%, 0); width:85%; bottom: 80%; color:white;">
+                                                    {{supplierQuote.Issue.Title}}
+                                                </div>
+                                            </center>
+                                        
+                                            <center>
+                                                <div class="btn" style=" background-color: rgb(7, 58, 101); position: absolute; left: 50%; transform: translate(-50%, 0); width: 80%;bottom: 30%; color: white;">
+                                                    <div class="row">
+
+                                                        Cheapest Option Available
+                                                    </div>
+                                                    <div class="row">
+
+                                                        {{supplierQuote.Cheapest.Supplier.Name}}: R{{supplierQuote.Cheapest.Price | number:2}}
+
+                                                    </div>
+                                                </div>
+                                            </center>
                                         </div>
+
+                                        <!--<div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 35%; color:white;">
+                                            R {{supplierQuote.Cheapest.Price}}
+                                        </div>-->
+                                        <div class="btn" style="background-color: rgb(7, 58, 101); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 20%; color:white;">
+                                            R {{supplierQuote.Price |number:2}}
+                                        </div>
+                                        <div class="btn" style="background-color: rgba(36, 36, 36, 0.5); position: absolute; left: 30%; transform: translate(-50%, 0); bottom: 5%; color:white;">
+                                            <a ng-click="$ctrl.increaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
+                                                <i class="fa fa-chevron-up" />
+                                            </a>
+                                            <!--<input class="form-horizontal form-inline" style="width:35px; height:auto" type="number" value="supplierQuote.Qty" ng-model="supplierQuote.Qty"></input>-->
+                                            {{supplierQuote.Qty}}
+                                            <a ng-click="$ctrl.decreaseQuoteQty(supplierQuote)" style="cursor: pointer" style="cursor: pointer;">
+                                                <i class="fa fa-chevron-down" />
+                                            </a>
+                                        </div>
+                                            
+                                        <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;" data-toggle="popover" title="Cheapest Option Available" data-content='{{supplierQuote.Cheapest.Supplier.Name}} : R {{supplierQuote.Cheapest.Price | number:2}}'>
+                                            Add to Order
+                                        </div>
+                                        <div id="snackbar">Added to Order</div>
                                     </div>
                                 </div>
+                                
+                                
+                             
+                                
+
+                            </div>
                             </div>
                         </div>
                     </table>
