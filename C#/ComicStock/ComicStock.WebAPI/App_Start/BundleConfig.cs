@@ -30,6 +30,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/js/angular-messages.js",
                       "~/app/assets/js/swx-session-storage.min.js",
                       "~/app/assets/js/angular-modal-service.min.js",
+                      "~/app/modules/pagination/pagination.module.js",
                       "~/app/modules/supplier/supplier.module.js",
                       "~/app/modules/creatorRole/role.module.js",
                       "~/app/modules/issueStock/issueStock.module.js",

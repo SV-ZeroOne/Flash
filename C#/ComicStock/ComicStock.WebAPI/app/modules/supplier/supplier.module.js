@@ -8,6 +8,8 @@ angular.module('supplierModule', [])
             $ctrl.currentSupplier = {};
             $ctrl.modalTitle = 'Add a Supplier';
 
+            $ctrl.hero = { name: "SupperMan" };
+
             $ctrl.suppliers = {};
             $ctrl.search = "";
 

@@ -1,4 +1,19 @@
-var squareEyes = angular.module('squareEyes', ['ngMessages', 'swxSessionStorage', 'ngRoute', 'issueStockModule', 'orderIssueModule', 'placeOrderModule', 'issueModule', 'viewOrdersModule', 'supplierModule', 'creatorModule', 'stockModule', 'voucherModule', 'angularModalService', 'creatorRoleModule', 'dashboardModule'])
+var squareEyes = angular.module('squareEyes', ['ngMessages',
+    'swxSessionStorage',
+    'ngRoute',
+    'issueStockModule',
+    'orderIssueModule',
+    'placeOrderModule',
+    'paginationModule',
+    'issueModule',
+    'viewOrdersModule',
+    'supplierModule',
+    'creatorModule',
+    'stockModule',
+    'voucherModule',
+    'angularModalService',
+    'creatorRoleModule',
+    'dashboardModule'])
 
 
 
