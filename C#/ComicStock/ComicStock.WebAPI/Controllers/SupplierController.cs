@@ -1,4 +1,5 @@
-﻿using ComicStock.Data.IRepositories;
+﻿using ComicStock.Data;
+using ComicStock.Data.IRepositories;
 using ComicStock.Domain;
 using ComicStock.WebAPI.Models;
 using System;
@@ -50,11 +51,17 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [Route("api/Supplier/search")]
-        public IHttpActionResult Get(string search, int page, int pageSize)
+        public IHttpActionResult Get(int page, int pageSize, string search = "")
         {
-            IEnumerable<SupplierDTO> suppliers = supplierRepository.GetPage(search, page, pageSize).Select(s => new SupplierDTO(s));
+            Page<Supplier> pageObj = supplierRepository.GetPaging(search, page, pageSize);
+            PageDTO<SupplierDTO> res = new PageDTO<SupplierDTO>()
+            {
+                list = pageObj.list.Select(l => new SupplierDTO(l)), 
+                pageNo = pageObj.pageNo,
+                count = pageObj.count
+            };
 
-            return Ok(suppliers);
+            return Ok(res);
         }
 
         [Route("api/Supplier/count")]

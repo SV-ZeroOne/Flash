@@ -54,6 +54,19 @@ namespace ComicStock.Data
                 .ToList();
         }
 
+        protected Page<TEntity> GetPaging(IQueryable<TEntity> entity, int page, int pageSize)
+        {
+            int count = entity.Count();
+
+            return new Page<TEntity>( entity
+                .Skip(pageSize * (page-1))
+                .Take((page * pageSize) > count
+                        ? (pageSize * page) - (pageSize * page - count)
+                        : pageSize
+                )
+                .ToList(), page, count);
+        }
+
         public void Update(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;

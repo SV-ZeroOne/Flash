@@ -206,6 +206,7 @@
     <Compile Include="Models\IssueDTO.cs" />
     <Compile Include="Models\IssueOrderDTO.cs" />
     <Compile Include="Models\OrderDTO.cs" />
+    <Compile Include="Models\PageDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />
     <Compile Include="Models\SupplierDTO.cs" />
     <Compile Include="Models\SupplierPaymentDTO.cs" />
