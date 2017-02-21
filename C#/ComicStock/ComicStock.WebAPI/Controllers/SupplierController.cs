@@ -54,11 +54,9 @@ namespace ComicStock.WebAPI.Controllers
         public IHttpActionResult Get(int page, int pageSize, string search = "")
         {
             Page<Supplier> pageObj = supplierRepository.GetPaging(search, page, pageSize);
-            PageDTO<SupplierDTO> res = new PageDTO<SupplierDTO>()
+            PageDTO<Supplier, SupplierDTO> res = new PageDTO<Supplier, SupplierDTO>(pageObj)
             {
-                list = pageObj.list.Select(l => new SupplierDTO(l)), 
-                pageNo = pageObj.pageNo,
-                count = pageObj.count
+                list = pageObj.list.Select(l => new SupplierDTO(l))
             };
 
             return Ok(res);
