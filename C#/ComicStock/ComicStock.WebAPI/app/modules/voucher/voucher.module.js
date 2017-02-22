@@ -210,7 +210,7 @@ angular.module('voucherModule', [])
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
-                            'Good job!',
+                            'Success!',
                             'Voucher updated',
                             'success'
                         );
@@ -300,7 +300,7 @@ angular.module('voucherModule', [])
                     .then(function (response) {
                         $scope.$emit('updateTheTablePlease');
                         swal(
-                            'Good job!',
+                            'Success!',
                             'Voucher updated',
                             'success'
                         );
