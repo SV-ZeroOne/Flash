@@ -226,10 +226,13 @@
     <Content Include="app\assets\css\fileinput.min.css" />
     <Content Include="app\assets\css\font-awesome.min.css" />
     <Content Include="app\assets\css\jquery.dataTables.min.css" />
+    <Content Include="app\assets\css\opentip.css" />
     <Content Include="app\assets\css\Site.css" />
     <Content Include="app\assets\css\style.css" />
     <Content Include="app\assets\css\vars.css" />
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="app\assets\js\adapter-jquery.js" />
+    <Content Include="app\assets\js\opentip-jquery-excanvas.js" />
     <Content Include="app\assets\js\popOver.js" />
     <Content Include="app\modules\pagination\pagination.tpl.html" />
     <Content Include="app\modules\pagination\pagination.module.js" />

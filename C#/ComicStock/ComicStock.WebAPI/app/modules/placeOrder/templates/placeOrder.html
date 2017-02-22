@@ -1,68 +1,51 @@
 ﻿<style>
-    #snackbar {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: #428bca;
-        color: #fff;
-        text-align: center;
-        border-radius: 5px;
-        padding: 16px;
-        position: fixed;
-        z-index: 1;
-        left: 50%;
-        bottom: 30px;
-        font-size: 17px;
-    }
 
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+ /* If you want dots under the hoverable text */
+}
 
 /* Tooltip text */
-#tooltip .tooltiptext {
+.tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: #555;
+    background-color: black;
     color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-
-    /* Position the tooltip text */
+ 
+    /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-/* Tooltip arrow */
-#tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-#tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext {
     visibility: visible;
-    opacity: 1;
 }
 
+     #snackbar {
+         visibility: hidden;
+         min-width: 250px;
+         margin-left: -125px;
+         background-color: #428bca;
+         color: #fff;
+         text-align: center;
+         border-radius: 5px;
+         padding: 16px;
+         position: fixed;
+         z-index: 1;
+         left: 50%;
+         bottom: 30px;
+         font-size: 17px;
+     }
 
-    .bs-hover{
-        margin: 150px 50px;
-    }
 
 
- 
+
 
     #snackbar.show {
         visibility: visible;
@@ -299,10 +282,8 @@
                                             </a>
                                         </div>
 
-                                        <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;" data-toggle="popover" title="Cheapest Option Available" data-content='{{supplierQuote.Cheapest.Supplier.Name}} : R {{supplierQuote.Cheapest.Price | number:2}}'>
+                                        <a class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Default tooltip" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 70%; transform: translate(-50%, 0); bottom: 5%; color:white;">Add to Order</a>
 
-                                            Add to Order
-                                        </div>
                                         <div id="snackbar">Added to Order</div>
                                     </div>
                                 </div>

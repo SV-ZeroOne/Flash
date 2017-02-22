@@ -61,6 +61,7 @@ namespace ComicStock.WebAPI
                       "~/app/assets/css/vars.css",
                       "~/app/assets/css/bootstrap-select.css",
                       "~/app/assets/css/vars.less",
+                      "~/app/assets/css/opentip.css",
                       "~/app/assets/css/components.less"
                 ));
 
