@@ -12,6 +12,7 @@ namespace ComicStock.Data
 
         //IQueryable<TEntity> GetAll();
         IEnumerable<TEntity> GetPage(int page, int pageSize);
+        //Page<TEntity> GetPaging(int page, int pageSize);
         void Add(TEntity entity);
         int Count();
         void Create(TEntity entity);

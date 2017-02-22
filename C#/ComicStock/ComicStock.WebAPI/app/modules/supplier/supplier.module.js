@@ -8,6 +8,8 @@ angular.module('supplierModule', [])
             $ctrl.currentSupplier = {};
             $ctrl.modalTitle = 'Add a Supplier';
 
+            $ctrl.hero = { name: "SupperMan" };
+
             $ctrl.suppliers = {};
             $ctrl.search = "";
 
@@ -58,30 +60,13 @@ angular.module('supplierModule', [])
             }
 
             $ctrl.updateTable = function () {
-                console.log("Update the table");
-                if ($ctrl.search == "") $http
-                    .get('/api/Supplier?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function (response) {
-                        $ctrl.suppliers = response.data;
-                        console.log($ctrl.suppliers);
-                    })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse)
-                    });
-                else $http
-                    .get('/api/Supplier/search?search=' + $ctrl.search + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function (response) {
-                        $ctrl.suppliers = response.data;
-                        console.log($ctrl.suppliers);
-                    })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse);
-                    });
-
+                console.log("Update table")
                 $http
-                    .get('/api/Supplier/count')
+                    .get('/api/Supplier/search?page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize + (($ctrl.search == "") ? "" : ('&search=' + $ctrl.search)) )
                     .then(function (response) {
-                        $ctrl.pagination.count = response.data;
+                        $ctrl.suppliers = response.data.list;
+
+                        $ctrl.pagination.count = response.data.count;
 
                         $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
                         $ctrl.pagination.pageOptions = [];
@@ -108,8 +93,6 @@ angular.module('supplierModule', [])
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
                     });
-                console.log($ctrl.pagination);
-
             }
 
             $ctrl.updateTable();

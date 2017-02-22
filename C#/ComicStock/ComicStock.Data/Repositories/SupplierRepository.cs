@@ -29,6 +29,22 @@ namespace ComicStock.Data
             return base.GetPage(suppliers, page, pageSize);
         }
 
+        public Page<Supplier> GetPaging(string search, int page, int pageSize)
+        {
+            if (search == "")
+            {
+                return base.GetPaging(this.context.Suppliers.AsQueryable()
+                    .OrderBy(x => x.Name)
+                    .Where(x => x.IsActivated == true), 
+                    page, pageSize);
+            }
+            return base.GetPaging(this.context.Suppliers.AsQueryable()
+                    .OrderBy(x => x.Name)
+                    .Where(x => (x.Name.Contains(search) || x.City.Contains(search)) && x.IsActivated == true),
+                    page, pageSize);
+
+        }
+
         public override int Count()
         {
             var suppliers = this.context.Suppliers.AsQueryable()

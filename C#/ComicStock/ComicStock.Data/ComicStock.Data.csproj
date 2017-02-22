@@ -85,6 +85,7 @@
     <Compile Include="IRepositories\ISupplierRepository.cs" />
     <Compile Include="IRepositories\IVoucherRepository.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Repositories\CreatorRepository.cs" />
     <Compile Include="Repositories\IssueRepository.cs" />
     <Compile Include="IRepositories\IStockRepository.cs" />

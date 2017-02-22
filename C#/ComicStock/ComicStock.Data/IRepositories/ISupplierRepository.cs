@@ -11,6 +11,7 @@ namespace ComicStock.Data.IRepositories
     {
         Supplier GetById(int id);
         IEnumerable<Supplier> GetPage(string search, int page, int pageSize);
+        Page<Supplier> GetPaging(string search, int page, int pageSize);
     }
 
 }

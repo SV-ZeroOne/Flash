@@ -206,6 +206,7 @@
     <Compile Include="Models\IssueDTO.cs" />
     <Compile Include="Models\IssueOrderDTO.cs" />
     <Compile Include="Models\OrderDTO.cs" />
+    <Compile Include="Models\PageDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />
     <Compile Include="Models\SupplierDTO.cs" />
     <Compile Include="Models\SupplierPaymentDTO.cs" />
@@ -230,6 +231,8 @@
     <Content Include="app\assets\css\vars.css" />
     <Content Include="app\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="app\assets\js\popOver.js" />
+    <Content Include="app\modules\pagination\pagination.tpl.html" />
+    <Content Include="app\modules\pagination\pagination.module.js" />
     <Content Include="favicon.ico" />
     <Content Include="app\assets\img\login-bg.jpg" />
     <Content Include="app\assets\img\logo.jpg" />
