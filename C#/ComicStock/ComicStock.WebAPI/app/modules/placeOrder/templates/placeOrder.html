@@ -14,14 +14,10 @@
         bottom: 30px;
         font-size: 17px;
     }
-    .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
+
 
 /* Tooltip text */
-.tooltip .tooltiptext {
+#tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     background-color: #555;
@@ -43,7 +39,7 @@
 }
 
 /* Tooltip arrow */
-.tooltip .tooltiptext::after {
+#tooltip .tooltiptext::after {
     content: "";
     position: absolute;
     top: 100%;
@@ -55,7 +51,7 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
+#tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
 }
@@ -312,7 +308,7 @@
                                             </a>
                                         </div>-->
                                             
-                                        <div class="btn btn-success" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 5%; color:white;" data-toggle="popover" title="Cheapest Option Available" data-content='{{supplierQuote.Cheapest.Supplier.Name}} : R {{supplierQuote.Cheapest.Price | number:2}}'>
+                                        <div class="btn btn-success tooltip" ng-click="$ctrl.addToOrder(supplierQuote); $ctrl.showSnackbar()" style="background-color: rgba(31, 86, 10, 1); position: absolute; left: 50%; transform: translate(-50%, 0); bottom: 5%; color: white;">
                                             Add to Order
                                         </div>
                                         <div id="snackbar">Added to Order</div>
