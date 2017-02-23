@@ -58,6 +58,11 @@ namespace ComicStock.Data
         {
             int count = entity.Count();
 
+            page = (page * pageSize) > count
+                        ? (count / pageSize) + 1
+                        : page;
+            
+
             return new Page<TEntity>( entity
                 .Skip(pageSize * (page-1))
                 .Take((page * pageSize) > count

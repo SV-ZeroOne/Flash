@@ -1,4 +1,5 @@
-﻿using ComicStock.Data.IRepositories;
+﻿using ComicStock.Data;
+using ComicStock.Data.IRepositories;
 using ComicStock.Domain;
 using ComicStock.WebAPI.Models;
 using System;
@@ -47,13 +48,12 @@ namespace ComicStock.WebAPI.Controllers
         }
 
         [Route("api/SupplierQuote/search")]
-        public IHttpActionResult Get(string search, int id, int page, int pageSize)
+        public IHttpActionResult Get(int id, int page, int pageSize, string search = "")
         {
-            Supplier supplier = supplierRepository.GetById(id);
-            IEnumerable<SupplierQuoteDTO> supplierQuotes = null;
-            if (supplier != null)
+            Page<SupplierQuote> pageObj = supplierQuoteRepository.GetPaging(search, id, page, pageSize);
+            PageDTO<SupplierQuote, SupplierQuoteDTO> res = new PageDTO<SupplierQuote, SupplierQuoteDTO>(pageObj)
             {
-                supplierQuotes = supplierQuoteRepository.GetPage(search, id, page, pageSize).Select(sq => new SupplierQuoteDTO(sq)
+                list = pageObj.list.Select(sq => new SupplierQuoteDTO(sq)
                 {
                     Qty = 0,
                     Cheapest = new SupplierQuoteDTO(supplierQuoteRepository.GetCheapest(sq.Issue.ID))
@@ -64,12 +64,10 @@ namespace ComicStock.WebAPI.Controllers
                     {
                         Stock = sq.Issue.Stocks.Select(s => new StockDTO(s)).Where(con => con.Condition == "Very Fine")
                     }
+                })
+            };
 
-                });
-            }
-
-
-            return Ok(supplierQuotes);
+            return Ok(res);
         }
 
         [Route("api/SupplierQuote/count")]

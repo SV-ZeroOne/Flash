@@ -42,6 +42,22 @@ namespace ComicStock.Data.Repositories
             return base.GetPage(suppliers, page, pageSize);
         }
 
+        public Page<SupplierQuote> GetPaging(string search, int id, int page, int pageSize)
+        {
+            if (search == "")
+            {
+                return base.GetPaging(this.context.SupplierQuotes.AsQueryable()
+                    .OrderBy(x => x.Issue.Title)
+                    .Where(x => x.Supplier.ID == id),
+                    page, pageSize);
+            }
+            return base.GetPaging(this.context.SupplierQuotes.AsQueryable()
+                    .OrderBy(x => x.Issue.Title)
+                    .Where(x => (x.Issue.Title.Contains(search) || x.Issue.Publisher.Contains(search)) && x.Supplier.ID == id),
+                    page, pageSize);
+
+        }
+
         public int Count(int id)
         {
             var suppliers = this.context.SupplierQuotes.AsQueryable()

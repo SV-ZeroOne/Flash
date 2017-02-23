@@ -77,34 +77,14 @@ angular.module('placeOrderModule', [])
             $ctrl.updateQuotes = function () {
                 console.log("Update the quotes");
                 $ctrl.supplierQuotes = []
-                if ($ctrl.search == "") $http
-                    .get('/api/SupplierQuote?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                    .then(function (response) {
-                        console.log(response.data)
-                        $ctrl.supplierQuotes = response.data
-                        $ctrl.addQty();
-                        
-                        $ctrl.issueMessage = "Add Issues to your Order:";
-                    })
-                    .catch(function (errorResponse) {
-                        console.log(errorResponse)
-                    });
-                else $http
-                        .get('/api/SupplierQuote/search?search='+$ctrl.search+'&id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize)
-                        .then(function (response) {
-                            $ctrl.supplierQuotes = response.data
-                            $ctrl.addQty();
-
-                            $ctrl.issueMessage = "Add Issues to your Order:";
-                        })
-                        .catch(function (errorResponse) {
-                            console.log(errorResponse)
-                        });
-
                 $http
-                    .get('api/SupplierQuote/count?id=' + $ctrl.order.Supplier.Id + (($ctrl.search == "") ? "" : "&search=" + $ctrl.search))
+                    .get('/api/SupplierQuote/search?id=' + $ctrl.order.Supplier.Id + '&page=' + $ctrl.pagination.page + '&pageSize=' + $ctrl.pagination.pageSize + (($ctrl.search == "") ? "" : ('&search=' + $ctrl.search)))
                     .then(function (response) {
-                        $ctrl.pagination.count = response.data;
+                        $ctrl.supplierQuotes = response.data.list;
+
+                        $ctrl.pagination.count = response.data.count;
+
+                        $ctrl.pagination.page = response.data.pageNo;
 
                         $ctrl.pagination.numPages = Math.ceil($ctrl.pagination.count / $ctrl.pagination.pageSize);
                         $ctrl.pagination.pageOptions = [];
@@ -117,7 +97,9 @@ angular.module('placeOrderModule', [])
                         if ($ctrl.pagination.page - 1 >= 1) {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page - 1);
                         }
+
                         $ctrl.pagination.pageOptions.push($ctrl.pagination.page);
+
                         if ($ctrl.pagination.page + 1 <= $ctrl.pagination.numPages) {
                             $ctrl.pagination.pageOptions.push($ctrl.pagination.page + 1);
                         }
@@ -131,7 +113,7 @@ angular.module('placeOrderModule', [])
                     .catch(function (errorResponse) {
                         console.log(errorResponse);
                     });
-                console.log($ctrl.pagination);
+                
             }
 
             $ctrl.validateQty = function (issueOrders) {

@@ -12,7 +12,7 @@ namespace ComicStock.Data
     {
         public ComicContext()
         #if DEBUG
-            : base("SquareEyesBootcamp")
+            : base("SquareEyes")
             #else
             : base("SquareEyesRelease")
             #endif 
